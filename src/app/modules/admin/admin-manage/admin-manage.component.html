@@ -1,0 +1,68 @@
+<!-- ex : https://www.positronx.io/angular-server-side-pagination-with-ngx-pagination-example/ -->
+<div class="container">
+
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3>จัดการข้อมูลผู้ใช้งาน</h3>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../register">เพิ่มผู้ใช้งาน</button> 
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-info"(click)="refresh()">รีโหลด</button>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ลำดับ</th>
+                <th scope="col">รหัสบัตรประชาชน</th>
+                <th scope="col">ชื่อ - สกุล</th>
+                <th scope="col">เพศ</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of listUser | paginate: {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              };let i = index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{item.userCardId}}</td>
+                <td>{{item.userTitle}}{{item.userFirstname}} {{item.userLastname}}</td>
+                <td>{{item.userGender}}</td>
+                <td>
+                    <button type="button" class="btn btn-warning btn-sm" (click)="gotoAdminEdit(item)">แก้ไข</button>
+                    &nbsp;
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(item)">ลบ</button>
+                    <!-- <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ลบ</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-center">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    </div>
+
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">ลบข้อมูลผู้ใช้งาน</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                   คุณต้องการลบข้อมูลผู้ใช้งานนี้ ใช่ หรือ ไม่?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-danger">ลบข้อมูล</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>
