@@ -6,65 +6,120 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-  <ul class="navbar-nav px-3">
+  <ul *ngIf="!isLogin" class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="home/login">เข้าสู่ระบบ</a>
+      <a class="nav-link" href="login">เข้าสู่ระบบ</a>
+    </li>
+  </ul>
+  <ul *ngIf="isLogin" class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">ออกจากระบบ</a>
     </li>
   </ul>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">คุณต้องการออกจากระบบ</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ต้องการออกจากระบบ ใช่ หรือ ไม่ ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-danger" (click)="logOut()">ออกจากระบบ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
 <div class="container-fluid">
   <div class="row">
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="list-unstyled ps-0">
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-              data-bs-target="#home-collapse" aria-expanded="true">
-              Home
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">Overview</a></li>
-                <li><a href="#" class="link-dark rounded">Updates</a></li>
-                <li><a href="#" class="link-dark rounded">Reports</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-              data-bs-target="#dashboard-collapse" aria-expanded="false">
-              Dashboard
-            </button>
-            <div class="collapse" id="dashboard-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">Overview</a></li>
-                <li><a href="#" class="link-dark rounded">Weekly</a></li>
-                <li><a href="#" class="link-dark rounded">Monthly</a></li>
-                <li><a href="#" class="link-dark rounded">Annually</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-              data-bs-target="#orders-collapse" aria-expanded="false">
-              Orders
-            </button>
-            <div class="collapse" id="orders-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="#" class="link-dark rounded">New</a></li>
-                <li><a href="#" class="link-dark rounded">Processed</a></li>
-                <li><a href="#" class="link-dark rounded">Shipped</a></li>
-                <li><a href="#" class="link-dark rounded">Returned</a></li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </div>
+
+      <ng-template ngxPermissionsOnly="ADMIN">
+        <div class="position-sticky pt-3">
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#home-collapse" aria-expanded="true">
+                จัดการข้อมูลผู้ใช้งาน
+              </button>
+              <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="admin/manage" class="link-dark rounded">แสดงข้อมูลผู้ใช้งาน</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </ng-template>
+
+      <ng-template ngxPermissionsOnly="USER">
+        <div class="position-sticky pt-3">
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#home-collapse" aria-expanded="true">
+                เมนูฝั่งผู้ป่วย
+              </button>
+              <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="user/home" class="link-dark rounded">หน้าแรก</a></li>
+                  <li><a href="user/booking" class="link-dark rounded">จองคิวเข้ารักษา</a></li>
+                  <li><a href="#" class="link-dark rounded">ข้อมูลการชำระเงิน</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </ng-template>
+
+      <ng-template ngxPermissionsOnly="DOCTOR">
+        <div class="position-sticky pt-3">
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#home-collapse" aria-expanded="true">
+                เมนูฝั่งแพทย์
+              </button>
+              <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="doctor/home" class="link-dark rounded">หน้าแรก</a></li>
+                  <li><a href="doctor/treat" class="link-dark rounded">จัดการข้อมูลการรักษา</a></li>
+                  <li><a href="#" class="link-dark rounded">จัดการข้อมูลผู้ใช้งาน</a></li>
+                  <li><a href="doctor/report-treat" class="link-dark rounded">รายงานการรักษา</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </ng-template>
     </nav>
 
     <!-- content -->
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 top-3">
+      <!-- <p><strong>{{idleState}}</strong></p>
+      <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing}}</strong></small></p>
+      <button (click)="reset()" *ngIf="timedOut">Restart</button> -->
+
+      <!-- <div *ngIf="timedOut" class="alert alert-warning" role="alert">
+        <h4 class="alert-heading">{{idleState}}</h4>
+        <p class="mb-0">Whenever you need to keepalive in system.</p>
+        <hr>
+        <button (click)="reset()" *ngIf="timedOut" class="btn btn-primary">Keep Alive</button> &nbsp;
+        <button (click)="logOut()" *ngIf="timedOut" class="btn btn-danger">Cancel</button>
+      </div> -->
+
       <router-outlet></router-outlet>
     </main>
     <!-- content -->
