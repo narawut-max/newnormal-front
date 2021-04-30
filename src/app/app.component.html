@@ -1,6 +1,8 @@
-<!-- nav -->
-<div class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="home">New Normal Front</a>
+<!-- <img src="http://www.thebeachwaterpark.com/wp-content/uploads/sites/19/2015/06/header-background-landing.jpg"
+  class="img-fluid" alt="..."> -->
+
+<header class="navbar navbar-dark  bg-primary flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-center" href="home">New Normal Front</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
     data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -16,8 +18,7 @@
       <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">ออกจากระบบ</a>
     </li>
   </ul>
-</div>
-
+</header>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -37,14 +38,15 @@
     </div>
   </div>
 </div>
-
 <!-- modal -->
+
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light collapse ">
+      <div class="position-sticky pt-3">
+        <!-- <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu"> -->
 
-      <ng-template ngxPermissionsOnly="ADMIN">
-        <div class="position-sticky pt-3">
+        <ng-template ngxPermissionsOnly="ADMIN">
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
               <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
@@ -58,12 +60,10 @@
               </div>
             </li>
           </ul>
-        </div>
 
-      </ng-template>
+        </ng-template>
 
-      <ng-template ngxPermissionsOnly="USER">
-        <div class="position-sticky pt-3">
+        <ng-template ngxPermissionsOnly="USER">
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
               <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
@@ -79,31 +79,33 @@
               </div>
             </li>
           </ul>
-        </div>
 
-      </ng-template>
+        </ng-template>
 
-      <ng-template ngxPermissionsOnly="DOCTOR">
-        <div class="position-sticky pt-3">
-          <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                data-bs-target="#home-collapse" aria-expanded="true">
-                เมนูฝั่งแพทย์
-              </button>
-              <div class="collapse show" id="home-collapse">
-                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                  <li><a href="doctor/home" class="link-dark rounded">หน้าแรก</a></li>
-                  <li><a href="doctor/treat" class="link-dark rounded">จัดการข้อมูลการรักษา</a></li>
-                  <li><a href="#" class="link-dark rounded">จัดการข้อมูลผู้ใช้งาน</a></li>
-                  <li><a href="doctor/report-treat" class="link-dark rounded">รายงานการรักษา</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <ng-template ngxPermissionsOnly="DOCTOR">
+          <div class="position-sticky pt-3">
+            <ul class="list-unstyled ps-0">
+              <li class="mb-1">
+                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                  data-bs-target="#home-collapse" aria-expanded="true">
+                  เมนูฝั่งแพทย์
+                </button>
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="doctor/home" class="link-dark rounded">หน้าแรก</a></li>
+                    <li><a href="doctor/treat" class="link-dark rounded">จัดการข้อมูลการรักษา</a></li>
+                    <li><a href="#" class="link-dark rounded">จัดการข้อมูลผู้ใช้งาน</a></li>
+                    <li><a href="doctor/report-treat" class="link-dark rounded">รายงานการรักษา</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
 
-      </ng-template>
+        </ng-template>
+
+        <!-- </ul> -->
+      </div>
     </nav>
 
     <!-- content -->
@@ -121,8 +123,16 @@
       </div> -->
 
       <router-outlet></router-outlet>
+      <canvas class="my-4 w-100" id="myChart" width="900" height="200"></canvas>
     </main>
-    <!-- content -->
 
   </div>
 </div>
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>

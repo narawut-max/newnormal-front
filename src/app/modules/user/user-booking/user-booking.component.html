@@ -11,75 +11,102 @@
     </div>
 
     <!-- content -->
-    <div class="card">
+    <div class="card" style="background-color: #f3f3f3!important">
+        <div class="container" style="width:100%; margin: 10px auto;">
+            <div class="card-body">
+                <form class=" row g-3 top-1" autocomplete="off">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-text">รหัสผู้ป่วย</div>
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="รหัสผู้ป่วย">
+                            <!-- <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="รหัสผู้ป่วย" aria-label="readonly input example" readonly> -->
+                        </div>
+                    </div>
+                    <div class="row g-1 top-2"></div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-text">ชื่อ</div>
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ชื่อ">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-text">สกุล</div>
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="สกุล">
+                        </div>
+                    </div>
+                    <div class="row g-1 top-2"></div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-text">เบอร์โทรศัพท์</div>
+                            <input type="tel" class="form-control" id="autoSizingInputGroup"
+                                placeholder="เบอร์โทรศัพท์">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-text">อีเมล</div>
+                            <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="อีเมล">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <div class="input-group-text">อาการ</div>
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="อาการ">
+                        </div>
+                    </div>
+                    <div class="row g-1 top-2"></div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <div class="input-group-text">แพทย์ที่รักษา</div>
+                            <select id="inputState" class="form-select">
+                                <option selected>เลือกแพทย์ที่รักษา</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <div class="input-group-text">ว/ด/ป ที่จอง</div>
+                            <input type="date" class="form-control" id="autoSizingInputGroup"
+                                placeholder="ว/ด/ป ที่จอง">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group">
+                            <div class="input-group-text">เวลาที่จอง</div>
+                            <input type="time" class="form-control" id="autoSizingInputGroup" placeholder="เวลาที่จอง">
+                        </div>
+                    </div>
 
-        <div class="card-body">
-            <form class="row g-3 top-1" autocomplete="off">
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-text">รหัสผู้ป่วย</div>
-                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="รหัสผู้ป่วย">
-                        <!-- <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="รหัสผู้ป่วย" aria-label="readonly input example" readonly> -->
+                    <div class="col-12" style="text-align: center;">
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                            data-bs-target="#BookingModal">
+                            จองคิว
+                        </button>&nbsp;
+                        <button type="reset" class="btn btn-danger">ล้างข้อมูล</button>
                     </div>
-                </div>
-                <div class="row g-2 top-2"></div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-text">ชื่อ</div>
-                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ชื่อ">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-text">สกุล</div>
-                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="สกุล">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-text">เบอร์โทรศัพท์</div>
-                        <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="เบอร์โทรศัพท์">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-text">อีเมล</div>
-                        <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="อีเมล">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="input-group">
-                        <div class="input-group-text">อาการ</div>
-                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="อาการ">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="input-group">
-                        <div class="input-group-text">แพทย์ที่รักษา</div>
-                        <select id="inputState" class="form-select">
-                            <option selected>เลือกแพทย์ที่รักษา</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <div class="input-group-text">ว/ด/ป ที่จอง</div>
-                        <input type="date" class="form-control" id="autoSizingInputGroup" placeholder="ว/ด/ป ที่จอง">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <div class="input-group-text">เวลาที่จอง</div>
-                        <input type="time" class="form-control" id="autoSizingInputGroup" placeholder="เวลาที่จอง">
-                    </div>
-                </div>
-
-                <div class="col-12" style="text-align: center;">
-                    <button type="submit" class="btn btn-success">จองคิว</button>&nbsp;
-                    <button type="reset" class="btn btn-danger">ล้างข้อมูล</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="BookingModal" tabindex="-1" aria-labelledby="BookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

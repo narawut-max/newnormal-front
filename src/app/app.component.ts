@@ -79,4 +79,6 @@ export class AppComponent implements OnInit {
 
   title = 'newnormal-front';
 
+  
+
 }
