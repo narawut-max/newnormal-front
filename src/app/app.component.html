@@ -1,52 +1,62 @@
-<!-- <img src="http://www.thebeachwaterpark.com/wp-content/uploads/sites/19/2015/06/header-background-landing.jpg"
-  class="img-fluid" alt="..."> -->
+<!-- home -->
+<div *ngIf="!isLogin" class="row">
 
-<header class="navbar navbar-dark  bg-primary flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-center" href="home">New Normal Front</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
-    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-  <ul *ngIf="!isLogin" class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="login">เข้าสู่ระบบ</a>
-    </li>
-  </ul>
-  <ul *ngIf="isLogin" class="navbar-nav px-3">
-    <li class="nav-item text-nowrap">
-      <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">ออกจากระบบ</a>
-    </li>
-  </ul>
-</header>
+  <!-- sidebar -->
+  <div class="sidebar-nav col-md-6">
+    <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+      <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="home">
+          <div class="sidebar-brand-text mx-3">
+            <span>Newnormal</span>
+          </div>
+        </a>
+        <hr class="sidebar-divider my-0" />
+      </div>
+    </nav>
+  </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">คุณต้องการออกจากระบบ</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ต้องการออกจากระบบ ใช่ หรือ ไม่ ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-danger" (click)="logOut()">ออกจากระบบ</button>
+  <!-- navbar-content -->
+  <div class="nav-content col">
+    <div>
+
+      <!-- navbar -->
+      <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
+        <div class="container-fluid">
+          <ul *ngIf="!isLogin" class="navbar-nav flex-nowrap ms-auto">
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link" href="login" style="font-size: 17px;"><strong>เข้าสู่ระบบ</strong></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- content -->
+      <div class="content container">
+        <router-outlet></router-outlet>
       </div>
     </div>
+    <footer style="background: #e8e4e4;">
+      <div class="text-center my-auto copyright"
+        style="padding: 0;padding-top: 13px;height: 49.8px;background: #bba9a9;width: 100%;"><span
+          style="font-size: 14px;padding-top: 4px;">Copyright © Brand 2021</span></div>
+    </footer>
   </div>
 </div>
-<!-- modal -->
 
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light collapse ">
-      <div class="position-sticky pt-3">
-        <!-- <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu"> -->
 
-        <ng-template ngxPermissionsOnly="ADMIN">
+<!-- Menu-actor -->
+<div class="row">
+  <ng-template ngxPermissionsOnly="ADMIN">
+    <!-- sidebar -->
+    <div class="sidebar-nav col-md-6">
+      <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+        <div class="container-fluid d-flex flex-column p-0">
+          <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="home">
+            <div class="sidebar-brand-text mx-3">
+              <span>Newnormal-Admin</span>
+            </div>
+          </a>
+          <hr class="sidebar-divider my-0" />
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
               <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
@@ -60,10 +70,53 @@
               </div>
             </li>
           </ul>
+        </div>
+      </nav>
+    </div>
 
-        </ng-template>
+    <!-- navbar-content -->
+    <div class="nav-content col">
+      <div>
 
-        <ng-template ngxPermissionsOnly="USER">
+        <!-- navbar -->
+        <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
+          <div class="container-fluid">
+
+            <ul *ngIf="isLogin" class="navbar-nav flex-nowrap ms-auto">
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  style="font-size: 17px;">
+                  <strong>ออกจากระบบ</strong>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- content -->
+        <div class="content container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <footer style="background: #e8e4e4;">
+        <div class="text-center my-auto copyright"
+          style="padding: 0;padding-top: 13px;height: 49.8px;background: #bba9a9;width: 100%;"><span
+            style="font-size: 14px;padding-top: 4px;">Copyright © Brand 2021</span></div>
+      </footer>
+    </div>
+  </ng-template>
+
+  <ng-template ngxPermissionsOnly="USER">
+    <!-- sidebar -->
+    <div class="sidebar-nav col-md-6">
+      <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+        <div class="container-fluid d-flex flex-column p-0">
+          <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="home">
+            <div class="sidebar-brand-text mx-3">
+              <span>Newnormal-User</span>
+            </div>
+          </a>
+          <hr class="sidebar-divider my-0" />
           <ul class="list-unstyled ps-0">
             <li class="mb-1">
               <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
@@ -79,60 +132,123 @@
               </div>
             </li>
           </ul>
+        </div>
+      </nav>
+    </div>
 
-        </ng-template>
+    <!-- navbar-content -->
+    <div class="nav-content col">
+      <div>
 
-        <ng-template ngxPermissionsOnly="DOCTOR">
-          <div class="position-sticky pt-3">
-            <ul class="list-unstyled ps-0">
-              <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
-                  data-bs-target="#home-collapse" aria-expanded="true">
-                  เมนูฝั่งแพทย์
-                </button>
-                <div class="collapse show" id="home-collapse">
-                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="doctor/home" class="link-dark rounded">หน้าแรก</a></li>
-                    <li><a href="doctor/treat" class="link-dark rounded">จัดการข้อมูลการรักษา</a></li>
-                    <li><a href="#" class="link-dark rounded">จัดการข้อมูลผู้ใช้งาน</a></li>
-                    <li><a href="doctor/report-treat" class="link-dark rounded">รายงานการรักษา</a></li>
-                  </ul>
-                </div>
+        <!-- navbar -->
+        <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
+          <div class="container-fluid">
+
+            <ul *ngIf="isLogin" class="navbar-nav flex-nowrap ms-auto">
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  style="font-size: 17px;">
+                  <strong>ออกจากระบบ</strong>
+                </a>
               </li>
             </ul>
           </div>
+        </nav>
 
-        </ng-template>
-
-        <!-- </ul> -->
+        <!-- content -->
+        <div class="content container">
+          <router-outlet></router-outlet>
+        </div>
       </div>
-    </nav>
+      <footer style="background: #e8e4e4;">
+        <div class="text-center my-auto copyright"
+          style="padding: 0;padding-top: 13px;height: 49.8px;background: #bba9a9;width: 100%;"><span
+            style="font-size: 14px;padding-top: 4px;">Copyright © Brand 2021</span></div>
+      </footer>
+    </div>
+  </ng-template>
 
-    <!-- content -->
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 top-3">
-      <!-- <p><strong>{{idleState}}</strong></p>
-      <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing}}</strong></small></p>
-      <button (click)="reset()" *ngIf="timedOut">Restart</button> -->
+  <ng-template ngxPermissionsOnly="DOCTOR">
+    <!-- sidebar -->
+    <div class="sidebar-nav col-md-6">
+      <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+        <div class="container-fluid d-flex flex-column p-0">
+          <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="home">
+            <div class="sidebar-brand-text mx-3">
+              <span>Newnormal-Doctor</span>
+            </div>
+          </a>
+          <hr class="sidebar-divider my-0" />
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                data-bs-target="#home-collapse" aria-expanded="true">
+                เมนูฝั่งแพทย์
+              </button>
+              <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="doctor/home" class="link-dark rounded">หน้าแรก</a></li>
+                  <li><a href="doctor/treat" class="link-dark rounded">จัดการข้อมูลการรักษา</a></li>
+                  <li><a href="#" class="link-dark rounded">จัดการข้อมูลผู้ใช้งาน</a></li>
+                  <li><a href="doctor/report-treat" class="link-dark rounded">รายงานการรักษา</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
 
-      <!-- <div *ngIf="timedOut" class="alert alert-warning" role="alert">
-        <h4 class="alert-heading">{{idleState}}</h4>
-        <p class="mb-0">Whenever you need to keepalive in system.</p>
-        <hr>
-        <button (click)="reset()" *ngIf="timedOut" class="btn btn-primary">Keep Alive</button> &nbsp;
-        <button (click)="logOut()" *ngIf="timedOut" class="btn btn-danger">Cancel</button>
-      </div> -->
+    <!-- navbar-content -->
+    <div class="nav-content col">
+      <div>
 
-      <router-outlet></router-outlet>
-      <canvas class="my-4 w-100" id="myChart" width="900" height="200"></canvas>
-    </main>
+        <!-- navbar -->
+        <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
+          <div class="container-fluid">
 
+            <ul *ngIf="isLogin" class="navbar-nav flex-nowrap ms-auto">
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  style="font-size: 17px;">
+                  <strong>ออกจากระบบ</strong>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- content -->
+        <div class="content container">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <footer style="background: #e8e4e4;">
+        <div class="text-center my-auto copyright"
+          style="padding: 0;padding-top: 13px;height: 49.8px;background: #bba9a9;width: 100%;"><span
+            style="font-size: 14px;padding-top: 4px;">Copyright © Brand 2021</span></div>
+      </footer>
+    </div>
+  </ng-template>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">คุณต้องการออกจากระบบ</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ต้องการออกจากระบบ ใช่ หรือ ไม่ ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">ยกเลิก</button>
+          <button type="button" class="btn btn-danger" (click)="logOut()">ออกจากระบบ</button>
+        </div>
+      </div>
+    </div>
   </div>
+  <!-- modal -->
+
 </div>
-<footer class="bg-light text-center text-lg-start">
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-</footer>

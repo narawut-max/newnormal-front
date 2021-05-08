@@ -7,7 +7,7 @@ import { AdminRegisterComponent } from './admin-register/admin-register.componen
 
 const routes: Routes = [
   {path: '', component: AdminPageComponent},
-  {path: 'home', component: AdminPageComponent},
+  {path: 'admin-home', component: AdminPageComponent},
   {path: 'register', component: AdminRegisterComponent},
   {path: 'manage', component: AdminManageComponent},
   {path: 'edit/:userId', component: AdminEditComponent}
