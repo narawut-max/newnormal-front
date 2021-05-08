@@ -1,3 +1,26 @@
 .form-control-plaintext {
     padding: 0px;
 }
+
+.con-queue {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+.th-numbar,.td-status {
+    padding-left: 3rem;
+}
+
+.p-table {
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0px;
+}
+
+.table-sm {
+    padding: 1rem;
+}
+
+.btn-link {
+    padding-left: 0px;
+}
