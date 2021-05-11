@@ -24,7 +24,13 @@
         <div class="container-fluid">
           <ul *ngIf="!isLogin" class="navbar-nav flex-nowrap ms-auto">
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link" href="login" style="font-size: 17px;"><strong>เข้าสู่ระบบ</strong></a>
+              
+              <a class="nav-link" href="login" style="font-size: 17px;">
+                <strong>
+                  <i class="bi bi-lock-fill" style="font-size: 1.2rem; color: black;"></i>
+                  เข้าสู่ระบบ
+              </strong>
+            </a>
             </li>
           </ul>
         </div>
@@ -193,6 +199,22 @@
                   <li><a href="doctor/report-treat" class="link-dark rounded">รายงานการรักษา</a></li>
                 </ul>
               </div>
+            </li>
+            <li>
+              <i class="bi bi-house-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <a href="doctor/home" style="text-decoration:none; color: #fff;">หน้าแรก</a>
+            </li>
+            <li>
+              <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <a href="doctor/treat" style="text-decoration:none; color: #fff;">จัดการข้อมูลการรักษา</a>
+            </li>
+            <li>
+              <i class="bi bi-file-earmark-person-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <a href="#" style="text-decoration:none; color: #fff;">จัดการข้อมูลผู้ใช้งาน</a>
+            </li>
+            <li>
+              <i class="bi bi-printer-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <a href="doctor/report-treat" style="text-decoration:none; color: #fff;">รายงานการรักษา</a>
             </li>
           </ul>
         </div>
