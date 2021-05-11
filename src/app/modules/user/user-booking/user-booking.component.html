@@ -1,20 +1,11 @@
-<div class="conttainer">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h3 class="text-dark">จองคิวเข้ารักษา</h3>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-info" routerLink="../home">
-                    << ย้อนกลับ</button>
-            </div>
-        </div>
-    </div>
+<div class="conttainer con-col" style="width: 96%; margin: 10px auto;">
 
     <!-- content -->
-    <div class="card" style="background-color: #f3f3f3!important">
+    <div class="card col-md-8" style="margin: 10px auto; background-color: #f3f3f3!important">
         <div class="container" style="width:100%; margin: 10px auto;">
-            <div class="card-body">
+            <div class="card-body p-1">
                 <form class=" row g-3 top-1" autocomplete="off">
+                    <h4 class="text-dark text-center">จองคิวเข้ารักษา</h4>
                     <div class="col-md-6">
                         <div class="input-group">
                             <div class="input-group-text">รหัสผู้ป่วย</div>
@@ -56,7 +47,7 @@
                         </div>
                     </div>
                     <div class="row g-1 top-2"></div>
-                    <div class="col-md-6">
+                    <div class="col-md-5">
                         <div class="input-group">
                             <div class="input-group-text">แพทย์ที่รักษา</div>
                             <select id="inputState" class="form-select">
@@ -65,16 +56,16 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="input-group">
-                            <div class="input-group-text">ว/ด/ป ที่จอง</div>
+                            <div class="input-group-text">วันที่จอง</div>
                             <input type="date" class="form-control" id="autoSizingInputGroup"
                                 placeholder="ว/ด/ป ที่จอง">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="input-group">
-                            <div class="input-group-text">เวลาที่จอง</div>
+                            <div class="input-group-text">เวลาจอง</div>
                             <input type="time" class="form-control" id="autoSizingInputGroup" placeholder="เวลาที่จอง">
                         </div>
                     </div>
