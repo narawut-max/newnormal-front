@@ -1,4 +1,134 @@
-<div class="card card-body">
-    <h3 class="text-primary">Doctor</h3>
+<!-- queue number -->
+<div class="container con-queue text-dark">
+
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1">
+        <div class="row">
+            <div class="col">
+                <div class="data-date">
+                    <label>
+                        <h5>
+                            <dt>คิวการรักษา : &nbsp;</dt>
+                        </h5>
+                    </label>
+                    <label class="col">
+                        <h5>
+                            <dt>
+                                <input type="datetime" readonly class="form-control-plaintext" id="staticDate"
+                                    value="06 / 05 / 2564">
+                            </dt>
+                        </h5>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Modal-search -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ค้นหาคิวการรักษา</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputnumber" class="col-form-label">วัน/เดือน/ปี :</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input class="form-control-sm" type="date" value="" id="example-date-input">
+                                </div>
+                                <div class="col-auto">
+                                    <label for="inputnumber" class="col-form-label">&nbsp;เวลา : </label>
+                                </div>
+                                <div class="col-auto">
+                                    <input class="form-control-sm" type="time" value="" id="example-date-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">ค้นหาคิว</button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Modal-search -->
+
+        </div>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    ค้นหาคิว
+                </button>
+            </div>
+            <!-- <button type="button" class="btn btn-sm btn-outline-info" (click)="refresh()">รีโหลด</button> -->
+        </div>
+    </div>
+    <div class="card">
+        <div class="card shadow topbar static-top">
+            <div class="card-body text-dark p-4">
+                <div class="dataTable table-responsive">
+                    <table class="table table-hover  border-primary text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">หมายเลขคิว</th>
+                                <th scope="col">เวลา</th>
+                                <th scope="col">รหัสการจอง</th>
+                                <th scope="col">ชื่อ-สกุล</th>
+                                <th scope="col">เบอร์ติดต่อ</th>
+                                <th scope="col">สถานะ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>1</th>
+                                <td>00897004</td>
+                                <td><a href="#">000245</a></td>
+                                <td>พญ.ปารีญา วราเมธา</td>
+                                <td>xxxxxxxxxx</td>
+                                <td class="td-status">
+                                    <span class="badge bg-success">
+                                        <i class="bi bi-check2-circle" style="font-size: 1rem; color: rgb(255, 255, 255);"></i> รักษาแล้ว
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td>00898404</td>
+                                <td><a href="#">000246</a></td>
+                                <td>พญ.ปารีญา วราเมธา</td>
+                                <td>xxxxxxxxxx</td>
+                                <td class="td-status">
+                                    <span class="badge bg-danger">
+                                        <i class="bi bi-arrow-down-circle" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                        เลื่อนคิว</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>00898404</td>
+                                <td><a href="#">000247</a></td>
+                                <td>พญ.ปารีญา วราเมธา</td>
+                                <td>xxxxxxxxxx</td>
+                                <td class="td-status">
+                                    <span class="badge bg-warning">
+                                        <i class="bi bi-hourglass-split" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                        รอรักษา</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <canvas class="my-4 w-100" id="myChart" height="112"></canvas>
 </div>
+
+
+
+<!-- <div class="card card-body">
+    <h3 class="text-primary">Doctor</h3>
+    <canvas class="my-4 w-100" id="myChart" height="112"></canvas>
+</div> -->
