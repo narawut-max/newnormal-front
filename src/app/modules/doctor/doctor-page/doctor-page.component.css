@@ -6,3 +6,10 @@
 .form-control-plaintext {
     padding: 0px;
 }
+
+.topbar {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
