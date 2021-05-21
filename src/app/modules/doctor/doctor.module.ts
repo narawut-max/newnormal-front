@@ -7,11 +7,12 @@ import { DoctorTreatComponent } from './doctor-treat/doctor-treat.component';
 import { DoctorAddtreatComponent } from './doctor-addtreat/doctor-addtreat.component';
 import { DoctorAdddrugComponent } from './doctor-adddrug/doctor-adddrug.component';
 import { DoctorReporttreatComponent } from './doctor-reporttreat/doctor-reporttreat.component';
+import { DoctorDatabookingComponent } from './doctor-databooking/doctor-databooking.component';
 
 
 
 @NgModule({
-  declarations: [DoctorPageComponent, DoctorTreatComponent, DoctorAddtreatComponent, DoctorAdddrugComponent, DoctorReporttreatComponent],
+  declarations: [DoctorPageComponent, DoctorTreatComponent, DoctorAddtreatComponent, DoctorAdddrugComponent, DoctorReporttreatComponent, DoctorDatabookingComponent],
   imports: [
     CommonModule,
     DoctorRoutingModule,
