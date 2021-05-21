@@ -6,3 +6,353 @@
         <li class="breadcrumb-item active" aria-current="page">ข้อมูลการรักษา</li>
     </ol>
 </nav>
+
+<div class="container con-addtreat text-dark">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+        <h4>เพิ่มข้อมูลการรักษา</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
+                    << ย้อนกลับ</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- data-user -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">ข้อมูลผู้ป่วย</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>หมายเลขประจำตัวประชาชน</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="113xxxxxxx466"
+                                    name="tmId" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>ชื่อ</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="ปราการ" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>นามสกุล</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="จันแจง" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>วันเกิด</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="28" name="tmId" readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>เดือนเกิด</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="มีนาคม" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>ปีเกิด</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="2537" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>เบอร์โทร</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxxxxx" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>อีเมล</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxxxxx@gmail.com"
+                                    name="tmId" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>ที่อยู่</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxx/xx ม.x ถ.xxxxxx"
+                                    name="tmId" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>ตำบล</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxx" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>อำเภอ</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>จังหวัด</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxxxxxxx" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>รหัสไปรษณีย์</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxx" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- data-treat -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">ข้อมูลทางการแพทย์</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>รหัสผู้ป่วย</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>กรุ๊ปเลือด</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="AB" name="tmId" readonly>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>เพศ</strong>
+                                </label>
+                                <input class="form-control" type="text" id="tmId" placeholder="ชาย" name="tmId"
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>โรคประจำตัว</strong>
+                                </label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                    readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>แพทย์ผู้รักษา</strong>
+                                </label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                    readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">
+                                    <strong>ประวัติการแพ้ยา</strong>
+                                </label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                    readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- addtreat -->
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">เพิ่มข้อมูลการรักษา</div>
+                <div class="card-body">
+                    <form action="">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>รหัสการจองคิว</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกหมายเลขการจองคิว" name="tmId">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>ชื่อ - สกุล</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx xxxxx" name="tmId" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>วันที่เข้ารักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="date" id="tmId" placeholder="xxxxxxx" name="tmId">
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>เวลาที่เข้ารักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="time" id="tmId" placeholder="xxxxxxx" name="tmId">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>โรคประจำตัว</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกโรคประจำตัว" name="tmId">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>แพทย์ผู้รักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกชื่อแพทย์ผู้รักษา" name="tmId">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>ประวัติการแพ้ยา*</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกประวัติการแพ้ยา" name="tmId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>อาการ</strong>
+                                    </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>แนวทางการรักษา</strong>
+                                    </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-success me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#SavetreatModal">บันทึกการรักษา</button>
+                            <button class="btn btn-danger" type="reset">ล้างข้อมูล</button>
+                        </div>
+                    </form>
+
+                    <!-- Model -->
+                    <div class="modal fade" id="SavetreatModal" tabindex="-1" aria-labelledby="SavetreatModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="SavetreatModalLabel">บันทึกข้อมูลการรักษา</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              ต้องการบันทึกข้อมูลการรักษาหรือไม่ ? 
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-file-earmark-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                บันทึกข้อมูล</button>
+                              <button type="submit" class="btn btn-success">
+                                <i class="bi bi-list-check" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                บันทึกและสั่งยา</button>
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                <i class="bi bi-x-square" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                ยกเลิก</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- end-Model -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

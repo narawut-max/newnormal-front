@@ -1,0 +1,120 @@
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ข้อมูลการจองคิวเข้ารักษา</li>
+    </ol>
+</nav>
+
+<div class="container con-treat">
+
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+        <h3>ข้อมูลการจองคิวเข้ารักษา</h3>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
+                    << ย้อนกลับ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- databooking -->
+    <div class="card bg-light text-dark">
+        <div class="card-body" style="margin: 10px;">
+            <div class="container">
+                <form class="">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-outline col-8">
+                                <label class="form-label" for="form8Example3">รหัสการจองคิว</label>
+                                <input type="text" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>&emsp;
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">วันและเวลาที่เข้ารักษา</label>
+                                <div class="input-group">
+                                    <input type="date" id="form8Example3" class="form-control" readonly>
+                                    <input type="time" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">ชื่อ</label>
+                                <input type="text" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">สกุล</label>
+                                <input type="text" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">เบอร์โทร</label>
+                                <input type="tel" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>&emsp;
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">Email</label>
+                                <input type="text" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">แพทย์ผู้รักษา</label>
+                                <input type="tel" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>&emsp;
+                        <div class="col-md-6">
+                            <div class="form-outline">
+                                <label class="form-label" for="form8Example3">แผนกที่เข้ารับการรักษา</label>
+                                <input type="text" id="form8Example3" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-outline">
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">อาการของโรค</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
+                                        readonly></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row justify-content-center">
+                        <div class="col-auto " style="text-align: center;">
+                            <a class="btn btn-outline-success" href="doctor/treat/add-treat"
+                                role="button">เพิ่มข้อมูลการรักษา
+                            </a>
+                        </div>
+                        <div class="col-auto " style="text-align: center;">
+                            <a class="btn btn-outline-success" href="doctor/treat/add-drug"
+                                role="button">เพิ่มข้อมูลการจ่ายยา
+                            </a>
+                        </div>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div><!-- end -->
+
+<br>
+<canvas class="my-4 w-100" id="myChart" height="30"></canvas>

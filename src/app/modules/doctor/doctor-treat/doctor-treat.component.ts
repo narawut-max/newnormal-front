@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-doctor-treat',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorTreatComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private doctorservice: DoctorService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  gotoaddtreat(item: any){
+  debugger
+  this.router.navigate(['/doctor/treat/add-treat',item.bkId]);
+}
 
 }
