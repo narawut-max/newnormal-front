@@ -19,9 +19,7 @@
         </div>
     </div>
 
-    <!-- content -->
     <div class="row">
-
         <!-- data-user -->
         <div class="col-md-6">
             <div class="card">
@@ -232,19 +230,22 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row pt-3">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">เพิ่มข้อมูลการรักษา</div>
-                    <div class="card-body">
+    <!-- addtreat -->
+    <div class="row pt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">เพิ่มข้อมูลการรักษา</div>
+                <div class="card-body">
+                    <form action="">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="username">
                                         <strong>รหัสการจองคิว</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId">
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกหมายเลขการจองคิว" name="tmId">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -252,7 +253,7 @@
                                     <label class="form-label" for="username">
                                         <strong>ชื่อ - สกุล</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId">
+                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx xxxxx" name="tmId" readonly>
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -261,7 +262,7 @@
                                         <strong>วันที่เข้ารักษา</strong>
                                     </label>
                                     <input class="form-control" type="date" id="tmId" placeholder="xxxxxxx" name="tmId">
-    
+
                                 </div>
                             </div>
                             <div class="col-md-2">
@@ -270,7 +271,7 @@
                                         <strong>เวลาที่เข้ารักษา</strong>
                                     </label>
                                     <input class="form-control" type="time" id="tmId" placeholder="xxxxxxx" name="tmId">
-    
+
                                 </div>
                             </div>
                         </div>
@@ -280,7 +281,7 @@
                                     <label class="form-label" for="username">
                                         <strong>โรคประจำตัว</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId">
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกโรคประจำตัว" name="tmId">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -288,7 +289,7 @@
                                     <label class="form-label" for="username">
                                         <strong>แพทย์ผู้รักษา</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId">
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกชื่อแพทย์ผู้รักษา" name="tmId">
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -296,7 +297,7 @@
                                     <label class="form-label" for="username">
                                         <strong>ประวัติการแพ้ยา*</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId">
+                                    <input class="form-control" type="text" id="tmId" placeholder="กรอกประวัติการแพ้ยา" name="tmId">
                                 </div>
                             </div>
                         </div>
@@ -318,9 +319,40 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-success me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#SavetreatModal">บันทึกการรักษา</button>
+                            <button class="btn btn-danger" type="reset">ล้างข้อมูล</button>
+                        </div>
+                    </form>
+
+                    <!-- Model -->
+                    <div class="modal fade" id="SavetreatModal" tabindex="-1" aria-labelledby="SavetreatModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="SavetreatModalLabel">บันทึกข้อมูลการรักษา</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              ต้องการบันทึกข้อมูลการรักษาหรือไม่ ? 
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-file-earmark-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                บันทึกข้อมูล</button>
+                              <button type="submit" class="btn btn-success">
+                                <i class="bi bi-list-check" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                บันทึกและสั่งยา</button>
+                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                <i class="bi bi-x-square" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                ยกเลิก</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- end-Model -->
                 </div>
             </div>
         </div>
     </div>
-</div><!-- end-con-addtreat -->
+</div>
