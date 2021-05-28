@@ -3,6 +3,255 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
         <li class="breadcrumb-item"><a href="doctor/treat">จัดการข้อมูลการรักษา</a></li>
-        <li class="breadcrumb-item active" aria-current="page">ข้อมูลการรักษา</li>
+        <li class="breadcrumb-item"><a href="doctor/treat/add-treat">ข้อมูลการรักษา</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ข้อมูลการสั่งจ่ายยา</li>
     </ol>
 </nav>
+
+<div class="container con-adddrug text-dark">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+        <h4>เพิ่มข้อมูลการจ่ายยา</h4>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../add-treat">
+                    << ย้อนกลับ</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row p-2">
+        <div class="col-md-12">
+
+            <!-- search -->
+            <div class="card shadow" style="padding: 20px;">
+
+                <!-- search-drug -->
+                <div class="card c-search border-0" style="background-color: #f1f1f1;">
+                    <div class="card-body">
+                        <div class="row align-items-center p-1">
+                            <div class="col-2 align-self-end">
+                                <h5 class="fw-bold text-center text-success"><i
+                                        class="bi bi-search"></i>&nbsp;ค้นหาข้อมูลยา</h5>
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control border-2 border-success" type="text" placeholder="กรอกรหัสยา"
+                                    aria-label="default input example">
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control border-2 border-success" type="text" placeholder="กรอกชื่อยา"
+                                    aria-label="default input example">
+                            </div>
+                            <div class="col-3">
+                                <input class="form-control border-2 border-success" type="text"
+                                    placeholder="กรอกชื่อทางการค้า" aria-label="default input example">
+                            </div>
+                            <div class="col-auto">
+                                <div class="input-group">
+                                    <button type="submit" class="btn btn-success">ค้นหา</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <!-- select-drug -->
+                <div class="">
+                    <table class="table table-bordered border border-3">
+                        <thead class="text-center table-primary">
+                            <tr>
+                                <th scope="col-auto">เลือก</th>
+                                <th scope="col-4">รหัสยา</th>
+                                <th scope="col">ชื่อยา</th>
+                                <th scope="col">ชื่อทางการค้า</th>
+                                <th scope="col">คงเหลือ</th>
+                                <th scope="col">ราคา : หน่วย</th>
+                                <th scope="col">รายละเอียดยา</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <th>
+                                    <a href="doctor/treat/add-drug"><i class="bi bi-cart-plus"
+                                            style="font-size: 25px; color: rgb(0, 0, 0);"></i></a>
+
+                                </th>
+                                <td>000210145</td>
+                                <td class="text-start">sertraline</td>
+                                <td class="text-start">SISALON 50</td>
+                                <td>10</td>
+                                <td>30</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" routerLink="../home">
+                                        <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลยา
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <a href="doctor/treat/add-drug"><i class="bi bi-cart-plus"
+                                            style="font-size: 25px; color: rgb(0, 0, 0);"></i></a>
+
+                                </th>
+                                <td>000210145</td>
+                                <td class="text-start">sertraline</td>
+                                <td class="text-start">SISALON 50</td>
+                                <td>10</td>
+                                <td>30</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-danger" routerLink="../home">
+                                        <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลยา
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+
+            <!-- adddrug -->
+            <div class="card shadow" style="padding: 20px;">
+                <h4 class="text-center" style="padding-bottom: 20px;">
+                    <dt>รายการสั่งยา</dt>
+                </h4>
+                <div>
+                    <form action="">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>รหัสผู้ป่วย</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="รหัสประจำตัวผู้ป่วย"
+                                        name="tmId" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>รหัสการจองคิว</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="หมายเลขการจองคิว"
+                                        name="tmId" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>ชื่อ - สกุล</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx xxxxx"
+                                        name="tmId" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>โรคประจำตัว</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="โรคประจำตัว"
+                                        name="tmId" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>แพทย์ผู้รักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="ชื่อแพทย์ผู้รักษา"
+                                        name="tmId" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>วันที่เข้ารักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="date" id="tmId" placeholder="xxxxxxx" name="tmId"
+                                        readonly>
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
+                                        <strong>เวลาที่เข้ารักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="time" id="tmId" placeholder="xxxxxxx" name="tmId"
+                                        readonly>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <h6 class="fw-bold">
+                        <dt>รายการยาที่สั่งจ่าย</dt>
+                    </h6>
+                    <table class="table table-bordered">
+                        <thead class="text-center table-primary">
+                            <tr>
+                                <th scope="col-auto">No.</th>
+                                <th scope="col-4">รหัสยา</th>
+                                <th scope="col">รายการยา</th>
+                                <th scope="col">จำนวน</th>
+                                <th scope="col">ราคา : บาท</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <th>1</th>
+                                <td>000210145</td>
+                                <td class="text-start">sertraline</td>
+                                <td>.....</td>
+                                <td class="text-end">10</td>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <td>000210145</td>
+                                <td class="text-start">sertraline</td>
+                                <td>.....</td>
+                                <td class="text-end">10</td>
+                            </tr>
+                            <tr class="text-center">
+                                <th class="text-start" scope="row" colspan="4">รวมทั้งสิ้น</th>
+                                <td class="text-end fw-bold">150</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12" style="text-align: center;">
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        บันทึกข้อมูล
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ยืนยันการสั่งยาหรือไม่ ?
+                                </div>
+                                <div class="modal-footer ">
+                                    <button type="button" class="btn btn-primary">ยืนยัน</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
