@@ -4,6 +4,7 @@ import { DoctorAdddrugComponent } from './doctor-adddrug/doctor-adddrug.componen
 import { DoctorAddtreatComponent } from './doctor-addtreat/doctor-addtreat.component';
 import { DoctorDatabookingComponent } from './doctor-databooking/doctor-databooking.component';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
+import { DoctorPrintdatadrugComponent } from './doctor-printdatadrug/doctor-printdatadrug.component';
 import { DoctorReporttreatComponent } from './doctor-reporttreat/doctor-reporttreat.component';
 import { DoctorTreatComponent } from './doctor-treat/doctor-treat.component';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'databooking', component: DoctorDatabookingComponent},
   {path: 'treat/add-treat', component: DoctorAddtreatComponent},
   {path: 'treat/add-drug', component: DoctorAdddrugComponent},
+  {path: 'treat/add-drug/printdatadrug', component: DoctorPrintdatadrugComponent},
   {path: 'report-treat', component: DoctorReporttreatComponent}
 ];
 
