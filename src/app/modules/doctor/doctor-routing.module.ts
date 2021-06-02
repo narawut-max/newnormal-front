@@ -5,12 +5,14 @@ import { DoctorAddtreatComponent } from './doctor-addtreat/doctor-addtreat.compo
 import { DoctorDatabookingComponent } from './doctor-databooking/doctor-databooking.component';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 import { DoctorPrintdatadrugComponent } from './doctor-printdatadrug/doctor-printdatadrug.component';
+import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorReporttreatComponent } from './doctor-reporttreat/doctor-reporttreat.component';
 import { DoctorTreatComponent } from './doctor-treat/doctor-treat.component';
 
 const routes: Routes = [
   {path: '', component: DoctorPageComponent},
   {path: 'home', component: DoctorPageComponent},
+  {path: 'profile', component: DoctorProfileComponent},
   {path: 'treat', component: DoctorTreatComponent},
   {path: 'databooking', component: DoctorDatabookingComponent},
   {path: 'treat/add-treat', component: DoctorAddtreatComponent},
