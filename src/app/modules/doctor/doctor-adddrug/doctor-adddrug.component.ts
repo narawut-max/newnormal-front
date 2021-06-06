@@ -13,6 +13,10 @@ export class DoctorAdddrugComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectdatadrug() {
+    Swal.fire('ข้อมูลยา')
+  }
+  
   gotoprintdrug() {
     Swal.fire({
       title: 'ต้องการยืนยันหรือไม่ ?',

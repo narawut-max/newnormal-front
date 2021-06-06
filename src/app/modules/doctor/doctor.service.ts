@@ -12,6 +12,7 @@ const endpoint = environment.apiEndPoint;
 export class DoctorService {
 
   constructor(private http: HttpClient) { }
+  
 
   getAllBookings():  Observable<any> {
     return this.http.get(endpoint + '/bookings', httpOptions);

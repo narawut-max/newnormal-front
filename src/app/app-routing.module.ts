@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NgxPermissionsGuard } from 'ngx-permissions';
+import { AdminPageComponent } from './modules/admin/admin-page/admin-page.component';
+import { DoctorPageComponent } from './modules/doctor/doctor-page/doctor-page.component';
 import { HomePageComponent } from './modules/home/home-page/home-page.component';
 import { LoginComponent } from './modules/login/login.component';
+import { UserPageComponent } from './modules/user/user-page/user-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomePageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomePageComponent },
+  { path: '', component: HomePageComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'home', component: HomePageComponent},
+  { path: 'admin/home', component: AdminPageComponent},
+  { path: 'doctor/home', component: DoctorPageComponent},
+  { path: 'user/home', component: UserPageComponent},
   {
     path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivate: [NgxPermissionsGuard],
