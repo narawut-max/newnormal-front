@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
     }
 
     // sessionStorage.setItem('user_role', "ADMIN");
-    sessionStorage.setItem('user_role', "USER");
-    // sessionStorage.setItem('user_role', "DOCTOR");
+    // sessionStorage.setItem('user_role', "USER");
+    sessionStorage.setItem('user_role', "DOCTOR");
     alert('SUCCESS!! :-)')
     
     this.router.navigate(['home']).then(() => {
