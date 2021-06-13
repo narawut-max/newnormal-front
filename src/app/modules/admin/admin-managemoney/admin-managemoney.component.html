@@ -1,0 +1,88 @@
+<!-- Breadcrumb -->
+<!-- <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
+        <li class="breadcrumb-item active" aria-current="page">จัดการข้อมูลการชำระเงิน</li>
+    </ol>
+</nav> -->
+
+<div class="container" style="padding-top: 20px;">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+        <h3>จัดการข้อมูลการชำระเงิน</h3>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
+                    << ย้อนกลับ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- queue number -->
+    <div class="con-dataqueue">
+        <div class="card col-md-12" style="">
+            <div class="card shadow topbar static-top">
+                <div class="card-body text-dark p-4">
+                    <div class="row justify-content-end" style="padding-bottom: 15px;">
+                        <div class="col-md-2">
+                            <label class="">
+                                <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                                    placeholder="Search" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="dataTable table-responsive">
+                        <div class="dataTable table-responsive">
+                            <table class="table table-hover table-bordered border-primary text-center">
+                                <thead>
+                                    <tr>
+                                        <th>ลำดับ</th>
+                                        <th scope="col">เลขที่ใบสั่งยา</th>
+                                        <th class="col-md-3" scope="col">ชื่อ - สกุล</th>
+                                        <th scope="col-md-1">ยอดชำระ</th>
+                                        <th scope="col-md-2">สลิปค่ารักษา</th>
+                                        <th class="col-md-2" scope="col">วันและเวลาที่อัปโหลด</th>
+                                        <th scope="col">สถานะการชำระ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>1</th>
+                                        <th>0001200135</th>
+                                        <td>นายปราการ จันทรมณี</td>
+                                        <td>450.00</td>
+                                        <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">IMG_2344.jpg</td>
+                                        <td>13/06/2564 15:20</td>
+                                        <td class="">
+                                            <select class="form-select form-select-sm"
+                                                aria-label=".form-select-sm example">
+                                                <option value="1" style="">ยังไม่ชำระเงิน</option>
+                                                <option value="2">ชำระเงินแล้ว</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>2</th>
+                                        <th>0001200135</th>
+                                        <td>นายปราการ จันทรมณี</td>
+                                        <td>450.00</td>
+                                        <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">IMG_2344.jpg</td>
+                                        <td>13/06/2564 15:20</td>
+                                        <td class="">
+                                            <select class="form-select form-select-sm"
+                                                aria-label=".form-select-sm example">
+                                                <option value="1" style="">ยังไม่ชำระเงิน</option>
+                                                <option value="2">ชำระเงินแล้ว</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<canvas class="my-4 w-100" id="myChart" height="58"></canvas>
