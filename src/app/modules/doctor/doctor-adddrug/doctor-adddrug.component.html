@@ -30,23 +30,23 @@
                 <div class="card c-search border-0" style="background-color: #f1f1f1;">
                     <div class="card-body">
                         <div class="row align-items-center p-1">
-                            <div class="col-2 align-self-end">
+                            <div class="col-md-2 align-self-end">
                                 <h5 class="fw-bold text-center text-success"><i
                                         class="bi bi-search"></i>&nbsp;ค้นหาข้อมูลยา</h5>
                             </div>
-                            <div class="col-3">
+                            <div class="col-md-3">
                                 <input class="form-control border-2 border-success" type="text" placeholder="กรอกรหัสยา"
                                     aria-label="default input example">
                             </div>
-                            <div class="col-3">
+                            <div class="col-md-3">
                                 <input class="form-control border-2 border-success" type="text" placeholder="กรอกชื่อยา"
                                     aria-label="default input example">
                             </div>
-                            <div class="col-3">
+                            <div class="col-md-3">
                                 <input class="form-control border-2 border-success" type="text"
                                     placeholder="กรอกชื่อทางการค้า" aria-label="default input example">
                             </div>
-                            <div class="col-auto">
+                            <div class="col-md-auto">
                                 <div class="input-group">
                                     <button type="submit" class="btn btn-success">ค้นหา</button>
                                 </div>
@@ -57,8 +57,8 @@
                 <hr>
 
                 <!-- select-drug -->
-                <div class="">
-                    <table class="table table-bordered border border-3">
+                <div class=" table-responsive ">
+                    <table class="table table-borderedborder border-3">
                         <thead class="text-center table-primary">
                             <tr>
                                 <th scope="col-auto">เลือก</th>
@@ -191,37 +191,39 @@
                     <h6 class="fw-bold">
                         <dt>รายการยาที่สั่งจ่าย</dt>
                     </h6>
-                    <table class="table table-bordered">
-                        <thead class="text-center table-primary">
-                            <tr>
-                                <th scope="col-auto">No.</th>
-                                <th scope="col-4">รหัสยา</th>
-                                <th scope="col">รายการยา</th>
-                                <th scope="col">จำนวน</th>
-                                <th scope="col">ราคา : บาท</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            <tr>
-                                <th>1</th>
-                                <td>000210145</td>
-                                <td class="text-start">sertraline</td>
-                                <td>.....</td>
-                                <td class="text-end">10</td>
-                            </tr>
-                            <tr>
-                                <th>2</th>
-                                <td>000210145</td>
-                                <td class="text-start">sertraline</td>
-                                <td>.....</td>
-                                <td class="text-end">10</td>
-                            </tr>
-                            <tr class="text-center">
-                                <th class="text-start" scope="row" colspan="4">รวมทั้งสิ้น</th>
-                                <td class="text-end fw-bold">150</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="text-center table-primary">
+                                <tr>
+                                    <th scope="col-auto">No.</th>
+                                    <th scope="col-4">รหัสยา</th>
+                                    <th scope="col">รายการยา</th>
+                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">ราคา : บาท</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <th>1</th>
+                                    <td>000210145</td>
+                                    <td class="text-start">sertraline</td>
+                                    <td>.....</td>
+                                    <td class="text-end">10</td>
+                                </tr>
+                                <tr>
+                                    <th>2</th>
+                                    <td>000210145</td>
+                                    <td class="text-start">sertraline</td>
+                                    <td>.....</td>
+                                    <td class="text-end">10</td>
+                                </tr>
+                                <tr class="text-center">
+                                    <th class="text-start" scope="row" colspan="4">รวมทั้งสิ้น</th>
+                                    <td class="text-end fw-bold">150</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="col-12" style="text-align: center;">
                     <button type="button" class="btn btn-outline-success" (click)="gotoprintdrug()">

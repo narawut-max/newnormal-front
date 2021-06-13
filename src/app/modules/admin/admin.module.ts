@@ -6,11 +6,12 @@ import { AdminRegisterComponent } from './admin-register/admin-register.componen
 import { AdminManageComponent } from './admin-manage/admin-manage.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminManagemoneyComponent } from './admin-managemoney/admin-managemoney.component';
 
 
 
 @NgModule({
-  declarations: [AdminPageComponent, AdminRegisterComponent, AdminManageComponent, AdminEditComponent],
+  declarations: [AdminPageComponent, AdminRegisterComponent, AdminManageComponent, AdminEditComponent, AdminManagemoneyComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
