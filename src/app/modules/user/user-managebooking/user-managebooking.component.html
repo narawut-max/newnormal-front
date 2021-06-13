@@ -1,1 +1,89 @@
-<p>user-managebooking works!</p>
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ข้อมูลการจองคิว</li>
+    </ol>
+</nav>
+
+<div class="container">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+        <h3>ข้อมูลการจองคิว</h3>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
+                    << ย้อนกลับ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- queue number -->
+    <div class="con-dataqueue">
+        <div class="card col-md-12" style="">
+            <div class="card shadow topbar static-top">
+                <div class="card-body text-dark p-4">
+                    <div class="row justify-content-end">
+                        <div class="col-md-2 data-time">
+                            <label class="">
+                                <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                                    placeholder="Search" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="dataTable table-responsive">
+                        <div class="dataTable table-responsive">
+                            <table class="table table-hover  border-primary text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ลำดับ</th>
+                                        <th scope="col">วันที่เข้ารักษา</th>
+                                        <th scope="col">เวลา</th>
+                                        <th scope="col">รหัสการจอง</th>
+                                        <th scope="col">โรคประจำตัว</th>
+                                        <th scope="col">อาการ</th>
+                                        <th scope="col">แพทย์ผู้รักษา</th>
+                                        <th scope="col">รายละเอียด</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th>1</th>
+                                        <td>13/06/2564</td>
+                                        <td>15:20</td>
+                                        <td>000245</td>
+                                        <td>โรคหัวใจ</td>
+                                        <td>ปวดเมื่อย ไข้</td>
+                                        <td>พญ.ปารีญา วราเมธา</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                (click)="selectdatabooking()">
+                                                <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลการจองคิว
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>2</th>
+                                        <td>13/06/2564</td>
+                                        <td>15:20</td>
+                                        <td>000245</td>
+                                        <td>โรคหัวใจ</td>
+                                        <td>ปวดเมื่อย ไข้</td>
+                                        <td>พญ.ปารีญา วราเมธา</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                (click)="selectdatabooking()">
+                                                <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลการจองคิว
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<canvas class="my-4 w-100" id="myChart" height="44"></canvas>
