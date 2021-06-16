@@ -46,36 +46,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <th>0001200135</th>
-                                        <td>นายปราการ จันทรมณี</td>
+                                    <tr *ngFor="let item of listDatas; let i = index">
+                                        <th>{{i+1}}</th>
+                                        <th>{{item.billId}}</th>
+                                        <td>{{item.userId}}</td>
                                         <td>450.00</td>
                                         <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                            IMG_2344.jpg</td>
-                                        <td>13/06/2564 15:20</td>
-                                        <td class="">
-                                            <button type="button" class="btn btn-sm text-white fw-bold"
-                                                style="background-color: rgb(0, 191, 0);">
-                                                <i class="bi bi-check2-circle"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                ผ่าน
-                                            </button>&nbsp;
-                                            <button type="button" class="btn btn-sm btn-danger text-white fw-bold">
-                                                <i class="bi bi-x-circle"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                ไม่ผ่าน
-                                            </button>
+                                            {{item.tmSlip}}
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <th>0001200135</th>
-                                        <td>นายปราการ จันทรมณี</td>
-                                        <td>450.00</td>
-                                        <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                            IMG_2344.jpg</td>
-                                        <td>13/06/2564 15:20</td>
+                                        <td>{{item.tmDate}} {{item.tmTime}}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm text-white fw-bold"
                                                 style="background-color: rgb(0, 191, 0);">
@@ -87,7 +66,7 @@
                                                 <i class="bi bi-x-circle"
                                                     style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                                                 ไม่ผ่าน
-                                            </button>
+                                            </button>                                          
                                         </td>
                                     </tr>
                                 </tbody>

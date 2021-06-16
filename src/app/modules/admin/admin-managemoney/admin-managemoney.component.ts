@@ -8,6 +8,53 @@ import Swal from 'sweetalert2';
 })
 export class AdminManagemoneyComponent implements OnInit {
 
+  listDatas = [
+    {
+      "tmId": "1",
+      "tmDate": "2021-06-15",
+      "tmTime": "13:42",
+      "tmMoney": 100,
+      "tmSlip": "IMG_2344.jpg",
+      "tmStatus": "Y",
+      "userId": "1",
+      "bkId": 0,
+      "billId": 0
+    },
+    {
+      "tmId": "1",
+      "tmDate": "2021-06-15",
+      "tmTime": "13:42",
+      "tmMoney": 100,
+      "tmSlip": "IMG_2344.jpg",
+      "tmStatus": "Y",
+      "userId": "1",
+      "bkId": 0,
+      "billId": 0
+    },
+    {
+      "tmId": "1",
+      "tmDate": "2021-06-15",
+      "tmTime": "13:42",
+      "tmMoney": 100,
+      "tmSlip": "IMG_2344.jpg",
+      "tmStatus": "Y",
+      "userId": "1",
+      "bkId": 0,
+      "billId": 0
+    },
+    {
+      "tmId": "1",
+      "tmDate": "2021-06-15",
+      "tmTime": "13:42",
+      "tmMoney": 100,
+      "tmSlip": "IMG_2344.jpg",
+      "tmStatus": "Y",
+      "userId": "1",
+      "bkId": 0,
+      "billId": 0
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
