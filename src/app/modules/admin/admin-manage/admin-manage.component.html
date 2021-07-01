@@ -19,6 +19,7 @@
                 <th scope="col">รหัสบัตรประชาชน</th>
                 <th scope="col">ชื่อ - สกุล</th>
                 <th scope="col">เพศ</th>
+                <th scope="col">ประเภทผู้ใช้งาน</th>
                 <th scope="col">Handle</th>
             </tr>
         </thead>
@@ -32,6 +33,7 @@
                 <td>{{item.userCardId}}</td>
                 <td>{{item.userTitle}}{{item.userFirstname}} {{item.userLastname}}</td>
                 <td>{{item.userGender}}</td>
+                <td>{{item.roleId}}</td>
                 <td>
                     <button type="button" class="btn btn-warning btn-sm" (click)="gotoAdminEdit(item)">แก้ไข</button>
                     &nbsp;
@@ -64,5 +66,5 @@
             </div>
         </div>
     </div> -->
-    <canvas class="my-4 w-100" id="myChart" height="73"></canvas>
+    <canvas class="my-4 w-100" id="myChart" height="88"></canvas>
 </div>

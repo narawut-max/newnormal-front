@@ -27,8 +27,9 @@
 
               <a class="nav-link" href="login" style="font-size: 17px;">
                 <strong>
-                  <i class="bi bi-lock-fill" style="font-size: 1.2rem; color: black;"></i>
-                  เข้าสู่ระบบ
+                  <!-- <i class="bi bi-lock-fill" style="font-size: 1.2rem; color: black;"></i> -->
+                  <img src="assets/images/login.png" alt="" style="width: 23px;">
+                  login
                 </strong>
               </a>
             </li>
@@ -69,11 +70,11 @@
               <a href="admin/home" style="text-decoration:none; color: #fff;">หน้าแรก</a>
             </li>
             <li>
-              <i class="bi bi-folder-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
-              <a href="admin/manage" style="text-decoration:none; color: #fff;">แสดงข้อมูลผู้ใช้งาน</a>
+              <i class="bi bi-person-badge" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <a href="admin/manage" style="text-decoration:none; color: #fff;">จัดการข้อมูลผู้ใช้งาน</a>
             </li>
             <li>
-              <i class="bi bi-folder-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <i class="bi bi-cash-stack" style="font-size: 1rem; color: #fff;"></i>&nbsp;
               <a href="admin/managemoney" style="text-decoration:none; color: #fff;">จัดการข้อมูลการชำระเงิน</a>
             </li>
           </ul>
@@ -81,7 +82,7 @@
       </nav>
     </div>
 
-    <!-- navbar-content -->
+    <!-- navbar-content-footer -->
     <div class="nav-content col">
       <div>
 
@@ -93,7 +94,10 @@
               <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   style="font-size: 17px;">
-                  <strong>ออกจากระบบ</strong>
+                  <strong>
+                    <img src="assets/images/enter.png" alt="" style="width: 21px;">
+                    logout
+                  </strong>
                 </a>
               </li>
             </ul>
@@ -101,7 +105,7 @@
         </nav>
 
         <!-- content -->
-        <div class="content container">
+        <div class="content container p-0" style="margin: 0rem;">
           <router-outlet></router-outlet>
         </div>
       </div>
@@ -131,7 +135,7 @@
             </li>
             <li>
               <i class="bi bi-person" style="font-size: 1rem; color: #fff;"></i>&nbsp;
-              <a href="user/profile" style="text-decoration:none; color: #fff;">ข้อมูลส่วนตัว</a>
+              <a href="user/profile" style="text-decoration:none; color: #fff;">ประวัติผู้ป่วย</a>
             </li>
             <li>
               <i class="bi bi-calendar2-plus" style="font-size: 1rem; color: #fff;"></i>&nbsp;
@@ -162,7 +166,10 @@
               <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   style="font-size: 17px;">
-                  <strong>ออกจากระบบ</strong>
+                  <strong>
+                    <img src="assets/images/enter.png" alt="" style="width: 21px;">
+                    logout
+                  </strong>
                 </a>
               </li>
             </ul>
@@ -200,16 +207,16 @@
             </li>
             <li>
               <i class="bi bi-person" style="font-size: 1rem; color: #fff;"></i>&nbsp;
-              <a href="doctor/profile" style="text-decoration:none; color: #fff;">ข้อมูลส่วนบุคคล</a>
+              <a href="doctor/profile" style="text-decoration:none; color: #fff;">ประวัติแพทย์</a>
             </li>
             <li>
               <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: #fff;"></i>&nbsp;
               <a href="doctor/treat" style="text-decoration:none; color: #fff;">จัดการข้อมูลการรักษา</a>
             </li>
-            <!-- <li>
-              <i class="bi bi-file-earmark-person-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
-              <a href="doctor/manageuser" style="text-decoration:none; color: #fff;">จัดการข้อมูลผู้ใช้งาน</a>
-            </li> -->
+            <li>
+              <i class="bi bi-ui-checks" style="font-size: 1rem; color: #fff;"></i>&nbsp;
+              <a href="doctor/managedrug" style="text-decoration:none; color: #fff;">จัดการข้อมูลการจ่ายยา</a>
+            </li>
             <li>
               <i class="bi bi-printer-fill" style="font-size: 1rem; color: #fff;"></i>&nbsp;
               <a href="doctor/report-treat" style="text-decoration:none; color: #fff;">รายงานการรักษา</a>
@@ -223,11 +230,13 @@
             </li>
             <li>
               <i class="bi bi-x-octagon" style="font-size: 1rem; color: #fff;"></i>&nbsp;
-              <a href="doctor/treat/add-drug" style="text-decoration:none; color: #fff;">เพิ่มข้อมูลสั่งยา(ปุ่มชั่วคราว)</a>
+              <a href="doctor/treat/add-drug"
+                style="text-decoration:none; color: #fff;">เพิ่มข้อมูลสั่งยา(ปุ่มชั่วคราว)</a>
             </li>
             <li>
               <i class="bi bi-x-octagon" style="font-size: 1rem; color: #fff;"></i>&nbsp;
-              <a href="doctor/treat/add-drug/printdatadrug" style="text-decoration:none; color: #fff;">พิมพ์ใบสั่งยา(ปุ่มชั่วคราว)</a>
+              <a href="doctor/treat/add-drug/printdatadrug"
+                style="text-decoration:none; color: #fff;">พิมพ์ใบสั่งยา(ปุ่มชั่วคราว)</a>
             </li>
           </ul>
         </div>
@@ -246,7 +255,10 @@
               <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
                   style="font-size: 17px;">
-                  <strong>ออกจากระบบ</strong>
+                  <strong>
+                    <img src="assets/images/enter.png" alt="" style="width: 21px;">
+                    logout
+                  </strong>
                 </a>
               </li>
             </ul>

@@ -20,58 +20,66 @@
 
     <!-- queue number -->
     <div class="con-dataqueue">
-        <div class="card col-md-12" style="">
-            <div class="card shadow topbar static-top">
-                <div class="card-body text-dark p-4">
-                    <div class="row justify-content-end" style="padding-bottom: 15px;">
-                        <div class="col-md-2">
-                            <label class="">
-                                <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                                    placeholder="Search" />
-                            </label>
-                        </div>
+        <div class="card shadow topbar static-top">
+            <div class="card-body text-dark p-4">
+                <div class="row justify-content-end" style="padding-bottom: 15px;">
+                    <div class="col-md-2">
+                        <label class="">
+                            <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                                placeholder="Search" />
+                        </label>
                     </div>
+                </div>
+                <div class="dataTable table-responsive">
                     <div class="dataTable table-responsive">
-                        <div class="dataTable table-responsive">
-                            <table class="table table-hover table-bordered border-primary text-center">
-                                <thead>
-                                    <tr>
-                                        <th>ลำดับ</th>
-                                        <th scope="col">เลขที่ใบสั่งยา</th>
-                                        <th class="col-md-3" scope="col">ชื่อ - สกุล</th>
-                                        <th scope="col-md-1">ยอดชำระ</th>
-                                        <th scope="col-md-2">สลิปค่ารักษา</th>
-                                        <th class="col-md-2" scope="col">วันและเวลาที่อัปโหลด</th>
-                                        <th scope="col">สถานะการชำระ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of listDatas; let i = index">
-                                        <th>{{i+1}}</th>
-                                        <th>{{item.billId}}</th>
-                                        <td>{{item.userId}}</td>
-                                        <td>450.00</td>
-                                        <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                            {{item.tmSlip}}
-                                        </td>
-                                        <td>{{item.tmDate}} {{item.tmTime}}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm text-white fw-bold"
-                                                style="background-color: rgb(0, 191, 0);">
-                                                <i class="bi bi-check2-circle"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                ผ่าน
-                                            </button>&nbsp;
-                                            <button type="button" class="btn btn-sm btn-danger text-white fw-bold">
-                                                <i class="bi bi-x-circle"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                ไม่ผ่าน
-                                            </button>                                          
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table table-hover table-bordered border-primary text-center">
+                            <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th scope="col-md-10">เลขที่ใบสั่งยา</th>
+                                    <th class="col-md-3" scope="col">ชื่อ - สกุล</th>
+                                    <th scope="col-md-1">ยอดชำระ</th>
+                                    <th scope="col-md-2">สลิปค่ารักษา</th>
+                                    <!-- <th class="col-md-2" scope="col">วันและเวลาที่เข้ารักษา</th> -->
+                                    <th scope="col">ดูรายละเอียด</th>
+                                    <th scope="col">สถานะการชำระ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of listDatas; let i = index">
+                                    <th>{{i+1}}</th>
+                                    <th>{{item.billId}}</th>
+                                    <td>{{item.userId}}</td>
+                                    <td>450.00</td>
+                                    <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
+                                        {{item.tmSlip}}
+                                    </td>
+                                    <!-- <td>{{item.tmDate}} {{item.tmTime}}</td> -->
+                                    <td>
+                                        <button type="button" class="btn btn-sm text-white fw-bold"
+                                            data-bs-toggle="modal" data-bs-target="#SelectModal"
+                                            style="background-color: rgb(0, 137, 191);">
+                                            <i class="bi bi-eye-fill"
+                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                            ดูรายละเอียด
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm text-white fw-bold"
+                                            style="background-color: rgb(0, 191, 0);">
+                                            <i class="bi bi-check2-circle"
+                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                            ผ่าน
+                                        </button>&nbsp;
+                                        <button type="button" class="btn btn-sm btn-danger text-white fw-bold">
+                                            <i class="bi bi-x-circle"
+                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                            ไม่ผ่าน
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -79,3 +87,80 @@
     </div>
 </div>
 <canvas class="my-4 w-100" id="myChart" height="58"></canvas>
+
+<!-- Modal -->
+<div class="modal fade text-dark" id="SelectModal" tabindex="-1" aria-labelledby="SelectModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold font-monospace" id="SelectModalLabel">รายละเอียดการชำระเงิน</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light">
+                <form action="">
+                    <div class="card p-3">
+                        <div class="col p-2">
+                            <div class="row">
+                                <label for="inputPassword" class="col-sm-4 col-form-label fw-bolder">รหัสผู้ป่วย</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="inputPassword" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-2">
+                            <div class="row">
+                                <label for="inputPassword" class="col-sm-4 col-form-label fw-bolder">ชื่อ - สกุล</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="inputPassword" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-2">
+                            <div class="row">
+                                <label for="inputPassword"
+                                    class="col-sm-4 col-form-label fw-bolder">เลขที่ใบสั่งยา</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="inputPassword" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-2">
+                            <div class="row">
+                                <label for="inputPassword" class="col-sm-4 col-form-label fw-bolder">ว/ด/ป
+                                    ที่รักษา</label>
+                                <div class="col-sm-8">
+                                    <input type="password" class="form-control" id="inputPassword" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-2">
+                            <div class="row">
+                                <label for="inputPassword" class="col-sm-4 col-form-label fw-bolder">ยอดที่ชำระ</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" id="inputPassword" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col p-2">
+                            <div class="row">
+                                <label for="inputPassword"
+                                    class="col-sm-4 col-form-label fw-bolder">สลิปค่ารักษา</label>
+                                <div class="col-sm-8">
+                                    <button type="button" class="btn btn-link "
+                                        (click)="selectslipmoney()">IMG_2344.jpg</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 pt-3">
+                            <button type="button" class="fw-bolder btn btn-warning"
+                                data-bs-dismiss="modal">ตกลง</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

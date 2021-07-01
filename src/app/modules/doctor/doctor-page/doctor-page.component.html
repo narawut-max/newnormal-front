@@ -1,7 +1,6 @@
 <div class="container con-queue text-dark" style="padding-top: 2rem;">
 
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
         <h3>ข้อมูลการจองคิวประจำวัน</h3>
     </div>
 
@@ -9,18 +8,18 @@
     <div class="card bg-light shadow-sm">
         <div class="card-body align-items-center" style="padding-left: 40px;">
             <form class="row " autocomplete="off">
-                <div class="col-auto col align-self-end"  style="padding-right: 35px;">
-                    <h5 class="text-dark">
-                        <dt>ค้นหาคิวการรักษา</dt>
+                <div class="col-md-2 align-self-end" style="padding-right: 35px;">
+                    <h5 class="text-dark text-center">
+                        <dt>ค้นหา</dt>
                     </h5>
                 </div>
-                <div class="col-md-4"  style="padding-right: 35px;">
+                <div class="col-md-4" style="padding-right: 35px;">
                     <div class="input-group">
                         <div class="input-group-text">วัน/เดือน/ปี</div>
                         <input type="date" class="form-control" id="autoSizingInputGroup" placeholder="กรอกวัน">
                     </div>
                 </div>
-                <div class="col-md-3"  style="padding-right: 35px;">
+                <div class="col-md-3" style="padding-right: 35px;">
                     <div class="input-group">
                         <div class="input-group-text">เวลา</div>
                         <input type="time" class="form-control" id="autoSizingInputGroup" placeholder="กรอกเวลา">
@@ -64,55 +63,39 @@
             <div class="topbar static-top">
                 <div class="card-bodytext-dark">
                     <div class="dataTable table-responsive">
-                        <table class="table table-hover  border-primary text-center">
+                        <table class="table table-hover border-primary text-center">
                             <thead>
                                 <tr>
-                                    <th scope="col">หมายเลขคิว</th>
-                                    <th scope="col">เวลา</th>
-                                    <th scope="col">รหัสการจอง</th>
-                                    <th scope="col">ชื่อ-สกุล</th>
-                                    <th scope="col">เบอร์ติดต่อ</th>
-                                    <th scope="col">สถานะ</th>
+                                    <th class="col-md-1">ลำดับคิว</th>
+                                    <th class="col-md-1">เวลา</th>
+                                    <th class="col-md-2">รหัสการจอง</th>
+                                    <th class="col-md-2">ชื่อ-สกุล</th>
+                                    <th class="col-md-2">รายละเอียดการจอง</th>
+                                    <th class="col-md-2">สถานะ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <th>1</th>
                                     <td>15:20</td>
-                                    <td><a href="doctor/databooking">000245</a></td>
-                                    <td>พญ.ปารีญา วราเมธา</td>
-                                    <td>xxxxxxxxxx</td>
-                                    <td class="td-status">
-                                        <span class="badge bg-success">
-                                            <i class="bi bi-check2-circle"
-                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i> รักษาแล้ว
-                                        </span>
+                                    <td>000245</td>
+                                    <td>ปารีญา วราเมธา</td>
+                                    <td>
+                                        <button type="button" class="btn btn-sm text-white fw-bold"
+                                            data-bs-toggle="modal" data-bs-target="#SelectModal"
+                                            style="background-color: rgb(0, 105, 191);">
+                                            <h6 class="p-0" style="margin: 0rem;">ดูรายละเอียด</h6>
+                                        </button>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
-                                    <td>15:25</td>
-                                    <td><a href="doctor/databooking">000246</a></td>
-                                    <td>พญ.ปารีญา วราเมธา</td>
-                                    <td>xxxxxxxxxx</td>
-                                    <td class="td-status">
-                                        <span class="badge bg-danger">
-                                            <i class="bi bi-arrow-down-circle"
-                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                            เลื่อนคิว</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>3</th>
-                                    <td>15:30</td>
-                                    <td><a href="doctor/databooking">000247</a></td>
-                                    <td>พญ.ปารีญา วราเมธา</td>
-                                    <td>xxxxxxxxxx</td>
-                                    <td class="td-status">
-                                        <span class="badge bg-warning">
-                                            <i class="bi bi-hourglass-split"
-                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                            รอรักษา</span>
+                                    <td class="px-5">
+                                        <div class="text-center">
+                                            <select class="form-select form-select-sm fw-bold"
+                                                aria-label=".form-select-sm example">
+                                                <option value="1">รักษาแล้ว</option>
+                                                <option value="2">ข้ามคิว</option>
+                                                <option value="3">ไม่มาตามนัด</option>
+                                            </select>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -123,10 +106,88 @@
         </div>
     </div>
     <canvas class="my-4 w-100" id="myChart" height="80"></canvas>
-</div><!-- end-container -->
+</div>
+<!-- end-container -->
 
+<!-- Modal -->
+<div class="modal fade text-dark" id="SelectModal" tabindex="-1" aria-labelledby="SelectModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold font-monospace" id="SelectModalLabel">รายละเอียดการจองคิวเข้ารักษา </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light">
+                <form action="">
+                    <div class="card p-3">
+                        <div class="row mb-4">
+                            <div class="col-md-4 pb-3">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">รหัสการจองคิว</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">รหัสผู้ป่วย HN</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-4">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">วันและเวลาที่เข้ารักษา</label>
+                                    <div class="input-group">
+                                        <input type="datetime" id="form8Example3" class="form-control" value="25/06/64  15:15" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 pb-3">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">ชื่อ - สกุล</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">อาการ (ถ้ามี)</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-6 pb-3">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">เบอร์โทร</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">อีเมล</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">แผนกที่เข้ารับการรักษา</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">แพทย์ผู้รักษา</label>
+                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 pt-3">
+                            <button type="button" class="fw-bolder btn btn-warning"
+                                data-bs-dismiss="modal">ตกลง</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- <div class="card card-body">
-    <h3 class="text-primary">Doctor</h3>
-    <canvas class="my-4 w-100" id="myChart" height="112"></canvas>
-</div> -->

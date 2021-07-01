@@ -60,6 +60,10 @@ export class AdminManagemoneyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectdatamoney() {
+    Swal.fire('ข้อมูลการชำระเงิน')
+  }
+
   selectslipmoney() {
     Swal.fire({
       imageUrl: 'https://obs.line-scdn.net/0hd_rioZEKO3BPEBPqvuFEJ3VGOB98fChzKyZqcxN-ZUQ2dylxISZzHmxFYElqKXwuISJwHm0SIEEwIiwlcX5z/w644',

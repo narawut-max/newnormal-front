@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    sessionStorage.setItem('user_role', "ADMIN");
-    // sessionStorage.setItem('user_role', "USER");
+    // sessionStorage.setItem('user_role', "ADMIN");
+    sessionStorage.setItem('user_role', "USER");
     // sessionStorage.setItem('user_role', "DOCTOR");
     alert('SUCCESS!! :-)')
     
