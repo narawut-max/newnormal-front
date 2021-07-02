@@ -8,6 +8,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './modules/login/login.component';
+import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 
 
 @NgModule({
@@ -21,9 +22,10 @@ import { LoginComponent } from './modules/login/login.component';
     HttpClientModule,
     ReactiveFormsModule,
     NgxPermissionsModule.forRoot(),
-    NgIdleKeepaliveModule.forRoot()
+    NgIdleKeepaliveModule.forRoot(),
+    ScheduleModule,RecurrenceEditorModule
   ],
-  providers: [],
+  providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

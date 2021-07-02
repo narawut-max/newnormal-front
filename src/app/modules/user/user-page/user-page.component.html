@@ -55,7 +55,7 @@
         <p class="text-primary m-0 font-weight-bold">ลำดับคิวปัจจุบัน</p>
       </div>
       <div class="card-body text-dark p-4">
-        <div class="row">
+        <div class="row pb-2">
           <div class="col-md-8">
             <div class="data-date">
               <label>
@@ -69,51 +69,52 @@
               </label>
               <label class="col-md-1">
                 <input type="datetime" readonly class="form-control-plaintext" id="staticTime" value="15:15">
-              </label>&nbsp;&nbsp;
-              <label>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                  <option selected>โรคประจำตัว</option>
-                  <option value="1">โรคหัวใจ</option>
-                  <option value="2">โรคกระดูก</option>
-                  <option value="3">...</option>
-                </select>
               </label>
             </div>
           </div>
-          <div class="col-md-4 ">
-            <div class="data-time offset-md-6">
-              <label class="">
-                <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                  placeholder="Search" />
-              </label>
-            </div>
+          <div class="col-md-4 text-end">
+            <label class="">
+              <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                placeholder="Search" />
+            </label>
           </div>
         </div>
         <div class="dataTable table-responsive">
-          <table class="table table-hover">
+          <table class="table table-hover text-center">
             <thead>
               <tr>
-                <th scope="col">หมายเลขคิว</th>
-                <th scope="col">รหัสผู้ป่วย</th>
-                <th scope="col">แผนกของโรค</th>
-                <th scope="col">แพทย์ผู้รักษา</th>
-                <th scope="col">สถานะการรักษา</th>
+                <th class="col-md-1">คิวปัจจุบัน</th>
+                <th class="col-md-1">เวลารักษา</th>
+                <th class="col-md-2">รหัสผู้ป่วย</th>
+                <th class="col-md-2">ชื่อ - สกุล</th>
+                <th class="col-md-2">แผนกการรักษา</th>
+                <th class="col-md-2">แพทย์ผู้รักษา</th>
+                <th class="col-md-2">สถานะการรักษา</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th class="th-numbar" scope="row">1</th>
+                <th scope="row">1</th>
+                <td>15:15</td>
                 <td>00897004</td>
+                <td class="text-start">วาริดา วราฤทธิ์นารากุล</td>
                 <td>โรคหัวใจ</td>
-                <td>นพ.ประสงค์ ราชวัฏ</td>
-                <td class="td-status">...</td>
+                <td class="text-start">นพ.ประสงค์ ราชวัฏ</td>
+                <td class="td-status p-1">
+                  <span class="badge" style="background-color: orange;">
+                    <dt>กำลังรักษา</dt>
+                  </span>
+                </td>
               </tr>
               <tr>
-                <th class="th-numbar" scope="row">2</th>
-                <td>00898404</td>
+                <th scope="row">2</th>
+                <td>15:20</td>
+                <td>00897004</td>
+                <td class="text-start">วาริดา วราฤทธิ์นารากุล</td>
                 <td>โรคหัวใจ</td>
-                <td>พญ.ปารีญา วราเมธา</td>
-                <td class="td-status">...</td>
+                <td class="text-start">นพ.ประสงค์ ราชวัฏ</td>
+                <td class="td-status p-0 pt-1">
+                </td>
               </tr>
             </tbody>
           </table>
@@ -137,7 +138,9 @@
               <tr>
                 <td>
                   <button type="button" class="btn btn-link ">
-                    <a href="http://www.mahasarakham.go.th/mkweb/610/3625-covid-19">ประกาศคณะกรรมการโรคติดต่อจังหวัดมหาสารคาม เรื่อง มาตรการเฝ้าระวัง ควบคุมเชื้อไวรัส Covid
+                    <a target="_blank"
+                      href="http://www.mahasarakham.go.th/mkweb/610/3625-covid-19">ประกาศคณะกรรมการโรคติดต่อจังหวัดมหาสารคาม
+                      เรื่อง มาตรการเฝ้าระวัง ควบคุมเชื้อไวรัส Covid
                       19</a>
                   </button>
                 </td>
@@ -146,7 +149,8 @@
               <tr>
                 <td>
                   <button type="button" class="btn btn-link ">
-                    <a href="http://mkho.moph.go.th/covid2019/main/frontend/web/">สถานการณ์ COVID-19 จังหวัดมหาสารคาม</a>
+                    <a target="_blank" href="http://mkho.moph.go.th/covid2019/main/frontend/web/">สถานการณ์ COVID-19
+                      จังหวัดมหาสารคาม</a>
                   </button>
                 </td>
                 <td>05/05/2564 15:15</td>

@@ -31,91 +31,70 @@
                             </label>
                         </div>
                     </div>
-                    <div class="dataTable table-responsive">
-                        <div class="dataTable table-responsive">
-                            <table class="table table-hover  border-primary text-center">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">ลำดับ</th>
-                                        <th scope="col">วัน/เดือน/ปีที่สั่งจ่าย</th>
-                                        <th scope="col">เวลาที่สั่งยา</th>
-                                        <th scope="col">รหัสการจอง</th>
-                                        <th scope="col">เลขที่ใบสั่งยา</th>
-                                        <th scope="col">ราคา</th>
-                                        <th scope="col">แจ้งชำระเงิน</th>
-                                        <th scope="col">สถานะการชำระ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>13/06/2564</td>
-                                        <td>15:20</td>
-                                        <td>000245</td>
-                                        <td>0001200135</td>
-                                        <td>450</td>
-                                        <td>
-                                            <!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                    <div class="table-responsive">
+                        <table class="table table-hover  border-primary text-center">
+                            <thead>
+                                <tr>
+                                    <th class="col-md-2">วัน/เดือน/ปีที่สั่งจ่าย</th>
+                                    <th class="col-md-2">ชื่อ - สกุล</th>
+                                    <th class="col-md-2">รหัสการจอง</th>
+                                    <th class="col-md-2">เลขที่ใบสั่งยา</th>
+                                    <th class="col-md-2">แจ้งชำระเงิน</th>
+                                    <th class="col-md-2">สถานะการชำระ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>13/06/2564 15:20</td>
+                                    <td>วาริดา วราฤทธิ์นารากุล</td>
+                                    <td>000245</td>
+                                    <td>0001200135</td>
+                                    <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
+                                        IMG_2344.jpg</td>
+                                    <td class="td-status">
+                                        <span class="badge bg-success">
+                                            <i class="bi bi-check2-circle"
+                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                            ชำระเงินแล้ว
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>13/06/2564 15:20</td>
+                                    <td>วาริดา วราฤทธิ์นารากุล</td>
+                                    <td>000245</td>
+                                    <td>0001200135</td>
+                                    <td>
+                                        <!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal">
                                                 อัปโหลดสลิป
                                             </button> -->
-                                            <button type="button" class="btn btn-sm btn-outline-danger"
-                                                (click)="uploadmoney()">อัปโหลดสลิป</button>
-                                        </td>
-                                        <td class="td-status">
-                                            <span class="badge bg-success">
-                                                <i class="bi bi-check2-circle"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                ชำระเงินแล้ว
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>2</th>
-                                        <td>13/06/2564</td>
-                                        <td>15:20</td>
-                                        <td>000245</td>
-                                        <td>0001200135</td>
-                                        <td>450</td>
-                                        <td>
-                                            <!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                อัปโหลดสลิป
-                                            </button> -->
-                                            <button type="button" class="btn btn-sm btn-outline-danger"
-                                                (click)="uploadmoney()">อัปโหลดสลิป</button>
-                                        </td>
-                                        <td class="td-status">
-                                            <span class="badge bg-danger">
-                                                <i class="bi bi-x-circle"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                ยังไม่ชำระเงิน</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>3</th>
-                                        <td>13/06/2564</td>
-                                        <td>15:20</td>
-                                        <td>000245</td>
-                                        <td>0001200135</td>
-                                        <td>450</td>
-                                        <td>
-                                            <!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                อัปโหลดสลิป
-                                            </button> -->
-                                            <button type="button" class="btn btn-sm btn-outline-danger"
-                                                (click)="uploadmoney()">อัปโหลดสลิป</button>
-                                        </td>
-                                        <td class="td-status">
-                                            <span class="badge bg-warning">
-                                                <i class="bi bi-hourglass-split"
-                                                    style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                                กำลังตรวจสอบ</span>
-                                        </td>
-                                    </tr>
-                                    <!-- Modal -->
-                                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            (click)="uploadmoney()">อัปโหลดสลิป</button>
+                                    </td>
+                                    <td class="td-status">
+                                        <span class="badge bg-danger">
+                                            <i class="bi bi-x-circle"
+                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                            ยังไม่ชำระเงิน</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>13/06/2564 15:20</td>
+                                    <td>วาริดา วราฤทธิ์นารากุล</td>
+                                    <td>000245</td>
+                                    <td>0001200135</td>
+                                    <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
+                                        IMG_2344.jpg</td>
+                                    <td class="td-status">
+                                        <span class="badge bg-warning">
+                                            <i class="bi bi-hourglass-split"
+                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                            กำลังตรวจสอบ</span>
+                                    </td>
+                                </tr>
+                                <!-- Modal -->
+                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -136,10 +115,9 @@
                                             </div>
                                         </div>
                                     </div> -->
-                                    <!-- Model -->
-                                </tbody>
-                            </table>
-                        </div>
+                                <!-- Model -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

@@ -2,17 +2,18 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
-        <li class="breadcrumb-item active" aria-current="page">ข้อมูลส่วนบุคคล</li>
+        <li class="breadcrumb-item active" aria-current="page">ประวัติผู้ป่วย</li>
     </ol>
 </nav>
 
-<div class="container con-pro text-dark">
+<div class="container con-pro pb-0 text-dark">
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
-        <h3>ข้อมูลส่วนบุคคล</h3>
+        <h3>ประวัติผู้ป่วย</h3>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home"> << ย้อนกลับ</button>
+                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
+                    << ย้อนกลับ</button>
             </div>
         </div>
     </div>
@@ -20,14 +21,16 @@
     <div class="row ">
 
         <!-- images / Settings -->
-        <div class="col-md-4">
+        <div class="col-md-4 pb-3">
+
+            <!-- images -->
             <div class="col">
                 <div class="card">
-                    <div class="card-body text-center">
+                    <div class="card-body text-center pb-0">
                         <form action="" method="post">
-                            <div class="col profile">
-                                <img src="https://scontent.fnak1-1.fna.fbcdn.net/v/t1.6435-9/117719057_1886288748180301_4340615845967805450_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_eui2=AeG_tsSQHH0oTZMJnvzOk9s_97_Tv1K8U9r3v9O_UrxT2ojo2zJvrghtSvGiK1CUyQTqvpoMkVFm51imvgsdzeEP&_nc_ohc=mx4BGXOgJ4AAX_NRejn&_nc_ht=scontent.fnak1-1.fna&oh=8c9b923f135fd60b137c9e619c09be04&oe=60DB75E9"
-                                    alt="" width="300" height="300"><br>
+                            <div class="col-md-auto profile">
+                                <img src="http://image.wecomics.in.th/illustration/37013/original.jpg?dimensions=472x618"
+                                    alt="" width="270" height="320"><br>
                                 <div class="mb-3 row justify-content-center">
                                     <label for="staticEmail" class="col-sm-auto col-form-label">รหัสผู้ป่วย HN :
                                     </label>
@@ -43,48 +46,79 @@
             </div>
 
             <!-- settings -->
-            <div class="col pt-4">
+            <div class="col pt-3">
                 <div class="card">
                     <div class="card-header">
-                        <h6>ตั้งค่าการใช้งาน</h6>
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 col-sm-6 align-self-center">
+                                <h6 style="margin: 0px;">ตั้งค่าการใช้งาน</h6>
+                            </div>
+                            <div class="col-md-4 col-sm-6 text-end p-0">
+                                <div class="dropdown no-arrow p-0">
+                                    <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                                        <i class="bi bi-pencil-square"
+                                            style="font-size: 19px; color: rgb(238, 91, 6);"></i>
+                                    </a>
+                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                        <a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#newpasswordModal">
+                                            <i
+                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>เปลี่ยนรหัสผ่าน</a>
+                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edittelModal">
+                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขเบอร์โทร</a>
+                                        <a class="dropdown-item" data-bs-toggle="modal"
+                                            data-bs-target="#editEmailModal">
+                                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขอีเมล</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row" style="padding-left: 15px;">
-                            <div class="col-auto">
+                            <div class="col-md-5 col-sm-6 text-end">
                                 <label for="inputDate" class="col-sm-auto col-form-label">สถานะการใช้งาน : </label>
                             </div>
-                            <div class="col-7 align-self-center">
+                            <div class="col-md-7 col-sm-6 align-self-center">
                                 <span class="badge bg-success">
                                     <i class="bi bi-check2-circle"
                                         style="font-size: 1rem; color: rgb(255, 255, 255);"></i> สมาชิก
                                 </span>
                             </div>
-                        </div>
-                        <div class="row" style="padding-left: 15px;">
-                            <div class="col-4">
+                            <div class="col-md-5 col-sm-6 text-end">
                                 <label for="inputDate" class="col-sm-auto col-form-label">รหัสผู้ใช้งาน : </label>
                             </div>
-                            <div class="col-8">
+                            <div class="col-md-7 col-sm-6">
                                 <input type="text" readonly class="form-control-plaintext" id="staticDate"
                                     value="xxxxxxx">
                             </div>
-                        </div>
-                        <div class="row" style="padding-left: 15px;">
-                            <div class="col-4">
-                                <label for="inputDate" class="col-sm-auto col-form-label">Username : </label>
+                            <div class="col-md-5 col-sm-6 text-end">
+                                <label for="inputDate" class="col-sm-auto col-form-label">ชื่อผู้ใช้ : </label>
                             </div>
-                            <div class="col-8">
+                            <div class="col-md-7 col-sm-6">
                                 <input type="text" readonly class="form-control-plaintext" id="staticDate"
                                     value="xxxxxxx">
                             </div>
-                        </div>
-                        <div class="row" style="padding-left: 15px;">
-                            <div class="col-4">
-                                <label for="inputDate" class="col-sm-auto col-form-label">Password : </label>
+                            <div class="col-md-5 col-sm-6 text-end">
+                                <label for="inputDate" class="col-sm-auto col-form-label">รหัสผ่าน : </label>
                             </div>
-                            <div class="col-8">
+                            <div class="col-md-7 col-sm-6">
                                 <input type="text" readonly class="form-control-plaintext" id="staticDate"
                                     value="xxxxxxx">
+                            </div>
+                            <div class="col-md-5 col-sm-6 text-end">
+                                <label for="inputDate" class="col-sm-auto col-form-label">เบอร์โทรศัพท์ : </label>
+                            </div>
+                            <div class="col-md-7 col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
+                                    value="xxxxxxxxxx">
+                            </div>
+                            <div class="col-md-5 col-sm-6 text-end">
+                                <label for="inputDate" class="col-sm-auto col-form-label">อีเมล : </label>
+                            </div>
+                            <div class="col-md-7 col-sm-6">
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
+                                    value="nxxxxxxx@gmail.com">
                             </div>
                         </div>
                     </div>
@@ -96,17 +130,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h6>ข้อมูลส่วนบุคคล</h6>
+                    <h6>ประวัติผู้ป่วย</h6>
                 </div>
                 <div class="card-body">
-                    <form action="" class="row g-3">
-                        <div class="col-4">
+                    <form action="" class="row g-3 p-2">
+                        <div class="col-md-4 col-sm-12">
                             <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
                             <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx"
                                 readonly>
                         </div>
-                        <div class="col-8"></div>
-                        <div class="col-2">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2">
                             <label for="validationCustom01" class="form-label">คำนำหน้า</label>
                             <input type="text" class="form-control" id="validationCustom01" value="xxx." readonly>
                         </div>
@@ -148,7 +182,12 @@
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxxxx"
                                 readonly>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
+                            <label for="validationCustom02" class="form-label">แพทย์ผู้รักษา</label>
+                            <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxxxx"
+                                readonly>
+                        </div>
+                        <div class="col-md-4">
                             <label for="validationCustom02" class="form-label">ประวัติการรักษา</label>
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxxxx"
                                 readonly>
@@ -157,7 +196,7 @@
                             <label for="validationCustom02" class="form-label">ที่อยู่</label>
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxx" readonly>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label for="validationCustom02" class="form-label">ตำบล</label>
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxx" readonly>
                         </div>
@@ -165,7 +204,7 @@
                             <label for="validationCustom02" class="form-label">อำเภอ</label>
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxx" readonly>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <label for="validationCustom02" class="form-label">จังหวัด</label>
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxx" readonly>
                         </div>
@@ -173,19 +212,110 @@
                             <label for="validationCustom02" class="form-label">รหัสไปรษณีย์</label>
                             <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxx" readonly>
                         </div>
-                        <div class="col-md-4">
-                            <label for="validationCustom02" class="form-label">เบอร์โทร</label>
-                            <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxxx" readonly>
-                        </div>
-                        <div class="col-md-5">
-                            <label for="validationCustom02" class="form-label">อีเมล</label>
-                            <input type="text" class="form-control" id="validationCustom02" value="xxxxxxxxx@gmail.com"
-                                readonly>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <br>
+</div>
+<!-- end con-pro -->
+
+
+<!-- Model New Password -->
+<div class="modal fade" id="newpasswordModal" data-bs-backdrop="static" tabindex="-1"
+    aria-labelledby="newpasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-dark">
+        <div class="modal-content">
+            <div class="modal-body bg-light">
+                <div class="row justify-content-end p-2 pt-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="card p-3">
+                    <form>
+                        <div class="row justify-content-center">
+                            <h5 class="text-center font-monospace pb-2">เปลี่ยนรหัสผ่าน</h5>
+                            <br>
+                            <div class="col-md-9 pb-3">
+                                <input class="form-control" type="password" placeholder="รหัสผ่านใหม่"
+                                    aria-label="default input example" required>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control" type="password" placeholder="ยืนยันรหัสผ่าน"
+                                    aria-label="default input example" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center pt-3">
+                            <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Model Edit Tel -->
+<div class="modal fade" id="edittelModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="edittelModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-dark">
+        <div class="modal-content">
+            <div class="modal-body bg-light">
+                <div class="row justify-content-end p-2 pt-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="card p-3">
+                        <div class="row justify-content-center">
+                            <h5 class="text-center font-monospace pb-2">เบอร์โทรศัพท์ใหม่</h5>
+                            <br>
+                            <div class="col-md-9 pb-3">
+                                <input class="form-control" type="text" placeholder="หมายเลขโทรศัพท์"
+                                    aria-label="default input example" required>
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto pt-3">
+                                <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Model Edit Email -->
+<div class="modal fade" id="editEmailModal" data-bs-backdrop="static" tabindex="-1"
+    aria-labelledby="editEmailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered text-dark">
+        <div class="modal-content">
+            <div class="modal-body bg-light">
+                <div class="row justify-content-end p-2 pt-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="card p-3">
+                        <div class="row justify-content-center">
+                            <h5 class="text-center font-monospace pb-2">เปลี่ยนอีเมลใหม่</h5>
+                            <br>
+                            <div class="col-md-9 pb-3">
+                                <input class="form-control" type="text" placeholder="อีเมล"
+                                    aria-label="default input example" required>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto pt-3">
+                                <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

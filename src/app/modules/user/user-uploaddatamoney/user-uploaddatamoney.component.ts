@@ -46,4 +46,13 @@ export class UserUploaddatamoneyComponent implements OnInit {
     })
   }
 
+  selectslipmoney() {
+    Swal.fire({
+      imageUrl: 'https://obs.line-scdn.net/0hd_rioZEKO3BPEBPqvuFEJ3VGOB98fChzKyZqcxN-ZUQ2dylxISZzHmxFYElqKXwuISJwHm0SIEEwIiwlcX5z/w644',
+      imageWidth: 400,
+      imageHeight: 500,
+      imageAlt: 'Custom image',
+    })
+  }
+
 }

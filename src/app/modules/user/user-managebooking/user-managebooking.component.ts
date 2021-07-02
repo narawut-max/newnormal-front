@@ -14,7 +14,7 @@ export class UserManagebookingComponent implements OnInit {
   }
 
   selectdatabooking() {
-    Swal.fire('ข้อมูลยา')
+    Swal.fire('ข้อมูลการจองคิว')
   }
 
 }
