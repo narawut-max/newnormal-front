@@ -8,6 +8,31 @@ import Swal from 'sweetalert2';
 })
 export class DoctorAdddrugComponent implements OnInit {
 
+  listDatadrugs = [
+    {
+      "drugId": "001214",
+      "drugName": "ยา",
+      "drugTrademark": "SISALON 50",
+      "drugActive": "เหลือ",
+      "drugMfg": "2021-04-01",
+      "drugExp": "2021-04-01",
+      "drugPrice": 30.0000,
+      "drugAmount": "5",
+      "ctgId": "1"
+    },
+    {
+      "drugId": "002124",
+      "drugName": "พารา",
+      "drugTrademark": "SISALON 50",
+      "drugActive": "ไม่เหลือ",
+      "drugMfg": "2021-04-01",
+      "drugExp": "2021-04-01",
+      "drugPrice": 40.0000,
+      "drugAmount": "0",
+      "ctgId": "1"
+    }
+  ]
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -16,7 +41,7 @@ export class DoctorAdddrugComponent implements OnInit {
   selectdatadrug() {
     Swal.fire('ข้อมูลยา')
   }
-  
+
   gotoprintdrug() {
     Swal.fire({
       title: 'ต้องการยืนยันหรือไม่ ?',

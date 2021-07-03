@@ -7,7 +7,6 @@ import { DoctorTreatComponent } from './doctor-treat/doctor-treat.component';
 import { DoctorAddtreatComponent } from './doctor-addtreat/doctor-addtreat.component';
 import { DoctorAdddrugComponent } from './doctor-adddrug/doctor-adddrug.component';
 import { DoctorReporttreatComponent } from './doctor-reporttreat/doctor-reporttreat.component';
-import { DoctorDatabookingComponent } from './doctor-databooking/doctor-databooking.component';
 import { DoctorPrintdatadrugComponent } from './doctor-printdatadrug/doctor-printdatadrug.component';
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorManagedrugComponent } from './doctor-managedrug/doctor-managedrug.component';
@@ -16,7 +15,7 @@ import { DoctorReportDatauserComponent } from './doctor-report-datauser/doctor-r
 
 
 @NgModule({
-  declarations: [DoctorPageComponent, DoctorTreatComponent, DoctorAddtreatComponent, DoctorAdddrugComponent, DoctorReporttreatComponent, DoctorDatabookingComponent, DoctorPrintdatadrugComponent, DoctorProfileComponent, DoctorManagedrugComponent, DoctorReportDatauserComponent],
+  declarations: [DoctorPageComponent, DoctorTreatComponent, DoctorAddtreatComponent, DoctorAdddrugComponent, DoctorReporttreatComponent,DoctorPrintdatadrugComponent, DoctorProfileComponent, DoctorManagedrugComponent, DoctorReportDatauserComponent],
   imports: [
     CommonModule,
     DoctorRoutingModule,

@@ -89,29 +89,12 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="text-center">0007248</td>
-                <td class="text-center">ปราการ  จันแจง</td>
-                <td class="text-center">หัวใจ</td>
-                <td class="text-center">xxxxxxxxxx</td>
-                <td class="text-center">xxxxxxxxx@gmail.com</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-primary" routerLink="../treat/add-treat">
-                        <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                        เพิ่มข้อมูล
-                    </button>&nbsp;
-                    <button type="button" class="btn btn-sm btn-warning">
-                        <i class="bi bi-pencil-square" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                        แก้ไขข้อมูล
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td class="text-center">0007248</td>
-                <td class="text-center">ปราการ  จันแจง</td>
-                <td class="text-center">หัวใจ</td>
-                <td class="text-center">xxxxxxxxxx</td>
-                <td class="text-center">xxxxxxxxx@gmail.com</td>
+            <tr *ngFor="let item of listDatauser; let i = index">
+                <td class="text-center">{{item.bkId}}</td>
+                <td class="text-center">{{item.userId}} --userFirstname userLastname</td>
+                <td class="text-center">{{item.userId}} --userDisease</td>
+                <td class="text-center">{{item.userId}} --userPhone</td>
+                <td class="text-center">{{item.userId}} --userEmail</td>
                 <td class="text-center">
                     <button type="button" class="btn btn-sm btn-primary" routerLink="../treat/add-treat">
                         <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>

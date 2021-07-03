@@ -75,11 +75,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>15:20</td>
-                                    <td>000245</td>
-                                    <td>ปารีญา วราเมธา</td>
+                                <tr *ngFor="let item of listDatauser; let i = index">
+                                    <th>{{i+1}}</th>
+                                    <td>{{item.tmTime}}</td>
+                                    <td>{{item.bkId}}</td>
+                                    <td>{{item.userId}} --userFirstname userLastname</td>
                                     <td>
                                         <button type="button" class="btn btn-sm text-white fw-bold"
                                             data-bs-toggle="modal" data-bs-target="#SelectModal"
@@ -91,6 +91,7 @@
                                         <div class="text-center">
                                             <select class="form-select form-select-sm fw-bold"
                                                 aria-label=".form-select-sm example">
+                                                <option selected>สถานะ</option>
                                                 <option value="1">รักษาแล้ว</option>
                                                 <option value="2">ข้ามคิว</option>
                                                 <option value="3">ไม่มาตามนัด</option>

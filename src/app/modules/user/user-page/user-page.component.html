@@ -93,27 +93,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>15:15</td>
-                <td>00897004</td>
-                <td class="text-start">วาริดา วราฤทธิ์นารากุล</td>
-                <td>โรคหัวใจ</td>
-                <td class="text-start">นพ.ประสงค์ ราชวัฏ</td>
+              <tr *ngFor="let item of listDatas; let i = index">
+                <th>{{item.bkId}}</th>
+                <td>{{item.tmTime}}</td>
+                <td>{{item.tmId}}</td>
+                <td class="text-start">{{item.userId}} --userFirstname userLastname</td>
+                <td>{{item.userId}} --userDepartment</td>
+                <td class="text-start">{{item.userId}} --userFirstname userLastname</td>
                 <td class="td-status p-1">
                   <span class="badge" style="background-color: orange;">
                     <dt>กำลังรักษา</dt>
                   </span>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>15:20</td>
-                <td>00897004</td>
-                <td class="text-start">วาริดา วราฤทธิ์นารากุล</td>
-                <td>โรคหัวใจ</td>
-                <td class="text-start">นพ.ประสงค์ ราชวัฏ</td>
-                <td class="td-status p-0 pt-1">
                 </td>
               </tr>
             </tbody>

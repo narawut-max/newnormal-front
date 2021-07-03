@@ -88,12 +88,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center">0007248</td>
-                    <td class="text-center">24/06/2564 16:00</td>
-                    <td class="text-center">ปราการ จันแจง</td>
-                    <td class="text-center">โรคหัวใจ</td>
-                    <td class="text-center">xxxxxxxxx@gmail.com</td>
+                <tr *ngFor="let item of listDatadrug; let i = index">
+                    <td class="text-center">{{item.billId}}</td>
+                    <td class="text-center">{{item.tmDate}} {{item.tmTime}}</td>
+                    <td class="text-center">{{item.userId}} --userFirstname userLastname</td>
+                    <td class="text-center">{{item.userId}} --userDisease</td>
+                    <td class="text-center">{{item.userId}} --userEmail</td>
                     <td class="text-center">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                             data-bs-target="#drugModal">

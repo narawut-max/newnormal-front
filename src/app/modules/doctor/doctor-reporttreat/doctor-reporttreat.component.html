@@ -81,26 +81,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center">
-                    <th>1</th>
-                    <td>0007248</td>
-                    <td>1234567890123</td>
-                    <td>ปราการ จันแจง</td>
-                    <td>โรคหัวใจ</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-primary"
-                            routerLink="../report-treat/report-datauser">
-                            <i class="bi bi-eye-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                            ดูรายละเอียด
-                        </button>
-                    </td>
-                </tr>
-                <tr class="text-center">
-                    <th>2</th>
-                    <td>0007249</td>
-                    <td>1234567890321</td>
-                    <td>ปราการ จันแจง</td>
-                    <td>โรคหัวใจ</td>
+                <tr class="text-center" *ngFor="let item of listDatatreat; let i = index">
+                    <th>{{i+1}}</th>
+                    <td>{{item.tmId}}</td>
+                    <td>{{item.userId}} --userCardId</td>
+                    <td>{{item.userId}} --userFirstname userLastname</td>
+                    <td>{{item.userId}} --userDisease</td>
                     <td>
                         <button type="button" class="btn btn-sm btn-primary"
                             routerLink="../report-treat/report-datauser">

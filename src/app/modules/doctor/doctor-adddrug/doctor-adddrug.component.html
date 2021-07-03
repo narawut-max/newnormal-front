@@ -65,41 +65,24 @@
                                 <th scope="col-4">รหัสยา</th>
                                 <th scope="col">ชื่อยา</th>
                                 <th scope="col">ชื่อทางการค้า</th>
-                                <th scope="col">คงเหลือ</th>
+                                <th scope="col">สถานะคงเหลือ</th>
                                 <th scope="col">ราคา : หน่วย</th>
                                 <th scope="col">รายละเอียดยา</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <th>
+                            <tr *ngFor="let item of listDatadrugs; let i = index">
+                                <th class="col-md-1">
                                     <a href="doctor/treat/add-drug"><i class="bi bi-cart-plus"
                                             style="font-size: 25px; color: rgb(0, 0, 0);"></i></a>
 
                                 </th>
-                                <td>000210145</td>
-                                <td class="text-start">sertraline</td>
-                                <td class="text-start">SISALON 50</td>
-                                <td>10</td>
-                                <td>30</td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-danger" (click)="selectdatadrug()">
-                                        <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลยา
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <a href="doctor/treat/add-drug"><i class="bi bi-cart-plus"
-                                            style="font-size: 25px; color: rgb(0, 0, 0);"></i></a>
-
-                                </th>
-                                <td>000210145</td>
-                                <td class="text-start">sertraline</td>
-                                <td class="text-start">SISALON 50</td>
-                                <td>10</td>
-                                <td>30</td>
-                                <td>
+                                <td class="col-md-1">{{item.drugId}}</td>
+                                <td class="col-md-2 text-start">{{item.drugName}}</td>
+                                <td class="col-md-2 text-start">{{item.drugTrademark}}</td>
+                                <td class="col-md-2">{{item.drugActive}} ({{item.drugAmount}})</td>
+                                <td class="col-md-2">{{item.drugPrice}}</td>
+                                <td class="col-md-2">
                                     <button type="button" class="btn btn-sm btn-danger" (click)="selectdatadrug()">
                                         <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลยา
                                     </button>

@@ -44,31 +44,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>13/06/2564 15:20</td>
-                                    <td>วาริดา วราฤทธิ์นารากุล</td>
-                                    <td>000245</td>
-                                    <td>0001200135</td>
+                                <tr *ngFor="let item of listDatas; let i = index">
+                                    <td>{{item.billId}} --billDate</td>
+                                    <td>{{item.userId}} --userFirstname userLastname</td> 
+                                    <td>{{item.bkId}}</td> 
+                                    <td>{{item.billId}}</td>
                                     <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                        IMG_2344.jpg</td>
+                                        {{item.tmSlip}}
+                                    </td>
                                     <td class="td-status">
                                         <span class="badge bg-success">
                                             <i class="bi bi-check2-circle"
                                                 style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                            ชำระเงินแล้ว
+                                            {{item.tmStatus}}
                                         </span>
                                     </td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>13/06/2564 15:20</td>
                                     <td>วาริดา วราฤทธิ์นารากุล</td>
                                     <td>000245</td>
                                     <td>0001200135</td>
                                     <td>
-                                        <!-- <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                อัปโหลดสลิป
-                                            </button> -->
                                         <button type="button" class="btn btn-sm btn-outline-danger"
                                             (click)="uploadmoney()">อัปโหลดสลิป</button>
                                     </td>
@@ -78,8 +75,9 @@
                                                 style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                                             ยังไม่ชำระเงิน</span>
                                     </td>
-                                </tr>
-                                <tr>
+                                </tr> -->
+                                <!-- <tr>
+
                                     <td>13/06/2564 15:20</td>
                                     <td>วาริดา วราฤทธิ์นารากุล</td>
                                     <td>000245</td>
@@ -92,7 +90,7 @@
                                                 style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                                             กำลังตรวจสอบ</span>
                                     </td>
-                                </tr>
+                                </tr> -->
                                 <!-- Modal -->
                                 <!-- <div class="modal fade" id="exampleModal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
