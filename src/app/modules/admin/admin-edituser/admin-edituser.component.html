@@ -1,0 +1,176 @@
+<div class="container"
+    style="padding-left: 50px; padding-right: 50px; padding-bottom: 50px; padding-top: 20px; background-color: #F0F8FF;">
+
+    <!-- header/button -->
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h3 class="text-dark">แก้ไขข้อมูลผู้ใช้งาน</h3>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-info" routerLink="../manage">
+                    << ย้อนกลับ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div class="card pt-3 border border-5 border-warning border-top-0 border-bottom-0 border-end-0 shadow"
+        style="border-radius: 10px;">
+        <div class="card-body" style="padding-left: 30px; padding-right: 30px;">
+            <form class="row g-4 top-1" autocomplete="off">
+                <div class="col-md-4 col-sm-12">
+                    <div class="input-group">
+                        <div class="input-group-text">ประเภทผู้ใช้งาน</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ผู้ป่วย"
+                            readonly>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-text">รหัสบัตรประชาชน</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="" readonly>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-text">รหัสผู้ป่วย HN</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="" readonly>
+                        <!-- <button class="form-control-sm input-group-text bg-white" type="menu" id="basic-addon1">
+                            <i class="bi bi-search" style="color: rgb(112, 56, 241);"></i>
+                        </button> -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="input-group">
+                        <div class="input-group-text">คำนำหน้า</div>
+                        <select id="inputState" class="form-select">
+                            <option>นาย</option>
+                            <option>นาง</option>
+                            <option>น.ส.</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">ชื่อ</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">สกุล</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="">
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-text">วันเดือนปีเกิด</div>
+                        <input type="date" class="form-control" id="autoSizingInputGroup" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="input-group">
+                        <div class="input-group-text">เพศ</div>
+                        <select id="inputState" class="form-select">
+                            <option>ชาย</option>
+                            <option>หญิง</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6">
+                    <div class="input-group">
+                        <div class="input-group-text">กรุ๊ปเลือด</div>
+                        <select id="inputState" class="form-select">
+                            <option>A</option>
+                            <option>B</option>
+                            <option>AB</option>
+                            <option>O</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-text">เบอร์โทรศัพท์</div>
+                        <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-text">อีเมล</div>
+                        <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">จังหวัด</div>
+                        <select id="inputState" class="form-select">
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">อำเภอ</div>
+                        <select id="inputState" class="form-select">
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">ตำบล</div>
+                        <select id="inputState" class="form-select">
+                            <option>...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">รหัสไปรษณีย์</div>
+                        <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="กรอกรหัสไปรษณีย์">
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <div class="input-group-text">ที่อยู่</div>
+                        <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-text">โรคประจำตัว</div>
+                        <select id="inputState" class="form-select">
+                            <option>...</option>
+                            <option>โรคหัวใจ</option>
+                            <option>โรคกระดูก</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-text">แพทย์ผู้รักษา</div>
+                        <select id="inputState" class="form-select">
+                            <option>...</option>
+                            <option>พญ.ฟาริดา วราฤทธิ์เมธากุล</option>
+                            <option>โรคกระดูก</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <div class="input-group-text">ประวัติการแพ้ยา</div>
+                        <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ประวัติการแพ้ยา">
+                    </div>
+                </div>
+                <div class="col-md-6" style="margin: 0px;"></div>
+                <div class="col-md-12" style="text-align: center;">
+                    <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>&nbsp;
+                    <!-- <button type="reset" class="btn btn-danger">ล้างข้อมูล</button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- end content -->
+    <div style="height: 3px;"></div>
+</div>
