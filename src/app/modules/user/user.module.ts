@@ -8,10 +8,11 @@ import { UserManagebookingComponent } from './user-managebooking/user-managebook
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUploaddatamoneyComponent } from './user-uploaddatamoney/user-uploaddatamoney.component';
 import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
+import { UserBookingCalenderComponent } from './user-booking-calender/user-booking-calender.component';
 
 
 @NgModule({
-  declarations: [UserPageComponent, UserBookingComponent, UserManagebookingComponent, UserProfileComponent, UserUploaddatamoneyComponent],
+  declarations: [UserPageComponent, UserBookingComponent, UserManagebookingComponent, UserProfileComponent, UserUploaddatamoneyComponent, UserBookingCalenderComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

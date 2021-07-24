@@ -41,6 +41,16 @@ export class AdminManagemoneyComponent implements OnInit {
       "userId": "1",
       "bkId": 0,
       "billId": 0
+    },{
+      "tmId": "1",
+      "tmDate": "2021-06-15",
+      "tmTime": "13:42",
+      "tmMoney": 100,
+      "tmSlip": "IMG_2344.jpg",
+      "tmStatus": "Y",
+      "userId": "1",
+      "bkId": 0,
+      "billId": 0
     },
     {
       "tmId": "1",
@@ -60,9 +70,6 @@ export class AdminManagemoneyComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectdatamoney() {
-    Swal.fire('ข้อมูลการชำระเงิน')
-  }
 
   selectslipmoney() {
     Swal.fire({

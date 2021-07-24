@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   logOut() {
     sessionStorage.removeItem('user_role');
-    this.route.navigate(['login']).then(() => {
+    this.route.navigate(['home']).then(() => {
       window.location.reload()
     });
   }

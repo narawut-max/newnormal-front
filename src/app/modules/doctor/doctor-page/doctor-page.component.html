@@ -63,10 +63,10 @@
             <div class="topbar static-top">
                 <div class="card-bodytext-dark">
                     <div class="dataTable table-responsive">
-                        <table class="table table-hover border-primary text-center">
+                        <table class="table table-hover text-center">
                             <thead>
                                 <tr>
-                                    <th class="col-md-1">ลำดับคิว</th>
+                                    <th class="col-md-1">หมายเลขคิว</th>
                                     <th class="col-md-1">เวลา</th>
                                     <th class="col-md-2">รหัสการจอง</th>
                                     <th class="col-md-2">ชื่อ-สกุล</th>
@@ -76,7 +76,7 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of listDatauser; let i = index">
-                                    <th>{{i+1}}</th>
+                                    <th>{{item.bkId}} --bkQueue</th>
                                     <td>{{item.tmTime}}</td>
                                     <td>{{item.bkId}}</td>
                                     <td>{{item.userId}} --userFirstname userLastname</td>
@@ -87,16 +87,12 @@
                                             <h6 class="p-0" style="margin: 0rem;">ดูรายละเอียด</h6>
                                         </button>
                                     </td>
-                                    <td class="px-5">
-                                        <div class="text-center">
-                                            <select class="form-select form-select-sm fw-bold"
-                                                aria-label=".form-select-sm example">
-                                                <option selected>สถานะ</option>
-                                                <option value="1">รักษาแล้ว</option>
-                                                <option value="2">ข้ามคิว</option>
-                                                <option value="3">ไม่มาตามนัด</option>
-                                            </select>
-                                        </div>
+                                    <td>
+                                        <button type="button" class="btn btn-sm text-white fw-bold"
+                                            data-bs-toggle="modal" data-bs-target="#status"
+                                            style="background-color: rgb(13, 109, 219);border-radius: 30px;">
+                                            <h6 class="p-0" style="margin: 0rem;">สถานะคิว</h6>
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -116,7 +112,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title fw-bold font-monospace" id="SelectModalLabel">รายละเอียดการจองคิวเข้ารักษา </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <div class="modal-body bg-light">
                 <form action="">
@@ -138,7 +134,8 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">วันและเวลาที่เข้ารักษา</label>
                                     <div class="input-group">
-                                        <input type="datetime" id="form8Example3" class="form-control" value="25/06/64  15:15" readonly>
+                                        <input type="datetime" id="form8Example3" class="form-control"
+                                            value="25/06/64  15:15" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +165,7 @@
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
-                                    <label class="form-label" for="form8Example3">แผนกที่เข้ารับการรักษา</label>
+                                    <label class="form-label" for="form8Example3">โรคประจำตัว</label>
                                     <input type="text" id="form8Example3" class="form-control" readonly>
                                 </div>
                             </div>&emsp;
@@ -181,9 +178,10 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-md-2 pt-3">
-                            <button type="button" class="fw-bolder btn btn-warning"
-                                data-bs-dismiss="modal">ตกลง</button>
+                        <div class="col-md-4 pt-3">
+                            <button type="button" class="fw-bolder btn btn-primary" data-bs-dismiss="modal"
+                                routerLink="../treat/add-treat/:bkQueue">เพิ่มข้อมูลการรักษา</button>&nbsp;
+                            <button type="button" class="fw-bolder btn btn-danger" data-bs-dismiss="modal">ปิด</button>
                         </div>
                     </div>
                 </form>
@@ -192,3 +190,30 @@
     </div>
 </div>
 
+
+<!-- Modal Status -->
+<div class="modal fade" id="status" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="statusLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background-image: url(https://s3vmwebqa.s3.ap-southeast-1.amazonaws.com/public/other/vimut-og-image.jpg);">
+            <div class="modal-body">
+                <div class="card p-3 border-0" style="border-radius: 8px;">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-success font-monospace" for="btnradio1">รักษาแล้ว</label>
+                       
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-warning font-monospace" for="btnradio2">ข้ามคิว</label>
+                      
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-danger font-monospace" for="btnradio3">ไม่มาตามนัด</label>
+                      </div>
+                </div>
+                <div class="col-md-12 pt-3 text-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">ตกลง</button>&nbsp;
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

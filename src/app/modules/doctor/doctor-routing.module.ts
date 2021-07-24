@@ -17,6 +17,7 @@ const routes: Routes = [
   {path: 'treat', component: DoctorTreatComponent},
   {path: 'managedrug', component: DoctorManagedrugComponent},
   {path: 'treat/add-treat', component: DoctorAddtreatComponent},
+  {path: 'treat/add-treat/:bkQueue', component: DoctorAddtreatComponent},
   {path: 'treat/add-drug', component: DoctorAdddrugComponent},
   {path: 'treat/add-drug/printdatadrug', component: DoctorPrintdatadrugComponent},
   {path: 'report-treat', component: DoctorReporttreatComponent},

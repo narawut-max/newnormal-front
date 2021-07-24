@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   loginForm = this.fb.group({
-    username: ['123', Validators.required],
-    password: ['123', Validators.required]
+    userUsername: ['123', Validators.required],
+    userPassword: ['123', Validators.required]
   });
 
   ngOnInit(): void {
@@ -26,13 +26,17 @@ export class LoginComponent implements OnInit {
     debugger
     this.submitted = true;
 
+    debugger
+    this.loginForm.value
+
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      
       return;
     }
 
-    // sessionStorage.setItem('user_role', "ADMIN");
-    sessionStorage.setItem('user_role', "USER");
+    sessionStorage.setItem('user_role', "ADMIN");
+    // sessionStorage.setItem('user_role', "USER");
     // sessionStorage.setItem('user_role', "DOCTOR");
     alert('SUCCESS!! :-)')
     

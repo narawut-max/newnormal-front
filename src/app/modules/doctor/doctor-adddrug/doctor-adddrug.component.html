@@ -61,13 +61,12 @@
                     <table class="table table-borderedborder border-3">
                         <thead class="text-center table-primary">
                             <tr>
-                                <th scope="col-auto">เลือก</th>
-                                <th scope="col-4">รหัสยา</th>
-                                <th scope="col">ชื่อยา</th>
-                                <th scope="col">ชื่อทางการค้า</th>
-                                <th scope="col">สถานะคงเหลือ</th>
-                                <th scope="col">ราคา : หน่วย</th>
-                                <th scope="col">รายละเอียดยา</th>
+                                <th class="col-md-1">เลือก</th>
+                                <th class="col-md-2">รหัสยา</th>
+                                <th class="col-md-2">ชื่อยา</th>
+                                <th class="col-md-2">ชื่อทางการค้า</th>
+                                <th class="col-md-2">สถานะคงเหลือ</th>
+                                <th class="col-md-2">ราคา : หน่วย</th>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -80,13 +79,8 @@
                                 <td class="col-md-1">{{item.drugId}}</td>
                                 <td class="col-md-2 text-start">{{item.drugName}}</td>
                                 <td class="col-md-2 text-start">{{item.drugTrademark}}</td>
-                                <td class="col-md-2">{{item.drugActive}} ({{item.drugAmount}})</td>
+                                <td class="col-md-2">{{item.drugAmount}}</td>
                                 <td class="col-md-2">{{item.drugPrice}}</td>
-                                <td class="col-md-2">
-                                    <button type="button" class="btn btn-sm btn-danger" (click)="selectdatadrug()">
-                                        <i class="bi bi-chat-text-fill"></i>&nbsp;ข้อมูลยา
-                                    </button>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -107,8 +101,8 @@
                                     <label class="form-label" for="username">
                                         <strong>รหัสผู้ป่วย</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="รหัสประจำตัวผู้ป่วย"
-                                        name="tmId" readonly>
+                                    <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
+                                        readonly>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -116,7 +110,7 @@
                                     <label class="form-label" for="username">
                                         <strong>รหัสการจองคิว</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="หมายเลขการจองคิว"
+                                    <input class="form-control" type="text" id="tmId" placeholder=""
                                         name="tmId" readonly>
                                 </div>
                             </div>
@@ -125,7 +119,7 @@
                                     <label class="form-label" for="username">
                                         <strong>ชื่อ - สกุล</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx xxxxx"
+                                    <input class="form-control" type="text" id="tmId" placeholder=""
                                         name="tmId" readonly>
                                 </div>
                             </div>
@@ -136,7 +130,7 @@
                                     <label class="form-label" for="username">
                                         <strong>โรคประจำตัว</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="โรคประจำตัว"
+                                    <input class="form-control" type="text" id="tmId" placeholder=""
                                         name="tmId" readonly>
                                 </div>
                             </div>
@@ -145,28 +139,17 @@
                                     <label class="form-label" for="username">
                                         <strong>แพทย์ผู้รักษา</strong>
                                     </label>
-                                    <input class="form-control" type="text" id="tmId" placeholder="ชื่อแพทย์ผู้รักษา"
+                                    <input class="form-control" type="text" id="tmId" placeholder=""
                                         name="tmId" readonly>
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="username">
-                                        <strong>วันที่เข้ารักษา</strong>
+                                        <strong>วันที่นัดครั้งถัดไป</strong>
                                     </label>
-                                    <input class="form-control" type="date" id="tmId" placeholder="xxxxxxx" name="tmId"
+                                    <input class="form-control" type="date" id="tmId" placeholder="" name="tmId"
                                         readonly>
-
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="mb-3">
-                                    <label class="form-label" for="username">
-                                        <strong>เวลาที่เข้ารักษา</strong>
-                                    </label>
-                                    <input class="form-control" type="time" id="tmId" placeholder="xxxxxxx" name="tmId"
-                                        readonly>
-
                                 </div>
                             </div>
                         </div>
@@ -181,20 +164,13 @@
                                     <th scope="col-auto">No.</th>
                                     <th scope="col-4">รหัสยา</th>
                                     <th scope="col">รายการยา</th>
-                                    <th scope="col">จำนวน</th>
+                                    <th scope="col">จำนวน : แผง</th>
                                     <th scope="col">ราคา : บาท</th>
                                 </tr>
                             </thead>
                             <tbody class="text-center">
                                 <tr>
                                     <th>1</th>
-                                    <td>000210145</td>
-                                    <td class="text-start">sertraline</td>
-                                    <td>.....</td>
-                                    <td class="text-end">10</td>
-                                </tr>
-                                <tr>
-                                    <th>2</th>
                                     <td>000210145</td>
                                     <td class="text-start">sertraline</td>
                                     <td>.....</td>

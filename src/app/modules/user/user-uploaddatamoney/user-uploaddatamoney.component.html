@@ -1,125 +1,71 @@
-<!-- Breadcrumb -->
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
-        <li class="breadcrumb-item active" aria-current="page">ข้อมูลการชำระเงิน</li>
-    </ol>
-</nav>
+<div class="container p-3 text-dark">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
+            <li class="breadcrumb-item active" aria-current="page">ข้อมูลการชำระเงิน</li>
+        </ol>
+    </nav>
 
-<div class="container">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
-        <h3> ข้อมูลการชำระเงิน</h3>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
-                    << ย้อนกลับ</button>
+    <div class="container">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+            <h3> ข้อมูลการชำระเงิน</h3>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-success" routerLink="../home">
+                        << ย้อนกลับ</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- queue number -->
-    <div class="con-dataqueue">
-        <div class="card col-md-12" style="">
-            <div class="card shadow topbar static-top">
-                <div class="card-body text-dark p-4">
-                    <div class="row justify-content-end">
-                        <div class="col-md-2 data-time">
-                            <label class="">
-                                <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                                    placeholder="Search" />
-                            </label>
+        <!-- queue number -->
+        <div class="con-dataqueue">
+            <div class="col-md-12" style="">
+                <div class="card shadow topbar static-top" style="border-radius: 10px;">
+                    <div class="card-body text-dark p-4">
+                        <div class="row justify-content-end">
+                            <div class="col-md-2 data-time">
+                                <label class="">
+                                    <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                                        placeholder="Search" />
+                                </label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover  border-primary text-center">
-                            <thead>
-                                <tr>
-                                    <th class="col-md-2">วัน/เดือน/ปีที่สั่งจ่าย</th>
-                                    <th class="col-md-2">ชื่อ - สกุล</th>
-                                    <th class="col-md-2">รหัสการจอง</th>
-                                    <th class="col-md-2">เลขที่ใบสั่งยา</th>
-                                    <th class="col-md-2">แจ้งชำระเงิน</th>
-                                    <th class="col-md-2">สถานะการชำระ</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let item of listDatas; let i = index">
-                                    <td>{{item.billId}} --billDate</td>
-                                    <td>{{item.userId}} --userFirstname userLastname</td> 
-                                    <td>{{item.bkId}}</td> 
-                                    <td>{{item.billId}}</td>
-                                    <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                        {{item.tmSlip}}
-                                    </td>
-                                    <td class="td-status">
-                                        <span class="badge bg-success">
-                                            <i class="bi bi-check2-circle"
-                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                            {{item.tmStatus}}
-                                        </span>
-                                    </td>
-                                </tr>
-                                <!-- <tr>
-                                    <td>13/06/2564 15:20</td>
-                                    <td>วาริดา วราฤทธิ์นารากุล</td>
-                                    <td>000245</td>
-                                    <td>0001200135</td>
-                                    <td>
-                                        <button type="button" class="btn btn-sm btn-outline-danger"
-                                            (click)="uploadmoney()">อัปโหลดสลิป</button>
-                                    </td>
-                                    <td class="td-status">
-                                        <span class="badge bg-danger">
-                                            <i class="bi bi-x-circle"
-                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                            ยังไม่ชำระเงิน</span>
-                                    </td>
-                                </tr> -->
-                                <!-- <tr>
-
-                                    <td>13/06/2564 15:20</td>
-                                    <td>วาริดา วราฤทธิ์นารากุล</td>
-                                    <td>000245</td>
-                                    <td>0001200135</td>
-                                    <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                        IMG_2344.jpg</td>
-                                    <td class="td-status">
-                                        <span class="badge bg-warning">
-                                            <i class="bi bi-hourglass-split"
-                                                style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                                            กำลังตรวจสอบ</span>
-                                    </td>
-                                </tr> -->
-                                <!-- Modal -->
-                                <!-- <div class="modal fade" id="exampleModal" tabindex="-1"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                        อัปโหลดหลักฐานการชำระเงิน</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <input class="btn btn-sm" type="file" name="upload" />
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">ยกเลิก</button>
-                                                    <button type="reset" class="btn btn-primary">ยืนยัน</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-                                <!-- Model -->
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-hover  border-primary text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="col-md-2">วัน/เดือน/ปีที่สั่งจ่าย</th>
+                                        <th class="col-md-2">ชื่อ - สกุล</th>
+                                        <th class="col-md-2">รหัสการจอง</th>
+                                        <th class="col-md-2">เลขที่ใบสั่งยา</th>
+                                        <th class="col-md-2">แจ้งชำระเงิน</th>
+                                        <th class="col-md-2">สถานะการชำระ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of listDatas; let i = index">
+                                        <td>{{item.billId}} --billDate</td>
+                                        <td>{{item.userId}} --userFirstname userLastname</td>
+                                        <td>{{item.bkId}}</td>
+                                        <td>{{item.billId}}</td>
+                                        <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
+                                            {{item.tmSlip}}
+                                        </td>
+                                        <td class="td-status">
+                                            <span class="text-dark">
+                                                <h6 class="fw-bold">{{item.tmStatus}}</h6>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<canvas class="my-4 w-100" id="myChart" height="44"></canvas>
+<canvas class="my-4 w-100" id="myChart" height="43"></canvas>

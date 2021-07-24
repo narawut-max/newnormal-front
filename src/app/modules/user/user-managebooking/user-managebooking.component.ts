@@ -37,8 +37,25 @@ export class UserManagebookingComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectdatabooking() {
-    Swal.fire('ข้อมูลการจองคิว')
+  cancelbooking() {
+    Swal.fire({
+      title: 'ยกเลิกการจองหรือไม่ ?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#198754',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ยืนยัน',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'ยกเลิกการจองสำเร็จ!',
+          '',
+          'success'
+        )
+      }
+    })
   }
 
 }

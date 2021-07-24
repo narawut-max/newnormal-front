@@ -20,220 +20,155 @@
         </div>
     </div>
 
-    <div class="row">
-        <!-- data-user -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">ข้อมูลผู้ป่วย</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>หมายเลขประจำตัวประชาชน</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="113xxxxxxx466"
-                                    name="tmId" readonly>
-                            </div>
-                        </div>
+    <!-- data user -->
+    <div>
+        <div class="card border-0 p-4 shadow-sm" style="border-radius: 10px;">
+            <form action="">
+                <h5 class="font-monospace pb-0">ประวัติผู้ป่วย</h5>
+                <hr class="mt-3 mb-3">
+                <div class="row g-3">
+                    <div class="col-md-2">
+                        <label class="form-label" for="username">
+                            <strong>รหัสผู้ป่วย</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>ชื่อ</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="ปราการ" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>นามสกุล</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="จันแจง" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>วัน/เดือน/ปี เกิด</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="28" name="tmId" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>เบอร์โทร</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxxxxx" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>อีเมล</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxxxxx@gmail.com"
-                                    name="tmId" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>ที่อยู่</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxx/xx ม.x ถ.xxxxxx"
-                                    name="tmId" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>ตำบล</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxx" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>อำเภอ</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>จังหวัด</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxxxxxxx" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>รหัสไปรษณีย์</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxx" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>หมายเลขประจำตัวประชาชน</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="username">
+                            <strong>ชื่อ - สกุล</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>วันเดือนปีเกิด</strong>
+                        </label>
+                        <input class="form-control" type="date" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label" for="username">
+                            <strong>กรุ๊ปเลือด</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-1">
+                        <label class="form-label" for="username">
+                            <strong>เพศ</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>เบอร์โทร</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>อีเมล</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="username">
+                            <strong>ที่อยู่</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>จังหวัด</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>อำเภอ</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>ตำบล</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>รหัสไปรษณีย์</strong>
+                        </label>
+                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- data-treat -->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">ข้อมูลทางการแพทย์</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>รหัสผู้ป่วย</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="xxxxxxx" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>กรุ๊ปเลือด</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="AB" name="tmId" readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>เพศ</strong>
-                                </label>
-                                <input class="form-control" type="text" id="tmId" placeholder="ชาย" name="tmId"
-                                    readonly>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>โรคประจำตัว</strong>
-                                </label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
-                                    readonly></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="mb-3">
-                                <label class="form-label" for="username">
-                                    <strong>แพทย์ผู้รักษา</strong>
-                                </label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"
-                                    readonly></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label class="form-label" for="username">
-                                <strong>ประวัติการแพ้ยา</strong>
-                            </label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
-                                readonly></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+
     <br>
 
     <!-- data-treat -->
-    <h5 class="text-dark">ประวัติการเข้ารักษา</h5>
-    <div class="table-responsive">
-        <table class="table table-white table-responsive table-bordered border border-3">
-            <thead>
-                <tr class="text-center">
-                    <th class="col-md-2">วันและเวลาที่เข้ารักษา</th>
-                    <th class="col-md-2">โรคประจำตัว</th>
-                    <th class="col-md-2">รหัสจองคิวรักษา</th>
-                    <th class="col-md-2">เลขที่สั่งจ่ายยา</th>
-                    <th class="col-md-2">แพทย์ที่รักษา</th>
-                    <th class="col-md-auto">รายละเอียดการรักษา</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center">
-                    <td>28/03/2564 12:20:20</td>
-                    <td class="text-start">โรคหัวใจ</td>
-                    <td>000021</td>
-                    <td>64000216</td>
-                    <td class="text-start">นพ.ปราการ วราเมธา</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-primary text-white fw-bold">
-                            <i class="bi bi-eye-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                            ดูรายละเอียด
-                        </button>
-                        <!-- <button type="button" class="btn btn-sm btn-success text-white fw-bold">
-                            <i class="bi bi-download" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                        </button>&nbsp;
-                        <button type="button" class="btn btn-sm btn-primary text-white fw-bold">
-                            <i class="bi bi-printer-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                        </button> -->
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <!--table-->
+    <div>
+        <div class="card border-0 p-4 pb-3 shadow-sm" style="border-radius: 10px;">
+            <form action="">
+                <h5 class="font-monospace pb-0">ประวัติการเข้ารักษา</h5>
+                <hr class="mt-3 mb-3">
+                <div class="table-responsive">
+                    <table class="table table-white table-responsive">
+                        <thead>
+                            <tr class="text-center">
+                                <th class="col-md-2">วันและเวลาที่เข้ารักษา</th>
+                                <th class="col-md-2">โรคประจำตัว</th>
+                                <th class="col-md-2">รหัสจองคิวรักษา</th>
+                                <th class="col-md-2">เลขที่สั่งจ่ายยา</th>
+                                <th class="col-md-2">แพทย์ที่รักษา</th>
+                                <th class="col-md-auto">รายละเอียดการรักษา</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center">
+                                <td>28/03/2564 12:20:20</td>
+                                <td class="text-start">โรคหัวใจ</td>
+                                <td>000021</td>
+                                <td>64000216</td>
+                                <td class="text-start">นพ.ปราการ วราเมธา</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-primary text-white fw-bold p-1"
+                                        data-bs-toggle="modal" data-bs-target="#staticDetails">
+                                        <!-- <i class="bi bi-eye-fill"
+                                            style="font-size: 15px; color: rgb(255, 255, 255);"></i> -->
+                                        ดูรายละเอียด
+                                    </button>
+                                    <!-- <button type="button" class="btn btn-sm btn-success text-white fw-bold">
+                                        <i class="bi bi-download" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                    </button>&nbsp;
+                                    <button type="button" class="btn btn-sm btn-primary text-white fw-bold">
+                                        <i class="bi bi-printer-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                    </button> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--table-->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+
+<!-- Modal -->
+<div class="modal fade" id="staticDetails" tabindex="-1" aria-labelledby="staticDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content text-dark" style="background-image: url(https://www.synphaet.co.th/theparak/wp-content/uploads/2020/01/DJI_0333-scaled.jpg);">
+            <div class="modal-body">
+                <app-doctor-printdatadrug></app-doctor-printdatadrug>
+            </div>
+        </div>
     </div>
 </div>

@@ -28,7 +28,7 @@ export class DoctorAdddrugComponent implements OnInit {
       "drugMfg": "2021-04-01",
       "drugExp": "2021-04-01",
       "drugPrice": 40.0000,
-      "drugAmount": "0",
+      "drugAmount": "3",
       "ctgId": "1"
     }
   ]
@@ -36,10 +36,6 @@ export class DoctorAdddrugComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  selectdatadrug() {
-    Swal.fire('ข้อมูลยา')
   }
 
   gotoprintdrug() {

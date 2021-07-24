@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { AdminEditdoctorComponent } from './admin-editdoctor/admin-editdoctor.component';
+import { AdminEdituserComponent } from './admin-edituser/admin-edituser.component';
 import { AdminManageComponent } from './admin-manage/admin-manage.component';
 import { AdminManagemoneyComponent } from './admin-managemoney/admin-managemoney.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -12,7 +13,9 @@ const routes: Routes = [
   {path: 'register', component: AdminRegisterComponent},
   {path: 'manage', component: AdminManageComponent},
   {path: 'managemoney', component: AdminManagemoneyComponent},
-  {path: 'edit/:userId', component: AdminEditComponent}
+  // {path: 'manage/edit/:userId', component: AdminEditdoctorComponent},
+  {path: 'manage/edit/:roleId/:userId', component: AdminEdituserComponent},
+  // {path: 'manage/edit/:roleId/:userId', component: AdminEditdoctorComponent}
 ];
 
 @NgModule({

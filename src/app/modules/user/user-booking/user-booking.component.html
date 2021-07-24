@@ -1,349 +1,88 @@
-<!-- Breadcrumb -->
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
-        <li class="breadcrumb-item active" aria-current="page">จองคิวเข้ารักษา</li>
-    </ol>
-</nav>
+<div class="container p-3 text-dark">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="user/home">หน้าแรก</a></li>
+            <li class="breadcrumb-item active" aria-current="page">จองคิวเข้ารักษา</li>
+        </ol>
+    </nav>
 
-<div class="container">
-    <div class="card-body" style="margin-left: 7rem; margin-right: 7rem; background-color: rgb(240, 238, 238);">
-        <h4 class="text-dark text-center p-32">จองคิวเข้ารักษา</h4>
+    <div class="container pt-3">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card-body shadow border-0" style="background-color: rgb(123, 202, 233);border-radius: 10px;">
+                    <h4 class="text-dark text-center p-2">จองคิวเข้ารักษา</h4>
 
-        <!-- data user -->
-        <div class="container text-dark">
-            <div class="card p-4">
-                <form class="row g-3 gx-4">
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">รหัสผู้ป่วย HN</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
+                    <!-- data user -->
+                    <div class="container text-dark">
+                        <div class="card p-4 border-0" style="border-radius: 10px;">
+                            <form class="row g-3 gx-4">
+                                <div class="col-md-3">
+                                    <label for="validationCustom01" class="form-label">รหัสผู้ป่วย HN</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="validationCustom01" class="form-label">ชื่อ-สกุล</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="validationCustom01" class="form-label">กรุ๊ปเลือด</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="validationCustom01" class="form-label">เพศ</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">เบอร์โทร</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">อีเมล</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
+                    <br>
+            
+                    <!-- booking treat -->
+                    <div class="container text-dark">
+                        <div class="card p-4 border-0" style="border-radius: 10px;">
+                            <form class="row g-3 gx-4" action="">
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">โรคประจำตัว</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">อาการ (ถ้ามี)</label>
+                                    <input type="email" class="form-control" id="FormControlInput1"
+                                        placeholder="กรอกอาการเบื้องต้น">
+                                </div>
+                                <div class="col-md-12 pt-2">
+                                    <h6 class="text-center">
+                                        <dt>เลือกวันที่เข้ารักษา</dt>
+                                    </h6>
+                                    <div class="col-md-12">
+                                        <!-- <ejs-schedule [currentView]="setView"></ejs-schedule> -->
+                                        <app-user-booking-calender></app-user-booking-calender>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">ชื่อ-สกุล</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="validationCustom01" class="form-label">กรุ๊ปเลือด</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xx" readonly>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="validationCustom01" class="form-label">เพศ</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxx" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">เบอร์โทร</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">อีเมล</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
-                    </div>
-                </form>
+                    <br>
+                </div>
             </div>
         </div>
-        <br>
-
-        <!-- booking treat -->
-        <div class="container text-dark">
-            <div class="card p-4">
-                <form class="row g-3 gx-4" action="">
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">โรคประจำตัว</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
-                        <input type="text" class="form-control" id="validationCustom01" value="xxxxxxxxxxxxx" readonly>
-                    </div>
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">อาการ (ถ้ามี)</label>
-                        <input type="email" class="form-control" id="FormControlInput1"
-                            placeholder="กรอกอาการเบื้องต้น">
-                    </div>
-                    <div class="col-md-12 pt-2">
-                        <h6 class="text-center">
-                            <dt>เลือกวันที่เข้ารักษา</dt>
-                        </h6>
-                        <!-- <div class="">
-                            <section id="modal">
-                                <div class="wrapper">
-                                    <div class="content">
-                                        <div class="close"></div>
-                                        <div class="box"></div>
-                                    </div>
-                                </div>
-                            </section>
-                            <section id="calendar" class="collectonme">
-                                <div id="day-labels">
-                                    <div class="label text-center">
-                                        <button type="button" class="btn btn-primary">
-                                            < </button>
-                                    </div>
-                                    <div class="label"></div>
-                                    <div class="label"></div>
-                                    <div class="label text-center">
-                                        <h5 class="pt-2">
-                                            <dt>JULY 64</dt>
-                                        </h5>
-                                    </div>
-                                    <div class="label"></div>
-                                    <div class="label"></div>
-                                    <div class="label text-center">
-                                        <button type="button" class="btn btn-primary"> > </button>
-                                    </div>
-                                </div>
-                                <div id="day-labels">
-                                    <div class="label">Sun</div>
-                                    <div class="label">Mon</div>
-                                    <div class="label">Tue</div>
-                                    <div class="label">Wed</div>
-                                    <div class="label">Thu</div>
-                                    <div class="label">Fri</div>
-                                    <div class="label">Sat</div>
-                                </div>
-                                <div id="one" class="week">
-                                    <div class="day noDate"></div>
-                                    <div class="day noDate"></div>
-                                    <div class="day noDate"></div>
-                                    <div class="day noDate"></div>
-                                    <div class="day">
-                                        <span class="date">1</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">2</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">3</span>
-                                    </div>
-                                </div>
-                                <div id="two" class="week">
-                                    <div class="day">
-                                        <span class="date">4</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">5</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">6</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">7</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">8</span>
-                                    </div>
-                                    <div class="day" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <span class="date">
-                                            <dt>9</dt>
-                                        </span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">10</span>
-                                    </div>
-                                </div>
-                                <div id="three" class="week">
-                                    <div class="day">
-                                        <span class="date">11</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">12</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">13</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">14</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">15</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">16</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">17</span>
-                                    </div>
-                                </div>
-                                <div id="four" class="week">
-                                    <div class="day">
-                                        <span class="date">18</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">19</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">20</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">21</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">22</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">23</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">24</span>
-                                    </div>
-                                </div>
-                                <div id="five" class="week">
-                                    <div class="day">
-                                        <span class="date">25</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">26</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">27</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">28</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">29</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">30</span>
-                                    </div>
-                                    <div class="day">
-                                        <span class="date">31</span>
-                                    </div>
-                                </div>
-                            </section>
-                            <div id="bottom" class="collectonme"></div>
-                            <script>
-                                // target current day, disable future days and days without dates
-
-                                var d = new Date();
-                                var todaysDate = d.getDate();
-                                var target = $('#calendar .week .day .date');
-
-                                target.each(function () {
-                                    var day = $(this).html();
-                                    if (todaysDate == day) {
-                                        $(this).addClass('today');
-                                    }
-                                    if (todaysDate < day) {
-                                        $(this).parent().addClass('future');
-                                    }
-                                    if (todaysDate >= day) {
-                                        $(this).parent().addClass('past')
-                                    }
-                                });
-
-                                // handle clicks on days
-
-                                $('.day').click(function () {
-                                    if ($(this).hasClass('future')) {
-                                        $('#modal').addClass('active');
-                                        $('#modal .wrapper .content .box').html("<h2>Naughty, naughty.</h2> <p>You can't look early! Check back on that day to see what I've left for you.</p>");
-                                    }
-                                    if ($(this).hasClass('past')) {
-                                        var content = $(this).children('.surprise').html();
-                                        $('#modal').addClass('active');
-                                        $('#modal .wrapper .content .box').html('');
-                                        $('#modal .wrapper .content .box').html(content);
-                                    }
-                                })
-
-                                // close modal
-
-                                $('.close').click(function () {
-                                    var ultimateParent = $(this).parent().parent().parent();
-                                    ultimateParent.addClass('moveOut');
-                                    setTimeout(function () {
-                                        ultimateParent.removeClass('moveOut').removeClass('active');
-                                    }, 250);
-                                })
-
-                                // snow effect customizations
-
-                                $(document).snowfall({ flakeCount: 100, collection: '.collectonme', maxSpeed: 10 });
-                            </script>
-                        </div> -->
-                    <div class="col-md-12">
-                        <ejs-schedule></ejs-schedule>
-                    </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <br>
     </div>
 </div>
-<canvas class="my-4 w-100" id="myChart" height="28"></canvas>
-
-<!-- Modal -->
-<!-- <div class="modal fade" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered text-dark">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">เลือกเวลาที่เข้ารักษา</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body bg-light">
-                <form action="">
-                    <div class="card p-3">
-                        <div class="row justify-content-center">
-                            <div class="col-md-2">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">09:00&nbsp;</label>
-                                </div>
-                            </div>&nbsp;
-                            <div class="col-md-2">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">09:10</label>
-                                </div>
-                            </div>&nbsp;
-                            <div class="col-md-2">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio1" value="option1">
-                                    <label class="form-check-label" for="inlineRadio1">09:20</label>
-                                </div>
-                            </div>&nbsp;
-                            <div class="col-md-2">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">09:30</label>
-                                </div>
-                            </div>&nbsp;
-                            <div class="col-md-2">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                        id="inlineRadio2" value="option2">
-                                    <label class="form-check-label" for="inlineRadio2">09:40</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-md-auto pt-3">
-                            <button type="submit" class="fw-bolder btn btn-success"
-                                data-bs-dismiss="modal">จองคิว</button>
-                        </div>
-                        <div class="col-md-2 pt-3">
-                            <button type="button" class="fw-bolder btn btn-danger"
-                                data-bs-dismiss="modal">ยกเลิก</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<!-- <div class="col-md-12">
-    <ejs-schedule></ejs-schedule>
-</div> -->
+<br>

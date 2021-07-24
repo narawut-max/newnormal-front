@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { AdminRegisterService } from './admin-register.service';
 
 @Component({
   selector: 'app-admin-register',
@@ -7,9 +11,226 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminRegisterComponent implements OnInit {
 
-  constructor() { }
+  prefixNames: any = ['นาย', 'นาง', 'นางสาว'];
+  bloods: any = ['A', 'B', 'AB', 'O']
+  graduates: any = ['บัณฑิต(ปริญญาตรี', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
+  departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
+  doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา']
+  genders: any = ['ชาย', 'หญิง']
+  //roles: any = [{roleId: '2', roleName: 'ผู้ป่วย'}, {roleId: '3', roleName: 'แพทย์/เจ้าหน้าที่'}]
+  statusActive: any = 'A';
+
+  subdistricts: any;
+  districts: any;
+  provinces: any;
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    public adminRegisterService: AdminRegisterService
+  ) { }
+
+  submitted = false;
+
+  userRegisterForm = this.fb.group({
+    userId: [0],
+    userUsername: ['', Validators.required],
+    userPassword: ['', Validators.required],
+    userCardId: ['', Validators.required],
+    userTitle: ['', Validators.required],
+    userFirstname: ['', Validators.required],
+    userLastname: ['', Validators.required],
+    userGender: ['', Validators.required],
+    userBirthday: ['', Validators.required],
+    userBlood: ['', Validators.required],
+    userDisease: ['', Validators.required],
+    userAllergy: [''],
+    userPhone: [''],
+    userEmail: ['', Validators.required],
+    userStatus: [this.statusActive],
+    userAddrass: ['', Validators.required],
+    tmId: ['', Validators.required],
+    zipCode: ['', Validators.required],
+    roleId: ['2'],
+    subdistrict: [{value: '', disabled: true},],
+    district: [{value: '', disabled: true},],
+    province: [{value: '', disabled: true},]
+  });
+
+  doctorRegisterForm = this.fb.group({
+    userId: [0],
+    userUsername: ['', Validators.required],
+    userPassword: ['', Validators.required],
+    userCardId: ['', Validators.required],
+    userTitle: ['', Validators.required],
+    userFirstname: ['', Validators.required],
+    userLastname: ['', Validators.required],
+    userGender: ['', Validators.required],
+    userBirthday: ['', Validators.required],
+    userBlood: ['', Validators.required],
+    userDepartment: [''],
+    userGraduate: [''],
+    userPosition: [''],
+    userPhone: [''],
+    userEmail: ['', Validators.required],
+    userStatus: [this.statusActive],
+    userAddrass: ['', Validators.required],
+    zipCode: ['', Validators.required],
+    roleId: ['3'],
+    subdistrict: [{value: '', disabled: true},],
+    district: [{value: '', disabled: true},],
+    province: [{value: '', disabled: true},]
+  });
 
   ngOnInit(): void {
+    //load dropdown all
+    this.adminRegisterService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.adminRegisterService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.adminRegisterService.getProvincesAll().subscribe(res => { this.provinces = res; })
+
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    console.log('data :',this.userRegisterForm.value)
+    // stop here if form is invalid
+    if (this.userRegisterForm.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+        text: 'Something went wrong!',
+      })
+      return;
+    } else {
+      this.adminRegisterService.createUser(this.userRegisterForm.value).subscribe(res => {
+        console.log('Create User res : ', res)
+      });
+    }
+  }
+
+  onSubmitDoctor() {
+    this.submitted = true;
+    console.log('data :',this.doctorRegisterForm.value)
+    if (this.doctorRegisterForm.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+        text: 'Something went wrong!',
+      })
+      return;
+    } else {
+      this.adminRegisterService.createUser(this.doctorRegisterForm.value).subscribe(res => {
+        console.log('Create Doctor res : ', res)
+      });
+    }
+  }
+
+  changeUserZipCode(event: any) {
+    const zipCode = event.target.value;
+    console.log('zipCode' + zipCode)
+    this.adminRegisterService.getSubdistrictByZipCode(zipCode).subscribe(
+      res => {
+      console.log(res)
+      if (res) {
+        this.userRegisterForm.patchValue(
+          {
+            subdistrict: res.sdtNameTh,
+            district: res.district.disNameTh,
+            province: res.province.pvnNameTh
+          }
+        )
+      }
+    },
+    error => {
+      this.userRegisterForm.patchValue(
+        {
+          subdistrict: '',
+          district: '',
+          province: ''
+        }
+      )
+    }
+    );
+  }
+
+  changeDoctorZipCode(event: any) {
+    const zipCode = event.target.value;
+    console.log('zipCode' + zipCode)
+    this.adminRegisterService.getSubdistrictByZipCode(zipCode).subscribe(
+      res => {
+      console.log(res)
+      if (res) {
+        this.doctorRegisterForm.patchValue(
+          {
+            subdistrict: res.sdtNameTh,
+            district: res.district.disNameTh,
+            province: res.province.pvnNameTh
+          }
+        )
+      }
+    },
+    error => {
+      this.doctorRegisterForm.patchValue(
+        {
+          subdistrict: '',
+          district: '',
+          province: ''
+        }
+      )
+    }
+    );
+  }
+
+  changeUserConfirmPassword(event: any) {
+    debugger
+    const pass = this.userRegisterForm.controls['userPassword'].value;
+    const confirmPassword = event.target.value;
+    if (pass.localeCompare(confirmPassword) != 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'รหัสผ่านไม่ตรงกัน',
+        text: 'กรุณากรอกยืนยันรหัสผ่านให้ถูกต้อง!',
+      })
+      return;
+    }
+  }
+
+  changeDoctorConfirmPassword(event: any) {
+    debugger
+    const pass = this.doctorRegisterForm.controls['userPassword'].value;
+    const confirmPassword = event.target.value;
+    if (pass.localeCompare(confirmPassword) != 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'รหัสผ่านไม่ตรงกัน',
+        text: 'กรุณากรอกยืนยันรหัสผ่านให้ถูกต้อง!',
+      })
+      return;
+    }
+  }
+
+  get userf() { return this.userRegisterForm.controls; }
+  get doctorf() { return this.doctorRegisterForm.controls; }
+
+  savedatauser() {
+    Swal.fire({
+      title: 'ยืนยันข้อมูลหรือไม่ ?',
+      // text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#00CC00',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ยืนยันข้อมูล',
+      cancelButtonText: 'ยกเลิก'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'ผลการทำรายการ',
+          'บันทึกข้อมูลสำเร็จ',
+          'success',
+        )
+      }
+    })
   }
 
 }

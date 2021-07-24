@@ -1,4 +1,139 @@
-<div class="container pt-3">
-    <h3 class="text-primary">Admin5</h3>
-    <canvas class="my-4 w-100" id="myChart" height="119"></canvas>
+<div class="container px-4 pt-3" style="background-color: #F0F8FF;">
+
+    <div class="row justify-content-between pt-4 pb-4">
+        <div class="col-md-4  col-sm-4">
+            <h4 class="text-dark">Dashboard</h4>
+        </div>
+        <div class="col-md-4 col-sm-4 text-end">
+            <button type="submit" class="btn btn-sm btn-primary">
+                <a href="admin/home">
+                    <i class="bi bi-arrow-repeat" style="font-size: 17px; color: rgb(255, 255, 255);"></i></a>
+            </button>
+        </div>
+    </div>
+    <div class="row pb-4">
+        <div class="col-md-3 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-primary shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row justify-content-between">
+                    <div class="col-md-8 col-sm-8 text-dark">
+                        <h6>จำนวนผู้ป่วยทั้งหมด</h6>
+                        <h6>
+                            <dt>1,210 </dt>
+                        </h6>
+                    </div>
+                    <div class="col-md-auto col-sm-auto align-self-center">
+                        <i class="bi bi-people-fill" style="font-size: 35px; color: rgb(172, 172, 172);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-success shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row justify-content-between">
+                    <div class="col-md-8 col-sm-8 text-dark">
+                        <h6>ยอดการจองคิววันนี้</h6>
+                        <h6>
+                            <dt>1,210 </dt>
+                        </h6>
+                    </div>
+                    <div class="col-md-auto col-sm-auto align-self-center">
+                        <i class="bi bi-clipboard-plus" style="font-size: 35px; color: rgb(172, 172, 172);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-info shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row justify-content-between">
+                    <div class="col-md-8 col-sm-8 text-dark">
+                        <h6>ยอดการจองคิวสัปดาห์นี้</h6>
+                        <h6>
+                            <dt>1,210 </dt>
+                        </h6>
+                    </div>
+                    <div class="col-md-auto col-sm-auto align-self-center">
+                        <i class="bi bi-calendar3" style="font-size: 35px; color: rgb(172, 172, 172);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-warning shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row justify-content-between">
+                    <div class="col-md-8 col-sm-8 text-dark">
+                        <h6>ผู้เยี่ยมชมเว็บไซต์วันนี้</h6>
+                        <h6>
+                            <dt>1,210 </dt>
+                        </h6>
+                    </div>
+                    <div class="col-md-auto col-sm-auto align-self-center">
+                        <i class="bi bi-eye-fill" style="font-size: 35px; color: rgb(172, 172, 172);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="col-md-8 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-warning shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row">
+                    <div
+                        class="col-md-4 col-sm-4 text-dark text-center border border-start-0 border-bottom-0 border-top-0">
+                        <h6>xxxxxxxxxxxxx</h6>
+                        <h6 style="margin-bottom: 0px;">
+                            <dt>xxxx</dt>
+                        </h6>
+                    </div>
+                    <div
+                        class="col-md-4 col-sm-4 text-dark text-center border border-start-0 border-bottom-0 border-top-0">
+                        <h6>xxxxxxxxxxxxx</h6>
+                        <h6 style="margin-bottom: 0px;">
+                            <dt>xxxx</dt>
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-sm-4 text-dark text-center">
+                        <h6>xxxxxxxxxxxxx</h6>
+                        <h6 style="margin-bottom: 0px;">
+                            <dt>xxxx</dt>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-warning shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row">
+                    <div
+                        class="col-md-6 col-sm-6 text-dark text-center border border-start-0 border-bottom-0 border-top-0">
+                        <h6>xxxxxxxxxxxxx</h6>
+                        <h6 style="margin-bottom: 0px;">
+                            <dt>xxxx</dt>
+                        </h6>
+                    </div>
+                    <div class="col-md-6 col-sm-6 text-dark text-center">
+                        <h6>xxxxxxxxxxxxx</h6>
+                        <h6 style="margin-bottom: 0px;">
+                            <dt>xxxx</dt>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-md-12 pb-4">
+            <div class="card p-3 border border-5 border-end-0 border-bottom-0 border-top-0 border-danger shadow-sm"
+                style="border-radius: 10px;">
+                <div class="row">
+                    <div class="col-md-12 text-dark text-center">
+                        <canvas class="my-4 w-100" id="myChart" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 300px;"></div>
 </div>
+<div class="card-body btn-danger sticky-top" style="position: sticky; bottom: 0;"></div>

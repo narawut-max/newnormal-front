@@ -1,50 +1,82 @@
-<!-- ex : https://www.positronx.io/angular-server-side-pagination-with-ngx-pagination-example/ -->
-<div class="container">
+<div class="container p-4" style="height: 614px;background-color: #F0F8FF;">
 
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h3>จัดการข้อมูลผู้ใช้งาน</h3>
+        <h3 class="text-dark">จัดการข้อมูลผู้ใช้งาน</h3>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-success" routerLink="../register">เพิ่มผู้ใช้งาน</button> 
+                <button type="button" class="btn btn-sm btn-outline-success"
+                    routerLink="../register">เพิ่มผู้ใช้งาน</button>
             </div>
-            <button type="button" class="btn btn-sm btn-outline-info"(click)="refresh()">รีโหลด</button>
+            <button type="button" class="btn btn-sm btn-outline-info" (click)="refresh()">รีโหลด</button>
         </div>
     </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ลำดับ</th>
-                <th scope="col">รหัสบัตรประชาชน</th>
-                <th scope="col">ชื่อ - สกุล</th>
-                <th scope="col">เพศ</th>
-                <th scope="col">ประเภทผู้ใช้งาน</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of listUser | paginate: {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count
-              };let i = index">
-                <th scope="row">{{i+1}}</th>
-                <td>{{item.userCardId}}</td>
-                <td>{{item.userTitle}}{{item.userFirstname}} {{item.userLastname}}</td>
-                <td>{{item.userGender}}</td>
-                <td>{{item.roleId}}</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-sm" (click)="gotoAdminEdit(item)">แก้ไข</button>
-                    &nbsp;
-                    <button type="button" class="btn btn-danger btn-sm" (click)="deleteUser(item)">ลบ</button>
-                    <!-- <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ลบ</button> -->
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="d-flex justify-content-center">
-        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+    <div class="card shadow border-0">
+        <div class="card-header border-0">
+            <p class="text-primary m-0 fw-bold p-2 px-0">ข้อมูลผู้ใช้งาน</p>
+        </div>
+        <div class="card-body text-secondary p-3 pb-0 border-0">
+            <div class="row justify-content-end pb-2">
+                <!-- <div class="col-6">
+                    <div class="mb-3 row align-items-center">
+                        <label for="inputPassword" class="col-sm-auto col-form-label">แสดงข้อมูล</label>
+                        <div class="col-sm-2">
+                            <select class="form-select form-select-sm" aria-label="Default select example">
+                                <option value="1">5</option>
+                                <option value="2">10</option>
+                                <option value="3">20</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-md-2">
+                    <input class="form-control form-control-sm" type="text" placeholder="ค้นหา"
+                        aria-label="default input example">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table text-secondary table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">ลำดับ</th>
+                            <th class="col-md-2">รหัสบัตรประชาชน</th>
+                            <th class="col-md-2">ชื่อ - สกุล</th>
+                            <th class="col-md-1">เพศ</th>
+                            <th class="col-md-2">ประเภทผู้ใช้งาน</th>
+                            <th class="col-md-2">สถานะการใช้งาน</th>
+                            <th class="col-md-2">ดำเนินการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of listUser | paginate: {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalItems: count
+                          };let i = index">
+                            <th scope="row">{{i+1}}</th>
+                            <td>{{item.userCardId}}</td>
+                            <td>{{item.userTitle}}{{item.userFirstname}} {{item.userLastname}}</td>
+                            <td>{{item.userGender}}</td>
+                            <td>{{item.roleId}}</td>
+                            <td>{{item.userStatus}}</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm"
+                                    (click)="gotoAdminEdit(item)">แก้ไข</button>
+                                &nbsp;
+                                <button type="button" class="btn btn-danger btn-sm"
+                                    (click)="deleteUser(item)">ลบ</button>
+                                <!-- <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ลบ</button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center">
+                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Modal -->
@@ -66,5 +98,7 @@
             </div>
         </div>
     </div> -->
-    <canvas class="my-4 w-100" id="myChart" height="88"></canvas>
 </div>
+<!-- <div class="card-body">
+    <app-admin-register></app-admin-register>
+</div> -->

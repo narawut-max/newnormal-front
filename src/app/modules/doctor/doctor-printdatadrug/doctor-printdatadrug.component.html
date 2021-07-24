@@ -1,29 +1,33 @@
-<div class="card text-dark shadow-sm " style="margin: 3rem; background-color: rgb(242, 242, 243);">
+<div class="card text-dark shadow-sm " style="margin: 3rem; background-color: rgb(255, 255, 255);border-radius: 10px;">
     <div class="card-body" style="margin: 1rem;">
 
         <!-- header -->
         <div class="row align-items-center">
-            <div class="col-7">
-                <div class="col">
-                    <h6 class="font-monospace">
-                        <dt>รายละเอียดการสั่งยา</dt>
-                    </h6>
-                    <p><small>
-                            <dt>Prescription Details</dt>
-                        </small></p>
-                </div>
-                <div class="col"></div>
+            <div class="col-md-12 text-center">
+                <img src="assets/images/hospitallogo.jpg" alt="" width="110">
             </div>
+            <div class="row justify-content-between">
+                <div class="col-md-8">
+                    <div class="col">
+                        <h6 class="font-monospace">
+                            <dt>รายละเอียดการสั่งยา</dt>
+                        </h6>
+                        <p><small>
+                                <dt>Prescription Details</dt>
+                            </small></p>
+                    </div>
+                </div>
 
-            <div class="col-5">
-                <div class="mb-3 row justify-content-end">
-                    <label for="inputTmId" class="col-sm-auto col-form-label fw-bold">
-                        <h5>HN : </h5>
-                    </label>
-                    <div class="col-sm-auto">
-                        <h5><input type="text" readonly class="form-control-plaintext fw-bold" id="staticDate"
-                                value="0000000000"></h5>
+                <div class="col-md-4">
+                    <div class="row justify-content-end">
+                        <label for="inputTmId" class="col-sm-auto col-form-label fw-bold">
+                            <h5>HN : </h5>
+                        </label>
+                        <div class="col-sm-5">
+                            <h5><input type="text" readonly class="form-control-plaintext fw-bold" id="staticDate"
+                                    value="0000000000"></h5>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,53 +36,60 @@
         <!-- table-data -->
         <table class="table table-bordered border border-2 border-dark" style="background-color: rgb(255, 255, 255);">
             <thead>
+
+                <!-- billId datetreat -->
                 <tr>
-                    <th class="col-7">
+                    <th class="col-md-6">
                         <div class="row" style="padding-left: 10px;">
-                            <label for="inputDate" class="col-sm-auto col-form-label">วันที่เข้ารักษา : </label>
-                            <div class="col-sm-auto">
-                                <input type="date" readonly class="form-control-plaintext" id="staticDate" value="">
-                            </div>
-                            <label for="inputDate" class="col-sm-auto col-form-label">เวลา : </label>
-                            <div class="col-sm-auto">
-                                <input type="time" readonly class="form-control-plaintext" id="staticTime" value="">
+                            <label for="inputText" class="col-sm-auto col-form-label">เลขที่ใบสั่งยา : </label>
+                            <div class="col-sm-7">
+                                <input type="text" readonly class="form-control-plaintext" id="staticText" value="">
                             </div>
                         </div>
                     </th>
-                    <th class="col-5">
+                    <th class="col-md-6">
                         <div class="row" style="padding-left: 10px;">
-                            <label for="inputDate" class="col-sm-auto col-form-label">แผนกโรค : </label>
-                            <div class="col-sm-auto">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
-                                    value="โรคหัวใจ">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">วันที่เข้ารักษา : </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" readonly class="form-control-plaintext" id="staticDate"
+                                            value="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">เวลา : </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" readonly class="form-control-plaintext" id="staticTime"
+                                            value="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </th>
                 </tr>
 
-                <!-- name-age -->
+                <!-- name-disease -->
                 <tr>
-                    <th class="col-7">
+                    <th class="col-md-6">
                         <div class="row" style="padding-left: 10px;">
                             <label for="inputDate" class="col-sm-auto col-form-label">ชื่อ - สกุล : </label>
                             <div class="col-sm-2">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
-                                    value="xxxxxxxxxxx">
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate" value="">
                             </div>
                             <div class="col-sm-auto">
-                                <input type="text" readonly class="form-control-plaintext" id="staticTime"
-                                    value="xxxxxxxxxxx">
+                                <input type="text" readonly class="form-control-plaintext" id="staticTime" value="">
                             </div>
                         </div>
                     </th>
-                    <th class="col-5">
+                    <th class="col-md-6">
                         <div class="row" style="padding-left: 10px;">
-                            <label for="inputDate" class="col-auto col-form-label">อายุ : </label>
-                            <div class="col-2 ">
-                                <input type="text" readonly class="form-control-plaintext text-center" id="staticDate"
-                                    value="23">
-                            </div>&nbsp;
-                            <label for="inputDate" class="col-auto col-form-label">ปี</label>
+                            <label for="inputDate" class="col-sm-auto col-form-label">โรคประจำตัว : </label>
+                            <div class="col-sm-auto">
+                                <input type="text" readonly class="form-control-plaintext" id="staticDate" value="">
+                            </div>
                         </div>
                     </th>
                 </tr>
@@ -124,32 +135,43 @@
 
                 <!-- data- QR-Code -->
                 <tr>
-                    <th style="padding: 1rem;">
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-auto col-form-label">แพทย์ผู้รักษา : </label>
-                            <div class="col-sm-auto">
-                                <input type="text" readonly class="form-control-plaintext" style="font-size: large;"
-                                    id="staticEmail" value="xx.xxxx xxxxxxx">
+                    <th>
+                        <div class="row align-items-start p-3">
+                            <div class="col-md-12 pb-2">
+                                <div class="row">
+                                    <label for="staticEmail" class="col-sm-auto col-form-label">แพทย์ผู้รักษา : </label>
+                                    <div class="col-sm-auto">
+                                        <input type="text" readonly class="form-control-plaintext"
+                                            style="font-size: large;" id="staticEmail" value="">
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label for="staticEmail" class="col-sm-auto col-form-label">สั่งพิมพ์วันที่ : </label>
-                            <div class="col-sm-auto">
-                                <input type="date" readonly class="form-control-plaintext" id="staticDate" value="">
-                            </div>
-                            <label for="staticEmail" class="col-sm-auto col-form-label">เวลา : </label>
-                            <div class="col-sm-auto">
-                                <input type="time" readonly class="form-control-plaintext" id="staticTime" value="">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <label for="staticEmail" class="col-sm-auto col-form-label">พบแพทย์ครั้งต่อไป :
+                                    </label>
+                                    <div class="col-sm-auto">
+                                        <input type="text" readonly class="form-control-plaintext" id="staticDate"
+                                            value="">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </th>
-                    <th class="col-5">
-                        <div class="row justify-content-center text-center">
-                            <h6>
-                                <dt>QR Code ชำระค่ารักษา</dt>
-                            </h6>
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-                                class="rounded" alt="..." style="width: 30%;">
+                    <th class="col-md-6 p-2">
+                        <div class="row text-center p-0 m-0">
+                            <div class="col-md-7 p-4 border-end">
+                                <h3 class="p-1 font-monospace">
+                                    <dt>QR Promptpay</dt>
+                                </h3>
+                                <h6 class="p-1 pt-2">
+                                    <dt>ชำระค่ารักษาพยาบาล</dt>
+                                </h6>
+                            </div>
+                            <div class="col-md-5 p-0">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
+                                    class="rounded" alt="..." style="width: 60%;">
+                            </div>
                         </div>
                     </th>
                 </tr>

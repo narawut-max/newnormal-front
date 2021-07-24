@@ -148,13 +148,13 @@ export class AdminManageComponent implements OnInit {
 
   gotoAdminEdit(item: any) {
     debugger
-    this.router.navigate(['/admin/edit', item.userId]);
+    this.router.navigate(['admin/manage/edit', item.roleId , item.userId]);
   }
 
   deleteUser(item: any) {
     Swal.fire({
       title: 'ต้องการลบข้อมูล?',
-      text: "ลบข้อมูลของ UserId : " + item.userId,
+      text: "ลบข้อมูลของ : " + item.userFirstname,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',

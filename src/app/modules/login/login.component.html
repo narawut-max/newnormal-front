@@ -1,23 +1,51 @@
-<div class="container">
-    <div class="card card-container" style="background-color: #0dcaf0;">
-        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-        <img id="profile-img" class="profile-img-card" src="https://www.skhospital.go.th/wp-content/uploads/2019/08/cropped-logo-sk-02-01.png" />
-        <!-- <p id="profile-name" class="profile-name-card"></p> -->
-        <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" formControlName="username" class="form-control" placeholder="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-            <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-            <div id="remember" class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me"> Remember me
-                </label>
+<div class="p-3" style="background-image: url(https://www.synphaet.co.th/theparak/wp-content/uploads/2020/01/DJI_0333-scaled.jpg);"> 
+    <!-- background-color: rgb(125, 233, 227); -->
+    <div class="card col-md-4" style="border-radius: 30px;">
+        <div class="card-body px-3">
+
+            <!-- Logo -->
+            <div class="col-md-12 pt-2 pb-3">
+                <img id="profile-img" class="profile-img-card"
+                    src="https://www.skhospital.go.th/wp-content/uploads/2019/08/cropped-logo-sk-02-01.png" />
+                <h3 class="text-center" style="color: darkcyan;">LOG IN</h3>
             </div>
-            <br>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-        </form><!-- /form -->
-        <!-- <a href="#" class="forgot-password">
-            Forgot the password?
-        </a> -->
-    </div><!-- /card-container -->
-    <canvas class="my-4 w-100" id="myChart" height="18"></canvas>
-</div><!-- /container -->
+
+            <!-- form login -->
+            <div class="col-md-12 text-dark">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <span id="reauth-email" class="reauth-email"></span>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm border-1" formControlName="userUsername"
+                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                            style="background-color: #ffffff;" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">
+                            <i class="bi bi-person-fill" style="font-size: 1rem; color: rgb(23, 167, 135);"></i>
+                            username</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="password" class="form-control form-control-sm border-1" formControlName="userPassword"
+                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                            style="background-color: #ffffff;" id="floatingInput" placeholder="name@example.com">
+                        <label for="floatingInput">
+                            <i class="bi bi-lock-fill" style="font-size: 1rem; color: rgb(23, 167, 135);"></i>
+                            password</label>
+                    </div>
+                    <div id="remember" class="checkbox pb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                        <button class="btn btn-lg" type="submit" style="border-radius: 2rem;background-color: teal;">
+                            <h6 class="font-monospace text-white">Sign in</h6>
+                        </button>
+                    </div>
+                </form>
+                <!-- <a href="#" class="forgot-password">
+                    Forgot the password?
+                </a> -->
+                <div class="col p-0 m-0" style="height: 3px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
