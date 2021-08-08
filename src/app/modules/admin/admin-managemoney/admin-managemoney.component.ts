@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { ManagemoneyService } from './managemoney.service';
 
 @Component({
   selector: 'app-admin-managemoney',
@@ -7,69 +10,72 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin-managemoney.component.css']
 })
 export class AdminManagemoneyComponent implements OnInit {
+  
+  formValue !: FormGroup;
+  listDatas !: any;
+  
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private managemoneyService: ManagemoneyService,
+  ) { }
 
-  listDatas = [
-    {
-      "tmId": "1",
-      "tmDate": "2021-06-15",
-      "tmTime": "13:42",
-      "tmMoney": 100,
-      "tmSlip": "IMG_2344.jpg",
-      "tmStatus": "Y",
-      "userId": "1",
-      "bkId": 0,
-      "billId": 0
-    },
-    {
-      "tmId": "1",
-      "tmDate": "2021-06-15",
-      "tmTime": "13:42",
-      "tmMoney": 100,
-      "tmSlip": "IMG_2344.jpg",
-      "tmStatus": "Y",
-      "userId": "1",
-      "bkId": 0,
-      "billId": 0
-    },
-    {
-      "tmId": "1",
-      "tmDate": "2021-06-15",
-      "tmTime": "13:42",
-      "tmMoney": 100,
-      "tmSlip": "IMG_2344.jpg",
-      "tmStatus": "Y",
-      "userId": "1",
-      "bkId": 0,
-      "billId": 0
-    },{
-      "tmId": "1",
-      "tmDate": "2021-06-15",
-      "tmTime": "13:42",
-      "tmMoney": 100,
-      "tmSlip": "IMG_2344.jpg",
-      "tmStatus": "Y",
-      "userId": "1",
-      "bkId": 0,
-      "billId": 0
-    },
-    {
-      "tmId": "1",
-      "tmDate": "2021-06-15",
-      "tmTime": "13:42",
-      "tmMoney": 100,
-      "tmSlip": "IMG_2344.jpg",
-      "tmStatus": "Y",
-      "userId": "1",
-      "bkId": 0,
-      "billId": 0
-    }
-  ]
 
-  constructor() { }
+  page = 1;
+  count = 0;
+  tableSize = 10;
+  tableSizes = [3, 6, 9, 12];
 
+  listData = this.fb.group({
+    tmId: [''],
+    tmDate: [''],
+    tmTime: [''],
+    tmMoney: [''],
+    tmSlip: [''],
+    tmStatus: [''],
+    userId: [''],
+    bkId: [''],
+    billId: [''],
+  });
+  
   ngOnInit(): void {
+    this.fetchData();
+    this.formValue = this.listData;
   }
 
+  refresh() {
+    this.fetchData();
+    window.location.reload();
+  }
+
+  fetchData() {
+    this.managemoneyService.getAllTreatment().subscribe(
+      (res) => {
+        console.log(res)
+        this.listDatas = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchData();
+  }
+
+  selectData(item: any){
+    this.listData.controls['tmId'].setValue(item.tmId);
+    this.listData.controls['tmDate'].setValue(item.tmDate);
+    this.listData.controls['tmTime'].setValue(item.tmTime);
+    this.listData.controls['tmMoney'].setValue(item.tmMoney);
+    this.listData.controls['tmSlip'].setValue(item.tmSlip);
+    this.listData.controls['tmStatus'].setValue(item.tmStatus);
+    this.listData.controls['userId'].setValue(item.userId);
+    this.listData.controls['bkId'].setValue(item.bkId);
+    this.listData.controls['billId'].setValue(item.billId);
+  }
 
   selectslipmoney() {
     Swal.fire({
@@ -79,5 +85,7 @@ export class AdminManagemoneyComponent implements OnInit {
       imageAlt: 'Custom image',
     })
   }
+
+
 
 }

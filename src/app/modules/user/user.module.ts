@@ -9,6 +9,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUploaddatamoneyComponent } from './user-uploaddatamoney/user-uploaddatamoney.component';
 import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 import { UserBookingCalenderComponent } from './user-booking-calender/user-booking-calender.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { UserBookingCalenderComponent } from './user-booking-calender/user-booki
     CommonModule,
     UserRoutingModule,
     NgxPaginationModule,
+    ReactiveFormsModule,
     ScheduleModule,RecurrenceEditorModule
   ],
   providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],

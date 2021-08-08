@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-uploaddatamoney',
@@ -8,33 +11,112 @@ import Swal from 'sweetalert2';
 })
 export class UserUploaddatamoneyComponent implements OnInit {
 
-  listDatas = [
-    {
-      "tmId": "1",
-      "tmDate": "2021-03-31",
-      "tmTime": "15:49:51",
-      "tmMoney": 440.0000,
-      "tmSlip": "loyfj.jpg",
-      "tmStatus": "ชำระแล้ว",
-      "userId": "0012",
-      "bkId": 1,
-      "billId": 2
+  formValue !: FormGroup;
+  listDatauser !: any;
+  item: any
+  
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) { }
+
+
+  DataUserForm = this.fb.group({
+    tmId: [''],
+    tmDate: [''],
+    tmTime: [''],
+    tmMoney: [''],
+    tmSlip: [''],
+    tmStatus: [''],
+    billId: [],
+    bkId: [],
+    userId: [],
+    userUsername: [''],
+    userPassword: [''],
+    userCardId: [''],
+    userTitle: [''],
+    userFirstname: [''],
+    userLastname: [''],
+    userGender: [''],
+    userBirthday: [''],
+    userBlood: [''],
+    userPhone: [''],
+    userEmail: [''],
+    userDisease: [''],
+    userAddrass: [''],
+    userAllergy: [''],
+    userStatu: [''],
+    roleId: [''],
+    bkQueue: [''],
+    bkDate: [''],
+    bkTime: [''],
+    bkSymptom: [''],
+    bkProcess: [''],
+    zipCode: [''],
+    subdistrict: [],
+    district: [],
+    province: [],
+    billDate: [''],
+    billTime: ['', Validators.required],
+    billNext: ['', Validators.required],
+    drugId: [''],
+    user: {
+      userId: [],
+      userUsername: [''],
+      userPassword: [''],
+      userCardId: [''],
+      userTitle: [''],
+      userFirstname: [''],
+      userLastname: [''],
+      userGender: [''],
+      userBirthday: [''],
+      userBlood: [''],
+      userPhone: [''],
+      userEmail: [''],
+      userDisease: [''],
+      userAddrass: [''],
+      userAllergy: [''],
+      userStatus: [''],
+      roleId: [''],
     },
-    {
-      "tmId": "2",
-      "tmDate": "2021-03-31",
-      "tmTime": "15:49:56",
-      "tmMoney": 555.0000,
-      "tmSlip": "putgg.jpg",
-      "tmStatus": "ยังไม่ชำระ",
-      "userId": "0012",
-      "bkId": 1,
-      "billId": 2
+    booking: {
+      bkId: [],
+      bkQueue: [''],
+      bkDate: [''],
+      bkTime: [''],
+      bkSymptom: [''],
+      bkProcess: [''],
+    },
+    billdrug: {
+      billId: [''],
+      billDate: ['', Validators.required],
+      billTime: ['', Validators.required],
+      billNext: [''],
+      drugId: [''],
     }
-  ]
-  constructor() { }
+  });
 
   ngOnInit(): void {
+    this.fetchData();
+    this.formValue = this.DataUserForm;
+  }
+
+  refresh() {
+    this.fetchData();
+    window.location.reload();
+  }
+
+  fetchData() {
+    this.userService.getAllTreatment().subscribe(
+      (res) => {
+        console.log(res)
+        this.listDatauser = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   uploadmoney() {

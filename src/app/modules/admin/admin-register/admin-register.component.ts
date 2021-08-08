@@ -11,7 +11,7 @@ import { AdminRegisterService } from './admin-register.service';
 })
 export class AdminRegisterComponent implements OnInit {
 
-  prefixNames: any = ['นาย', 'นาง', 'นางสาว'];
+  prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
   graduates: any = ['บัณฑิต(ปริญญาตรี', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
@@ -44,6 +44,7 @@ export class AdminRegisterComponent implements OnInit {
     userBirthday: ['', Validators.required],
     userBlood: ['', Validators.required],
     userDisease: ['', Validators.required],
+    userDepartment: ['', Validators.required],
     userAllergy: [''],
     userPhone: [''],
     userEmail: ['', Validators.required],
@@ -68,8 +69,9 @@ export class AdminRegisterComponent implements OnInit {
     userGender: ['', Validators.required],
     userBirthday: ['', Validators.required],
     userBlood: ['', Validators.required],
-    userDepartment: [''],
+    userDepartment: ['', Validators.required],
     userGraduate: [''],
+    userProfessionId: [''],
     userPosition: [''],
     userPhone: [''],
     userEmail: ['', Validators.required],
@@ -212,25 +214,25 @@ export class AdminRegisterComponent implements OnInit {
   get userf() { return this.userRegisterForm.controls; }
   get doctorf() { return this.doctorRegisterForm.controls; }
 
-  savedatauser() {
-    Swal.fire({
-      title: 'ยืนยันข้อมูลหรือไม่ ?',
-      // text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#00CC00',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'ยืนยันข้อมูล',
-      cancelButtonText: 'ยกเลิก'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'ผลการทำรายการ',
-          'บันทึกข้อมูลสำเร็จ',
-          'success',
-        )
-      }
-    })
-  }
+  // savedatauser() {
+  //   Swal.fire({
+  //     title: 'ยืนยันข้อมูลหรือไม่ ?',
+  //     // text: "You won't be able to revert this!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#00CC00',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'ยืนยันข้อมูล',
+  //     cancelButtonText: 'ยกเลิก'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       Swal.fire(
+  //         'ผลการทำรายการ',
+  //         'บันทึกข้อมูลสำเร็จ',
+  //         'success',
+  //       )
+  //     }
+  //   })
+  // }
 
 }

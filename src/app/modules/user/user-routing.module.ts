@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'home', component: UserPageComponent},
   {path: 'profile', component: UserProfileComponent},
   {path: 'booking', component: UserBookingComponent},
+  {path: 'booking/:tmId', component: UserBookingComponent},
   {path: 'managedata-booking', component: UserManagebookingComponent},
   {path: 'uploaddata-money', component: UserUploaddatamoneyComponent},
   {path: 'booking-calender', component: UserBookingCalenderComponent},

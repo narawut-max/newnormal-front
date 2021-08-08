@@ -10,60 +10,68 @@
     <div class="container pt-3">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card-body shadow border-0" style="background-color: rgb(123, 202, 233);border-radius: 10px;">
+                <div class="card-body shadow border-0"
+                    style="background-color: rgb(123, 202, 233);border-radius: 10px;">
                     <h4 class="text-dark text-center p-2">จองคิวเข้ารักษา</h4>
 
                     <!-- data user -->
                     <div class="container text-dark">
                         <div class="card p-4 border-0" style="border-radius: 10px;">
-                            <form class="row g-3 gx-4">
+                            <form class="row g-3 gx-4" [formGroup]="DataUserForm">
                                 <div class="col-md-3">
                                     <label for="validationCustom01" class="form-label">รหัสผู้ป่วย HN</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""
+                                        formControlName="tmId" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""
+                                        formControlName="userCardId" readonly>
                                 </div>
                                 <div class="col-md-5">
                                     <label for="validationCustom01" class="form-label">ชื่อ-สกุล</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <div class="input-group">
+                                        <input type="text" id="form8Example3" class="form-control border-end-0"
+                                            formControlName="userFirstname" readonly>
+                                        <input type="text" id="form8Example3" class="form-control border-start-0"
+                                            formControlName="userLastname" readonly>
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="validationCustom01" class="form-label">กรุ๊ปเลือด</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userBlood" formControlName="userLastname" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="validationCustom01" class="form-label">เพศ</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userGender" formControlName="userLastname" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">เบอร์โทร</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userPhone" formControlName="userLastname" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">อีเมล</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userEmail" formControlName="userLastname" readonly>
                                 </div>
                             </form>
                         </div>
                     </div>
                     <br>
-            
+
                     <!-- booking treat -->
                     <div class="container text-dark">
                         <div class="card p-4 border-0" style="border-radius: 10px;">
-                            <form class="row g-3 gx-4" action="">
+                            <form class="row g-3 gx-4" [formGroup]="DataUserForm">
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">โรคประจำตัว</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""   formControlName="userDisease" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
                                     <input type="text" class="form-control" id="validationCustom01" value="" readonly>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="validationCustom01" class="form-label">อาการ (ถ้ามี)</label>
+                                    <label for="validationCustom01" class="form-label">อาการ (หากไม่มีให้ใส่ - )</label>
                                     <input type="email" class="form-control" id="FormControlInput1"
                                         placeholder="กรอกอาการเบื้องต้น">
                                 </div>

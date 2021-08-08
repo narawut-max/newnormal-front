@@ -14,8 +14,8 @@ const routes: Routes = [
   {path: 'manage', component: AdminManageComponent},
   {path: 'managemoney', component: AdminManagemoneyComponent},
   // {path: 'manage/edit/:userId', component: AdminEditdoctorComponent},
-  {path: 'manage/edit/:roleId/:userId', component: AdminEdituserComponent},
-  // {path: 'manage/edit/:roleId/:userId', component: AdminEditdoctorComponent}
+  {path: 'manage/edit/role:2/:userId', component: AdminEdituserComponent},
+  {path: 'manage/edit/role:3/:userId', component: AdminEditdoctorComponent}
 ];
 
 @NgModule({

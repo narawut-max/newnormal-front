@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AdminPageComponent } from './modules/admin/admin-page/admin-page.component';
 import { DoctorPageComponent } from './modules/doctor/doctor-page/doctor-page.component';
+import { DoctorProfileComponent } from './modules/doctor/doctor-profile/doctor-profile.component';
 import { HomePageComponent } from './modules/home/home-page/home-page.component';
 import { LoginComponent } from './modules/login/login.component';
 import { UserPageComponent } from './modules/user/user-page/user-page.component';

@@ -24,7 +24,7 @@
     <!-- form data user -->
     <div>
         <div class="card border-0 p-4 shadow-sm" style="border-radius: 10px;">
-            <form action="">
+            <form [formGroup]="DataUserForm">
                 <h5 class="font-monospace pb-0">ประวัติผู้ป่วย</h5>
                 <hr class="mt-3 mb-3">
                 <div class="row g-3">
@@ -32,86 +32,94 @@
                         <label class="form-label" for="username">
                             <strong>หมายเลขประจำตัวประชาชน</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userCardId"
                             readonly>
                     </div>
                     <div class="col-md-2">
                         <label class="form-label" for="username">
                             <strong>รหัสผู้ป่วย</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="tmId" readonly>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="username">
                             <strong>ชื่อ - สกุล</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
-                            readonly>
+                        <div class="input-group">
+                            <input type="text" id="form8Example3" class="form-control border-end-0"
+                                formControlName="userFirstname" readonly>
+                            <input type="text" id="form8Example3" class="form-control border-start-0"
+                                formControlName="userLastname" readonly>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>วันเดือนปีเกิด</strong>
                         </label>
-                        <input class="form-control" type="date" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userBirthday"
+                            readonly>
                     </div>
                     <div class="col-md-1">
                         <label class="form-label" for="username">
                             <strong>กรุ๊ปเลือด</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userBlood"
+                            readonly>
                     </div>
                     <div class="col-md-1">
                         <label class="form-label" for="username">
                             <strong>เพศ</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userGender"
+                            readonly>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>เบอร์โทร</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userPhone"
+                            readonly>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>อีเมล</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userEmail"
                             readonly>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="username">
                             <strong>ที่อยู่</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
-                            readonly>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="username">
-                            <strong>จังหวัด</strong>
-                        </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
-                            readonly>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="username">
-                            <strong>อำเภอ</strong>
-                        </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
-                            readonly>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label" for="username">
-                            <strong>ตำบล</strong>
-                        </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userAddrass"
                             readonly>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>รหัสไปรษณีย์</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="zipCode" readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>จังหวัด</strong>
+                        </label>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="province"
+                            readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>อำเภอ</strong>
+                        </label>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="district"
+                            readonly>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label" for="username">
+                            <strong>ตำบล</strong>
+                        </label>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="subdistrict"
+                            readonly>
                     </div>
                 </div>
             </form>
@@ -121,7 +129,7 @@
     <!-- form add-treat -->
     <div class="pt-4">
         <div class="card border-0 p-4 shadow-sm" style="border-radius: 10px;">
-            <form action="">
+            <form action="" [formGroup]="DataUserForm" (ngSubmit)="onSubmitUser(item)">
                 <div class="row justify-content-between">
                     <div class="col-md-3">
                         <h5 class="font-monospace pb-0">เพิ่มข้อมูลการรักษา</h5>
@@ -133,28 +141,26 @@
                         <label class="form-label" for="username">
                             <strong>รหัสการจองคิว</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="bkId" readonly>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>วันเวลาที่เข้ารักษา</strong>
                         </label>
-                        <input class="form-control" type="datetime-local" id="tmId" placeholder="" name="tmId"
-                            readonly>
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="bkDate" readonly>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>โรคประจำตัว</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
+                        <input class="form-control" type="text" id="" placeholder="" formControlName="userDisease"
                             readonly>
                     </div>
                     <div class="col-md-3">
                         <label class="form-label" for="username">
                             <strong>แพทย์ผู้รักษา</strong>
                         </label>
-                        <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
-                            readonly>
+                        <input class="form-control" type="text" id="" placeholder="" readonly>
                     </div>
                     <div class="col-md-1">
                         <label class="form-label" for="username">
@@ -170,57 +176,31 @@
                         <label class="form-label" for="username">
                             <strong>ประวัติการแพ้ยา</strong>
                         </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="userAllergy"
+                            rows="4"></textarea>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label" for="username">
                             <strong>อาการ</strong>
                         </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" formControlName="bkSymptom"
+                            rows="4"></textarea>
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label" for="username">
+                    <div class="col-md-4 ">
+                        <label class="form-label" for="validationTextarea">
                             <strong>แนวทางการรักษา</strong>
                         </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                        <textarea class="form-control" id="validationTextarea" formControlName="bkProcess"
+                            rows="4" required></textarea>
                     </div>
                 </div>
                 <div class=" pt-3 d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-success" type="button" data-bs-toggle="modal"
-                        data-bs-target="#SavetreatModal">บันทึกการรักษา</button>
-                    <!-- <button class="btn btn-danger" type="reset">ล้างข้อมูล</button> -->
+                    <button class="btn btn-success" type="submit">บันทึกการรักษา
+                    </button>
                 </div>
             </form>
         </div>
     </div>
-
-    <!-- Model button Savetreat-->
-    <div class="modal fade" id="SavetreatModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="SavetreatModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-dark">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="SavetreatModalLabel">บันทึกข้อมูลการรักษา</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <h5 class="p-0 m-0">ต้องการบันทึกข้อมูลการรักษาหรือไม่ ?</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">
-                        <!-- <i class="bi bi-file-earmark-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i> -->
-                        <a href="doctor/treat/add-drug" class="text-decoration-none text-white">บันทึกข้อมูล</a>
-                    </button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                        <!-- <i class="bi bi-x-square" style="font-size: 1rem; color: rgb(255, 255, 255);"></i> -->
-                        ยกเลิก
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end-Model -->
-
 
     <!-- Model button Nexttime-->
     <div class="modal fade" id="NexttimeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -228,29 +208,30 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-dark" style="background-color: aquamarine;">
                 <div class="modal-body">
-                    <div class="card p-3 border-0 shadow-sm">
-                        <form action="">
+                    <form [formGroup]="DataUserForm">
+                        <div class="card p-3 border-0 shadow-sm">
                             <div class="row justify-content-center">
                                 <label for="inputDate" class="col-sm-auto col-form-label">
                                     <h5 class="p-0 m-0">พบแพทย์ครั้งต่อไป :</h5>
                                 </label>
                                 <div class="col-sm-7">
-                                    <input type="date" class="form-control" id="inputDate">
+                                    <input type="date" class="form-control" id="inputDate" formControlName="billNext">
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="col-md-12 pt-3 text-center">
-                        <button type="submit" class="btn btn-success">
-                            ตกลง
-                        </button>&nbsp;
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-                            ยกเลิก</button>
-                    </div>
+                        </div>
+                        <div class="col-md-12 pt-3 text-center">
+                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                                ตกลง
+                            </button>&nbsp;
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                                ยกเลิก</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- end-Model -->
+
 </div>
 <br>

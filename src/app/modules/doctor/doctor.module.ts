@@ -11,6 +11,7 @@ import { DoctorPrintdatadrugComponent } from './doctor-printdatadrug/doctor-prin
 import { DoctorProfileComponent } from './doctor-profile/doctor-profile.component';
 import { DoctorManagedrugComponent } from './doctor-managedrug/doctor-managedrug.component';
 import { DoctorReportDatauserComponent } from './doctor-report-datauser/doctor-report-datauser.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { DoctorReportDatauserComponent } from './doctor-report-datauser/doctor-r
   imports: [
     CommonModule,
     DoctorRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule,
   ]
 })
 export class DoctorModule { }

@@ -65,7 +65,7 @@
           </div>
           <div class="col pb-0 mb-0">
             <div class="dataTable table-responsive">
-              <table class="table table-hover text-center p-0 m-0">
+              <table class="table table-hover text-start p-0 m-0">
                 <thead>
                   <tr>
                     <th class="col-md-1">คิวปัจจุบัน</th>
@@ -74,20 +74,20 @@
                     <th class="col-md-2">ชื่อ - สกุล</th>
                     <th class="col-md-2">แผนกการรักษา</th>
                     <th class="col-md-2">แพทย์ผู้รักษา</th>
-                    <th class="col-md-2">สถานะการรักษา</th>
+                    <th class="col-md-2 text-center">สถานะการรักษา</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of listDatas; let i = index">
-                    <th>{{item.bkId}}</th>
+                  <tr *ngFor="let item of listDatauser; let i = index">
+                    <th class="text-center">{{item.booking.bkQueue}}</th>
                     <td>{{item.tmTime}}</td>
                     <td>{{item.tmId}}</td>
-                    <td class="text-start">{{item.userId}} --userFirstname userLastname</td>
-                    <td>{{item.userId}} --userDepartment</td>
-                    <td class="text-start">{{item.userId}} --userFirstname userLastname</td>
-                    <td class="td-status p-1">
+                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td>{{item.user.userDepartment}}</td>
+                    <td>{{item.userId}} --userFirstname userLastname</td>
+                    <td class="td-status text-center p-1">
                       <span class="badge" style="background-color: orange;">
-                        <dt>กำลังรักษา</dt>
+                        <dt>รอรักษา</dt>
                       </span>
                     </td>
                   </tr>

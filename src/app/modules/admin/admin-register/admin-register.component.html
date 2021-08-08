@@ -1,5 +1,5 @@
 <div class="container"
-    style="padding-left: 50px; padding-right: 50px; padding-bottom: 50px; padding-top: 20px; background-color: #F0F8FF;">
+    style="padding-left: 30px; padding-right: 30px; padding-bottom: 50px; padding-top: 20px; background-color: #F0F8FF;">
 
     <!-- header/button -->
     <div
@@ -52,7 +52,7 @@
                                 <input type="text" class="form-control" id="autoSizingInputGroup"
                                     placeholder="รหัสผู้ป่วย" formControlName="tmId">
                             </div>
-                         </div>
+                        </div>
                         <div class="col-md-2">
                             <div class="input-group">
                                 <div class="input-group-text">คำนำหน้า</div>
@@ -92,11 +92,17 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- <div class="col-md-2 col-sm-6 text-dark">
+                            <div class="radio-inline">
+                                <input type="radio" value='ชาย' formControlName="userGender">ชาย
+                                <input type="radio" value='หญิง' formControlName="userGender">หญิง
+                            </div>
+                        </div> -->
                         <div class="col-md-2 col-sm-6">
                             <div class="input-group">
                                 <div class="input-group-text">กรุ๊ปเลือด</div>
                                 <select id="inputState" class="form-select" formControlName="userBlood">
-                                    <option value="" disabled>เลือกกรุ๊ปเลือด</option>
+                                    <option value="" disabled>เลือก กรุ๊ปเลือด</option>
                                     <option *ngFor="let blood of bloods" [ngValue]="blood">{{ blood }}</option>
                                 </select>
                             </div>
@@ -118,34 +124,38 @@
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">รหัสไปรษณีย์</div>
-                                <input type="tel" class="form-control" id="autoSizingInputGroup" (change)="changeUserZipCode($event)"
-                                    placeholder="กรอกรหัสไปรษณีย์" formControlName="zipCode">
+                                <input type="tel" class="form-control" id="autoSizingInputGroup"
+                                    (change)="changeUserZipCode($event)" placeholder="กรอกรหัสไปรษณีย์"
+                                    formControlName="zipCode">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">จังหวัด</div>
-                                <select id="inputState" class="form-select" formControlName="province">  
-                                    <option value="" disabled>--จังหวัด--</option>                                    
-                                    <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}</option>
+                                <select id="inputState" class="form-select" formControlName="province">
+                                    <option value="" disabled>--จังหวัด--</option>
+                                    <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">อำเภอ</div>
-                                <select id="inputState" class="form-select" formControlName="district">   
-                                    <option value="" disabled>--อำเภอ--</option>                                    
-                                    <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}</option>
+                                <select id="inputState" class="form-select" formControlName="district">
+                                    <option value="" disabled>--อำเภอ--</option>
+                                    <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">ตำบล</div>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">   
-                                    <option value="" disabled>--ตำบล--</option>                                 
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{ subD.sdtNameTh }}</option>
+                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                    <option value="" disabled>--ตำบล--</option>
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                        subD.sdtNameTh }}</option>
                                 </select>
                             </div>
                         </div>
@@ -160,7 +170,7 @@
                             <div class="input-group">
                                 <div class="input-group-text">โรคประจำตัว</div>
                                 <select id="inputState" class="form-select" formControlName="userDisease">
-                                    <option>...</option>
+                                    <option selected>เลือกโรค</option>
                                     <option>โรคหัวใจ</option>
                                     <option>โรคกระดูก</option>
                                 </select>
@@ -168,11 +178,20 @@
                         </div>
                         <div class="col-md-4">
                             <div class="input-group">
+                                <div class="input-group-text">แผนกการรักษา</div>
+                                <select id="inputState" class="form-select" formControlName="userDepartment">
+                                    <option value="" disabled>เลือกแผนกการรักษา</option>
+                                    <option *ngFor="let department of departments" [ngValue]="department">{{ department
+                                        }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
                                 <div class="input-group-text">แพทย์ผู้รักษา</div>
                                 <select id="inputState" class="form-select">
-                                    <option>...</option>
+                                    <option>เลือกแพทย์ผู้รักษา</option>
                                     <option>พญ.ฟาริดา วราฤทธิ์เมธากุล</option>
-                                    <option>โรคกระดูก</option>
                                 </select>
                             </div>
                         </div>
@@ -183,7 +202,6 @@
                                     placeholder="ประวัติการแพ้ยา" formControlName="userAllergy">
                             </div>
                         </div>
-                        <div class="col-md-6" style="margin: 0px;"></div>
 
                         <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-2 pb-1">
                             <h5 class="text-dark">สร้างบัญชีผู้ใช้และรหัสผ่าน</h5>
@@ -198,13 +216,13 @@
                                 </div>
                                 <div class="col-md-4 pb-2">
                                     <label for="exampleFormControlInput1" class="form-label">รหัสผ่าน</label>
-                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder=""
-                                        formControlName="userPassword">
+                                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="" formControlName="userPassword">
                                 </div>
                                 <div class="col-md-4 pb-2">
                                     <label for="exampleFormControlInput1" class="form-label">ยืนยันรหัสผ่าน</label>
-                                    <input type="password" class="form-control" (change)="changeUserConfirmPassword($event)" placeholder=""
-                                       >
+                                    <input type="password" class="form-control"
+                                        (change)="changeUserConfirmPassword($event)" placeholder="">
                                 </div>
                             </div>
                         </div>
@@ -223,11 +241,12 @@
             <div class="card border-0">
                 <div class="card-body bg-white" style="padding-left: 30px; padding-right: 30px;">
 
-                    <form [formGroup]="doctorRegisterForm" (ngSubmit)="onSubmitDoctor()" class="row g-4 top-1" autocomplete="off">
+                    <form [formGroup]="doctorRegisterForm" (ngSubmit)="onSubmitDoctor()" class="row g-4 top-1"
+                        autocomplete="off">
                         <div class="col-md-4 col-sm-12">
                             <div class="input-group">
                                 <div class="input-group-text">ประเภทผู้ใช้งาน</div>
-                                <select id="inputState" class="form-select" disabled >
+                                <select id="inputState" class="form-select" disabled>
                                     <option value="2">ผู้ป่วย</option>
                                     <option value="3" selected>แพทย์/เจ้าหน้าที่</option>
                                 </select>
@@ -237,22 +256,23 @@
                             <div class="input-group">
                                 <div class="input-group-text">คำนำหน้า</div>
                                 <select id="inputState" class="form-select" formControlName="userTitle">
-                                    <option>นาย</option>
-                                    <option>นาง</option>
-                                    <option>น.ส.</option>
+                                    <option value="" disabled>เลือกคำนำหน้า</option>
+                                    <option *ngFor="let prf of prefixNames" [ngValue]="prf">{{ prf }}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">ชื่อ</div>
-                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ชื่อ" formControlName="userFirstname">
+                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ชื่อ"
+                                    formControlName="userFirstname">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">สกุล</div>
-                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="สกุล" formControlName="userLastname">
+                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="สกุล"
+                                    formControlName="userLastname">
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -282,7 +302,7 @@
                             <div class="input-group">
                                 <div class="input-group-text">กรุ๊ปเลือด</div>
                                 <select id="inputState" class="form-select" formControlName="userBlood">
-                                    <option value="" disabled>เลือกกรุ๊ปเลือด</option>
+                                    <option value="" disabled>เลือก กรุ๊ปเลือด</option>
                                     <option *ngFor="let blood of bloods" [ngValue]="blood">{{ blood }}</option>
                                 </select>
                             </div>
@@ -294,13 +314,14 @@
                                     placeholder="เบอร์โทรศัพท์" formControlName="userPhone">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="input-group">
                                 <div class="input-group-text">อีเมล</div>
-                                <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="อีเมล" formControlName="userEmail">
+                                <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="อีเมล"
+                                    formControlName="userEmail">
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="input-group">
                                 <div class="input-group-text">ที่อยู่</div>
                                 <input type="tel" class="form-control" id="autoSizingInputGroup"
@@ -310,43 +331,48 @@
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">รหัสไปรษณีย์</div>
-                                <input type="tel" class="form-control" id="autoSizingInputGroup" (change)="changeDoctorZipCode($event)"
-                                    placeholder="กรอกรหัสไปรษณีย์" formControlName="zipCode">
+                                <input type="tel" class="form-control" id="autoSizingInputGroup"
+                                    (change)="changeDoctorZipCode($event)" placeholder="กรอกรหัสไปรษณีย์"
+                                    formControlName="zipCode">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">จังหวัด</div>
-                                <select id="inputState" class="form-select" formControlName="province">  
-                                    <option value="" disabled>--จังหวัด--</option>                                    
-                                    <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}</option>
+                                <select id="inputState" class="form-select" formControlName="province">
+                                    <option value="" disabled>--จังหวัด--</option>
+                                    <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">อำเภอ</div>
-                                <select id="inputState" class="form-select" formControlName="district">   
-                                    <option value="" disabled>--อำเภอ--</option>                                    
-                                    <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}</option>
+                                <select id="inputState" class="form-select" formControlName="district">
+                                    <option value="" disabled>--อำเภอ--</option>
+                                    <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">ตำบล</div>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">   
-                                    <option value="" disabled>--ตำบล--</option>                                 
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{ subD.sdtNameTh }}</option>
+                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                    <option value="" disabled>--ตำบล--</option>
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                        subD.sdtNameTh }}</option>
                                 </select>
                             </div>
-                        </div>                       
+                        </div>
                         <div class="col-md-4">
                             <div class="input-group">
                                 <div class="input-group-text">วุฒิการศึกษา</div>
                                 <select id="inputState" class="form-select" formControlName="userGraduate">
                                     <option value="" disabled>เลือกวุฒิการศึกษา</option>
-                                    <option *ngFor="let graduate of graduates" [ngValue]="graduate">{{ graduate }}</option>
+                                    <option *ngFor="let graduate of graduates" [ngValue]="graduate">{{ graduate }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -355,7 +381,8 @@
                                 <div class="input-group-text">แผนกการรักษา</div>
                                 <select id="inputState" class="form-select" formControlName="userDepartment">
                                     <option value="" disabled>เลือกแผนกการรักษา</option>
-                                    <option *ngFor="let department of departments" [ngValue]="department">{{ department }}</option>                                    
+                                    <option *ngFor="let department of departments" [ngValue]="department">{{ department
+                                        }}</option>
                                 </select>
                             </div>
                         </div>
@@ -364,7 +391,8 @@
                                 <div class="input-group-text">ตำแหน่ง</div>
                                 <select id="inputState" class="form-select" formControlName="userPosition">
                                     <option value="" disabled>เลือกตำแหน่ง</option>
-                                    <option *ngFor="let doctorPosition of doctorPositions" [ngValue]="doctorPosition">{{ doctorPosition }}</option>
+                                    <option *ngFor="let doctorPosition of doctorPositions" [ngValue]="doctorPosition">{{
+                                        doctorPosition }}</option>
                                 </select>
                             </div>
                         </div>
@@ -372,10 +400,10 @@
                             <div class="input-group">
                                 <div class="input-group-text">เลขที่ใบอนุญาต</div>
                                 <input type="tel" class="form-control" id="autoSizingInputGroup"
-                                    placeholder="เลขที่ใบอนุญาตประกอบวิชาชีพ" >
+                                    placeholder="เลขที่ใบอนุญาตประกอบวิชาชีพ" formControlName="userProfessionId">
                             </div>
                         </div>
-                        <div class="col-md-5">
+                        <!-- <div class="col-md-5">
                             <div class="input-group">
                                 <div class="input-group-text">ใบประกอบวิชาชีพ</div>
                                 <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="">
@@ -383,7 +411,7 @@
                                     <i class="bi bi-upload" style="color: rgb(112, 56, 241);"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6" style="margin: 0px;"></div>
 
                         <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-2 pb-1">
@@ -394,8 +422,8 @@
                             <div class="row">
                                 <div class="col-md-4 pb-2">
                                     <label for="exampleFormControlInput1" class="form-label">บัญชีผู้ใช้</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="" formControlName="userUsername">
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
+                                        formControlName="userUsername">
                                 </div>
                                 <div class="col-md-4 pb-2">
                                     <label for="exampleFormControlInput1" class="form-label">รหัสผ่าน</label>
@@ -404,15 +432,14 @@
                                 </div>
                                 <div class="col-md-4 pb-2">
                                     <label for="exampleFormControlInput1" class="form-label">ยืนยันรหัสผ่าน</label>
-                                    <input type="password" class="form-control" (change)="changeDoctorConfirmPassword($event)"
-                                        placeholder="">
+                                    <input type="password" class="form-control"
+                                        (change)="changeDoctorConfirmPassword($event)" placeholder="">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-12" style="text-align: center;">
-                            <button type="submit" class="btn btn-success"
-                                >บันทึกข้อมูล</button>&nbsp;
+                            <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>&nbsp;
                             <button type="reset" class="btn btn-danger">ล้างข้อมูล</button>
                         </div>
                     </form>

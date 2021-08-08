@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-page',
@@ -7,33 +10,65 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPageComponent implements OnInit {
 
-  listDatas = [
-    {
-      "tmId": "1",
-      "tmDate": "2021-03-31",
-      "tmTime": "15:49:51",
-      "tmMoney": 440.0000,
-      "tmSlip": "loyfj.jpg",
-      "tmStatus": "ชำระแล้ว",
-      "userId": "0012",
-      "bkId": 23,
-      "billId": 2
+  formValue !: FormGroup;
+  listDatauser !: any;
+  item: any
+  
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService
+  ) { }
+
+  listDatausers = this.fb.group({
+    tmId: [''],
+    userId: [''],
+    bkId: [''],
+    userFirstname: [''],
+    userLastname: [''],
+    userPhone: [''],
+    userEmail: [''],
+    userDisease: [''],
+    bkQueue: [''],
+    bkDate: [''],
+    bkTime: [''],
+    bkSymptom: [''],
+    user: {
+      userId: [''],
+      userFirstname: [''],
+      userLastname: [''],
+      userPhone: [''],
+      userEmail: [''],
+      userDisease: [''],
     },
-    {
-      "tmId": "2",
-      "tmDate": "2021-03-31",
-      "tmTime": "15:49:56",
-      "tmMoney": 555.0000,
-      "tmSlip": "putgg.jpg",
-      "tmStatus": "ยังไม่ชำระ",
-      "userId": "0012",
-      "bkId": 24,
-      "billId": 2
+    booking: {
+      bkId: [''],
+      bkQueue: [''],
+      bkDate: [''],
+      bkTime: [''],
+      bkSymptom: [''],
     }
-  ]
-  constructor() { }
+  });
 
   ngOnInit(): void {
+    this.fetchData();
+    this.formValue = this.listDatausers;
   }
 
+  refresh() {
+    this.fetchData();
+    window.location.reload();
+  }
+
+  fetchData() {
+    this.userService.getAllTreatment().subscribe(
+      (res) => {
+        console.log(res)
+        this.listDatauser = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

@@ -30,4 +30,12 @@ export class AdminService {
     );
   }
 
-}
+  getAllTreatment(): Observable<any> {
+    return this.http.get(endpoint + '/treatments', httpOptions);
+  }
+
+  getTreatmentByTmId(tmId: any): Observable<any> {
+    return this.http.get(endpoint + '/treatments/'.concat(tmId), httpOptions);
+  }
+
+}//end

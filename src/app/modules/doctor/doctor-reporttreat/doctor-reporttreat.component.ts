@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { DoctorService } from '../doctor.service';
 
 @Component({
   selector: 'app-doctor-reporttreat',
@@ -7,34 +10,67 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorReporttreatComponent implements OnInit {
 
-  listDatatreat = [
-    {
-      "tmId": "100213",
-      "tmDate": "2021-03-31",
-      "tmTime": "16:23:47",
-      "tmMoney": 440.0000,
-      "tmSlip": "loyfj.jpg",
-      "tmStatus": "ชำระแล้ว",
-      "userId": "0012",
-      "bkId": 11,
-      "billId": 2
-  },
-  {
-      "tmId": "100223",
-      "tmDate": "2021-03-31",
-      "tmTime": "16:23:56",
-      "tmMoney": 555.0000,
-      "tmSlip": "putgg.jpg",
-      "tmStatus": "ยังไม่ชำระ",
-      "userId": "0012",
-      "bkId": 12,
-      "billId": 3
-  }
-  ]
+  listDatatreat !: any;
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private doctorService: DoctorService
+  ) { }
 
+  listDatatreats = this.fb.group({
+    tmId: [''],
+    userId: [''],
+    bkId: [''],
+    userFirstname: [''],
+    userLastname: [''],
+    userPhone: [''],
+    userEmail: [''],
+    userDisease: [''],
+    bkQueue: [''],
+    bkDate: [''],
+    bkTime: [''],
+    bkSymptom: [''],
+    user: {
+      userId: [''],
+      userFirstname: [''],
+      userLastname: [''],
+      userPhone: [''],
+      userEmail: [''],
+      userDisease: [''],
+    },
+    booking: {
+      bkId: [''],
+      bkQueue: [''],
+      bkDate: [''],
+      bkTime: [''],
+      bkSymptom: [''],
+    }
+  });
+  
   ngOnInit(): void {
+    this.fetchData();
   }
 
+  refresh() {
+    this.fetchData();
+    window.location.reload();
+  }
+
+  fetchData() {
+    this.doctorService.getAllTreatment().subscribe(
+      (res) => {
+        console.log(res)
+        this.listDatatreat = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  gotoAdminEdit(item: any) {
+    debugger
+    this.router.navigate(['doctor/report-treat/report-datauser' , item.tmId]);
+  }
 }

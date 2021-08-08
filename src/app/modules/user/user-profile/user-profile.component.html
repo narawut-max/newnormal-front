@@ -29,42 +29,51 @@
                         <h6 class="m-1">ประวัติผู้ป่วย</h6>
                     </div>
                     <div class="card-body">
-                        <form action="" class="row g-3 p-2">
+                        <form [formGroup]="DataUserForm" class="row g-3 p-2">
                             <div class="col-md-2 col-sm-12">
                                 <label for="validationCustom01" class="form-label">รหัสผู้ป่วย</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom01" value=""
+                                    formControlName="tmId" readonly>
                             </div>
                             <div class="col-md-3 col-sm-12">
                                 <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom01" value=""
+                                    formControlName="userCardId" readonly>
                             </div>
                             <div class="col-md-1">
                                 <label for="validationCustom01" class="form-label">คำนำหน้า</label>
-                                <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom01" value=""
+                                    formControlName="userTitle" readonly>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">ชื่อ</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userFirstname" readonly>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">สกุล</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userLastname" readonly>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">วันเดือนปีเกิด</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userBirthday" readonly>
                             </div>
                             <div class="col-md-1">
                                 <label for="validationCustom02" class="form-label">เพศ</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userGender" readonly>
                             </div>
                             <div class="col-md-1">
                                 <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userBlood" readonly>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">โรคประจำตัว</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userDisease" readonly>
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">แพทย์ผู้รักษา</label>
@@ -72,23 +81,28 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">ที่อยู่</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="validationCustom02" class="form-label">จังหวัด</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="validationCustom02" class="form-label">อำเภอ</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
-                            </div>
-                            <div class="col-md-2">
-                                <label for="validationCustom02" class="form-label">ตำบล</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userAddrass" readonly>
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">รหัสไปรษณีย์</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="zipCode" readonly>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="validationCustom02" class="form-label">จังหวัด</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="province" readonly>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="validationCustom02" class="form-label">อำเภอ</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="district" readonly>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="validationCustom02" class="form-label">ตำบล</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="subdistrict" readonly>
                             </div>
                         </form>
                     </div>
@@ -97,86 +111,90 @@
 
             <!-- Settings -->
             <div class="col-md-12">
-                <div class="card shadow" style="border-radius: 10px;">
-                    <div class="card-header">
-                        <div class="row justify-content-between">
-                            <div class="col-md-4 col-sm-6 align-self-center">
-                                <h6 class="m-0">ตั้งค่าการใช้งาน</h6>
-                            </div>
-                            <div class="col-md-4 col-sm-6 text-end p-0">
-                                <div class="dropdown no-arrow p-0">
-                                    <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown"
-                                        href="#">
-                                        <i class="bi bi-pencil-square"
-                                            style="font-size: 19px; color: rgb(238, 91, 6);"></i>
-                                    </a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
-                                        <a class="dropdown-item" data-bs-toggle="modal"
-                                            data-bs-target="#newpasswordModal">
-                                            <i
-                                                class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>เปลี่ยนรหัสผ่าน</a>
-                                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edittelModal">
-                                            <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขเบอร์โทร</a>
-                                        <a class="dropdown-item" data-bs-toggle="modal"
-                                            data-bs-target="#editEmailModal">
-                                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขอีเมล</a>
+                <form [formGroup]="DataUserForm">
+                    <div class="card shadow" style="border-radius: 10px;">
+                        <div class="card-header">
+                            <div class="row justify-content-between">
+                                <div class="col-md-4 col-sm-6 align-self-center">
+                                    <h6 class="m-0">ตั้งค่าการใช้งาน</h6>
+                                </div>
+                                <div class="col-md-4 col-sm-6 text-end p-0">
+                                    <div class="dropdown no-arrow p-0">
+                                        <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown"
+                                            href="#">
+                                            <i class="bi bi-pencil-square"
+                                                style="font-size: 19px; color: rgb(238, 91, 6);"></i>
+                                        </a>
+                                        <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#newpasswordModal">
+                                                <i
+                                                    class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>เปลี่ยนรหัสผ่าน</a>
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#edittelModal">
+                                                <i
+                                                    class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขเบอร์โทร</a>
+                                            <a class="dropdown-item" data-bs-toggle="modal"
+                                                data-bs-target="#editEmailModal">
+                                                <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขอีเมล</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row g-2" style="padding-left: 15px;">
-                            <div class="col-md-6 col-sm-6 text-end">
-                                <label for="inputDate" class="col-sm-auto col-form-label">สถานะการใช้งาน :
-                                </label>
-                            </div>
-                            <div class="col-md-6 col-sm-6 align-self-center">
-                                <span class="badge bg-success">
-                                    <i class="bi bi-check2-circle"
-                                        style="font-size: 1rem; color: rgb(255, 255, 255);"></i> สมาชิก
-                                </span>
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-end">
-                                <label for="inputDate" class="col-sm-auto col-form-label">รหัสผู้ใช้งาน :
-                                </label>
-                            </div>
-                            <div class="col-md-2 col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
-                                    value="xxxxxxx">
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-end">
-                                <label for="inputDate" class="col-sm-auto col-form-label">ชื่อผู้ใช้ : </label>
-                            </div>
-                            <div class="col-md-2 col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
-                                    value="xxxxxxx">
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-end">
-                                <label for="inputDate" class="col-sm-auto col-form-label">รหัสผ่าน : </label>
-                            </div>
-                            <div class="col-md-2 col-sm-6">
-                                <input type="password" readonly class="form-control-plaintext" id="staticDate"
-                                    value="xxxxxxx">
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-end">
-                                <label for="inputDate" class="col-sm-auto col-form-label">เบอร์โทรศัพท์ :
-                                </label>
-                            </div>
-                            <div class="col-md-2 col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
-                                    value="xxxxxxxxxx">
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-end">
-                                <label for="inputDate" class="col-sm-auto col-form-label">อีเมล : </label>
-                            </div>
-                            <div class="col-md-4 col-sm-6">
-                                <input type="text" readonly class="form-control-plaintext" id="staticDate"
-                                    value="nxxxxxxx@gmail.com">
+                        <div class="card-body">
+                            <div class="row g-2" style="padding-left: 15px;">
+                                <div class="col-md-6 col-sm-6 text-end">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">สถานะการใช้งาน :
+                                    </label>
+                                </div>
+                                <div class="col-md-1 col-sm-6 align-self-center">
+                                    <input type="text" readonly
+                                        class="form-control-plaintext form-control-sm bg-success text-center text-white fw-bold"
+                                        id="staticDate" value="" formControlName="userStatus"
+                                        style="border-radius: 5px;">
+                                </div>
+                                <div class="col-md-6 col-sm-6 text-end">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">รหัสผู้ใช้งาน :
+                                    </label>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticDate" value=""
+                                        formControlName="userId">
+                                </div>
+                                <div class="col-md-6 col-sm-6 text-end">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">ชื่อผู้ใช้ : </label>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticDate" value=""
+                                        formControlName="userUsername">
+                                </div>
+                                <div class="col-md-6 col-sm-6 text-end">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">รหัสผ่าน : </label>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <input type="password" readonly class="form-control-plaintext" id="staticDate"
+                                        value="" formControlName="userPassword">
+                                </div>
+                                <div class="col-md-6 col-sm-6 text-end">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">เบอร์โทรศัพท์ :
+                                    </label>
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticDate" value=""
+                                        formControlName="userPhone">
+                                </div>
+                                <div class="col-md-6 col-sm-6 text-end">
+                                    <label for="inputDate" class="col-sm-auto col-form-label">อีเมล : </label>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticDate" value=""
+                                        formControlName="userEmail">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <br>
@@ -194,7 +212,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="card p-3">
-                    <form>
+                    <form [formGroup]="DataUserForm" (ngSubmit)="SubmitEditPass()">
                         <div class="row justify-content-center">
                             <h5 class="text-center font-monospace pb-2">เปลี่ยนรหัสผ่าน</h5>
                             <br>
@@ -226,17 +244,14 @@
                 <div class="row justify-content-end p-2 pt-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form [formGroup]="DataUserForm" (ngSubmit)="onSubmitTel()">
                     <div class="card p-3">
                         <div class="row justify-content-center">
                             <h5 class="text-center font-monospace pb-2">เบอร์โทรศัพท์ใหม่</h5>
                             <br>
                             <div class="col-md-9 pb-3">
                                 <input class="form-control" type="text" placeholder="หมายเลขโทรศัพท์"
-                                    aria-label="default input example" required>
-                                <div class="invalid-tooltip">
-                                    Please provide a valid city.
-                                </div>
+                                    aria-label="default input example" formControlName="userPhone" required>
                             </div>
                         </div>
                         <div class="row justify-content-center">
@@ -260,14 +275,14 @@
                 <div class="row justify-content-end p-2 pt-0">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="">
+                <form [formGroup]="DataUserForm" (ngSubmit)="onSubmitEmail()">
                     <div class="card p-3">
                         <div class="row justify-content-center">
                             <h5 class="text-center font-monospace pb-2">เปลี่ยนอีเมลใหม่</h5>
                             <br>
                             <div class="col-md-9 pb-3">
                                 <input class="form-control" type="text" placeholder="อีเมล"
-                                    aria-label="default input example" required>
+                                    aria-label="default input example" formControlName="userEmail" required>
                             </div>
                         </div>
                         <div class="row justify-content-center">

@@ -79,34 +79,40 @@
     <div class="card table-responsive shadow-sm p-3">
         <table class="table table-hover">
             <thead>
-                <tr class="text-center">
+                <tr>
                     <th scope="col">รหัสการจอง</th>
-                    <th scope="col">ชื่อ - สกุล</th>
-                    <th scope="col">โรคประจำตัว</th>
-                    <th scope="col">เบอร์โทร</th>
-                    <th scope="col">อีเมล</th>
-                    <th scope="col">Button</th>
+                    <th>รหัสผู้ป่วย</th>
+                    <th>ชื่อ - สกุล</th>
+                    <th>โรคประจำตัว</th>
+                    <th>เบอร์โทร</th>
+                    <th>อีเมล</th>
+                    <th class="text-center">Button</th>
                 </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let item of listDatauser; let i = index">
-                <td class="text-center">{{item.bkId}}</td>
-                <td class="text-center">{{item.userId}} --userFirstname userLastname</td>
-                <td class="text-center">{{item.userId}} --userDisease</td>
-                <td class="text-center">{{item.userId}} --userPhone</td>
-                <td class="text-center">{{item.userId}} --userEmail</td>
-                <td class="text-center">
-                    <button type="button" class="btn btn-sm btn-primary" routerLink="../treat/add-treat">
-                        <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                        เพิ่มข้อมูล
-                    </button>
-                    <!-- <button type="button" class="btn btn-sm btn-warning">
+                <tr *ngFor="let item of listUser | paginate: {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };let i = index">
+                    <th scope="row">{{item.booking.bkId}}</th>
+                    <th>{{item.tmId}}</th>
+                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td>{{item.user.userDisease}}</td>
+                    <td>{{item.user.userPhone}}</td>
+                    <td>{{item.user.userEmail}}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-primary" (click)="gotoaddtreat(item)">
+                            <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                            เพิ่มข้อมูล
+                        </button>
+                        <!-- <button type="button" class="btn btn-sm btn-warning">
                         <i class="bi bi-pencil-square" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                         แก้ไขข้อมูล
                     </button> -->
-                </td>
-            </tr>
-        </tbody>
+                    </td>
+                </tr>
+            </tbody>
         </table>
         <!--table-->
     </div>

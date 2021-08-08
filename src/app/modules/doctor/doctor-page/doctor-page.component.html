@@ -76,15 +76,16 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of listDatauser; let i = index">
-                                    <th>{{item.bkId}} --bkQueue</th>
-                                    <td>{{item.tmTime}}</td>
+                                    <th scope="row">{{item.booking.bkQueue}}</th>
+                                    <td>{{item.booking.bkTime}}</td>
                                     <td>{{item.bkId}}</td>
-                                    <td>{{item.userId}} --userFirstname userLastname</td>
+                                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                                     <td>
                                         <button type="button" class="btn btn-sm text-white fw-bold"
                                             data-bs-toggle="modal" data-bs-target="#SelectModal"
                                             style="background-color: rgb(0, 105, 191);">
-                                            <h6 class="p-0" style="margin: 0rem;">ดูรายละเอียด</h6>
+                                            <h6 class="p-0" style="margin: 0rem;" (click)="selectDataBooking(item)">
+                                                ดูรายละเอียด</h6>
                                         </button>
                                     </td>
                                     <td>
@@ -103,10 +104,39 @@
         </div>
     </div>
     <canvas class="my-4 w-100" id="myChart" height="80"></canvas>
-</div>
-<!-- end-container -->
 
-<!-- Modal -->
+</div><!-- end-container -->
+
+
+<!-- Modal Status -->
+<div class="modal fade" id="status" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="statusLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content"
+            style="background-image: url(https://s3vmwebqa.s3.ap-southeast-1.amazonaws.com/public/other/vimut-og-image.jpg);">
+            <div class="modal-body">
+                <div class="card p-3 border-0" style="border-radius: 8px;">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-success font-monospace" for="btnradio1">รักษาแล้ว</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-warning font-monospace" for="btnradio2">ข้ามคิว</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-danger font-monospace" for="btnradio3">ไม่มาตามนัด</label>
+                    </div>
+                </div>
+                <div class="col-md-12 pt-3 text-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">ตกลง</button>&nbsp;
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ----------- Modal gotoaddtreat-----------  -->
 <div class="modal fade text-dark" id="SelectModal" tabindex="-1" aria-labelledby="SelectModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -114,59 +144,74 @@
                 <h5 class="modal-title fw-bold font-monospace" id="SelectModalLabel">รายละเอียดการจองคิวเข้ารักษา </h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
-            <div class="modal-body bg-light">
-                <form action="">
+            <div class="modal-body bg-light text-start">
+                <form [formGroup]="listDatausers">
                     <div class="card p-3">
                         <div class="row mb-4">
                             <div class="col-md-4 pb-3">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">รหัสการจองคิว</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <input type="text" id="form8Example3" class="form-control" formControlName="bkId"
+                                        readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-4">
                                 <div class="form-outline">
-                                    <label class="form-label" for="form8Example3">รหัสผู้ป่วย HN</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <label class="form-label" for="form8Example3">รหัสผู้ป่วย
+                                        HN</label>
+                                    <input type="text" id="form8Example3" class="form-control" formControlName="tmId"
+                                        readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-4">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">วันและเวลาที่เข้ารักษา</label>
                                     <div class="input-group">
-                                        <input type="datetime" id="form8Example3" class="form-control"
-                                            value="25/06/64  15:15" readonly>
+                                        <input type="text" id="form8Example3" class="form-control border-end-0"
+                                            formControlName="bkDate" readonly>
+                                        <input type="text" id="form8Example3" class="form-control border-start-0"
+                                            formControlName="bkTime" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 pb-3">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">ชื่อ - สกุล</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <div class="input-group">
+                                        <input type="text" id="form8Example3" class="form-control border-end-0"
+                                            formControlName="userFirstname" readonly>
+                                        <input type="text" id="form8Example3" class="form-control border-start-0"
+                                            formControlName="userLastname" readonly>
+                                    </div>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
-                                    <label class="form-label" for="form8Example3">อาการ (ถ้ามี)</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <label class="form-label" for="form8Example3">อาการ
+                                        (ถ้ามี)</label>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="bkSymptom" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6 pb-3">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">เบอร์โทร</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userPhone" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">อีเมล</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userEmail" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">โรคประจำตัว</label>
-                                    <input type="text" id="form8Example3" class="form-control" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userDisease" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">
@@ -180,7 +225,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-4 pt-3">
                             <button type="button" class="fw-bolder btn btn-primary" data-bs-dismiss="modal"
-                                routerLink="../treat/add-treat/:bkQueue">เพิ่มข้อมูลการรักษา</button>&nbsp;
+                                (click)="gotoaddtreat(item)">เพิ่มข้อมูลการรักษา</button>&nbsp;
                             <button type="button" class="fw-bolder btn btn-danger" data-bs-dismiss="modal">ปิด</button>
                         </div>
                     </div>
@@ -189,31 +234,4 @@
         </div>
     </div>
 </div>
-
-
-<!-- Modal Status -->
-<div class="modal fade" id="status" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="statusLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content" style="background-image: url(https://s3vmwebqa.s3.ap-southeast-1.amazonaws.com/public/other/vimut-og-image.jpg);">
-            <div class="modal-body">
-                <div class="card p-3 border-0" style="border-radius: 8px;">
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-success font-monospace" for="btnradio1">รักษาแล้ว</label>
-                       
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-warning font-monospace" for="btnradio2">ข้ามคิว</label>
-                      
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-danger font-monospace" for="btnradio3">ไม่มาตามนัด</label>
-                      </div>
-                </div>
-                <div class="col-md-12 pt-3 text-center">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">ตกลง</button>&nbsp;
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- end Modal -->

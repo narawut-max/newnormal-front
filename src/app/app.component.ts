@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { DoctorService } from './modules/doctor/doctor.service';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,13 @@ export class AppComponent implements OnInit {
   timedOut = false;
   lastPing?: Date = undefined;
   isLogin: Boolean = false;
-
+  lists: any;
   constructor(
     private permissionsService: NgxPermissionsService,
     private idle: Idle,
     private keepalive: Keepalive,
-    private route: Router
+    private router: Router,
+    private doctorService: DoctorService
   ) {
     this.setIdle();
     this.initRolePermission();
@@ -32,7 +34,7 @@ export class AppComponent implements OnInit {
 
   logOut() {
     sessionStorage.removeItem('user_role');
-    this.route.navigate(['home']).then(() => {
+    this.router.navigate(['home']).then(() => {
       window.location.reload()
     });
   }
@@ -79,6 +81,9 @@ export class AppComponent implements OnInit {
 
   title = 'newnormal-front';
 
-  
+  gotoData() {
+    debugger
+    this.router.navigate(['doctor/profile']);
+  }
 
 }

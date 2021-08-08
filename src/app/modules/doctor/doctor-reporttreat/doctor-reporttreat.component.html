@@ -84,12 +84,12 @@
                 <tr class="text-center" *ngFor="let item of listDatatreat; let i = index">
                     <th>{{i+1}}</th>
                     <td>{{item.tmId}}</td>
-                    <td>{{item.userId}} --userCardId</td>
-                    <td>{{item.userId}} --userFirstname userLastname</td>
-                    <td>{{item.userId}} --userDisease</td>
+                    <td>{{item.user.userCardId}}</td>
+                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td>{{item.user.userDisease}}</td>
                     <td>
                         <button type="button" class="btn btn-sm btn-primary"
-                            routerLink="../report-treat/report-datauser">
+                             (click)="gotoAdminEdit(item)">
                             <i class="bi bi-eye-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                             ดูรายละเอียด
                         </button>

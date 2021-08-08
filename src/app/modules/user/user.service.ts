@@ -2,15 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-const endpoint = environment.apiEndPoint;
 
 @Injectable({
   providedIn: 'root'
 })
-export class DoctorService {
+export class UserService {
 
   constructor(private http: HttpClient) { }
 
@@ -24,22 +20,6 @@ export class DoctorService {
     })
   }
 
-  //User
-  getAllUsers(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/users/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
-  }
-  getUserByUserId(userId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/users/6')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
-  }
-
   //Treatment
   getAllTreatment(): Observable<any> {
     return this.http.get<any>(this.apiURL + '/treatments/')
@@ -49,7 +29,7 @@ export class DoctorService {
       )
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/' + tmId)
+    return this.http.get<any>(this.apiURL + '/treatments/64001')
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -118,16 +98,15 @@ export class DoctorService {
       )
   }
 
-  // HttpClient API put() method => Update employee
-  updateDatadoctor(updatedoctor: any): Observable<any> {
-    return this.http.post<any>(this.apiURL + '/users/update/', JSON.stringify(updatedoctor), this.httpOptions)
+  //update
+  updateDatauser(updateuser: any): Observable<any> {
+    return this.http.post<any>(this.apiURL + '/users/update/', JSON.stringify(updateuser), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
-
-
+  
   // Error handling 
   handleError(error: any) {
     let errorMessage = '';
@@ -142,4 +121,4 @@ export class DoctorService {
     return throwError(errorMessage);
   }
 
-}//end
+}

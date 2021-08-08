@@ -6,7 +6,7 @@
     </ol>
 </nav>
 
-<div class="container">
+<div class="container" style="padding-left: 12px;padding-right: 12px;">
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
         <h4>จัดการข้อมูลการจ่ายยา</h4>
@@ -74,37 +74,37 @@
     <br>
 
     <!-- data add-drug -->
-    <h5 class="text-dark">ข้อมูลการสั่งจ่ายยา</h5>
+    <h5 class="text-dark pb-2">ข้อมูลการสั่งจ่ายยา</h5>
     <div class="card table-responsive shadow-sm p-3">
-        <table class="table border-primary">
+        <table class="table table-hover">
             <thead>
-                <tr class="text-center">
-                    <th scope="col">เลขที่ใบสั่งยา</th>
-                    <th scope="col">วันและเวลาที่เข้ารักษา</th>
-                    <th scope="col">ชื่อ - สกุล</th>
-                    <th scope="col">โรคประจำตัว</th>
-                    <th scope="col">อีเมล</th>
-                    <th scope="col">Button</th>
+                <tr>
+                    <th class="col-md-1">เลขใบสั่งยา</th>
+                    <th class="col-md-3">วันและเวลาที่เข้ารักษา</th>
+                    <th class="col-md-3">ชื่อ - สกุล</th>
+                    <th class="col-md-2">โรคประจำตัว</th>
+                    <th class="col-md-2 text-center">Button</th>
+                    <th class="col-md-1 text-center">สถานะ</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of listDatadrug; let i = index">
-                    <td class="text-center">{{item.billId}}</td>
-                    <td class="text-center">{{item.tmDate}} {{item.tmTime}}</td>
-                    <td class="text-center">{{item.userId}} --userFirstname userLastname</td>
-                    <td class="text-center">{{item.userId}} --userDisease</td>
-                    <td class="text-center">{{item.userId}} --userEmail</td>
+                <tr *ngFor="let item of listDataBill; let i = index">
+                    <td scope="row">{{item.billId}}</td>
+                    <td>{{item.tmDate}}</td>
+                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td>{{item.user.userDisease}}</td>
                     <td class="text-center">
                         <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#drugModal">
+                            data-bs-target="#drugModal" (click)="selectDataBill(item)">
                             <i class="bi bi-eye-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                            ดูรายละเอียด
-                        </button>&nbsp;
-                        <button type="button" class="btn btn-sm btn-danger">
+                            รายละเอียด
+                        </button>
+                    </td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-danger" (click)="gotoCancalBill()">
                             <i class="bi bi-x-circle" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                             ยกเลิก
                         </button>
-
                     </td>
                 </tr>
             </tbody>
@@ -125,7 +125,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body bg-light">
-                <form action="">
+                <form [formGroup]="listDatausers">
                     <div class="card shadow" style="padding: 20px;">
                         <h4 class="text-center" style="padding-bottom: 20px;">
                             <dt>รายการสั่งยา</dt>
@@ -138,8 +138,8 @@
                                             <label class="form-label" for="username">
                                                 <strong>รหัสผู้ป่วย</strong>
                                             </label>
-                                            <input class="form-control" type="text" id="tmId"
-                                                placeholder="" name="tmId" readonly>
+                                            <input class="form-control" type="text" id="tmId" placeholder=""
+                                                formControlName="tmId" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -147,17 +147,20 @@
                                             <label class="form-label" for="username">
                                                 <strong>รหัสการจองคิว</strong>
                                             </label>
-                                            <input class="form-control" type="text" id="tmId"
-                                                placeholder="" name="tmId" readonly>
+                                            <input class="form-control" type="text" id="tmId" placeholder=""
+                                                formControlName="bkId" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="username">
-                                                <strong>ชื่อ - สกุล</strong>
-                                            </label>
-                                            <input class="form-control" type="text" id="tmId"
-                                                placeholder="" name="tmId" readonly>
+                                        <div class="form-outline">
+                                            <label class="form-label" for="form8Example3">ชื่อ - สกุล</label>
+                                            <div class="input-group">
+                                                <input type="text" id="form8Example3" class="form-control border-end-0"
+                                                    formControlName="userFirstname" readonly>
+                                                <input type="text" id="form8Example3"
+                                                    class="form-control border-start-0" formControlName="userLastname"
+                                                    readonly>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +171,7 @@
                                                 <strong>โรคประจำตัว</strong>
                                             </label>
                                             <input class="form-control" type="text" id="tmId" placeholder=""
-                                                name="tmId" readonly>
+                                                formControlName="userDisease" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -176,18 +179,19 @@
                                             <label class="form-label" for="username">
                                                 <strong>แพทย์ผู้รักษา</strong>
                                             </label>
-                                            <input class="form-control" type="text" id="tmId"
-                                                placeholder="" name="tmId" readonly>
+                                            <input class="form-control" type="text" id="tmId" placeholder="" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="username">
-                                                <strong>วันและเวลาที่เข้ารักษา</strong>
-                                            </label>
-                                            <input class="form-control" type="datetime" id="tmId" placeholder=""
-                                                name="tmId" readonly>
-
+                                        <div class="form-outline">
+                                            <label class="form-label" for="form8Example3">วันและเวลาที่เข้ารักษา</label>
+                                            <div class="input-group">
+                                                <input type="text" id="form8Example3" class="form-control border-end-0"
+                                                    formControlName="bkDate" readonly>
+                                                <input type="text" id="form8Example3"
+                                                    class="form-control border-start-0" formControlName="bkTime"
+                                                    readonly>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,49 +211,14 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-center p-0">
-                                        <tr>
-                                            <th>1</th>
-                                            <td>000210145</td>
-                                            <td class="text-start">sertraline</td>
-                                            <td>3</td>
-                                            <td class="text-end">10</td>
+                                        <tr *ngFor="let item of listDataDrug; let i = index">
+                                            <th scope="row">{{i+1}}</th>
+                                            <td>{{item.drugId}}</td>
+                                            <td class="text-start">{{item.drugName}}</td>
+                                            <td>{{item.drugId}}</td>
+                                            <td class="text-end">{{item.drugPrice}}</td>
                                         </tr>
-                                        <tr>
-                                            <th>2</th>
-                                            <td>000210145</td>
-                                            <td class="text-start">sertraline</td>
-                                            <td>2</td>
-                                            <td class="text-end">10</td>
-                                        </tr>
-                                        <tr>
-                                            <th>3</th>
-                                            <td>000210145</td>
-                                            <td class="text-start">sertraline</td>
-                                            <td>2</td>
-                                            <td class="text-end">10</td>
-                                        </tr>
-                                        <tr>
-                                            <th>4</th>
-                                            <td>000210145</td>
-                                            <td class="text-start">sertraline</td>
-                                            <td>2</td>
-                                            <td class="text-end">10</td>
-                                        </tr>
-                                        <tr>
-                                            <th>5</th>
-                                            <td>000210145</td>
-                                            <td class="text-start">sertraline</td>
-                                            <td>2</td>
-                                            <td class="text-end">10</td>
-                                        </tr>
-                                        <tr>
-                                            <th>6</th>
-                                            <td>000210145</td>
-                                            <td class="text-start">sertraline</td>
-                                            <td>2</td>
-                                            <td class="text-end">10</td>
-                                        </tr>
-                                        <tr class="text-center">
+                                        <tr class="text-center sticky-top" style="position: sticky; bottom: 0;">
                                             <th class="text-start" scope="row" colspan="4">รวมทั้งสิ้น</th>
                                             <td class="text-end fw-bold">150</td>
                                         </tr>

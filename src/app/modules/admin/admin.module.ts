@@ -5,12 +5,10 @@ import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AdminRegisterComponent } from './admin-register/admin-register.component';
 import { AdminManageComponent } from './admin-manage/admin-manage.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { AdminManagemoneyComponent } from './admin-managemoney/admin-managemoney.component';
 import { AdminEdituserComponent } from './admin-edituser/admin-edituser.component';
 import { AdminEditdoctorComponent } from './admin-editdoctor/admin-editdoctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { AdminManagemoneyComponent } from './admin-managemoney/admin-managemoney.component';
 
 
 
