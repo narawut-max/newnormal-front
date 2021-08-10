@@ -29,7 +29,7 @@ export class BookingService {
       )
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/64001')
+    return this.http.get<any>(this.apiURL + '/treatments/'+tmId)
       .pipe(
         retry(1),
         catchError(this.handleError)

@@ -29,6 +29,7 @@ export class UserPageComponent implements OnInit {
     userPhone: [''],
     userEmail: [''],
     userDisease: [''],
+    userDepartment: [''],
     bkQueue: [''],
     bkDate: [''],
     bkTime: [''],
@@ -40,6 +41,7 @@ export class UserPageComponent implements OnInit {
       userPhone: [''],
       userEmail: [''],
       userDisease: [''],
+      userDepartment: [''],
     },
     booking: {
       bkId: [''],

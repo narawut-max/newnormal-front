@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { UserService } from '../user.service';
@@ -14,7 +14,7 @@ export class UserManagebookingComponent implements OnInit {
   formValue !: FormGroup;
   listDatauser !: any;
   item: any
-  
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -22,44 +22,29 @@ export class UserManagebookingComponent implements OnInit {
   ) { }
 
   listDatausers = this.fb.group({
-    tmId: [''],
-    tmDate: [''],
-    tmTime: [''],
-    tmMoney: [''],
-    tmSlip: [''],
-    tmStatus: [''],
-    userId: [''],
-    bkId: [''],
-    userFirstname: [''],
-    userLastname: [''],
-    userPhone: [''],
-    userEmail: [''],
+    tmId: ['', Validators.required],
+    userId: [0],
+    bkId: [0],
+    tmDate: ['', Validators.required],
+    userFirstname: ['', Validators.required],
+    userLastname: ['', Validators.required],
     userDisease: [''],
     userDepartment: [''],
-    bkQueue: [''],
-    bkDate: [''],
-    bkTime: [''],
-    bkSymptom: [''],
+    userPhone: [''],
+    userEmail: ['', Validators.required],
     user: {
-      userId: [''],
-      userFirstname: [''],
-      userLastname: [''],
-      userPhone: [''],
-      userEmail: [''],
+      userId: [0],
+      userFirstname: ['', Validators.required],
+      userLastname: ['', Validators.required],
       userDisease: [''],
-    },
-    booking: {
-      bkId: [''],
-      bkQueue: [''],
-      bkDate: [''],
-      bkTime: [''],
-      bkSymptom: [''],
+      userDepartment: [''],
+      userPhone: [''],
+      userEmail: ['', Validators.required]
     }
   });
 
   ngOnInit(): void {
     this.fetchData();
-    // this.formValue = this.listDatausers;
   }
 
   refresh() {
@@ -79,22 +64,20 @@ export class UserManagebookingComponent implements OnInit {
     );
   }
 
+
   selectDataBooking(item: any) {
     debugger
+    this.listDatausers.controls['bkId'].patchValue(item.bkId);
+    // this.listDatausers.controls['bkSymptom'].patchValue(item.bkSymptom);
     this.listDatausers.controls['tmId'].patchValue(item.tmId);
     this.listDatausers.controls['tmDate'].patchValue(item.tmDate);
-    this.listDatausers.controls['bkId'].patchValue(item.booking.bkId);
     this.listDatausers.controls['userId'].patchValue(item.userId);
     this.listDatausers.controls['userFirstname'].patchValue(item.user.userFirstname);
-    this.listDatausers.controls['userLastname'].patchValue(item.user.userLastname);
-    this.listDatausers.controls['userPhone'].patchValue(item.user.userPhone);
-    this.listDatausers.controls['userEmail'].patchValue(item.user.userEmail);
-    this.listDatausers.controls['userDisease'].patchValue(item.user.userDisease);
-    this.listDatausers.controls['userDepartment'].patchValue(item.user.userDepartment);
-    this.listDatausers.controls['bkQueue'].patchValue(item.booking.bkQueue);
-    this.listDatausers.controls['bkDate'].patchValue(item.booking.bkDate);
-    this.listDatausers.controls['bkTime'].patchValue(item.booking.bkTime);
-    this.listDatausers.controls['bkSymptom'].patchValue(item.booking.bkSymptom);
+    // this.listDatausers.controls['userLastname'].patchValue(item.user.userLastname);
+    // this.listDatausers.controls['userDisease'].patchValue(item.user.userDisease);
+    // this.listDatausers.controls['userDepartment'].patchValue(item.user.userDepartment);
+    // this.listDatausers.controls['userPhone'].patchValue(item.user.userPhone);
+    // this.listDatausers.controls['userEmail'].patchValue(item.user.userEmail);
   }
 
   cancelbooking() {
@@ -119,3 +102,4 @@ export class UserManagebookingComponent implements OnInit {
   }
 
 }
+

@@ -62,6 +62,15 @@ export class AdminRegisterService {
     )
   }  
 
+  createtmId(registerData: any): Observable<any> {
+    return this.http.post<any>(this.apiURL + '/treatments/save', JSON.stringify(registerData), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+      
+    )
+  }  
+
   // HttpClient API put() method => Update employee
   // updateEmployee(id, employee): Observable<Employee> {
   //   return this.http.put<Employee>(this.apiURL + '/employees/' + id, JSON.stringify(employee), this.httpOptions)

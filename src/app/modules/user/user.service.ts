@@ -20,6 +20,22 @@ export class UserService {
     })
   }
 
+    //User
+    getAllUsers(): Observable<any> {
+      return this.http.get<any>(this.apiURL + '/users/')
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        )
+    }
+    getUserByUserId(userId: any): Observable<any> {
+      return this.http.get<any>(this.apiURL + '/users/' +userId)
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        )
+    }
+
   //Treatment
   getAllTreatment(): Observable<any> {
     return this.http.get<any>(this.apiURL + '/treatments/')
@@ -29,7 +45,7 @@ export class UserService {
       )
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/64001')
+    return this.http.get<any>(this.apiURL + '/treatments/'+tmId)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -44,7 +60,7 @@ export class UserService {
         catchError(this.handleError)
       )
   }
-  getBilldrugByBkId(bkId: any): Observable<any> {
+  getBookingsByBkId(bkId: any): Observable<any> {
     return this.http.get<any>(this.apiURL + '/bookings/' + bkId)
       .pipe(
         retry(1),

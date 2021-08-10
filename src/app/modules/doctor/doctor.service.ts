@@ -64,7 +64,7 @@ export class DoctorService {
         catchError(this.handleError)
       )
   }
-  getBilldrugByBkId(bkId: any): Observable<any> {
+  getBookingsByBkId(bkId: any): Observable<any> {
     return this.http.get<any>(this.apiURL + '/bookings/' + bkId)
       .pipe(
         retry(1),

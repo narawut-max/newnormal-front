@@ -15,16 +15,16 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <span id="reauth-email" class="reauth-email"></span>
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control form-control-sm border-1" formControlName="userUsername"
-                            [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+                        <input type="text" class="form-control form-control-sm border-1" formControlName="username"
+                            [ngClass]="{ 'is-invalid': submitted && f.username?.errors }"
                             style="background-color: #ffffff;" id="floatingInput" placeholder="name@example.com">
                         <label for="floatingInput">
                             <i class="bi bi-person-fill" style="font-size: 1rem; color: rgb(23, 167, 135);"></i>
                             username</label>
                     </div>
                     <div class="form-floating mb-2">
-                        <input type="password" class="form-control form-control-sm border-1" formControlName="userPassword"
-                            [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                        <input type="password" class="form-control form-control-sm border-1" formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted && f.password?.errors }"
                             style="background-color: #ffffff;" id="floatingInput" placeholder="name@example.com">
                         <label for="floatingInput">
                             <i class="bi bi-lock-fill" style="font-size: 1rem; color: rgb(23, 167, 135);"></i>

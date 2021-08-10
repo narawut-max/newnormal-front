@@ -53,6 +53,10 @@ export class AdminRegisterComponent implements OnInit {
     tmId: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['2'],
+    treatment: {
+      tmId: ['', Validators.required],
+      userId: [0],
+    },
     subdistrict: [{value: '', disabled: true},],
     district: [{value: '', disabled: true},],
     province: [{value: '', disabled: true},]

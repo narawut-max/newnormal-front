@@ -38,11 +38,11 @@ export class DoctorAddtreatComponent implements OnInit {
   bkId: any
   DataUserForm = this.fb.group({
     tmId: ['', Validators.required],
-    tmDate: ['', Validators.required],
-    tmTime: ['', Validators.required],
-    tmMoney: ['', Validators.required],
-    tmSlip: ['', Validators.required],
-    tmStatus: ['', Validators.required],
+    tmDate: [''],
+    tmTime: [''],
+    tmMoney: [''],
+    tmSlip: [''],
+    tmStatus: [''],
     billId: [0],
     bkId: [0],
     userId: [0],

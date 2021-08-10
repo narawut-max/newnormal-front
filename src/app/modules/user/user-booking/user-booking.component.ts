@@ -18,10 +18,11 @@ export class UserBookingComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private bookingService: BookingService
+    private userService: UserService
   ) { }
+  submitted = false;
 
-  tmId: any
+  // tmId: any
   DataUserForm = this.fb.group({
     tmId: ['', Validators.required],
     tmDate: ['', Validators.required],
@@ -81,11 +82,13 @@ export class UserBookingComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.initUserDataforEditById(this.tmId);
+    const tmId = sessionStorage.getItem('user_tmId');
+    debugger
+    this.initUserDataforEditById(tmId);
   }
 
   initUserDataforEditById(tmId: any) {
-    this.bookingService.getTreatmentByTmId(tmId).subscribe((res) => {
+    this.userService.getTreatmentByTmId(tmId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataUserForm.patchValue({
         tmId: res.tmId,
