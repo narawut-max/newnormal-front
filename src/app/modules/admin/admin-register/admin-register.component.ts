@@ -37,6 +37,7 @@ export class AdminRegisterComponent implements OnInit {
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
+    userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
@@ -50,13 +51,8 @@ export class AdminRegisterComponent implements OnInit {
     userEmail: ['', Validators.required],
     userStatus: [this.statusActive],
     userAddrass: ['', Validators.required],
-    tmId: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['2'],
-    treatment: {
-      tmId: ['', Validators.required],
-      userId: [0],
-    },
     subdistrict: [{value: '', disabled: true},],
     district: [{value: '', disabled: true},],
     province: [{value: '', disabled: true},]
@@ -67,6 +63,7 @@ export class AdminRegisterComponent implements OnInit {
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
+    userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
@@ -108,9 +105,36 @@ export class AdminRegisterComponent implements OnInit {
       })
       return;
     } else {
-      this.adminRegisterService.createUser(this.userRegisterForm.value).subscribe(res => {
-        console.log('Create User res : ', res)
-      });
+      Swal.fire({
+        title: 'ยืนยันการทำรายการ',
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adminRegisterService.createUser(this.userRegisterForm.value).subscribe(res => {
+            console.log('Create User res : ', res)
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: '',
+            confirmButtonText: 'ปิดหน้าต่าง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // window.location.reload();
+              this.router.navigate(['admin/manage']);
+            } else if (result.isDismissed) {
+              window.location.reload()
+
+            }
+          })
+        }
+      })
     }
   }
 
@@ -125,9 +149,36 @@ export class AdminRegisterComponent implements OnInit {
       })
       return;
     } else {
-      this.adminRegisterService.createUser(this.doctorRegisterForm.value).subscribe(res => {
-        console.log('Create Doctor res : ', res)
-      });
+      Swal.fire({
+        title: 'ยืนยันการทำรายการ',
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adminRegisterService.createUser(this.doctorRegisterForm.value).subscribe(res => {
+            console.log('Create Doctor res : ', res)
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: '',
+            confirmButtonText: 'ปิดหน้าต่าง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // window.location.reload();
+              this.router.navigate(['admin/manage']);
+            } else if (result.isDismissed) {
+              window.location.reload()
+
+            }
+          })
+        }
+      })
     }
   }
 

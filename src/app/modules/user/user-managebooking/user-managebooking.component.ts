@@ -23,28 +23,22 @@ export class UserManagebookingComponent implements OnInit {
 
   listDatausers = this.fb.group({
     tmId: ['', Validators.required],
-    userId: [0],
-    bkId: [0],
     tmDate: ['', Validators.required],
+    userId: [0],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
+    userHnId: [''],
     userDisease: [''],
     userDepartment: [''],
     userPhone: [''],
     userEmail: ['', Validators.required],
-    user: {
-      userId: [0],
-      userFirstname: ['', Validators.required],
-      userLastname: ['', Validators.required],
-      userDisease: [''],
-      userDepartment: [''],
-      userPhone: [''],
-      userEmail: ['', Validators.required]
-    }
+    bkId: [0],
+    bkSymptom: ['']
   });
 
   ngOnInit(): void {
     this.fetchData();
+    const userId = sessionStorage.getItem('user_id');
   }
 
   refresh() {
@@ -68,16 +62,17 @@ export class UserManagebookingComponent implements OnInit {
   selectDataBooking(item: any) {
     debugger
     this.listDatausers.controls['bkId'].patchValue(item.bkId);
-    // this.listDatausers.controls['bkSymptom'].patchValue(item.bkSymptom);
+    this.listDatausers.controls['bkSymptom'].patchValue(item.booking.bkSymptom);
     this.listDatausers.controls['tmId'].patchValue(item.tmId);
     this.listDatausers.controls['tmDate'].patchValue(item.tmDate);
     this.listDatausers.controls['userId'].patchValue(item.userId);
     this.listDatausers.controls['userFirstname'].patchValue(item.user.userFirstname);
-    // this.listDatausers.controls['userLastname'].patchValue(item.user.userLastname);
+    this.listDatausers.controls['userLastname'].patchValue(item.user.userLastname);
+    this.listDatausers.controls['userHnId'].patchValue(item.user.userHnId);
     // this.listDatausers.controls['userDisease'].patchValue(item.user.userDisease);
-    // this.listDatausers.controls['userDepartment'].patchValue(item.user.userDepartment);
-    // this.listDatausers.controls['userPhone'].patchValue(item.user.userPhone);
-    // this.listDatausers.controls['userEmail'].patchValue(item.user.userEmail);
+    this.listDatausers.controls['userDepartment'].patchValue(item.user.userDepartment);
+    this.listDatausers.controls['userPhone'].patchValue(item.user.userPhone);
+    this.listDatausers.controls['userEmail'].patchValue(item.user.userEmail);
   }
 
   cancelbooking() {

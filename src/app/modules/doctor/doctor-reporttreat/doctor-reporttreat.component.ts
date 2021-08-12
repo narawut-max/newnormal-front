@@ -22,6 +22,7 @@ export class DoctorReporttreatComponent implements OnInit {
     tmId: [''],
     userId: [''],
     bkId: [''],
+    userHnId: [''],
     userFirstname: [''],
     userLastname: [''],
     userPhone: [''],
@@ -31,21 +32,8 @@ export class DoctorReporttreatComponent implements OnInit {
     bkDate: [''],
     bkTime: [''],
     bkSymptom: [''],
-    user: {
-      userId: [''],
-      userFirstname: [''],
-      userLastname: [''],
-      userPhone: [''],
-      userEmail: [''],
-      userDisease: [''],
-    },
-    booking: {
-      bkId: [''],
-      bkQueue: [''],
-      bkDate: [''],
-      bkTime: [''],
-      bkSymptom: [''],
-    }
+    user: {},
+    booking: {}
   });
   
   ngOnInit(): void {

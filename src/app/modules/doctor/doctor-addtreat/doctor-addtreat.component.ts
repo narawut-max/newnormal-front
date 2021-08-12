@@ -49,6 +49,7 @@ export class DoctorAddtreatComponent implements OnInit {
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
+    userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
@@ -75,39 +76,9 @@ export class DoctorAddtreatComponent implements OnInit {
     billTime: [''],
     billNext: [''],
     drugId: [''],
-    user: {
-      userId: [0],
-      userUsername: ['', Validators.required],
-      userPassword: ['', Validators.required],
-      userCardId: ['', Validators.required],
-      userTitle: ['', Validators.required],
-      userFirstname: ['', Validators.required],
-      userLastname: ['', Validators.required],
-      userGender: ['', Validators.required],
-      userBirthday: ['', Validators.required],
-      userBlood: [''],
-      userPhone: [''],
-      userEmail: [''],
-      userDisease: [''],
-      userAddrass: [''],
-      userAllergy: [''],
-      userStatus: [this.statusActive],
-      roleId: ['2'],
-    },
-    booking: {
-      bkId: [0],
-      bkQueue: ['', Validators.required],
-      bkDate: ['', Validators.required],
-      bkTime: ['', Validators.required],
-      bkSymptom: ['', Validators.required],
-      bkProcess: [''],
-    },
-    billdrug: {
-      billDate: [''],
-      billTime: [''],
-      billNext: [''],
-      drugId: [''],
-    }
+    user: {},
+    booking: {},
+    billdrug: {}
   });
 
   ngOnInit() {
@@ -136,6 +107,7 @@ export class DoctorAddtreatComponent implements OnInit {
         bkId: res.bkId,
         userId: res.userId,
         userCardId: res.user.userCardId,
+        userHnId: res.user.userHnId,
         userUsername: res.user.userUsername,
         userPassword: res.user.userPassword,
         userTitle: res.user.userTitle,

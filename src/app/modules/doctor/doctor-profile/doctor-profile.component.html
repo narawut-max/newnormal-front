@@ -45,7 +45,7 @@
                                             </label>
                                             <div class="col-sm-4">
                                                 <input type="text" readonly class="form-control-plaintext"
-                                                    id="staticEmail" value=""  formControlName="userProfessionId">
+                                                    id="staticEmail" value="" formControlName="userProfessionId">
                                             </div>
                                         </div>
                                     </div>
@@ -61,9 +61,9 @@
                         <div class="card-header">
                             <div class="row justify-content-between">
                                 <div class="col-md-4 col-sm-6 align-self-center">
-                                    <h6 style="margin: 0px;">ตั้งค่าการใช้งาน</h6>
+                                    <h6 style="margin: 0px;">การใช้งาน</h6>
                                 </div>
-                                <div class="col-md-4 col-sm-6 text-end p-0">
+                                <!-- <div class="col-md-4 col-sm-6 text-end p-0">
                                     <div class="dropdown no-arrow p-0">
                                         <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown"
                                             href="#">
@@ -75,14 +75,14 @@
                                                 data-bs-target="#newpasswordModal">
                                                 <i
                                                     class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>เปลี่ยนรหัสผ่าน</a>
-                                            <!-- <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edittelModal">
+                                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edittelModal">
                                             <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขเบอร์โทร</a>
                                         <a class="dropdown-item" data-bs-toggle="modal"
                                             data-bs-target="#editEmailModal">
-                                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขอีเมล</a> -->
+                                            <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขอีเมล</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="card-body">
@@ -90,11 +90,10 @@
                                 <div class="col-auto">
                                     <label for="inputDate" class="col-sm-auto col-form-label">สถานะการใช้งาน : </label>
                                 </div>
-                                <div class="col-7 align-self-center">
-                                    <span class="badge bg-success">
-                                        <i class="bi bi-check2-circle"
-                                            style="font-size: 1rem; color: rgb(255, 255, 255);"></i> สมาชิก
-                                    </span>
+                                <div class="col-3 align-self-center">
+                                    <input type="text" readonly
+                                        class="form-control-plaintext form-control-sm bg-success text-center text-light fw-bold m-0" id="staticDate"
+                                        value="" formControlName="userStatus">
                                 </div>
                             </div>
                             <div class="row" style="padding-left: 15px;">
@@ -111,17 +110,18 @@
                                     <label for="inputDate" class="col-sm-auto col-form-label">Username : </label>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticDate" value=""  formControlName="userUsername">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticDate" value=""
+                                        formControlName="userUsername">
                                 </div>
                             </div>
-                            <div class="row" style="padding-left: 15px;">
+                            <!-- <div class="row" style="padding-left: 15px;">
                                 <div class="col-4">
                                     <label for="inputDate" class="col-sm-auto col-form-label">Password : </label>
                                 </div>
                                 <div class="col-8">
                                     <input type="password" readonly class="form-control-plaintext" id="staticDate" value=""  formControlName="userPassword">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

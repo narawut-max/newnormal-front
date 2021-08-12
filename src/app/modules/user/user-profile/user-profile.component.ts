@@ -32,11 +32,11 @@ export class UserProfileComponent implements OnInit {
 
   //tmId: any
   DataUserForm = this.fb.group({
-    tmId: ['', Validators.required],
     userId: [0],
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
+    userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
@@ -76,9 +76,9 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserByUserId(userId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataUserForm.patchValue({
-        tmId: res.tmId,
         userId: res.userId,
         userCardId: res.userCardId,
+        userHnId: res.userHnId,
         userUsername: res.userUsername,
         userPassword: res.userPassword,
         userTitle: res.userTitle,

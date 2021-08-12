@@ -42,7 +42,7 @@
                                 <tr *ngFor="let item of listDatas; let i = index">
                                     <th scope="row">{{i+1}}</th>
                                     <th>{{item.billId}}</th>
-                                    <td>{{item.userId}}</td>
+                                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                                     <td>{{item.tmMoney}}</td>
                                     <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
                                         {{item.tmSlip}}
@@ -106,8 +106,14 @@
                                 <label for="inputPassword" class="col-sm-4 col-form-label fw-bolder">ชื่อ
                                     - สกุล</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="inputPassword" formControlName="userId"
-                                        readonly>
+                                    <div class="row">
+                                        <div class="input-group">
+                                            <input type="text" id="form8Example3" class="form-control border-end-0"
+                                                formControlName="userFirstname" readonly>
+                                            <input type="text" id="form8Example3" class="form-control border-start-0"
+                                                formControlName="userLastname" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

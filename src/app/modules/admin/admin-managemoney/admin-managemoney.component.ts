@@ -36,6 +36,12 @@ export class AdminManagemoneyComponent implements OnInit {
     userId: [''],
     bkId: [''],
     billId: [''],
+    userFirstname: [''],
+    userLastname: [''],
+    user: {
+      userFirstname: [''],
+      userLastname: ['']
+    }
   });
   
   ngOnInit(): void {
@@ -73,6 +79,8 @@ export class AdminManagemoneyComponent implements OnInit {
     this.listData.controls['tmSlip'].setValue(item.tmSlip);
     this.listData.controls['tmStatus'].setValue(item.tmStatus);
     this.listData.controls['userId'].setValue(item.userId);
+    this.listData.controls['userFirstname'].setValue(item.user.userFirstname);
+    this.listData.controls['userLastname'].setValue(item.user.userLastname);
     this.listData.controls['bkId'].setValue(item.bkId);
     this.listData.controls['billId'].setValue(item.billId);
   }

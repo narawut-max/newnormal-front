@@ -36,6 +36,7 @@ export class DoctorProfileComponent implements OnInit {
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
+    userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
@@ -60,7 +61,9 @@ export class DoctorProfileComponent implements OnInit {
   ngOnInit(): void {
     //load dropdown all
     this.initDropdown();
-    this.initUserDataforEditById(this.userId);
+    const userId = sessionStorage.getItem('user_id');
+    debugger
+    this.initUserDataforEditById(userId);
   }
 
   initDropdown() {
@@ -78,6 +81,7 @@ export class DoctorProfileComponent implements OnInit {
         userUsername: res.userUsername,
         userPassword: res.userPassword,
         userCardId: res.userCardId,
+        userHnId: res.userHnId,
         userTitle: res.userTitle,
         userFirstname: res.userFirstname,
         userLastname: res.userLastname,

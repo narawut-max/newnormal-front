@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   loginForm = this.fb.group({
-    username: ['Narawut', Validators.required],
+    username: ['max123', Validators.required],
     password: ['123456789', Validators.required]
   });
 
@@ -40,8 +40,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginByUsernamePassword(this.loginForm.value).subscribe((res) => {      
       sessionStorage.setItem('user_role', this.getRole(res.roleId));
       sessionStorage.setItem('user_id', res.userId),{}
-      sessionStorage.setItem('user_tmId', res.tmId);
-      sessionStorage.setItem('user_bkId', res.bkId);
+      // sessionStorage.setItem('tm_id', res.tmId),
       
       this.router.navigate(['home']).then(() => {
         window.location.reload()

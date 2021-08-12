@@ -33,7 +33,7 @@ export class DoctorService {
       )
   }
   getUserByUserId(userId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/users/6')
+    return this.http.get<any>(this.apiURL + '/users/' + userId)
       .pipe(
         retry(1),
         catchError(this.handleError)

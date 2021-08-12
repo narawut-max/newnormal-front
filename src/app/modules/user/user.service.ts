@@ -45,7 +45,7 @@ export class UserService {
       )
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/'+tmId)
+    return this.http.get<any>(this.apiURL + '/treatments/' +tmId)
       .pipe(
         retry(1),
         catchError(this.handleError)

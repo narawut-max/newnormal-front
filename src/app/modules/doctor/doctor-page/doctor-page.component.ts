@@ -24,6 +24,7 @@ export class DoctorPageComponent implements OnInit {
     tmId: [''],
     userId: [''],
     bkId: [''],
+    userHnId: [''],
     userFirstname: [''],
     userLastname: [''],
     userPhone: [''],
@@ -33,21 +34,8 @@ export class DoctorPageComponent implements OnInit {
     bkDate: [''],
     bkTime: [''],
     bkSymptom: [''],
-    user: {
-      userId: [''],
-      userFirstname: [''],
-      userLastname: [''],
-      userPhone: [''],
-      userEmail: [''],
-      userDisease: [''],
-    },
-    booking: {
-      bkId: [''],
-      bkQueue: [''],
-      bkDate: [''],
-      bkTime: [''],
-      bkSymptom: [''],
-    }
+    user: {},
+    booking: {}
   });
 
   ngOnInit(): void {
@@ -77,6 +65,7 @@ export class DoctorPageComponent implements OnInit {
     debugger
     this.listDatausers.controls['tmId'].patchValue(item.tmId);
     this.listDatausers.controls['userId'].patchValue(item.userId);
+    this.listDatausers.controls['userHnId'].patchValue(item.user.userHnId);
     this.listDatausers.controls['userFirstname'].patchValue(item.user.userFirstname);
     this.listDatausers.controls['userLastname'].patchValue(item.user.userLastname);
     this.listDatausers.controls['userPhone'].patchValue(item.user.userPhone);

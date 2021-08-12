@@ -24,7 +24,7 @@ export class UserBookingComponent implements OnInit {
 
   // tmId: any
   DataUserForm = this.fb.group({
-    tmId: ['', Validators.required],
+    tmId: [0],
     tmDate: ['', Validators.required],
     tmTime: ['', Validators.required],
     tmMoney: ['', Validators.required],
@@ -36,6 +36,7 @@ export class UserBookingComponent implements OnInit {
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
+    userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
@@ -53,72 +54,37 @@ export class UserBookingComponent implements OnInit {
     bkTime: ['', Validators.required],
     bkSymptom: ['', Validators.required],
     bkProcess: [''],
-    user: {
-      userId: [0],
-      userUsername: ['', Validators.required],
-      userPassword: ['', Validators.required],
-      userCardId: ['', Validators.required],
-      userTitle: ['', Validators.required],
-      userFirstname: ['', Validators.required],
-      userLastname: ['', Validators.required],
-      userGender: ['', Validators.required],
-      userBirthday: ['', Validators.required],
-      userBlood: [''],
-      userPhone: [''],
-      userEmail: [''],
-      userDisease: [''],
-      userAddrass: [''],
-      userAllergy: [''],
-      roleId: ['2'],
-    },
-    booking: {
-      bkId: [0],
-      bkQueue: ['', Validators.required],
-      bkDate: ['', Validators.required],
-      bkTime: ['', Validators.required],
-      bkSymptom: ['', Validators.required],
-      bkProcess: [''],
-    }
+    user: {},
+    booking: {}
   });
 
   ngOnInit(): void {
-    const tmId = sessionStorage.getItem('user_tmId');
+    const UserId = sessionStorage.getItem('user_id');
     debugger
-    this.initUserDataforEditById(tmId);
+    this.initUserDataById(UserId);
   }
 
-  initUserDataforEditById(tmId: any) {
-    this.userService.getTreatmentByTmId(tmId).subscribe((res) => {
+  initUserDataById(UserId: any) {
+    this.userService.getUserByUserId(UserId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataUserForm.patchValue({
-        tmId: res.tmId,
-        tmDate: res.tmDate,
-        tmTime: res.tmTime,
-        tmMoney: res.tmMoney,
-        tmSlip: res.tmSlip,
-        tmStatus: res.tmStatus,
-        bkId: res.bkId,
         userId: res.userId,
-        userCardId: res.user.userCardId,
-        userUsername: res.user.userUsername,
-        userPassword: res.user.userPassword,
-        userTitle: res.user.userTitle,
-        userFirstname: res.user.userFirstname,
-        userLastname: res.user.userLastname,
-        userGender: res.user.userGender,
-        userBirthday: res.user.userBirthday,
-        userBlood: res.user.userBlood,
-        userPhone: res.user.userPhone,
-        userEmail: res.user.userEmail,
-        userDisease: res.user.userDisease,
-        userAddrass: res.user.userAddrass,
-        userAllergy: res.user.userAllergy,
-        roleId: res.user.roleId,
-        bkQueue: res.booking.bkQueue,
-        bkDate: res.booking.bkDate,
-        bkTime: res.booking.bkTime,
-        bkSymptom: res.booking.bkSymptom,
-        bkProcess: res.booking.bkProcess,
+        userCardId: res.userCardId,
+        userHnId: res.userHnId,
+        userUsername: res.userUsername,
+        userPassword: res.userPassword,
+        userTitle: res.userTitle,
+        userFirstname: res.userFirstname,
+        userLastname: res.userLastname,
+        userGender: res.userGender,
+        userBirthday: res.userBirthday,
+        userBlood: res.userBlood,
+        userPhone: res.userPhone,
+        userEmail: res.userEmail,
+        userDisease: res.userDisease,
+        userAddrass: res.userAddrass,
+        userAllergy: res.userAllergy,
+        roleId: res.roleId,
       });
     },
       (error) => {
