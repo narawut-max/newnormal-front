@@ -46,7 +46,7 @@ export class DoctorReporttreatComponent implements OnInit {
   }
 
   fetchData() {
-    this.doctorService.getAllTreatment().subscribe(
+    this.doctorService.getAllUsers().subscribe(
       (res) => {
         console.log(res)
         this.listDatatreat = res;
@@ -59,6 +59,6 @@ export class DoctorReporttreatComponent implements OnInit {
 
   gotoAdminEdit(item: any) {
     debugger
-    this.router.navigate(['doctor/report-treat/report-datauser' , item.tmId]);
+    this.router.navigate(['doctor/report-treat/report-datauser' , item.userId]);
   }
 }

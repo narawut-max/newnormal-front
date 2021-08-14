@@ -10,6 +10,8 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorReportDatauserComponent implements OnInit {
 
+  Datatreats !: any;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -34,15 +36,52 @@ export class DoctorReportDatauserComponent implements OnInit {
   tmId: any
   userId: any
   bkId: any
+  // ReportUserForm = this.fb.group({
+  //   tmId: ['', Validators.required],
+  //   tmDate: ['', Validators.required],
+  //   tmTime: ['', Validators.required],
+  //   tmMoney: ['', Validators.required],
+  //   tmSlip: ['', Validators.required],
+  //   tmStatus: ['', Validators.required],
+  //   billId: [0],
+  //   bkId: [0],
+  //   userId: [0],
+  //   userUsername: ['', Validators.required],
+  //   userPassword: ['', Validators.required],
+  //   userCardId: ['', Validators.required],
+  //   userHnId: [''],
+  //   userTitle: ['', Validators.required],
+  //   userFirstname: ['', Validators.required],
+  //   userLastname: ['', Validators.required],
+  //   userGender: ['', Validators.required],
+  //   userBirthday: ['', Validators.required],
+  //   userBlood: [''],
+  //   userPhone: [''],
+  //   userEmail: ['', Validators.required],
+  //   userDisease: [''],
+  //   userAddrass: [''],
+  //   userAllergy: [''],
+  //   userStatus: [this.statusActive],
+  //   roleId: ['2'],
+  //   bkQueue: ['', Validators.required],
+  //   bkDate: ['', Validators.required],
+  //   bkTime: ['', Validators.required],
+  //   bkSymptom: ['', Validators.required],
+  //   bkProcess: [''],
+  //   zipCode: ['', Validators.required],
+  //   subdistrict: [],
+  //   district: [],
+  //   province: [],
+  //   billDate: [''],
+  //   billTime: [''],
+  //   billNext: [''],
+  //   drugId: [''],
+  //   user: {},
+  //   booking: { },
+  //   billdrug: {}
+  // });
+  
   ReportUserForm = this.fb.group({
-    tmId: ['', Validators.required],
-    tmDate: ['', Validators.required],
-    tmTime: ['', Validators.required],
-    tmMoney: ['', Validators.required],
-    tmSlip: ['', Validators.required],
-    tmStatus: ['', Validators.required],
-    billId: [0],
-    bkId: [0],
     userId: [0],
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
@@ -61,29 +100,19 @@ export class DoctorReportDatauserComponent implements OnInit {
     userAllergy: [''],
     userStatus: [this.statusActive],
     roleId: ['2'],
-    bkQueue: ['', Validators.required],
-    bkDate: ['', Validators.required],
-    bkTime: ['', Validators.required],
-    bkSymptom: ['', Validators.required],
-    bkProcess: [''],
     zipCode: ['', Validators.required],
     subdistrict: [],
     district: [],
     province: [],
-    billDate: [''],
-    billTime: [''],
-    billNext: [''],
-    drugId: [''],
-    user: {},
-    booking: { },
-    billdrug: {}
   });
-  
+
   ngOnInit() {
     //load dropdown all
     this.initDropdown();
-    this.tmId = this.activatedroute.snapshot.paramMap.get("tmId");
-    this.initUserDataforEditById(this.tmId);
+    this.userId = this.activatedroute.snapshot.paramMap.get("userId");
+    this.initUserDataById(this.userId);
+    // this.initUserDataById(this.tmId);
+    this.fetchData();
   }
 
   initDropdown() {
@@ -92,47 +121,95 @@ export class DoctorReportDatauserComponent implements OnInit {
     this.doctorService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
-  initUserDataforEditById(tmId: any) {
-    this.doctorService.getTreatmentByTmId(tmId).subscribe((res) => {
+  fetchData() {
+    this.doctorService.getAllTreatment().subscribe(
+      (res) => {
+        console.log(res)
+        this.Datatreats = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  // initUserDataById(tmId: any) {
+  //   this.doctorService.getTreatmentByTmId(tmId).subscribe((res) => {
+  //     console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
+  //     this.ReportUserForm.patchValue({
+  //       tmId: res.tmId,
+  //       tmDate: res.tmDate,
+  //       tmTime: res.tmTime,
+  //       tmMoney: res.tmMoney,
+  //       tmSlip: res.tmSlip,
+  //       tmStatus: res.tmStatus,
+  //       bkId: res.bkId,
+  //       userId: res.userId,
+  //       userCardId: res.user.userCardId,
+  //       userHnId: res.user.userHnId,
+  //       userUsername: res.user.userUsername,
+  //       userPassword: res.user.userPassword,
+  //       userTitle: res.user.userTitle,
+  //       userFirstname: res.user.userFirstname,
+  //       userLastname: res.user.userLastname,
+  //       userGender: res.user.userGender,
+  //       userBirthday: res.user.userBirthday,
+  //       userBlood: res.user.userBlood,
+  //       userPhone: res.user.userPhone,
+  //       userEmail: res.user.userEmail,
+  //       userDisease: res.user.userDisease,
+  //       userAddrass: res.user.userAddrass,
+  //       userAllergy: res.user.userAllergy,
+  //       userStatus: res.user.userStatus,
+  //       roleId: res.user.roleId,
+  //       bkQueue: res.booking.bkQueue,
+  //       bkDate: res.booking.bkDate,
+  //       bkTime: res.booking.bkTime,
+  //       bkSymptom: res.booking.bkSymptom,
+  //       bkProcess: res.booking.bkProcess,
+  //       zipCode: res.user.zipCode,
+  //       subdistrict: res.subdistrict,
+  //       district: res.district,
+  //       province: res.province,
+  //     });
+  //     //set default select dropdown
+  //     this.loadUserZipCode(res.user.zipCode);
+  //   },
+  //     (error) => {
+  //       console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
+  //     }
+  //   );
+  // }
+
+  initUserDataById(userId: any) {
+    this.doctorService.getUserByUserId(userId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.ReportUserForm.patchValue({
-        tmId: res.tmId,
-        tmDate: res.tmDate,
-        tmTime: res.tmTime,
-        tmMoney: res.tmMoney,
-        tmSlip: res.tmSlip,
-        tmStatus: res.tmStatus,
-        bkId: res.bkId,
         userId: res.userId,
-        userCardId: res.user.userCardId,
-        userHnId: res.user.userHnId,
-        userUsername: res.user.userUsername,
-        userPassword: res.user.userPassword,
-        userTitle: res.user.userTitle,
-        userFirstname: res.user.userFirstname,
-        userLastname: res.user.userLastname,
-        userGender: res.user.userGender,
-        userBirthday: res.user.userBirthday,
-        userBlood: res.user.userBlood,
-        userPhone: res.user.userPhone,
-        userEmail: res.user.userEmail,
-        userDisease: res.user.userDisease,
-        userAddrass: res.user.userAddrass,
-        userAllergy: res.user.userAllergy,
-        userStatus: res.user.userStatus,
-        roleId: res.user.roleId,
-        bkQueue: res.booking.bkQueue,
-        bkDate: res.booking.bkDate,
-        bkTime: res.booking.bkTime,
-        bkSymptom: res.booking.bkSymptom,
-        bkProcess: res.booking.bkProcess,
-        zipCode: res.user.zipCode,
+        userCardId: res.userCardId,
+        userHnId: res.userHnId,
+        userUsername: res.userUsername,
+        userPassword: res.userPassword,
+        userTitle: res.userTitle,
+        userFirstname: res.userFirstname,
+        userLastname: res.userLastname,
+        userGender: res.userGender,
+        userBirthday: res.userBirthday,
+        userBlood: res.userBlood,
+        userPhone: res.userPhone,
+        userEmail: res.userEmail,
+        userDisease: res.userDisease,
+        userAddrass: res.userAddrass,
+        userAllergy: res.userAllergy,
+        userStatus: res.userStatus,
+        roleId: res.roleId,
+        zipCode: res.zipCode,
         subdistrict: res.subdistrict,
         district: res.district,
         province: res.province,
       });
       //set default select dropdown
-      this.loadUserZipCode(res.user.zipCode);
+      this.loadUserZipCode(res.zipCode);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);

@@ -132,10 +132,11 @@
         <div class="modal-content text-dark"
             style="background-image: url(https://images.pexels.com/photos/3611882/pexels-photo-3611882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
             <div class="modal-body">
-                <div class="card p-3" style="border-radius: 10px;">
-                    <h5 class="text-center pb-2">แก้ไขข้อมูล</h5>
-                    <form [formGroup]="DataAdminForm" (ngSubmit)="onSubmit()" class="row g-4">
-                        <div class="row g-4">
+                <div class="card p-3 shadow-sm" style="border-radius: 10px;">
+                    <h5 class="text-center m-0">แก้ไขข้อมูล</h5>
+                    <hr class="shadow-sm">
+                    <form [formGroup]="DataAdminForm" (ngSubmit)="onSubmit()">
+                        <div class="row g-3">
                             <div class="col-md-4">
                                 <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
                                 <input type="text" class="form-control" id="validationCustom01" value=""
@@ -182,12 +183,12 @@
                                 <input type="text" class="form-control" id="validationCustom02" value=""
                                     formControlName="userPhone">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="validationCustom02" class="form-label">อีเมล</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
                                     formControlName="userEmail">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="validationCustom02" class="form-label">วุฒิการศึกษา</label>
                                 <select id="inputState" class="form-select" formControlName="userGraduate">
                                     <option value="" disabled>เลือกวุฒิการศึกษา</option>
@@ -195,7 +196,7 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label for="validationCustom02" class="form-label">ตำแหน่ง</label>
                                 <select id="inputState" class="form-select" formControlName="userPosition">
                                     <option value="" disabled>เลือกตำแหน่ง</option>
@@ -203,7 +204,7 @@
                                         doctorPosition }}</option>
                                 </select>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-6">
                                 <label for="validationCustom02" class="form-label">ที่อยู่</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
                                     formControlName="userAddrass">

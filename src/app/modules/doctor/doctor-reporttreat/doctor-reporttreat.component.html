@@ -83,10 +83,10 @@
             <tbody>
                 <tr class="text-center" *ngFor="let item of listDatatreat; let i = index">
                     <th>{{i+1}}</th>
-                    <td>{{item.tmId}}</td>
-                    <td>{{item.user.userCardId}}</td>
-                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                    <td>{{item.user.userDisease}}</td>
+                    <td>{{item.userId}}</td>
+                    <td>{{item.userCardId}}</td>
+                    <td>{{item.userFirstname}} {{item.userLastname}}</td>
+                    <td>{{item.userDisease}}</td>
                     <td>
                         <button type="button" class="btn btn-sm btn-primary"
                              (click)="gotoAdminEdit(item)">

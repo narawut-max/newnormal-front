@@ -18,10 +18,11 @@ const routes: Routes = [
   {path: 'treat/add-treat', component: DoctorAddtreatComponent},
   {path: 'treat/add-treat/:tmId', component: DoctorAddtreatComponent},
   {path: 'treat/add-drug', component: DoctorAdddrugComponent},
+  {path: 'treat/add-drug/:tmId', component: DoctorAdddrugComponent},
   {path: 'managedrug', component: DoctorManagedrugComponent},
   {path: 'report-treat', component: DoctorReporttreatComponent},
-  {path: 'report-treat/report-datauser/:tmId', component: DoctorReportDatauserComponent},
-  {path: 'treat/add-drug/printdatadrug', component: DoctorPrintdatadrugComponent}
+  {path: 'report-treat/report-datauser/:userId', component: DoctorReportDatauserComponent},
+  {path: 'treat/printdatadrug', component: DoctorPrintdatadrugComponent}
 ];
 
 @NgModule({

@@ -43,6 +43,7 @@ export class DoctorAddtreatComponent implements OnInit {
     tmMoney: [''],
     tmSlip: [''],
     tmStatus: [''],
+    tmProcess: [''],
     billId: [0],
     bkId: [0],
     userId: [0],
@@ -67,7 +68,6 @@ export class DoctorAddtreatComponent implements OnInit {
     bkDate: ['', Validators.required],
     bkTime: ['', Validators.required],
     bkSymptom: ['', Validators.required],
-    bkProcess: [''],
     zipCode: ['', Validators.required],
     subdistrict: [],
     district: [],
@@ -104,6 +104,7 @@ export class DoctorAddtreatComponent implements OnInit {
         tmMoney: res.tmMoney,
         tmSlip: res.tmSlip,
         tmStatus: res.tmStatus,
+        tmProcess: res.tmProcess,
         bkId: res.bkId,
         userId: res.userId,
         userCardId: res.user.userCardId,
@@ -127,7 +128,6 @@ export class DoctorAddtreatComponent implements OnInit {
         bkDate: res.booking.bkDate,
         bkTime: res.booking.bkTime,
         bkSymptom: res.booking.bkSymptom,
-        bkProcess: res.booking.bkProcess,
         zipCode: res.user.zipCode,
         subdistrict: res.subdistrict,
         district: res.district,
@@ -206,7 +206,10 @@ export class DoctorAddtreatComponent implements OnInit {
         text: '',
       })
     } else {
-      this.addtreatService.createBilldrug(this.DataUserForm.value).subscribe(res => {
+      // this.addtreatService.createBilldrug(this.DataUserForm.value).subscribe(res => {
+      //   console.log('create Billdrug res : ', res)
+      // });
+      this.addtreatService.updateTreatment(this.DataUserForm.value).subscribe(res => {
         console.log('create Billdrug res : ', res)
       });
       this.addtreatService.updateUser(this.DataUserForm.value).subscribe(res => {
@@ -222,7 +225,7 @@ export class DoctorAddtreatComponent implements OnInit {
         confirmButtonText: 'เพิ่มข้อมูลการสั่งยา',
       }).then((result) => {
         if (result.isConfirmed) {
-          this.router.navigate(['doctor/treat/add-drug']);
+          this.router.navigate(['doctor/treat/add-drug', + this.tmId]);
         }
       })
     }
