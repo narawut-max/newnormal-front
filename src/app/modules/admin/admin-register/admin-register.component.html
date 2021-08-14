@@ -20,6 +20,8 @@
                 type="button" role="tab" aria-controls="nav-home" aria-selected="true">ผู้ป่วย</button>
             <button class="nav-link border-0" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-doctor"
                 type="button" role="tab" aria-controls="nav-profile" aria-selected="false">แพทย์</button>
+            <button class="nav-link border-0" id="nav-admin-tab" data-bs-toggle="tab" data-bs-target="#nav-admin"
+                type="button" role="tab" aria-controls="nav-admin" aria-selected="false">ผู้ดูแลระบบ</button>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">
@@ -412,6 +414,192 @@
                                 </button>
                             </div>
                         </div> -->
+                        <div class="col-md-6" style="margin: 0px;"></div>
+
+                        <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-2 pb-1">
+                            <h5 class="text-dark">สร้างบัญชีผู้ใช้และรหัสผ่าน</h5>
+                        </div>
+                        <div class="card border-0 text-dark p-3 m-0"
+                            style="background-color: rgb(220, 247, 245);border-radius: 10px;">
+                            <div class="row">
+                                <div class="col-md-4 pb-2">
+                                    <label for="exampleFormControlInput1" class="form-label">บัญชีผู้ใช้</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder=""
+                                        formControlName="userUsername">
+                                </div>
+                                <div class="col-md-4 pb-2">
+                                    <label for="exampleFormControlInput1" class="form-label">รหัสผ่าน</label>
+                                    <input type="password" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="" formControlName="userPassword">
+                                </div>
+                                <div class="col-md-4 pb-2">
+                                    <label for="exampleFormControlInput1" class="form-label">ยืนยันรหัสผ่าน</label>
+                                    <input type="password" class="form-control"
+                                        (change)="changeDoctorConfirmPassword($event)" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" style="text-align: center;">
+                            <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>&nbsp;
+                            <button type="reset" class="btn btn-danger">ล้างข้อมูล</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- register-admin -->
+        <div class="tab-pane fade" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab">
+            <div class="card border-0">
+                <div class="card-body bg-white" style="padding-left: 30px; padding-right: 30px;">
+
+                    <form [formGroup]="AdminRegisterForm" (ngSubmit)="onSubmitAdmin()" class="row g-4 top-1"
+                        autocomplete="off">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="input-group">
+                                <div class="input-group-text">ประเภทผู้ใช้งาน</div>
+                                <select id="inputState" class="form-select" disabled>
+                                    <option value="1" selected>ผู้ดูแลระบบ</option>
+                                    <option value="2">ผู้ป่วย</option>
+                                    <option value="3">แพทย์/เจ้าหน้าที่</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group">
+                                <div class="input-group-text">คำนำหน้า</div>
+                                <select id="inputState" class="form-select" formControlName="userTitle">
+                                    <option value="" disabled>เลือกคำนำหน้า</option>
+                                    <option *ngFor="let prf of prefixNames" [ngValue]="prf">{{ prf }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">ชื่อ</div>
+                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="ชื่อ"
+                                    formControlName="userFirstname">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">สกุล</div>
+                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="สกุล"
+                                    formControlName="userLastname">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-text">รหัสบัตรประชาชน</div>
+                                <input type="text" class="form-control" id="autoSizingInputGroup"
+                                    placeholder="รหัสบัตรประชาชน" formControlName="userCardId">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-text">วันเดือนปีเกิด</div>
+                                <input type="date" class="form-control" id="autoSizingInputGroup"
+                                    placeholder="ว/ด/ป เกิด" formControlName="userBirthday">
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="input-group">
+                                <div class="input-group-text">เพศ</div>
+                                <select id="inputState" class="form-select" formControlName="userGender">
+                                    <option value="" disabled>เลือกเพศ</option>
+                                    <option *ngFor="let gender of genders" [ngValue]="gender">{{ gender }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <div class="input-group">
+                                <div class="input-group-text">กรุ๊ปเลือด</div>
+                                <select id="inputState" class="form-select" formControlName="userBlood">
+                                    <option value="" disabled>เลือก กรุ๊ปเลือด</option>
+                                    <option *ngFor="let blood of bloods" [ngValue]="blood">{{ blood }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">เบอร์โทรศัพท์</div>
+                                <input type="tel" class="form-control" id="autoSizingInputGroup"
+                                    placeholder="เบอร์โทรศัพท์" formControlName="userPhone">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-text">อีเมล</div>
+                                <input type="tel" class="form-control" id="autoSizingInputGroup" placeholder="อีเมล"
+                                    formControlName="userEmail">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <div class="input-group-text">ที่อยู่</div>
+                                <input type="tel" class="form-control" id="autoSizingInputGroup"
+                                    placeholder="รายละเอียดที่อยู่" formControlName="userAddrass">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">รหัสไปรษณีย์</div>
+                                <input type="tel" class="form-control" id="autoSizingInputGroup"
+                                    (change)="changeDoctorZipCode($event)" placeholder="กรอกรหัสไปรษณีย์"
+                                    formControlName="zipCode">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">จังหวัด</div>
+                                <select id="inputState" class="form-select" formControlName="province">
+                                    <option value="" disabled>--จังหวัด--</option>
+                                    <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">อำเภอ</div>
+                                <select id="inputState" class="form-select" formControlName="district">
+                                    <option value="" disabled>--อำเภอ--</option>
+                                    <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group">
+                                <div class="input-group-text">ตำบล</div>
+                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                    <option value="" disabled>--ตำบล--</option>
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                        subD.sdtNameTh }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-text">วุฒิการศึกษา</div>
+                                <select id="inputState" class="form-select" formControlName="userGraduate">
+                                    <option value="" disabled>เลือกวุฒิการศึกษา</option>
+                                    <option *ngFor="let graduate of graduates" [ngValue]="graduate">{{ graduate }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <div class="input-group-text">ตำแหน่ง</div>
+                                <select id="inputState" class="form-select" formControlName="userPosition">
+                                    <option value="" disabled>เลือกตำแหน่ง</option>
+                                    <option *ngFor="let doctorPosition of doctorPositions" [ngValue]="doctorPosition">{{
+                                        doctorPosition }}</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-6" style="margin: 0px;"></div>
 
                         <div class="d-flex justify-content-start flex-wrap flex-md-nowrap align-items-center pt-2 pb-1">

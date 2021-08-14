@@ -15,7 +15,7 @@ export class AdminRegisterComponent implements OnInit {
   bloods: any = ['A', 'B', 'AB', 'O']
   graduates: any = ['บัณฑิต(ปริญญาตรี', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
-  doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา']
+  doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา', 'นักวิชาการคอมพิวเตอร์ปฏิบัติการ']
   genders: any = ['ชาย', 'หญิง']
   //roles: any = [{roleId: '2', roleName: 'ผู้ป่วย'}, {roleId: '3', roleName: 'แพทย์/เจ้าหน้าที่'}]
   statusActive: any = 'A';
@@ -80,6 +80,32 @@ export class AdminRegisterComponent implements OnInit {
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['3'],
+    subdistrict: [{value: '', disabled: true},],
+    district: [{value: '', disabled: true},],
+    province: [{value: '', disabled: true},]
+  });
+
+  AdminRegisterForm = this.fb.group({
+    userId: [0],
+    userUsername: ['', Validators.required],
+    userPassword: ['', Validators.required],
+    userCardId: ['', Validators.required],
+    userHnId: [''],
+    userTitle: ['', Validators.required],
+    userFirstname: ['', Validators.required],
+    userLastname: ['', Validators.required],
+    userGender: ['', Validators.required],
+    userBirthday: ['', Validators.required],
+    userBlood: ['', Validators.required],
+    userGraduate: [''],
+    userProfessionId: [''],
+    userPosition: [''],
+    userPhone: [''],
+    userEmail: ['', Validators.required],
+    userStatus: [this.statusActive],
+    userAddrass: ['', Validators.required],
+    zipCode: ['', Validators.required],
+    roleId: ['1'],
     subdistrict: [{value: '', disabled: true},],
     district: [{value: '', disabled: true},],
     province: [{value: '', disabled: true},]
@@ -161,6 +187,50 @@ export class AdminRegisterComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.adminRegisterService.createUser(this.doctorRegisterForm.value).subscribe(res => {
+            console.log('Create Doctor res : ', res)
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: '',
+            confirmButtonText: 'ปิดหน้าต่าง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // window.location.reload();
+              this.router.navigate(['admin/manage']);
+            } else if (result.isDismissed) {
+              window.location.reload()
+
+            }
+          })
+        }
+      })
+    }
+  }
+
+  onSubmitAdmin() {
+    this.submitted = true;
+    console.log('data :',this.AdminRegisterForm.value)
+    if (this.AdminRegisterForm.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+        text: 'Something went wrong!',
+      })
+      return;
+    } else {
+      Swal.fire({
+        title: 'ยืนยันการทำรายการ',
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adminRegisterService.createUser(this.AdminRegisterForm.value).subscribe(res => {
             console.log('Create Doctor res : ', res)
           });
           Swal.fire({

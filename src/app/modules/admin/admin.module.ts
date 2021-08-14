@@ -9,11 +9,13 @@ import { AdminEdituserComponent } from './admin-edituser/admin-edituser.componen
 import { AdminEditdoctorComponent } from './admin-editdoctor/admin-editdoctor.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AdminManagemoneyComponent } from './admin-managemoney/admin-managemoney.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminEditadminComponent } from './admin-editadmin/admin-editadmin.component';
 
 
 
 @NgModule({
-  declarations: [AdminPageComponent, AdminRegisterComponent, AdminManageComponent, AdminManagemoneyComponent, AdminEdituserComponent, AdminEditdoctorComponent],
+  declarations: [AdminPageComponent, AdminRegisterComponent, AdminManageComponent, AdminManagemoneyComponent, AdminEdituserComponent, AdminEditdoctorComponent, AdminProfileComponent, AdminEditadminComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

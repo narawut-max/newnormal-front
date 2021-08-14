@@ -90,7 +90,7 @@ export class UserProfileComponent implements OnInit {
         userPhone: res.userPhone,
         userEmail: res.userEmail,
         userDisease: res.userDisease,
-        userDepartment: res.userDisease,
+        userDepartment: res.userDepartment,
         userAddrass: res.userAddrass,
         userAllergy: res.userAllergy,
         userStatus: res.userStatus,

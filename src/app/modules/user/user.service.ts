@@ -122,6 +122,15 @@ export class UserService {
         catchError(this.handleError)
       )
   }
+
+    //update
+    updateTreatments(updateuser: any): Observable<any> {
+      return this.http.post<any>(this.apiURL + '/treatments/update/', JSON.stringify(updateuser), this.httpOptions)
+        .pipe(
+          retry(1),
+          catchError(this.handleError)
+        )
+    }
   
   // Error handling 
   handleError(error: any) {

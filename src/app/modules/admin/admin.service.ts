@@ -13,29 +13,46 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
+  //User
   getAllUsers(): Observable<any> {
     return this.http.get(endpoint + '/users', httpOptions);
   }
-
   getUserByUserId(userId: any): Observable<any> {
     return this.http.get(endpoint + '/users/'.concat(userId), httpOptions);
   }
-
   deleteUserByUserId(userId: any): Observable<any> {
-    return this.http.delete(endpoint + '/users/'.concat(userId), 
-    {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      responseType: 'text'
-    }
+    return this.http.delete(endpoint + '/users/'.concat(userId),
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text'
+      }
     );
   }
 
+  //Treatment
   getAllTreatment(): Observable<any> {
     return this.http.get(endpoint + '/treatments', httpOptions);
   }
-
   getTreatmentByTmId(tmId: any): Observable<any> {
     return this.http.get(endpoint + '/treatments/'.concat(tmId), httpOptions);
   }
 
+  //Address\
+  getSubdistrictAll(): Observable<any> {
+    return this.http.get<any>(endpoint + '/subdistricts', httpOptions)
+  }
+  getDistrictsAll(): Observable<any> {
+    return this.http.get<any>(endpoint + '/districts', httpOptions)
+  }
+  getProvincesAll(): Observable<any> {
+    return this.http.get<any>(endpoint + '/provinces', httpOptions)
+  }
+  getSubdistrictByZipCode(zipCode: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
+  }
+  // HttpClient API put() method => Update employee
+  updateDataAdmin(updateadmin: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/users/update/', JSON.stringify(updateadmin),httpOptions)
+  }
+  
 }//end

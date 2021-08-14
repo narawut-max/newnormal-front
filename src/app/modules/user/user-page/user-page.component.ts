@@ -24,6 +24,7 @@ export class UserPageComponent implements OnInit {
     tmId: [''],
     userId: [''],
     bkId: [''],
+    userHnId: [''],
     userFirstname: [''],
     userLastname: [''],
     userPhone: [''],
@@ -34,22 +35,8 @@ export class UserPageComponent implements OnInit {
     bkDate: [''],
     bkTime: [''],
     bkSymptom: [''],
-    user: {
-      userId: [''],
-      userFirstname: [''],
-      userLastname: [''],
-      userPhone: [''],
-      userEmail: [''],
-      userDisease: [''],
-      userDepartment: [''],
-    },
-    booking: {
-      bkId: [''],
-      bkQueue: [''],
-      bkDate: [''],
-      bkTime: [''],
-      bkSymptom: [''],
-    }
+    user: {},
+    booking: {}
   });
 
   ngOnInit(): void {

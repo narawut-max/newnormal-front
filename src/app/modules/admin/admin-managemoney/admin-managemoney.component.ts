@@ -38,10 +38,7 @@ export class AdminManagemoneyComponent implements OnInit {
     billId: [''],
     userFirstname: [''],
     userLastname: [''],
-    user: {
-      userFirstname: [''],
-      userLastname: ['']
-    }
+    user: {}
   });
   
   ngOnInit(): void {
