@@ -42,9 +42,9 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('user_id', res.userId),{}
       // sessionStorage.setItem('tm_id', res.tmId),
       
-      this.router.navigate(['home']).then(() => {
-        window.location.reload()
-      });
+      // this.router.navigate(['home']).then(() => {
+      //   window.location.reload()
+      // });
     },
     (error) => {
       Swal.fire(
@@ -65,12 +65,21 @@ export class LoginComponent implements OnInit {
     switch(roleId) {
       case '1':
         role = 'ADMIN';
+        this.router.navigate(['admin/home']).then(() => {
+          window.location.reload()
+        });
         break;
       case '2':
         role = 'USER'; 
+        this.router.navigate(['user/home']).then(() => {
+          window.location.reload()
+        });
         break;
       case '3':
         role = 'DOCTOR';
+        this.router.navigate(['doctor/home']).then(() => {
+          window.location.reload()
+        });
         break;
       default:
         Swal.fire(

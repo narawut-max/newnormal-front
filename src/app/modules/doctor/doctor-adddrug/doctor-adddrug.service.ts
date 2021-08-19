@@ -2,6 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+const endpoint = environment.apiEndPoint;
 
 @Injectable({
   providedIn: 'root'
@@ -10,150 +14,73 @@ export class DoctorAdddrugService {
 
   constructor(private http: HttpClient) { }
 
-  // Define API URL
-  apiURL = 'http://localhost:9080/newnormal-api';
-
-  // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-
   //User
   getAllUsers(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/users/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/users/')
   }
   getUserByUserId(userId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/users/6')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/users/' + userId)
   }
 
   //Treatment
   getAllTreatment(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/treatments/')
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/' + tmId)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/treatments/' + tmId)
   }
 
   //billdrugs
   getAllBilldrugs(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/billdrugs/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/billdrugs/')
   }
   getBilldrugByBillId(billId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/billdrugs/' + billId)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/billdrugs/' + billId)
   }
 
   //Booking
   getAllBookings(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/bookings/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/bookings/')
   }
   getBookingsByBkId(bkId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/bookings/' + bkId)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/bookings/' + bkId)
   }
 
   //Drug
   getAllDrugs(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/drugs/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/drugs/')
   }
   getDrugByDrugId(drugId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/drugs/' + drugId)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/drugs/' + drugId)
   }
 
   //Update
   updateTreatment(updateTreat: any): Observable<any> {
-    return this.http.post<any>(this.apiURL + '/treatments/update/', JSON.stringify(updateTreat), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.post<any>(endpoint + '/treatments/update/', JSON.stringify(updateTreat), httpOptions)
   }
-
   updateUser(updateTreat: any): Observable<any> {
-    return this.http.post<any>(this.apiURL + '/users/update/', JSON.stringify(updateTreat), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.post<any>(endpoint + '/users/update/', JSON.stringify(updateTreat), httpOptions)
   }
-
   updatebooking(updateTreat: any): Observable<any> {
-    return this.http.post<any>(this.apiURL + '/bookings/update/', JSON.stringify(updateTreat), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.post<any>(endpoint + '/bookings/update/', JSON.stringify(updateTreat), httpOptions)
   }
-
   updateBilldrug(updateTreat: any): Observable<any> {
-    return this.http.post<any>(this.apiURL + '/billdrugs/update/', JSON.stringify(updateTreat), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.post<any>(endpoint + '/billdrugs/update/', JSON.stringify(updateTreat), httpOptions)
   }
-
+  
   //Create
   createBilldrug(registerData: any): Observable<any> {
-    return this.http.post<any>(this.apiURL + '/billdrugs/save', JSON.stringify(registerData), this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-
-      )
+    return this.http.post<any>(endpoint + '/billdrugs/save', JSON.stringify(registerData), httpOptions)
   }
 
-  // Error handling 
-  handleError(error: any) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    //window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
+  //repory
+  generateBilldrugReport(billId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/report/generateBilldrugReport?billId=' + billId, {
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+      }),
+      observe: 'response' as 'body',
+      responseType: 'blob' as 'json'
+ });
+  } 
 }//end

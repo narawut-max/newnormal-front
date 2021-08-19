@@ -7,7 +7,7 @@ import { DoctorAdddrugService } from './doctor-adddrug.service';
 @Component({
   selector: 'app-doctor-adddrug',
   templateUrl: './doctor-adddrug.component.html',
-  styleUrls: ['./doctor-adddrug.component.css']
+  styleUrls: ['./doctor-adddrug.component.css'],
 })
 export class DoctorAdddrugComponent implements OnInit {
 
@@ -177,6 +177,16 @@ export class DoctorAdddrugComponent implements OnInit {
         }
       })
     }
+  }
+
+  generateReport(billId: any){
+    this.doctorAdddrugService.generateBilldrugReport(billId).subscribe(data => {
+      console.log('report===>', data)
+      if (data.body) {
+        let pdf = window.URL.createObjectURL(new Blob([data.body], {type: 'application/pdf'}))
+        window.open(pdf);
+      }
+    })
   }
 
 }//end

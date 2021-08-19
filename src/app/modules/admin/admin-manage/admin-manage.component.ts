@@ -18,7 +18,7 @@ export class AdminManageComponent implements OnInit {
   listUser: any;
   page = 1;
   count = 0;
-  tableSize = 10;
+  tableSize = 5;
   tableSizes = [3, 6, 9, 12];
 
   listDatas = [{}];
@@ -79,5 +79,4 @@ export class AdminManageComponent implements OnInit {
     })
 
   }
-
 }

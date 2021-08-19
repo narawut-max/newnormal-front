@@ -50,9 +50,10 @@ export class AdminService {
   getSubdistrictByZipCode(zipCode: any): Observable<any> {
     return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
   }
-  // HttpClient API put() method => Update employee
+
+  // Update
   updateDataAdmin(updateadmin: any): Observable<any> {
-    return this.http.post<any>(endpoint + '/users/update/', JSON.stringify(updateadmin),httpOptions)
+    return this.http.post<any>(endpoint + '/users/update/', JSON.stringify(updateadmin), httpOptions)
   }
   
 }//end

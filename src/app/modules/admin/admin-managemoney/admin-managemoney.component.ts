@@ -38,6 +38,7 @@ export class AdminManagemoneyComponent implements OnInit {
     billId: [''],
     userFirstname: [''],
     userLastname: [''],
+    userHnId: [''],
     user: {}
   });
   
@@ -76,6 +77,7 @@ export class AdminManagemoneyComponent implements OnInit {
     this.listData.controls['tmSlip'].setValue(item.tmSlip);
     this.listData.controls['tmStatus'].setValue(item.tmStatus);
     this.listData.controls['userId'].setValue(item.userId);
+    this.listData.controls['userHnId'].setValue(item.user.userHnId);
     this.listData.controls['userFirstname'].setValue(item.user.userFirstname);
     this.listData.controls['userLastname'].setValue(item.user.userLastname);
     this.listData.controls['bkId'].setValue(item.bkId);

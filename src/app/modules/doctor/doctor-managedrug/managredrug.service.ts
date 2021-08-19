@@ -2,6 +2,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+const endpoint = environment.apiEndPoint;
 
 @Injectable({
   providedIn: 'root'
@@ -10,59 +14,20 @@ export class ManagredrugService {
 
   constructor(private http: HttpClient) { }
 
-  // Define API URL
-  apiURL = 'http://localhost:9080/newnormal-api';
-
-  // Http Options
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  }
-
   //Treatment
   getAllTreatment(): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/')
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/treatments/')
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
-    return this.http.get<any>(this.apiURL + '/treatments/' + tmId)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      )
+    return this.http.get<any>(endpoint + '/treatments/' + tmId)
   }
 
     //billdrugs
     getAllBilldrugs(): Observable<any> {
-      return this.http.get<any>(this.apiURL + '/billdrugs/')
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
+      return this.http.get<any>(endpoint + '/billdrugs/')
     }
     getBilldrugByBillId(billId: any): Observable<any> {
-      return this.http.get<any>(this.apiURL + '/billdrugs/' + billId)
-        .pipe(
-          retry(1),
-          catchError(this.handleError)
-        )
+      return this.http.get<any>(endpoint + '/billdrugs/' + billId)
     }
 
-  // Error handling 
-  handleError(error: any) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Get client-side error
-      errorMessage = error.error.message;
-    } else {
-      // Get server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    //window.alert(errorMessage);
-    return throwError(errorMessage);
-  }
 }//end
