@@ -112,7 +112,7 @@ export class DoctorReportDatauserComponent implements OnInit {
     this.userId = this.activatedroute.snapshot.paramMap.get("userId");
     this.initUserDataById(this.userId);
     // this.initUserDataById(this.tmId);
-    this.fetchData();
+    this.fetchData(this.userId);
   }
 
   initDropdown() {
@@ -121,8 +121,8 @@ export class DoctorReportDatauserComponent implements OnInit {
     this.doctorService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
-  fetchData() {
-    this.doctorService.getAllTreatment().subscribe(
+  fetchData(userId: any) {
+    this.doctorService.gettreatmentsByUserId(userId).subscribe(
       (res) => {
         console.log(res)
         this.Datatreats = res;

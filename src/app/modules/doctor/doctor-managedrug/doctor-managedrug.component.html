@@ -30,33 +30,33 @@
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="billId" [(ngModel)]="billId">
                         </div>
                         <div class="col-auto">
-                            <label for="inputnumber" class="col-form-label">รหัสผู้ป่วย : </label>
+                            <label for="inputnumber" class="col-form-label">&nbsp;รหัสผู้ป่วย : </label>
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userHnId" [(ngModel)]="userHnId">
                         </div>
                         <div class="col-auto">
                             <label for="inputnumber" class="col-form-label">&nbsp;ชื่อ : </label>
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userFirstname" [(ngModel)]="userFirstname">
                         </div>
                         <div class="col-auto">
                             <label for="inputnumber" class="col-form-label">&nbsp;สกุล : </label>
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userLastname" [(ngModel)]="userLastname">
                         </div>
                         &nbsp;&nbsp;&nbsp;
                         <div class="col-md-auto text-end">
                             <div class="input-group-sm">
-                                <button type="submit" class="btn btn-outline-primary col-md-12"><svg
+                                <button type="submit" class="btn btn-outline-primary col-md-12"  (click)="getSearchTreatByCriteria()"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                                         class="bi bi-search" viewBox="0 0 16 16">
                                         <path
@@ -88,7 +88,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of listDataBill; let i = index">
+                <tr *ngFor="let item of listDataBill">
                     <td scope="row">{{item.billId}}</td>
                     <td>{{item.tmDate}}</td>
                     <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
@@ -131,7 +131,7 @@
                             <dt>รายการสั่งยา</dt>
                         </h4>
                         <div>
-                            <form action="">
+                            <!-- <form action="">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -195,7 +195,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form> -->
                             <h6 class="fw-bold">
                                 <dt>รายการยาที่สั่งจ่าย</dt>
                             </h6>

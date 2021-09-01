@@ -1,254 +1,254 @@
-<!-- Breadcrumb -->
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
-        <li class="breadcrumb-item active" aria-current="page">ประวัติแพทย์</li>
-    </ol>
-</nav>
-
-<div class="container text-dark">
-    <div
-        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
-        <h3>ประวัติผู้ดูแลระบบ</h3>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <!-- <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
-                    data-bs-target="#editprofile">แก้ไขข้อมูล</button>
-            </div> -->
-        </div>
-    </div>
-
-    <div class="row justify-content-center">
-
-        <!-- profile -->
-        <div class="col-md-12">
-            <div class="card shadow-sm" style="border-radius: 10px;">
-                <div class="card-header">
-                    <div class="row justify-content-between">
-                        <div class="col-md-4 col-sm-6 align-self-center">
-                            <h6 style="margin: 0px;">ประวัติผู้ดูแลระบบ</h6>
-                        </div>
-                        <div class="col-md-4 col-sm-6 text-end">
-                            <i class="bi bi-pencil-square" style="font-size: 19px; color: rgb(238, 91, 6);"
-                                data-bs-toggle="modal" data-bs-target="#editprofile">
-                            </i>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form [formGroup]="DataAdminForm" class="row g-4">
-                        <div class="col-md-3">
-                            <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
-                            <input type="text" class="form-control" id="validationCustom01" value=""
-                                formControlName="userCardId" readonly>
-                        </div>
-                        <div class="col-md-1">
-                            <label for="validationCustom01" class="form-label">คำนำหน้า</label>
-                            <input type="text" class="form-control" id="validationCustom01" value=""
-                                formControlName="userTitle" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="validationCustom02" class="form-label">ชื่อ</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userFirstname" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="validationCustom02" class="form-label">สกุล</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userLastname" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">วันเดือนปีเกิด</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userBirthday" readonly>
-                        </div>
-                        <div class="col-md-1 col-sm-6">
-                            <label for="validationCustom02" class="form-label">เพศ</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userGender" readonly>
-                        </div>
-                        <div class="col-md-1 col-sm-6">
-                            <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userBlood" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">เบอร์โทร</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userPhone" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="validationCustom02" class="form-label">อีเมล</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userEmail" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">วุฒิการศึกษา</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userGraduate" readonly>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="validationCustom02" class="form-label">ตำแหน่ง</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userPosition" readonly>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="validationCustom02" class="form-label">ที่อยู่</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="userAddrass" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">รหัสไปรษณีย์</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="zipCode" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">จังหวัด</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="province" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">อำเภอ</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="district" readonly>
-                        </div>
-                        <div class="col-md-2">
-                            <label for="validationCustom02" class="form-label">ตำบล</label>
-                            <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="subdistrict" readonly>
-                        </div>
-                    </form>
-                </div>
+<div class="m-0 p-0" style="min-height: 591px;">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
+            <li class="breadcrumb-item active" aria-current="page">ประวัติแพทย์</li>
+        </ol>
+    </nav>
+    
+    <div class="container text-dark">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
+            <h3>ประวัติผู้ดูแลระบบ</h3>
+            <div class="btn-toolbar mb-2 mb-md-0">
+                <!-- <div class="btn-group me-2">
+                    <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#editprofile">แก้ไขข้อมูล</button>
+                </div> -->
             </div>
         </div>
-    </div>
-    <br>
-</div>
-
-<!-- Modal edit data -->
-<div class="modal fade" id="editprofile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="editprofileLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content text-dark"
-            style="background-image: url(https://images.pexels.com/photos/3611882/pexels-photo-3611882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
-            <div class="modal-body">
-                <div class="card p-3 shadow-sm" style="border-radius: 10px;">
-                    <h5 class="text-center m-0">แก้ไขข้อมูล</h5>
-                    <hr class="shadow-sm">
-                    <form [formGroup]="DataAdminForm" (ngSubmit)="onSubmit()">
-                        <div class="row g-3">
-                            <div class="col-md-4">
+    
+        <div class="row justify-content-center">
+    
+            <!-- profile -->
+            <div class="col-md-12">
+                <div class="card shadow-sm" style="border-radius: 10px;">
+                    <div class="card-header">
+                        <div class="row justify-content-between">
+                            <div class="col-md-4 col-sm-6 align-self-center">
+                                <h6 style="margin: 0px;">ประวัติผู้ดูแลระบบ</h6>
+                            </div>
+                            <div class="col-md-4 col-sm-6 text-end">
+                                <i class="bi bi-pencil-square" style="font-size: 19px; color: rgb(238, 91, 6);"
+                                    data-bs-toggle="modal" data-bs-target="#editprofile">
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="DataAdminForm" class="row g-4">
+                            <div class="col-md-3">
                                 <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
                                 <input type="text" class="form-control" id="validationCustom01" value=""
                                     formControlName="userCardId" readonly>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
                                 <label for="validationCustom01" class="form-label">คำนำหน้า</label>
-                                <select id="inputState" class="form-select" formControlName="userTitle">
-                                    <option value="" disabled>เลือกคำนำหน้า</option>
-                                    <option *ngFor="let prf of prefixNames" [ngValue]="prf">{{ prf }}</option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom01" value=""
+                                    formControlName="userTitle" readonly>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">ชื่อ</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userFirstname">
+                                    formControlName="userFirstname" readonly>
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">สกุล</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userLastname">
+                                    formControlName="userLastname" readonly>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">วันเดือนปีเกิด</label>
-                                <input type="date" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userBirthday">
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userBirthday" readonly>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1 col-sm-6">
                                 <label for="validationCustom02" class="form-label">เพศ</label>
-                                <select id="inputState" class="form-select" formControlName="userGender">
-                                    <option value="" disabled>เลือกเพศ</option>
-                                    <option *ngFor="let gender of genders" [ngValue]="gender">{{ gender }}</option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userGender" readonly>
+                            </div>
+                            <div class="col-md-1 col-sm-6">
+                                <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userBlood" readonly>
                             </div>
                             <div class="col-md-2">
-                                <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
-                                <select id="inputState" class="form-select" formControlName="userBlood">
-                                    <option value="" disabled>เลือก กรุ๊ปเลือด</option>
-                                    <option *ngFor="let blood of bloods" [ngValue]="blood">{{ blood }}</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">เบอร์โทร</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userPhone">
+                                    formControlName="userPhone" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">อีเมล</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userEmail">
+                                    formControlName="userEmail" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">วุฒิการศึกษา</label>
-                                <select id="inputState" class="form-select" formControlName="userGraduate">
-                                    <option value="" disabled>เลือกวุฒิการศึกษา</option>
-                                    <option *ngFor="let graduate of graduates" [ngValue]="graduate">{{ graduate }}
-                                    </option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userGraduate" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">ตำแหน่ง</label>
-                                <select id="inputState" class="form-select" formControlName="userPosition">
-                                    <option value="" disabled>เลือกตำแหน่ง</option>
-                                    <option *ngFor="let doctorPosition of doctorPositions" [ngValue]="doctorPosition">{{
-                                        doctorPosition }}</option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userPosition" readonly>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">ที่อยู่</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userAddrass">
+                                    formControlName="userAddrass" readonly>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">รหัสไปรษณีย์</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    (change)="changeUserZipCode($event)" formControlName="zipCode">
+                                    formControlName="zipCode" readonly>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">จังหวัด</label>
-                                <select id="inputState" class="form-select" formControlName="province">
-                                    <option value="" disabled>--จังหวัด--</option>
-                                    <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}
-                                    </option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="province" readonly>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">อำเภอ</label>
-                                <select id="inputState" class="form-select" formControlName="district">
-                                    <option value="" disabled>--อำเภอ--</option>
-                                    <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}
-                                    </option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="district" readonly>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">ตำบล</label>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">
-                                    <option value="" disabled>--ตำบล--</option>
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
-                                        subD.sdtNameTh }}</option>
-                                </select>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="subdistrict" readonly>
                             </div>
-                            <div class="col-md-12 text-center pt-3">
-                                <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>&nbsp;
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                                    (click)="refresh()">ยกเลิก</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+    
+    <!-- Modal edit data -->
+    <div class="modal fade" id="editprofile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="editprofileLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content text-dark"
+                style="background-image: url(https://images.pexels.com/photos/3611882/pexels-photo-3611882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);">
+                <div class="modal-body">
+                    <div class="card p-3 shadow-sm" style="border-radius: 10px;">
+                        <h5 class="text-center m-0">แก้ไขข้อมูล</h5>
+                        <hr class="shadow-sm">
+                        <form [formGroup]="DataAdminForm" (ngSubmit)="onSubmit()">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="validationCustom01" class="form-label">หมายเลขประจำตัวประชาชน</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""
+                                        formControlName="userCardId" readonly>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="validationCustom01" class="form-label">คำนำหน้า</label>
+                                    <select id="inputState" class="form-select" formControlName="userTitle">
+                                        <option value="" disabled>เลือกคำนำหน้า</option>
+                                        <option *ngFor="let prf of prefixNames" [ngValue]="prf">{{ prf }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">ชื่อ</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value=""
+                                        formControlName="userFirstname">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">สกุล</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value=""
+                                        formControlName="userLastname">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom02" class="form-label">วันเดือนปีเกิด</label>
+                                    <input type="date" class="form-control" id="validationCustom02" value=""
+                                        formControlName="userBirthday">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="validationCustom02" class="form-label">เพศ</label>
+                                    <select id="inputState" class="form-select" formControlName="userGender">
+                                        <option value="" disabled>เลือกเพศ</option>
+                                        <option *ngFor="let gender of genders" [ngValue]="gender">{{ gender }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
+                                    <select id="inputState" class="form-select" formControlName="userBlood">
+                                        <option value="" disabled>เลือก กรุ๊ปเลือด</option>
+                                        <option *ngFor="let blood of bloods" [ngValue]="blood">{{ blood }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="validationCustom02" class="form-label">เบอร์โทร</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value=""
+                                        formControlName="userPhone">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom02" class="form-label">อีเมล</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value=""
+                                        formControlName="userEmail">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom02" class="form-label">วุฒิการศึกษา</label>
+                                    <select id="inputState" class="form-select" formControlName="userGraduate">
+                                        <option value="" disabled>เลือกวุฒิการศึกษา</option>
+                                        <option *ngFor="let graduate of graduates" [ngValue]="graduate">{{ graduate }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom02" class="form-label">ตำแหน่ง</label>
+                                    <select id="inputState" class="form-select" formControlName="userPosition">
+                                        <option value="" disabled>เลือกตำแหน่ง</option>
+                                        <option *ngFor="let doctorPosition of doctorPositions" [ngValue]="doctorPosition">{{
+                                            doctorPosition }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="validationCustom02" class="form-label">ที่อยู่</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value=""
+                                        formControlName="userAddrass">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">รหัสไปรษณีย์</label>
+                                    <input type="text" class="form-control" id="validationCustom02" value=""
+                                        (change)="changeUserZipCode($event)" formControlName="zipCode">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">จังหวัด</label>
+                                    <select id="inputState" class="form-select" formControlName="province">
+                                        <option value="" disabled>--จังหวัด--</option>
+                                        <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">อำเภอ</label>
+                                    <select id="inputState" class="form-select" formControlName="district">
+                                        <option value="" disabled>--อำเภอ--</option>
+                                        <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom02" class="form-label">ตำบล</label>
+                                    <select id="inputState" class="form-select" formControlName="subdistrict">
+                                        <option value="" disabled>--ตำบล--</option>
+                                        <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                            subD.sdtNameTh }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 text-center pt-3">
+                                    <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>&nbsp;
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                        (click)="refresh()">ยกเลิก</button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="m-0 p-0" style="height: 131px;"></div>

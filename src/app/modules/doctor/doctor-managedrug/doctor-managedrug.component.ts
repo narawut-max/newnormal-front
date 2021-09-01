@@ -12,17 +12,21 @@ import { ManagredrugService } from './managredrug.service';
 })
 export class DoctorManagedrugComponent implements OnInit {
 
-  formValue !: FormGroup;
-  listDataBill !: any;
-  listDataDrug !: any;
+  listDataBill : any;
+  listDataDrug : any;
   statusActive: any = 'A';
   tmId: any
   item: any
 
+  billId: string | any
+  bkId: string | any
+  userHnId: string | any
+  userFirstname: string | any
+  userLastname: string | any
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private activatedroute: ActivatedRoute,
     private managredrugService: ManagredrugService
   ) { }
 
@@ -67,7 +71,6 @@ export class DoctorManagedrugComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.formValue = this.listDatausers;
     this.fetchData();
   }
 
@@ -129,6 +132,12 @@ export class DoctorManagedrugComponent implements OnInit {
         })
       }
     })
+  }
+
+  getSearchTreatByCriteria() {
+    debugger
+    let resp = this.managredrugService.searchTreatByCriteria(this.billId, this.bkId, this.userHnId, this.userFirstname, this.userLastname);
+    resp.subscribe((data)=> this.listDataBill = data);
   }
 
   get userf() { return this.listDatausers.controls; }

@@ -24,32 +24,32 @@
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userHnId" [(ngModel)]="userHnId">
                         </div>
                         <div class="col-md-auto">
                             <label for="inputnumber" class="col-form-label">&emsp;รหัสบัตรประชาชน : </label>
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userCardId" [(ngModel)]="userCardId">
                         </div>
                         <div class="col-md-auto">
                             <label for="inputnumber" class="col-form-label">&emsp;ชื่อ : </label>
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userFirstname" [(ngModel)]="userFirstname">
                         </div>
                         <div class="col-md-auto">
                             <label for="inputnumber" class="col-form-label">&emsp;สกุล : </label>
                         </div>
                         <div class="col-md-2">
                             <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
+                                aria-label=".form-control-sm example" name="userLastname" [(ngModel)]="userLastname">
                         </div>&nbsp;&nbsp;
                         <div class="col-md-auto">
                             <div class="input-group-sm">
-                                <button type="submit" class="btn btn-sm btn-outline-primary col-md-12"><svg
+                                <button type="submit" class="btn btn-sm btn-outline-primary col-md-12" (click)="SearchUserByCriteria()"><svg
                                         xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor"
                                         class="bi bi-search" viewBox="0 0 16 16">
                                         <path
@@ -83,7 +83,7 @@
             <tbody>
                 <tr class="text-center" *ngFor="let item of listDatatreat; let i = index">
                     <th>{{i+1}}</th>
-                    <td>{{item.userId}}</td>
+                    <td>{{item.userHnId}}</td>
                     <td>{{item.userCardId}}</td>
                     <td>{{item.userFirstname}} {{item.userLastname}}</td>
                     <td>{{item.userDisease}}</td>

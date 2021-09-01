@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,35 @@ export class DoctorService {
   getUserByUserId(userId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/users/' + userId)
   }
+  getUserByRoleId(roleId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/users/by-user?roleId=' + roleId)
+  }
+  getSearchUserByCriteria(userId: any, userHnId: any,userCardId: any, userFirstname: any, userLastname: any) {
+    let params = new HttpParams();
+    if (userId) {
+      params = params.append('userId', userId);
+    }
+
+    if (userHnId) {
+      params = params.append('userHnId', userHnId);
+    }
+
+    if (userCardId) {
+      params = params.append('userCardId', userCardId);
+    }
+
+    if (userFirstname) {
+      params = params.append('userFirstname', userFirstname);
+    }
+
+    if (userLastname) {
+      params = params.append('userLastname', userLastname);
+    }
+    console.log('searchTreatByCriteria param :: ' + params);
+
+    return this.http.get<any>(endpoint + '/users/search-by-criteria', {params: params})
+  }
+
 
   //Treatment
   getAllTreatment(): Observable<any> {
@@ -28,6 +57,34 @@ export class DoctorService {
   }
   getTreatmentByTmId(tmId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/treatments/' + tmId)
+  }
+  gettreatmentsByUserId(userId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/treatments/by-user?userId=' + userId)
+  }
+  searchTreatByCriteria(bkId: any, userHnId: any,userCardId: any, userFirstname: any, userLastname: any) {
+    let params = new HttpParams();
+    if (bkId) {
+      params = params.append('bkId', bkId);
+    }
+
+    if (userHnId) {
+      params = params.append('userHnId', userHnId);
+    }
+
+    if (userCardId) {
+      params = params.append('userCardId', userCardId);
+    }
+
+    if (userFirstname) {
+      params = params.append('userFirstname', userFirstname);
+    }
+
+    if (userLastname) {
+      params = params.append('userLastname', userLastname);
+    }
+    console.log('searchTreatByCriteria param :: ' + params);
+
+    return this.http.get<any>(endpoint + '/treatments/search-by-criteria', {params: params})
   }
 
   //Booking

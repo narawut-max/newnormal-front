@@ -16,9 +16,11 @@ export class AdminManageComponent implements OnInit {
   ) { }
 
   listUser: any;
+  searchText: any;
+  
   page = 1;
   count = 0;
-  tableSize = 5;
+  tableSize = 10;
   tableSizes = [3, 6, 9, 12];
 
   listDatas = [{}];
@@ -79,4 +81,13 @@ export class AdminManageComponent implements OnInit {
     })
 
   }
-}
+
+  // โค้ดจัดเรียง
+  key: string = 'roleDescription';
+  reverse: boolean = false;
+  sort(key: string) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
+
+}//end

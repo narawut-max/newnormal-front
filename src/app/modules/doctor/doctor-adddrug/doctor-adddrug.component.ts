@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { DoctorAdddrugService } from './doctor-adddrug.service';
-
+import { UUID } from 'angular2-uuid';
 @Component({
   selector: 'app-doctor-adddrug',
   templateUrl: './doctor-adddrug.component.html',
@@ -11,14 +11,24 @@ import { DoctorAdddrugService } from './doctor-adddrug.service';
 })
 export class DoctorAdddrugComponent implements OnInit {
 
-  formValue !: FormGroup;
-  listDatadrugs !: any;
+  page = 1;
+  count = 0;
+  tableSize = 5;
+  tableSizes = [3, 6, 9, 12];
+
+  cartDrugs = new Array();
+  cartDrugsForSaveDetails = new Array();
+  listDatadrugs: any = []; //SearchDrud
 
   statusActive: any = 'A';
   item: any
   tmId: any
   userId: any
   bkId: any
+
+  drugId: string | any;
+  drugTrademark: string | any;
+  drugName: string | any;
   submitted = false;
 
   constructor(
@@ -27,7 +37,6 @@ export class DoctorAdddrugComponent implements OnInit {
     private activatedroute: ActivatedRoute,
     private doctorAdddrugService: DoctorAdddrugService
   ) { }
-
   DataUserForm = this.fb.group({
     tmId: ['', Validators.required],
     tmDate: [''],
@@ -68,15 +77,20 @@ export class DoctorAdddrugComponent implements OnInit {
     billTime: [''],
     billNext: [''],
     drugId: [''],
+    drugName: [''],
     user: {},
     booking: {},
-    billdrug: {}
+    billdrug: {
+      billdrugDetails: {}
+    }
   });
 
   ngOnInit(): void {
-    this.fetchData();
+    // this.fetchData();
+    this.listDatadrugs = this.fetchData()
     this.tmId = this.activatedroute.snapshot.paramMap.get("tmId");
     this.initUserDataforEditById(this.tmId);
+
   }
 
   fetchData() {
@@ -160,9 +174,18 @@ export class DoctorAdddrugComponent implements OnInit {
         if (result.isConfirmed) {
           this.doctorAdddrugService.createBilldrug(this.DataUserForm.value).subscribe(res => {
             console.log('create Billdrug res : ', res)
-          });
-          this.doctorAdddrugService.updateTreatment(this.DataUserForm.value).subscribe(res => {
-            console.log('Update Treatment res : ', res)
+            if (res) {
+              // add service save bil detail here
+              this.cartDrugs.forEach(data => {
+                data['billId'] = res.billId
+                this.cartDrugsForSaveDetails.push(data);
+              });
+              console.log('cartDrugsForSaveDetails : ', this.cartDrugsForSaveDetails)
+              //for save detail
+              this.doctorAdddrugService.createBilldrugDetails(this.cartDrugsForSaveDetails).subscribe(response => {
+                console.log('create Billdrug Details res : ', response)
+              })
+            }
           });
           Swal.fire({
             icon: 'success',
@@ -179,14 +202,67 @@ export class DoctorAdddrugComponent implements OnInit {
     }
   }
 
-  generateReport(billId: any){
+  generateReport(billId: any) {
     this.doctorAdddrugService.generateBilldrugReport(billId).subscribe(data => {
       console.log('report===>', data)
       if (data.body) {
-        let pdf = window.URL.createObjectURL(new Blob([data.body], {type: 'application/pdf'}))
+        let pdf = window.URL.createObjectURL(new Blob([data.body], { type: 'application/pdf' }))
         window.open(pdf);
       }
     })
+  }
+
+  getSearchByDrugName() {
+    debugger
+    let resp = this.doctorAdddrugService.searchDrugByCriteria(this.drugId, this.drugName, this.drugTrademark);
+    resp.subscribe((data) => this.listDatadrugs = data);
+  }
+
+  // *******************************
+  getDrugDetail = []; //SelectDrug
+  // addDrug(bill: any) {
+  //   console.log(bill);
+  //   let cartDataNull = localStorage.getItem('localCart');
+
+  //   localStorage.setItem('localCart', JSON.stringify(bill));
+  // }
+
+  addDrug(drug: any) {
+    console.log(drug)
+    drug['key'] = UUID.UUID();
+    drug['drugCount'] = 1; //default count
+    this.cartDrugs.push(drug);
+    console.log('this array ->', this.cartDrugs)
+  }
+
+  addDrugCount(drug: any) {
+    let item = this.cartDrugs.findIndex(i => i.key == drug.key);
+    drug.drugCount = drug.drugCount + 1;
+    this.cartDrugs[item] = drug;
+    console.log('addDrugCount key ->', drug.key)
+    console.log('addDrugCount ->', this.cartDrugs)
+  }
+
+  removeDrugCount(drug: any) {
+    let item = this.cartDrugs.findIndex(i => i.key == drug.key);
+    if (drug.drugCount > 1) {
+      drug.drugCount = drug.drugCount - 1;
+    }
+    this.cartDrugs[item] = drug;
+    console.log('removeDrugCount key ->', drug.key)
+    console.log('removeDrugCount ->', this.cartDrugs)
+  }
+
+  // Delete Drug
+  removeDrug(index: number) {
+    // console.log(drug)
+    this.cartDrugs.splice(index, 1)
+    console.log('this array delete ->', this.cartDrugs)
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchData();
   }
 
 }//end

@@ -28,6 +28,9 @@ export class UserService {
   getTreatmentByTmId(tmId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/treatments/' + tmId)
   }
+  gettreatmentsByUserId(userId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/treatments/by-user?userId=' + userId)
+  }
 
   //Booking
   getAllBookings(): Observable<any> {

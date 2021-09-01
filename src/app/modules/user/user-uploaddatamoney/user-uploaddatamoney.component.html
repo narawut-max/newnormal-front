@@ -1,4 +1,4 @@
-<div class="container p-3 text-dark">
+<div class="container p-3 text-dark" style="min-height: 614px;">
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -23,12 +23,12 @@
         <div class="con-dataqueue">
             <div class="col-md-12" style="">
                 <div class="card shadow topbar static-top" style="border-radius: 10px;">
-                    <div class="card-body text-dark p-4">
+                    <div class="card-body text-dark p-4 pb-3">
                         <div class="row justify-content-end">
                             <div class="col-md-2 data-time">
                                 <label class="">
                                     <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                                        placeholder="Search" />
+                                        placeholder="Search" name="searchText" [(ngModel)]="searchText" />
                                 </label>
                             </div>
                         </div>
@@ -45,14 +45,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of listDatauser; let i = index">
+                                    <tr *ngFor="let item of listDatauser | filter:searchText | paginate: {
+                                        itemsPerPage: tableSize,
+                                        currentPage: page,
+                                        totalItems: count
+                                      }; let i = index">
                                         <td>{{item.billId}}</td>
                                         <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                                         <td>{{item.bkId}}</td>
                                         <td>{{item.billdrug.billTime}}</td>
                                         <td class="text-decoration-underline text-primary">
                                             <!-- {{item.tmSlip}} -->
-                                            <button type="button" class="btn btn-sm btn-primary" (click)="uploadmoney()">
+                                            <button type="button" class="btn btn-sm btn-primary"
+                                                (click)="uploadmoney()">
                                                 อัปโหลด
                                             </button>
                                         </td>
@@ -65,10 +70,13 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="d-flex justify-content-center pb-0">
+                            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<canvas class="my-4 w-100" id="myChart" height="43"></canvas>
+<!-- <canvas class="my-4 w-100" id="myChart" height="43"></canvas> -->

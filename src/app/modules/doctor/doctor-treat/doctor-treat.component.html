@@ -25,46 +25,51 @@
             <h6 class="font-monospace fw-bold">ค้นหาข้อมูลผู้ป่วย</h6>
             <div class="container">
                 <form>
-                    <div class="row g-2 align-items-center">
-                        <div class="col-auto">
-                            <label for="inputnumber" class="col-form-label">รหัสการจอง : </label>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
-                        </div>
-                        <div class="col-auto">
-                            <label for="inputnumber" class="col-form-label">&nbsp;รหัสผู้ป่วย : </label>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
-                        </div>
-                        <div class="col-auto">
-                            <label for="inputnumber" class="col-form-label">&nbsp;ชื่อ : </label>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
-                        </div>
-                        <div class="col-auto">
-                            <label for="inputnumber" class="col-form-label">&nbsp;สกุล : </label>
-                        </div>
-                        <div class="col-md-2">
-                            <input class="form-control form-control-sm" type="text" placeholder=""
-                                aria-label=".form-control-sm example">
-                        </div>
-                        &nbsp;&nbsp;&nbsp;
-                        <div class="col-md-auto text-end">
-                            <div class="input-group-sm">
-                                <button type="submit" class="btn btn-outline-primary col-md-12"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                        class="bi bi-search" viewBox="0 0 16 16">
-                                        <path
-                                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                                    </svg>
-                                    &nbsp;ค้นหา
-                                </button>
+                    <div class="form-group">
+                        <div class="row g-2 align-items-center" id="searchForm">
+                            <div class="col-auto">
+                                <label for="inputnumber" class="col-form-label">รหัสการจอง : </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control form-control-sm" type="text" placeholder=""
+                                    aria-label=".form-control-sm example" name="bkId" [(ngModel)]="bkId">
+                            </div>
+                            <div class="col-auto">
+                                <label for="inputnumber" class="col-form-label">&nbsp;รหัสผู้ป่วย : </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control form-control-sm" type="text" placeholder=""
+                                    aria-label=".form-control-sm example" name="userHnId" [(ngModel)]="userHnId">
+                            </div>
+                            <div class="col-auto">
+                                <label for="inputnumber" class="col-form-label">&nbsp;ชื่อ : </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control form-control-sm" type="text" placeholder=""
+                                    aria-label=".form-control-sm example" name="userFirstname"
+                                    [(ngModel)]="userFirstname">
+                            </div>
+                            <div class="col-auto">
+                                <label for="inputnumber" class="col-form-label">&nbsp;สกุล : </label>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control form-control-sm" type="text" placeholder=""
+                                    aria-label=".form-control-sm example" name="userLastname"
+                                    [(ngModel)]="userLastname">
+                            </div>
+                            &nbsp;&nbsp;&nbsp;
+                            <div class="col-md-auto text-end">
+                                <div class="input-group-sm">
+                                    <button id="searchData" type="submit" class="btn btn-outline-primary col-md-12"
+                                        (click)="getSearchTreatByCriteria()">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                            fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                            <path
+                                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                        &nbsp;ค้นหา
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,28 +95,30 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of listUser | paginate: {
+                <ng-container *ngFor="let item of listUser | paginate: {
                     itemsPerPage: tableSize,
                     currentPage: page,
                     totalItems: count
                   };let i = index">
-                    <th scope="row">{{item.booking.bkId}}</th>
-                    <th>{{item.tmId}}</th>
-                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                    <td>{{item.user.userDisease}}</td>
-                    <td>{{item.user.userPhone}}</td>
-                    <td>{{item.user.userEmail}}</td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-sm btn-primary" (click)="gotoaddtreat(item)">
-                            <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                            เพิ่มข้อมูล
-                        </button>
-                        <!-- <button type="button" class="btn btn-sm btn-warning">
+                    <tr>
+                        <th scope="row">{{item.bkId}}</th>
+                        <th>{{item.tmId}}</th>
+                        <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                        <td>{{item.user.userDisease}}</td>
+                        <td>{{item.user.userPhone}}</td>
+                        <td>{{item.user.userEmail}}</td>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-sm btn-primary" (click)="gotoaddtreat(item)">
+                                <i class="bi bi-clipboard-plus" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
+                                เพิ่มข้อมูล
+                            </button>
+                            <!-- <button type="button" class="btn btn-sm btn-warning">
                         <i class="bi bi-pencil-square" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                         แก้ไขข้อมูล
                     </button> -->
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </ng-container>
             </tbody>
         </table>
         <!--table-->

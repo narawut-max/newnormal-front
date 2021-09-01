@@ -9,7 +9,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUploaddatamoneyComponent } from './user-uploaddatamoney/user-uploaddatamoney.component';
 import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 import { UserBookingCalenderComponent } from './user-booking-calender/user-booking-calender.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -19,8 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserRoutingModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    ScheduleModule,RecurrenceEditorModule
+    ScheduleModule, RecurrenceEditorModule,
+    Ng2SearchPipeModule,
+    FormsModule
   ],
-  providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],
+  providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService],
 })
 export class UserModule { }

@@ -11,9 +11,14 @@ import { UserService } from '../user.service';
 })
 export class UserManagebookingComponent implements OnInit {
 
-  formValue !: FormGroup;
-  listDatauser !: any;
+  searchText: any;
+  listDatauser: any;
   item: any
+
+  page = 1;
+  count = 0;
+  tableSize = 5;
+  tableSizes = [3, 6, 9, 12];
 
   constructor(
     private fb: FormBuilder,
@@ -37,17 +42,18 @@ export class UserManagebookingComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.fetchData();
     const userId = sessionStorage.getItem('user_id');
+    debugger
+    this.fetchData(userId);
   }
 
   refresh() {
-    this.fetchData();
+    // this.fetchData();
     window.location.reload();
   }
 
-  fetchData() {
-    this.userService.getAllTreatment().subscribe(
+  fetchData(userId: any) {
+    this.userService.gettreatmentsByUserId(userId).subscribe(
       (res) => {
         console.log(res)
         this.listDatauser = res;
@@ -94,6 +100,11 @@ export class UserManagebookingComponent implements OnInit {
         )
       }
     })
+  }
+
+  pageChanged(userId: any) {
+    this.page = userId;
+    this.fetchData(userId);
   }
 
 }

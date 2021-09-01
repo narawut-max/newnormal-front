@@ -1,4 +1,4 @@
-<div class="container p-4" style="height: 614px;background-color: #F0F8FF;">
+<div class="container p-4" style="min-height: 600px; background-color: #F0F8FF;">
 
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -31,8 +31,14 @@
                     </div>
                 </div> -->
                 <div class="col-md-2">
-                    <input class="form-control form-control-sm" type="text" placeholder="ค้นหา"
-                        aria-label="default input example">
+                    <form action="">
+                        <div class="form-group">
+                            <label class="">
+                                <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                                    placeholder="Search" name="searchText" [(ngModel)]="searchText" />
+                            </label>
+                        </div>
+                    </form>
                 </div>
             </div>
 
@@ -44,17 +50,18 @@
                             <th class="col-md-2">รหัสบัตรประชาชน</th>
                             <th class="col-md-2">ชื่อ - สกุล</th>
                             <th class="col-md-1">เพศ</th>
-                            <th class="col-md-2">ประเภทผู้ใช้งาน</th>
+                            <th class="col-md-2" (click)="sort('roleDescription')">ประเภทผู้ใช้งาน&nbsp;<i
+                                    class="bi bi-chevron-bar-contract"></i></th>
                             <th class="col-md-2">สถานะการใช้งาน</th>
                             <th class="col-md-2">ดำเนินการ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of listUser | paginate: {
+                        <tr *ngFor="let item of listUser | filter:searchText | orderBy: key: reverse | paginate: {
                             itemsPerPage: tableSize,
                             currentPage: page,
                             totalItems: count
-                          };let i = index">
+                          } ;let i = index">
                             <th scope="row">{{i+1}}</th>
                             <td>{{item.userCardId}}</td>
                             <td>{{item.userTitle}}{{item.userFirstname}} {{item.userLastname}}</td>
@@ -72,9 +79,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center pt-2">
-                    <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                </div>
+            </div>
+            <div class="d-flex justify-content-center pb-0 mb-0">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
             </div>
         </div>
     </div>

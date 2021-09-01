@@ -24,6 +24,12 @@ export class DoctorTreatComponent implements OnInit {
 
   listDatausers = [{}];
 
+  bkId: string | any
+  userHnId: string | any
+  userCardId: string | any
+  userFirstname: string | any
+  userLastname: string | any
+
   ngOnInit(): void {
     this.fetchData();
   }
@@ -50,4 +56,9 @@ export class DoctorTreatComponent implements OnInit {
     this.router.navigate(['doctor/treat/add-treat/', item.tmId]);
   }
 
+  getSearchTreatByCriteria() {
+    debugger
+    let resp = this.doctorService.searchTreatByCriteria(this.bkId, this.userHnId, this.userCardId, this.userFirstname, this.userLastname);
+    resp.subscribe((data)=> this.listUser = data);
+  }
 }

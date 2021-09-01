@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
+import { compilePipeFromMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { event } from 'jquery';
 import Swal from 'sweetalert2';
 import { DoctorService } from '../doctor.service';
 
@@ -11,9 +14,12 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorProfileComponent implements OnInit {
 
+  uplodeFile: any | File = null;
+  url = "assets/images/upmdids.jpg"
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private http: HttpClient,
     private doctorService: DoctorService
   ) { }
 
@@ -36,16 +42,17 @@ export class DoctorProfileComponent implements OnInit {
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
-    userHnId: [''],
+    // userHnId: [''],
     userTitle: ['', Validators.required],
     userFirstname: ['', Validators.required],
     userLastname: ['', Validators.required],
     userGender: ['', Validators.required],
     userBirthday: ['', Validators.required],
     userBlood: ['', Validators.required],
-    userDepartment: ['', Validators.required],
+    userDepartment: [''],
     userGraduate: [''],
     userProfessionId: [''],
+    userProfession: [''],
     userPosition: [''],
     userPhone: [''],
     userEmail: ['', Validators.required],
@@ -53,16 +60,15 @@ export class DoctorProfileComponent implements OnInit {
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['3'],
-    subdistrict: [{value: '', disabled: true},],
-    district: [{value: '', disabled: true},],
-    province: [{value: '', disabled: true},]
+    subdistrict: [{ value: '', disabled: true },],
+    district: [{ value: '', disabled: true },],
+    province: [{ value: '', disabled: true },]
   });
 
   ngOnInit(): void {
     //load dropdown all
     this.initDropdown();
     const userId = sessionStorage.getItem('user_id');
-    debugger
     this.initUserDataforEditById(userId);
   }
 
@@ -74,6 +80,7 @@ export class DoctorProfileComponent implements OnInit {
 
   // show edit
   initUserDataforEditById(userId: any) {
+    debugger
     this.doctorService.getUserByUserId(userId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataDoctorForm.patchValue({
@@ -91,6 +98,7 @@ export class DoctorProfileComponent implements OnInit {
         userDepartment: res.userDepartment,
         userGraduate: res.userGraduate,
         userProfessionId: res.userProfessionId,
+        // userProfession: res.userProfession,
         userPosition: res.userPosition,
         userPhone: res.userPhone,
         userEmail: res.userEmail,
@@ -140,7 +148,7 @@ export class DoctorProfileComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    console.log('data :',this.DataDoctorForm.value)
+    console.log('data :', this.DataDoctorForm.value)
     // stop here if form is invalid
     if (this.DataDoctorForm.invalid) {
       Swal.fire({
@@ -151,7 +159,7 @@ export class DoctorProfileComponent implements OnInit {
       return;
     } else {
       this.doctorService.updateDatadoctor(this.DataDoctorForm.value).subscribe(res => {
-        console.log('Create User res : ', res)
+        console.log('update User res : ', res)
       });
     }
     this.router.navigate(['doctor/profile']);
@@ -170,7 +178,7 @@ export class DoctorProfileComponent implements OnInit {
     } else {
       Swal.fire({
         title: 'ยืนยันการทำรายการ',
-        text: "ต้องการเปลี่ยนเลขที่ใบอนุญาตหรือไม่ ?",
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#198754',
@@ -184,7 +192,7 @@ export class DoctorProfileComponent implements OnInit {
           });
           Swal.fire({
             icon: 'success',
-            title: 'เปลี่ยนเลขที่ใบอนุญาตสำเร็จ',
+            title: 'บันทึกข้อมูลสำเร็จ',
             text: '',
             confirmButtonText: 'ปิดหน้าต่าง',
           }).then((result) => {
@@ -227,9 +235,19 @@ export class DoctorProfileComponent implements OnInit {
       }
     );
   }
-  
+
   refresh() {
     window.location.reload();
   }
 
+  onUplodeFile(e: any) {
+    if(e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      console.log(reader);
+      reader.onload=(event: any)=>{
+        this.url = event.target.result;
+      }
+    }
+  }
 }//end

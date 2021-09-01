@@ -123,7 +123,7 @@
     <div>
         <div class="card border-0 p-4 pb-3 shadow-sm" style="border-radius: 10px;">
             <form action="">
-                <h5 class="font-monospace pb-0">ประวัติการเข้ารักษา (ยังเชื่อมไม่ได้ : pdf)</h5>
+                <h5 class="font-monospace pb-0 ">ประวัติการเข้ารักษา (ยังไม่เชื่อม pdf : รายงาน 3,6,12 เดือน)</h5>
                 <hr class="mt-3 mb-3">
                 <div class="table-responsive">
                     <table class="table table-white table-responsive">
@@ -139,12 +139,12 @@
                         </thead>
                         <tbody>
                             <tr class="text-center" *ngFor="let item of Datatreats; let i = index">
-                                <td>{{item.tmId}}</td>
-                                <td class="text-start">{{item.tmId}}</td>
-                                <td>{{item.tmId}}</td>
-                                <td>{{item.tmId}}</td>
-                                <td class="text-start">{{item.tmId}}</td>
-                                <td>
+                                <td class="col-md-2">{{item.tmDate}}</td>
+                                <td class="col-md-2 text-start">{{item.user.userDisease}}</td>
+                                <td class="col-md-2">{{item.bkId}}</td>
+                                <td class="col-md-2">{{item.billId}}</td>
+                                <td class="col-md-2 text-start">รอเชื่อม</td>
+                                <td class="col-md-auto">
                                     <button type="button" class="btn btn-sm btn-primary text-white fw-bold p-1"
                                         data-bs-toggle="modal" data-bs-target="#staticDetails">
                                         <!-- <i class="bi bi-eye-fill"

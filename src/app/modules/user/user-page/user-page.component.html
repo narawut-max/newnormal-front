@@ -60,7 +60,7 @@
           <div class="col-md-4 text-end">
             <label class="">
               <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                placeholder="Search" />
+                placeholder="ค้นหา" name="searchText" [(ngModel)]="searchText"/>
             </label>
           </div>
           <div class="col pb-0 mb-0">
@@ -78,7 +78,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of listDatauser; let i = index">
+                  <tr *ngFor="let item of listDatauser | filter:searchText">
                     <th class="text-center">{{item.booking.bkQueue}}</th>
                     <td>{{item.tmTime}}</td>
                     <td>{{item.user.userHnId}}</td>

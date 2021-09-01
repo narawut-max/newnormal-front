@@ -10,8 +10,7 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorPageComponent implements OnInit {
 
-  formValue !: FormGroup;
-  listDatauser !: any;
+  listDatauser : any;
   item: any
 
   constructor(
@@ -40,7 +39,7 @@ export class DoctorPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    this.formValue = this.listDatausers;
+    const userDepartment = sessionStorage.getItem('user_department');
   }
 
   refresh() {

@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     this.loginService.loginByUsernamePassword(this.loginForm.value).subscribe((res) => {      
       sessionStorage.setItem('user_role', this.getRole(res.roleId));
       sessionStorage.setItem('user_id', res.userId),{}
+      sessionStorage.setItem('user_department', res.userDepartment),{}
       // sessionStorage.setItem('tm_id', res.tmId),
       
       // this.router.navigate(['home']).then(() => {

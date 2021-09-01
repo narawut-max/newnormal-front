@@ -12,6 +12,12 @@ export class DoctorReporttreatComponent implements OnInit {
 
   listDatatreat !: any;
 
+  userId: string | any
+  userHnId: string | any
+  userCardId: string | any
+  userFirstname: string | any
+  userLastname: string | any
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -35,7 +41,7 @@ export class DoctorReporttreatComponent implements OnInit {
     user: {},
     booking: {}
   });
-  
+
   ngOnInit(): void {
     this.fetchData();
   }
@@ -46,7 +52,7 @@ export class DoctorReporttreatComponent implements OnInit {
   }
 
   fetchData() {
-    this.doctorService.getAllUsers().subscribe(
+    this.doctorService.getUserByRoleId(2).subscribe(
       (res) => {
         console.log(res)
         this.listDatatreat = res;
@@ -59,6 +65,12 @@ export class DoctorReporttreatComponent implements OnInit {
 
   gotoAdminEdit(item: any) {
     debugger
-    this.router.navigate(['doctor/report-treat/report-datauser' , item.userId]);
+    this.router.navigate(['doctor/report-treat/report-datauser', item.userId]);
+  }
+
+  SearchUserByCriteria() {
+    debugger
+    let resp = this.doctorService.getSearchUserByCriteria(this.userId, this.userHnId, this.userCardId, this.userFirstname, this.userLastname);
+    resp.subscribe((data) => this.listDatatreat = data);
   }
 }

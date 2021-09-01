@@ -1,4 +1,4 @@
-<div class="container p-3 text-dark">
+<div class="container p-3 text-dark" style="min-height: 614px;">
     <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -28,7 +28,7 @@
                             <div class="col-md-2 data-time">
                                 <label class="">
                                     <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                                        placeholder="Search" />
+                                        placeholder="Search" name="searchText" [(ngModel)]="searchText" />
                                 </label>
                             </div>
                         </div>
@@ -47,7 +47,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of listDatauser; let i = index">
+                                        <tr *ngFor="let item of listDatauser | filter:searchText | paginate: {
+                                            itemsPerPage: tableSize,
+                                            currentPage: page,
+                                            totalItems: count
+                                          } ;let i = index">
                                             <th>{{i+1}}</th>
                                             <td>{{item.tmDate}}</td>
                                             <td>{{item.bkId}}</td>
@@ -72,14 +76,15 @@
                                 </table>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-center pt-2">
+                            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<canvas class="my-4 w-100" id="myChart" height="44"></canvas>
 
 <!-- Model databooking1 -->
 <div class="modal fade" id="databookingModal" tabindex="-1" aria-labelledby="databookingModalLabel" aria-hidden="true">
@@ -103,8 +108,8 @@
                             <div class="col-md-4">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">รหัสผู้ป่วย HN</label>
-                                    <input type="text" id="form8Example3" class="form-control" formControlName="userHnId"
-                                        readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userHnId" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-4">
@@ -130,25 +135,29 @@
                             <div class="col-md-6">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">อาการ (ถ้ามี)</label>
-                                    <input type="text" id="form8Example3" class="form-control"  formControlName="bkSymptom" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="bkSymptom" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6 pb-3">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">เบอร์โทร</label>
-                                    <input type="text" id="form8Example3" class="form-control"  formControlName="userPhone" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userPhone" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">อีเมล</label>
-                                    <input type="text" id="form8Example3" class="form-control"  formControlName="userEmail" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userEmail" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">แผนกที่เข้ารับการรักษา</label>
-                                    <input type="text" id="form8Example3" class="form-control"  formControlName="userDepartment" readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userDepartment" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6">

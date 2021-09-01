@@ -11,9 +11,9 @@ import { ManagemoneyService } from './managemoney.service';
 })
 export class AdminManagemoneyComponent implements OnInit {
   
-  formValue !: FormGroup;
-  listDatas !: any;
-  
+  listDatas : any;
+  searchText: any;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -44,7 +44,6 @@ export class AdminManagemoneyComponent implements OnInit {
   
   ngOnInit(): void {
     this.fetchData();
-    this.formValue = this.listData;
   }
 
   refresh() {
@@ -92,7 +91,5 @@ export class AdminManagemoneyComponent implements OnInit {
       imageAlt: 'Custom image',
     })
   }
-
-
 
 }

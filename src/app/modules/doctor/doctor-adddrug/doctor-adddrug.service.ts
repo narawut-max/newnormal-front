@@ -1,7 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
@@ -53,6 +52,28 @@ export class DoctorAdddrugService {
   getDrugByDrugId(drugId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/drugs/' + drugId)
   }
+  getSearchByDrugName(drugName: any) {
+    console.log(drugName);
+    return this.http.get<any>(endpoint + '/drugs/search/' + drugName)
+  }
+
+  searchDrugByCriteria(drugId: any, drugName: any, drugTrademark: any) {
+    let params = new HttpParams();
+    if (drugId) {
+      params = params.append('drugId', drugId);
+    }
+
+    if (drugName) {
+      params = params.append('drugName', drugName);
+    }
+
+    if (drugTrademark) {
+      params = params.append('drugTrademark', drugTrademark);
+    }
+    console.log('searchDrugByCriteria param :: ' + params);
+
+    return this.http.get<any>(endpoint + '/drugs/search-by-criteria', {params: params})
+  }
 
   //Update
   updateTreatment(updateTreat: any): Observable<any> {
@@ -71,6 +92,11 @@ export class DoctorAdddrugService {
   //Create
   createBilldrug(registerData: any): Observable<any> {
     return this.http.post<any>(endpoint + '/billdrugs/save', JSON.stringify(registerData), httpOptions)
+  }
+
+  //สร้างเสร็จค่อยมาแก้ ตรงนี้ เรื่อง path
+  createBilldrugDetails(drugDetails: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/billdrugs-detail/save', JSON.stringify(drugDetails), httpOptions)
   }
 
   //repory

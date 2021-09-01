@@ -11,16 +11,21 @@ import { UserService } from '../user.service';
 })
 export class UserUploaddatamoneyComponent implements OnInit {
 
-  formValue !: FormGroup;
-  listDatauser !: any;
+  listDatauser : any;
   item: any
   
+  searchText: any;
+  
+  page = 1;
+  count = 0;
+  tableSize = 5;
+  tableSizes = [3, 6, 9, 12];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService
   ) { }
-
 
   DataUserForm = this.fb.group({
     tmId: [''],
@@ -99,7 +104,7 @@ export class UserUploaddatamoneyComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    this.formValue = this.DataUserForm;
+    const userDepartment = sessionStorage.getItem('user_department');
   }
 
   refresh() {
@@ -159,6 +164,11 @@ export class UserUploaddatamoneyComponent implements OnInit {
       imageHeight: 500,
       imageAlt: 'Custom image',
     })
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    this.fetchData();
   }
 
 }

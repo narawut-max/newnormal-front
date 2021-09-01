@@ -25,35 +25,39 @@
 
             <!-- search -->
             <div class="card shadow" style="padding: 20px;">
-
-                <!-- search-drug -->
-                <div class="card c-search border-0" style="background-color: #f1f1f1;">
-                    <div class="card-body">
-                        <div class="row align-items-center p-1">
-                            <div class="col-md-2 align-self-end">
-                                <h5 class="fw-bold text-center text-success"><i
-                                        class="bi bi-search"></i>&nbsp;ค้นหาข้อมูลยา</h5>
-                            </div>
-                            <div class="col-md-3">
-                                <input class="form-control border-2 border-success" type="text" placeholder="กรอกรหัสยา"
-                                    aria-label="default input example">
-                            </div>
-                            <div class="col-md-3">
-                                <input class="form-control border-2 border-success" type="text" placeholder="กรอกชื่อยา"
-                                    aria-label="default input example">
-                            </div>
-                            <div class="col-md-3">
-                                <input class="form-control border-2 border-success" type="text"
-                                    placeholder="กรอกชื่อทางการค้า" aria-label="default input example">
-                            </div>
-                            <div class="col-md-auto">
-                                <div class="input-group">
-                                    <button type="submit" class="btn btn-success">ค้นหา</button>
+                <form>
+                    <div class="card c-search border-0" style="background-color: #f1f1f1;">
+                        <div class="card-body">
+                            <div class="row align-items-center p-1">
+                                <div class="col-md-2 align-self-end">
+                                    <h5 class="fw-bold text-center text-success"><i
+                                            class="bi bi-search"></i>&nbsp;ค้นหาข้อมูลยา</h5>
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="form-control border-2 border-success" type="text"
+                                        placeholder="กรอกรหัสยา" aria-label="default input example" name="drugId"
+                                        [(ngModel)]="drugId">
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="form-control border-2 border-success" type="text"
+                                        placeholder="กรอกชื่อยา" aria-label="default input example" name="drugName"
+                                        [(ngModel)]="drugName">
+                                </div>
+                                <div class="col-md-3">
+                                    <input class="form-control border-2 border-success" type="text"
+                                        placeholder="กรอกชื่อทางการค้า" aria-label="default input example"
+                                        name="drugTrademark" [(ngModel)]="drugTrademark">
+                                </div>
+                                <div class="col-md-auto">
+                                    <div class="input-group">
+                                        <button type="button" class="btn btn-success"
+                                            (click)="getSearchByDrugName()">ค้นหา</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <hr>
 
                 <!-- select-drug -->
@@ -70,18 +74,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let item of listDatadrugs; let i = index">
-                                <th class="col-md-1">
-                                    <a href="doctor/treat/add-drug"><i class="bi bi-cart-plus"
-                                            style="font-size: 25px; color: rgb(0, 0, 0);"></i></a>
+                            <ng-container *ngFor="let drug of listDatadrugs | paginate: {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                              }">
+                                <tr>
+                                    <th class="col-md-1 ">
+                                        <button (click)="addDrug(drug)">
+                                            <i class="bi bi-cart-plus p-0" style="color: rgb(0, 0, 0);"></i>
+                                            <!-- <input name="add_to_cart" class="btn btn-ligth form-control"
+                                                value="เพิ่ม" /> -->
+                                        </button>
+                                    </th>
+                                    <td class="col-md-1 pt-2 pb-1" scope="row">{{drug.drugId}}</td>
+                                    <td class="col-md-3 pt-2 pb-1">{{drug.drugName}}</td>
+                                    <td class="col-md-3 pt-2 pb-1">{{drug.drugTrademark}}</td>
+                                    <td class="col-md-2 pt-2 pb-1">{{drug.drugAmount}}</td>
+                                    <td class="col-md-2 pt-2 pb-1">{{drug.drugPrice}}</td>
+                                </tr>
+                            </ng-container>
 
-                                </th>
-                                <td scope="row">{{item.drugId}}</td>
-                                <td>{{item.drugName}}</td>
-                                <td>{{item.drugTrademark}}</td>
-                                <td>{{item.drugAmount}}</td>
-                                <td>{{item.drugPrice}}</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -91,6 +104,7 @@
             <!-- adddrug -->
             <div class="card shadow" style="padding: 20px;">
                 <form [formGroup]="DataUserForm" (ngSubmit)="onSubmitUser(item)">
+                    <!-- (ngSubmit)="onSubmitUser(item)" -->
                     <h4 class="text-center" style="padding-bottom: 20px;">
                         <dt>รายการสั่งยา</dt>
                     </h4>
@@ -164,23 +178,51 @@
                             <table class="table table-bordered">
                                 <thead class="text-center table-primary">
                                     <tr>
-                                        <th scope="col-auto">No.</th>
-                                        <th scope="col-4">รหัสยา</th>
-                                        <th scope="col">รายการยา</th>
-                                        <th scope="col">จำนวน : แผง</th>
-                                        <th scope="col">ราคา : บาท</th>
+                                        <th class="col-1">No.</th>
+                                        <th class="col-2">รหัสยา</th>
+                                        <th class="col-3">รายการยา</th>
+                                        <th class="col-1">ราคา</th>
+                                        <th class="col-3">จำนวน : แผง</th>
+                                        <th class="col-2">ราคารวม</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-center">
-                                    <tr>
-                                        <th>1</th>
-                                        <td>000210145</td>
-                                        <td class="text-start">sertraline</td>
-                                        <td>.....</td>
-                                        <td class="text-end">10</td>
-                                    </tr>
+                                    <ng-container *ngFor="let drug of cartDrugs; let i = index">
+                                        <tr>
+                                            <th scope="row">{{i+1}}</th>
+                                            <td>{{drug.drugId}}</td>
+                                            <td class="text-start">
+                                                {{drug.drugName}}
+                                            </td>
+                                            <td class="">{{drug.drugPrice}}</td>
+                                            <td>
+                                                <div class="input-group ">
+                                                    <button class="btn btn-sm btn-outline-secondary" type="button"
+                                                        (click)="addDrugCount(drug)">
+                                                        <i class="bi bi-plus-lg p-0" style="color: rgb(0, 0, 0);"></i>
+                                                    </button>
+                                                    <span class="input-group-text border border-dark pt-0 pb-0">
+                                                        &nbsp;&nbsp;
+                                                        {{drug.drugCount}}
+                                                        &nbsp;&nbsp;
+                                                    </span>
+                                                    <button class="btn btn-sm btn-outline-secondary" type="button"
+                                                        (click)="removeDrugCount(drug)">
+                                                        <i class="bi bi-dash-lg p-0" style="color: rgb(0, 0, 0);"></i>
+                                                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <button class="btn btn-sm btn-danger" type="button"
+                                                        (click)="removeDrug(i)">
+                                                        <i class="bi bi-trash-fill p-0"
+                                                            style="color: rgb(255, 255, 255);"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">{{drug.drugPrice * drug.drugCount | number}}</td>
+                                        </tr>
+                                    </ng-container>
+
                                     <tr class="text-center">
-                                        <th class="text-start" scope="row" colspan="4">รวมทั้งสิ้น</th>
+                                        <th class="text-start" scope="row" colspan="5">รวมทั้งสิ้น</th>
                                         <td class="text-end fw-bold">150</td>
                                     </tr>
                                 </tbody>

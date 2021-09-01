@@ -10,8 +10,8 @@ import { UserService } from '../user.service';
 })
 export class UserPageComponent implements OnInit {
 
-  formValue !: FormGroup;
-  listDatauser !: any;
+  searchText: any;
+  listDatauser: any;
   item: any
   
   constructor(
@@ -41,7 +41,6 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    this.formValue = this.listDatausers;
   }
 
   refresh() {
