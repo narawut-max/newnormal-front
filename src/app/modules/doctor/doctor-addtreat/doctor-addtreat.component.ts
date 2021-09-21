@@ -37,15 +37,20 @@ export class DoctorAddtreatComponent implements OnInit {
   userId: any
   bkId: any
   DataUserForm = this.fb.group({
-    tmId: ['', Validators.required],
-    tmDate: [''],
-    tmTime: [''],
-    tmMoney: [''],
-    tmSlip: [''],
-    tmStatus: [''],
-    tmProcess: [''],
-    billId: [0],
     bkId: [0],
+    bkQueue: ['', Validators.required],
+    bkDate: ['', Validators.required],
+    bkTime: ['', Validators.required],
+    bkSymptom: ['', Validators.required],
+
+    tmId: [0],
+    tmProcess: [''],
+
+    billId: [0],
+    billDate: [''],
+    billTime: [''],
+    billNext: [''],
+
     userId: [0],
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
@@ -64,28 +69,23 @@ export class DoctorAddtreatComponent implements OnInit {
     userAllergy: [''],
     userStatus: [this.statusActive],
     roleId: ['2'],
-    bkQueue: ['', Validators.required],
-    bkDate: ['', Validators.required],
-    bkTime: ['', Validators.required],
-    bkSymptom: ['', Validators.required],
     zipCode: ['', Validators.required],
     subdistrict: [],
     district: [],
     province: [],
-    billDate: [''],
-    billTime: [''],
-    billNext: [''],
-    drugId: [''],
+
     user: {},
-    booking: {},
+    treatment: {},
     billdrug: {}
   });
 
   ngOnInit() {
     //load dropdown all
     this.initDropdown();
-    this.tmId = this.activatedroute.snapshot.paramMap.get("tmId");
-    this.initUserDataforEditById(this.tmId);
+    this.bkId = this.activatedroute.snapshot.paramMap.get("bkId");
+    this.initUserDataforEditById(this.bkId);
+    const userId = sessionStorage.getItem('user_tmId');
+    // this.tmId = sessionStorage.getItem('user_tmId');
   }
 
   initDropdown() {
@@ -94,18 +94,19 @@ export class DoctorAddtreatComponent implements OnInit {
     this.addtreatService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
-  initUserDataforEditById(tmId: any) {
-    this.addtreatService.getTreatmentByTmId(tmId).subscribe((res) => {
+  initUserDataforEditById(bkId: any) {
+    this.addtreatService.getBookingsByBkId(bkId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataUserForm.patchValue({
-        tmId: res.tmId,
-        tmDate: res.tmDate,
-        tmTime: res.tmTime,
-        tmMoney: res.tmMoney,
-        tmSlip: res.tmSlip,
-        tmStatus: res.tmStatus,
-        tmProcess: res.tmProcess,
         bkId: res.bkId,
+        bkQueue: res.bkQueue,
+        bkDate: res.bkDate,
+        bkTime: res.bkTime,
+        bkSymptom: res.bkSymptom,
+
+        tmId: res.tmId,
+        tmProcess: res.tmProcess,
+
         userId: res.userId,
         userCardId: res.user.userCardId,
         userHnId: res.user.userHnId,
@@ -124,14 +125,11 @@ export class DoctorAddtreatComponent implements OnInit {
         userAllergy: res.user.userAllergy,
         userStatus: res.user.userStatus,
         roleId: res.user.roleId,
-        bkQueue: res.booking.bkQueue,
-        bkDate: res.booking.bkDate,
-        bkTime: res.booking.bkTime,
-        bkSymptom: res.booking.bkSymptom,
         zipCode: res.user.zipCode,
         subdistrict: res.subdistrict,
         district: res.district,
         province: res.province,
+
       });
       //set default select dropdown
       this.loadUserZipCode(res.user.zipCode);
@@ -206,28 +204,33 @@ export class DoctorAddtreatComponent implements OnInit {
         text: '',
       })
     } else {
+      this.addtreatService.updatebooking(this.DataUserForm.value).subscribe(res => {
+        console.log('update booking res : ', res)
+        if (res) {
+          //for save Treatment
+          this.addtreatService.createTreatment(this.DataUserForm.value).subscribe(res => {
+            console.log('create Treatment res : ', res)
+            Swal.fire({
+              icon: 'success',
+              title: 'บันทึกข้อมูลสำเร็จ',
+              text: 'ต้องการสั่งยาหรือไม่',
+              confirmButtonText: 'เพิ่มข้อมูลการสั่งยา',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['doctor/treat/add-drug', + res.tmId]);
+              }
+            })
+          });
+
+          //for update data user
+          this.addtreatService.updateUser(this.DataUserForm.value).subscribe(res => {
+            console.log('create Treatment res : ', res)
+          });
+        }
+      });
       // this.addtreatService.createBilldrug(this.DataUserForm.value).subscribe(res => {
       //   console.log('create Billdrug res : ', res)
       // });
-      this.addtreatService.updateTreatment(this.DataUserForm.value).subscribe(res => {
-        console.log('create Billdrug res : ', res)
-      });
-      this.addtreatService.updateUser(this.DataUserForm.value).subscribe(res => {
-        console.log('Update User res : ', res)
-      });
-      this.addtreatService.updatebooking(this.DataUserForm.value).subscribe(res => {
-        console.log('Update Booking res : ', res)
-      });
-      Swal.fire({
-        icon: 'success',
-        title: 'บันทึกข้อมูลสำเร็จ',
-        text: 'ต้องการสั่งยาหรือไม่',
-        confirmButtonText: 'เพิ่มข้อมูลการสั่งยา',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.router.navigate(['doctor/treat/add-drug', + this.tmId]);
-        }
-      })
     }
   }
 

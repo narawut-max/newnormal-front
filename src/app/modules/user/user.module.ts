@@ -11,7 +11,14 @@ import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, S
 import { UserBookingCalenderComponent } from './user-booking-calender/user-booking-calender.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid'; 
+import interactionPlugin from '@fullcalendar/interaction';
 
+FullCalendarModule.registerPlugins([ 
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [UserPageComponent, UserBookingComponent, UserManagebookingComponent, UserProfileComponent, UserUploaddatamoneyComponent, UserBookingCalenderComponent],
@@ -22,7 +29,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     ScheduleModule, RecurrenceEditorModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    FullCalendarModule
   ],
   providers: [DayService, WeekService, WorkWeekService, MonthService, MonthAgendaService],
 })

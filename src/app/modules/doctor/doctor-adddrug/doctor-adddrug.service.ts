@@ -93,15 +93,13 @@ export class DoctorAdddrugService {
   createBilldrug(registerData: any): Observable<any> {
     return this.http.post<any>(endpoint + '/billdrugs/save', JSON.stringify(registerData), httpOptions)
   }
-
-  //สร้างเสร็จค่อยมาแก้ ตรงนี้ เรื่อง path
   createBilldrugDetails(drugDetails: any): Observable<any> {
     return this.http.post<any>(endpoint + '/billdrugs-detail/save', JSON.stringify(drugDetails), httpOptions)
   }
 
   //repory
   generateBilldrugReport(billId: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/report/generateBilldrugReport?billId=' + billId, {
+    return this.http.get<any>(endpoint + '/report/generateBilldrugReport?billId=309', {
       headers: new HttpHeaders({
       'Content-Type': 'application/json'
       }),

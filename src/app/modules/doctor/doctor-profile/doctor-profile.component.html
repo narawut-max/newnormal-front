@@ -22,17 +22,16 @@
 
         <!-- data-medical / Settings -->
         <div class="col-md-4 p-1">
-
             <form [formGroup]="DataDoctorForm">
                 <!-- data-medical -->
                 <div class="card" style="background-color: #0d6dfd;">
                     <div class="card-header text-center p-1 border-0">
-                        <div class="row profile">
-                            <img src="https://www.asia-clinic.com/wp-content/uploads/2018/03/%E0%B8%A7%E0%B8%B8%E0%B8%92%E0%B8%B4%E0%B8%9A%E0%B8%B1%E0%B8%95%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%8A%E0%B8%B2%E0%B8%8A%E0%B8%B5%E0%B8%9E%E0%B9%80%E0%B8%A7%E0%B8%8A%E0%B8%81%E0%B8%A3%E0%B8%A3%E0%B8%A1-Dr.Tanongsak.jpg"
-                                alt="" width="290" height="250">
+                        <div class="row profile" *ngFor="let item of listDataDoctor; let i = index">
+                            <img src="{{item.userProfession}}" alt="" width="290"
+                                height="250">
                         </div>
                     </div>
-                    <div class="card-body p-1">
+                    <div class="card-body p-2">
                         <div class="row justify-content-center text-white">
                             <div class="col-md-6 p-1 text-end">
                                 <label for="staticEmail" class="col-sm-auto col-form-label fw-bold">เลขที่ใบอนุญาต :

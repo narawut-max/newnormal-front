@@ -13,13 +13,18 @@ export class UserPageComponent implements OnInit {
   searchText: any;
   listDatauser: any;
   item: any
-  
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService
   ) { }
 
+  // page = 1;
+  // count = 0;
+  // tableSize = 10;
+  // tableSizes = [3, 6, 9, 12];
+  
   listDatausers = this.fb.group({
     tmId: [''],
     userId: [''],
@@ -49,7 +54,7 @@ export class UserPageComponent implements OnInit {
   }
 
   fetchData() {
-    this.userService.getAllTreatment().subscribe(
+    this.userService.getAllBookings().subscribe(
       (res) => {
         console.log(res)
         this.listDatauser = res;
@@ -59,4 +64,6 @@ export class UserPageComponent implements OnInit {
       }
     );
   }
+
+
 }

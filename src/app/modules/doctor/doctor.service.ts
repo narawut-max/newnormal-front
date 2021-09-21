@@ -21,6 +21,9 @@ export class DoctorService {
   getUserByUserId(userId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/users/' + userId)
   }
+  getUserByUser(userId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/users/by-userId?userId=' + userId)
+  }
   getUserByRoleId(roleId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/users/by-user?roleId=' + roleId)
   }

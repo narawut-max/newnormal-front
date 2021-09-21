@@ -10,6 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './modules/login/login.component';
 import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgxPermissionsModule.forRoot(),
     NgIdleKeepaliveModule.forRoot(),
-    ScheduleModule,RecurrenceEditorModule, NgbModule
+    ScheduleModule,RecurrenceEditorModule, NgbModule, CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    BrowserAnimationsModule,
+    
+    
   ],
   providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],
   bootstrap: [AppComponent]

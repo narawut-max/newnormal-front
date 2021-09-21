@@ -1,10 +1,65 @@
-<div class="control-section">
-    <ejs-schedule width='100%' height='429px' [(currentView)]="currentView">
-        <ng-template #cellTemplate let-data>
-            <div class="templatewrap"></div>
-        </ng-template>
-        <e-views>
-            <e-view option="Month"></e-view>
-        </e-views>
-    </ejs-schedule>
+<div class="card p-4">
+    <div class="row">
+        <div class="col-sm-12">
+            <full-calendar [options]="calendarOptions"></full-calendar>
+        </div>
+    </div>
+</div>
+<!--Modal PopUp with Add Event Form-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title align-center"></h4>
+                <button type="button" class="btn-close" (click)="hideForm()" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="addEventForm" class="p-3" (ngSubmit)="onSubmit()">
+                    <!-- <div class="card p-3"> -->
+                    <div class="row pb-2">
+                        <div class="col-md-12 pb-2">
+                            <div class="form-group">
+                                <label class="pb-1">ชื่อ - สกุล</label>
+                                <input placeholder="กรอกชื่อ - สกุล" type="text" formControlName="title"
+                                    class="titleinp form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                    <div *ngIf="f.title.errors.required">กรุณากรอกข้อมูล</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pb-2">
+                            <div class="form-group">
+                                <label class="pb-1">วันที่ต้องการจอง</label>
+                                <div class="form-control eventstarttitle"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pb-2">
+                            <div class="form-group">
+                                <label class="pb-1">เวลาที่ต้องการจอง</label>
+                                <div class="col-md-12">
+                                    <input type="time">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 pb-2">
+                            <div class="form-group">
+                                <label class="pb-1">วันที่ต้องการจอง</label>
+                                <div class="form-control eventstarttitle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

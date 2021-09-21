@@ -38,8 +38,8 @@ export class DoctorPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.fetchData();
     const userDepartment = sessionStorage.getItem('user_department');
+    this.fetchData();
   }
 
   refresh() {
@@ -48,7 +48,7 @@ export class DoctorPageComponent implements OnInit {
   }
 
   fetchData() {
-    this.doctorService.getAllTreatment().subscribe(
+    this.doctorService.getAllBookings().subscribe(
       (res) => {
         console.log(res)
         this.listDatauser = res;
@@ -70,11 +70,11 @@ export class DoctorPageComponent implements OnInit {
     this.listDatausers.controls['userPhone'].patchValue(item.user.userPhone);
     this.listDatausers.controls['userEmail'].patchValue(item.user.userEmail);
     this.listDatausers.controls['userDisease'].patchValue(item.user.userDisease);
-    this.listDatausers.controls['bkId'].patchValue(item.booking.bkId);
-    this.listDatausers.controls['bkQueue'].patchValue(item.booking.bkQueue);
-    this.listDatausers.controls['bkDate'].patchValue(item.booking.bkDate);
-    this.listDatausers.controls['bkTime'].patchValue(item.booking.bkTime);
-    this.listDatausers.controls['bkSymptom'].patchValue(item.booking.bkSymptom);
+    this.listDatausers.controls['bkId'].patchValue(item.bkId);
+    this.listDatausers.controls['bkQueue'].patchValue(item.bkQueue);
+    this.listDatausers.controls['bkDate'].patchValue(item.bkDate);
+    this.listDatausers.controls['bkTime'].patchValue(item.bkTime);
+    this.listDatausers.controls['bkSymptom'].patchValue(item.bkSymptom);
   }
 
   gotoaddtreat(item: any) {

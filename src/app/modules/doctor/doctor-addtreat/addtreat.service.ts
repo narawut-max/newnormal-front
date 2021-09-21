@@ -14,7 +14,7 @@ export class AddtreatService {
 
   constructor(private http: HttpClient) { }
 
-  //Address
+  //get Address
   getSubdistrictAll(): Observable<any> {
     return this.http.get<any>(endpoint + '/subdistricts')
   }
@@ -28,7 +28,7 @@ export class AddtreatService {
     return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
   }
 
-  //User
+  //get User
   getAllUsers(): Observable<any> {
     return this.http.get<any>(endpoint + '/users/')
   }
@@ -36,7 +36,7 @@ export class AddtreatService {
     return this.http.get<any>(endpoint + '/users/' + userId)
   }
 
-  //Treatment
+  //get Treatment
   getAllTreatment(): Observable<any> {
     return this.http.get<any>(endpoint + '/treatments/')
   }
@@ -44,7 +44,7 @@ export class AddtreatService {
     return this.http.get<any>(endpoint + '/treatments/' + tmId)
   }
 
-  //billdrugs
+  //get billdrugs
   getAllBilldrugs(): Observable<any> {
     return this.http.get<any>(endpoint + '/billdrugs/')
   }
@@ -52,7 +52,7 @@ export class AddtreatService {
     return this.http.get<any>(endpoint + '/billdrugs/' + billId)
   }
 
-  //Booking
+  //get Booking
   getAllBookings(): Observable<any> {
     return this.http.get<any>(endpoint + '/bookings/')
   }
@@ -80,6 +80,10 @@ export class AddtreatService {
   //Create
   createBilldrug(registerData: any): Observable<any> {
     return this.http.post<any>(endpoint + '/billdrugs/save', JSON.stringify(registerData), httpOptions)
+  }
+
+  createTreatment(registerData: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/treatments/save', JSON.stringify(registerData), httpOptions)
   }
 
 }

@@ -40,7 +40,7 @@ export class DoctorTreatComponent implements OnInit {
   }
 
   fetchData() {
-    this.doctorService.getAllTreatment().subscribe(
+    this.doctorService.getAllBookings().subscribe(
       (res) => {
         console.log(res)
         this.listUser = res;
@@ -53,7 +53,7 @@ export class DoctorTreatComponent implements OnInit {
 
   gotoaddtreat(item: any) {
     debugger
-    this.router.navigate(['doctor/treat/add-treat/', item.tmId]);
+    this.router.navigate(['doctor/treat/add-treat/', item.bkId]);
   }
 
   getSearchTreatByCriteria() {

@@ -90,7 +90,7 @@
             <tbody>
                 <tr *ngFor="let item of listDataBill">
                     <td scope="row">{{item.billId}}</td>
-                    <td>{{item.tmDate}}</td>
+                    <td>{{item.tmTime | date:"dd/MM/yy HH:mm"}}</td>
                     <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                     <td>{{item.user.userDisease}}</td>
                     <td class="text-center">

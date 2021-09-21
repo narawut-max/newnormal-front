@@ -11,14 +11,27 @@ import { UUID } from 'angular2-uuid';
 })
 export class DoctorAdddrugComponent implements OnInit {
 
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private activatedroute: ActivatedRoute,
+    private doctorAdddrugService: DoctorAdddrugService
+  ) { }
+
+  public tmMoney: number = 0;
+
   page = 1;
   count = 0;
   tableSize = 5;
   tableSizes = [3, 6, 9, 12];
 
   cartDrugs = new Array();
+  cartDrugsForUpdate = new Array();
   cartDrugsForSaveDetails = new Array();
+
   listDatadrugs: any = []; //SearchDrud
+  drugTotalPrice: number = 0;
+  total: number = 0;
 
   statusActive: any = 'A';
   item: any
@@ -31,12 +44,6 @@ export class DoctorAdddrugComponent implements OnInit {
   drugName: string | any;
   submitted = false;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private activatedroute: ActivatedRoute,
-    private doctorAdddrugService: DoctorAdddrugService
-  ) { }
   DataUserForm = this.fb.group({
     tmId: ['', Validators.required],
     tmDate: [''],
@@ -45,9 +52,9 @@ export class DoctorAdddrugComponent implements OnInit {
     tmSlip: [''],
     tmStatus: [''],
     tmProcess: [''],
-    billId: [0],
-    bkId: [0],
-    userId: [0],
+    billId: [''],
+    bkId: [''],
+    userId: [''],
     userUsername: ['', Validators.required],
     userPassword: ['', Validators.required],
     userCardId: ['', Validators.required],
@@ -86,10 +93,12 @@ export class DoctorAdddrugComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    debugger
     // this.fetchData();
-    this.listDatadrugs = this.fetchData()
     this.tmId = this.activatedroute.snapshot.paramMap.get("tmId");
     this.initUserDataforEditById(this.tmId);
+    this.listDatadrugs = this.fetchData();
+    this.tmMoney = this.getTotalPrice();
 
   }
 
@@ -173,17 +182,51 @@ export class DoctorAdddrugComponent implements OnInit {
       }).then((result) => {
         if (result.isConfirmed) {
           this.doctorAdddrugService.createBilldrug(this.DataUserForm.value).subscribe(res => {
+            debugger
             console.log('create Billdrug res : ', res)
             if (res) {
               // add service save bil detail here
               this.cartDrugs.forEach(data => {
-                data['billId'] = res.billId
-                this.cartDrugsForSaveDetails.push(data);
+                data['billdrugDetailId'] = 0;
+                data['tmId'] = res.tmId,
+                  data['billId'] = res.billId,
+                  // this.cartDrugsForUpdate
+                  this.cartDrugsForSaveDetails.push(data);
               });
               console.log('cartDrugsForSaveDetails : ', this.cartDrugsForSaveDetails)
+
               //for save detail
               this.doctorAdddrugService.createBilldrugDetails(this.cartDrugsForSaveDetails).subscribe(response => {
+                debugger
                 console.log('create Billdrug Details res : ', response)
+                if (res) {
+                  this.cartDrugsForSaveDetails.forEach(data => {
+                    data['billdrugDetailId'] = res.billdrugDetailId;
+                    data['tmId'] = res.tmId,
+                      data['billId'] = res.billId,
+                      this.cartDrugsForSaveDetails.push(data);
+                  });
+                  console.log('Update success: ', this.cartDrugsForSaveDetails)
+
+                  //for update Treatment
+                  let dataForUpdateTreatment = new Array();
+                  if (this.cartDrugsForSaveDetails) {
+                    let group: any = {};
+                    var summaryAmout = 0;
+                    group['tmId'] = res.tmId;
+                    group['billId'] = res.billId;
+                    this.cartDrugsForSaveDetails.forEach(data => {
+                      summaryAmout += data.drugTotalPrice;
+                    });
+                    group['tmMoney'] = summaryAmout;
+                    dataForUpdateTreatment.push(group);
+                  }
+                  console.log('dataForUpdateTreatment : ', dataForUpdateTreatment)
+
+                  this.doctorAdddrugService.updateTreatment(dataForUpdateTreatment).subscribe(response => {
+                    console.log('update Treatment res : ', response)
+                  })
+                }
               })
             }
           });
@@ -219,38 +262,46 @@ export class DoctorAdddrugComponent implements OnInit {
   }
 
   // *******************************
-  getDrugDetail = []; //SelectDrug
-  // addDrug(bill: any) {
-  //   console.log(bill);
-  //   let cartDataNull = localStorage.getItem('localCart');
-
-  //   localStorage.setItem('localCart', JSON.stringify(bill));
-  // }
-
   addDrug(drug: any) {
     console.log(drug)
     drug['key'] = UUID.UUID();
     drug['drugCount'] = 1; //default count
+    drug['drugTotalPrice'] = drug.drugPrice * drug.drugCount; //คำนวณราคารวม
     this.cartDrugs.push(drug);
+    this.tmMoney = this.getTotalPrice();
     console.log('this array ->', this.cartDrugs)
   }
 
   addDrugCount(drug: any) {
     let item = this.cartDrugs.findIndex(i => i.key == drug.key);
     drug.drugCount = drug.drugCount + 1;
+    drug.drugTotalPrice = drug.drugPrice * drug.drugCount;
     this.cartDrugs[item] = drug;
+    this.tmMoney = this.getTotalPrice();
     console.log('addDrugCount key ->', drug.key)
     console.log('addDrugCount ->', this.cartDrugs)
+    debugger
   }
 
   removeDrugCount(drug: any) {
     let item = this.cartDrugs.findIndex(i => i.key == drug.key);
     if (drug.drugCount > 1) {
       drug.drugCount = drug.drugCount - 1;
+      drug.drugTotalPrice = drug.drugPrice * drug.drugCount;
     }
     this.cartDrugs[item] = drug;
+    this.tmMoney = this.getTotalPrice();
     console.log('removeDrugCount key ->', drug.key)
     console.log('removeDrugCount ->', this.cartDrugs)
+    debugger
+  }
+
+  getTotalPrice() {
+    let tmMoney = 0;
+    this.cartDrugs.map((a: any) => {
+      tmMoney += (a.drugPrice * a.drugCount)
+    })
+    return tmMoney;
   }
 
   // Delete Drug
@@ -258,6 +309,7 @@ export class DoctorAdddrugComponent implements OnInit {
     // console.log(drug)
     this.cartDrugs.splice(index, 1)
     console.log('this array delete ->', this.cartDrugs)
+    this.tmMoney = this.getTotalPrice();
   }
 
   pageChanged(event: any) {
@@ -266,3 +318,4 @@ export class DoctorAdddrugComponent implements OnInit {
   }
 
 }//end
+

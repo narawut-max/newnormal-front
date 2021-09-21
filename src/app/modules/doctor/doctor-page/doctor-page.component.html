@@ -1,4 +1,4 @@
-<div class="container con-queue text-dark" style="padding-top: 2rem;">
+<div class="container con-queue text-dark" style="padding-top: 2rem; min-height: 591px;">
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
         <h3>ข้อมูลการจองคิวประจำวัน</h3>
@@ -76,8 +76,8 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of listDatauser; let i = index">
-                                    <th scope="row">{{item.booking.bkQueue}}</th>
-                                    <td>{{item.booking.bkTime}}</td>
+                                    <th scope="row">{{item.bkQueue}}</th>
+                                    <td>{{item.bkTime | date:"HH:mm"}}</td>
                                     <td>{{item.bkId}}</td>
                                     <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                                     <td>
@@ -103,7 +103,6 @@
             </div>
         </div>
     </div>
-    <canvas class="my-4 w-100" id="myChart" height="80"></canvas>
 
 </div><!-- end-container -->
 

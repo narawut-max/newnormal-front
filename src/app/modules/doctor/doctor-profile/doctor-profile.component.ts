@@ -14,14 +14,16 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorProfileComponent implements OnInit {
 
-  uplodeFile: any | File = null;
-  url = "assets/images/upmdids.jpg"
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private http: HttpClient,
     private doctorService: DoctorService
   ) { }
+
+  listDataDoctor: any;
+  uplodeFile: any | File = null;
+  url = "assets/images/upmdids.jpg"
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
@@ -67,9 +69,22 @@ export class DoctorProfileComponent implements OnInit {
 
   ngOnInit(): void {
     //load dropdown all
-    this.initDropdown();
     const userId = sessionStorage.getItem('user_id');
+    this.fetchData(userId);
+    this.initDropdown();
     this.initUserDataforEditById(userId);
+  }
+
+  fetchData(userId: any) {
+    this.doctorService.getUserByUser(userId).subscribe(
+      (res) => {
+        console.log(res)
+        this.listDataDoctor = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   initDropdown() {

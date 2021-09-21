@@ -39,19 +39,23 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="validationCustom01" class="form-label">กรุ๊ปเลือด</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="userBlood" formControlName="userBlood" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userBlood"
+                                        formControlName="userBlood" readonly>
                                 </div>
                                 <div class="col-md-2">
                                     <label for="validationCustom01" class="form-label">เพศ</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="userGender" formControlName="userGender" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userGender"
+                                        formControlName="userGender" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">เบอร์โทร</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="userPhone" formControlName="userPhone" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userPhone"
+                                        formControlName="userPhone" readonly>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">อีเมล</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value="userEmail" formControlName="userEmail" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value="userEmail"
+                                        formControlName="userEmail" readonly>
                                 </div>
                             </form>
                         </div>
@@ -62,13 +66,28 @@
                     <div class="container text-dark">
                         <div class="card p-4 border-0" style="border-radius: 10px;">
                             <form class="row g-3 gx-4" [formGroup]="DataUserForm">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label for="validationCustom01" class="form-label">โรคประจำตัว</label>
-                                    <input type="text" class="form-control" id="validationCustom01" value=""   formControlName="userDisease" readonly>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""
+                                        formControlName="userDisease" readonly>
                                 </div>
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
                                     <input type="text" class="form-control" id="validationCustom01" value="" readonly>
+                                </div> -->
+                                <div class="col-md-5">
+                                    <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-outline-danger" type="button" id="button-addon2"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#DateDoctorModel">ดูวันออกตรวจ</button>
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>เลือกแพทย์ผู้รักษา</option>
+                                            <option value="1">นพ.เอ</option>
+                                            <option value="2">นพ.บีเอ</option>
+                                            <option value="3">พญ.เอ็มวัน</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">อาการ (หากไม่มีให้ใส่ - )</label>
@@ -80,7 +99,6 @@
                                         <dt>เลือกวันที่เข้ารักษา</dt>
                                     </h6>
                                     <div class="col-md-12">
-                                        <!-- <ejs-schedule [currentView]="setView"></ejs-schedule> -->
                                         <app-user-booking-calender></app-user-booking-calender>
                                     </div>
                                 </div>
@@ -94,3 +112,107 @@
     </div>
 </div>
 <br>
+
+<!-- Modal - วันออกตรวจ -->
+<div class="modal fade" id="DateDoctorModel" tabindex="-1" aria-labelledby="DateDoctorModelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold font-monospace" id="SelectModalLabel">วันออกตรวจของแพทย์</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-light">
+                <form>
+                    <div class="card p-3 text-dark" style="border-radius: 0rem;">
+                        <div class="row">
+                            <div class="col-md-4 text-center" style="padding-right: 1rem;">
+                                <img src="assets/images/person.png"
+                                    class="img-thumbnail" alt="..." width="80px">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="fw-bold font-monospace ">นพ.เอ</h5>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">ออกตรวจ : จันทร์ , อังคาร</h6>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">เวลา : 09:00 - 12:00 น.</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-3 text-dark border-top-0" style="border-radius: 0rem;">
+                        <div class="row">
+                            <div class="col-md-4 text-center" style="padding-right: 1rem;">
+                                <img src="assets/images/person.png"
+                                    class="img-thumbnail" alt="..." width="80px">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="fw-bold font-monospace ">นพ.บีเอ</h5>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">ออกตรวจ : พุธ , พฤหัสบดี</h6>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">เวลา : 09:00 - 12:00 น.</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card p-3 text-dark border-top-0" style="border-radius: 0rem;">
+                        <div class="row">
+                            <div class="col-md-4 text-center" style="padding-right: 1rem;">
+                                <img src="assets/images/person.png"
+                                    class="img-thumbnail" alt="..." width="80px">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="fw-bold font-monospace ">พญ.เอ็มวัน</h5>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">ออกตรวจ : พฤหัสบดี , ศุกร์</h6>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">เวลา : 09:00 - 12:00 น.</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="card p-3 text-dark" style="border-radius: 0rem;">
+                        <div class="row">
+                            <div class="col-md-4 text-center" style="padding-right: 1rem;">
+                                <img src="assets/images/person.png"
+                                    class="img-thumbnail" alt="..." width="80px">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <!-- <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace ">คลีนิกนอกเวลา</h6>
+                                    </div> -->
+                                    <div class="col-md-12">
+                                        <h5 class="fw-bold font-monospace ">พญ.กัณรญา</h5>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">ออกตรวจ : เสาร์</h6>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h6 class="fw-bold font-monospace text-success">เวลา : 09:00 - 12:00 น.</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

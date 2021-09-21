@@ -59,8 +59,8 @@
           </div>
           <div class="col-md-4 text-end">
             <label class="">
-              <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
-                placeholder="ค้นหา" name="searchText" [(ngModel)]="searchText"/>
+              <input type="search" class="form-control form-control-sm" aria-controls="Searchdata" placeholder="ค้นหา"
+                name="searchText" [(ngModel)]="searchText" />
             </label>
           </div>
           <div class="col pb-0 mb-0">
@@ -68,9 +68,9 @@
               <table class="table table-hover text-start p-0 m-0">
                 <thead>
                   <tr>
-                    <th class="col-md-1">คิวปัจจุบัน</th>
-                    <th class="col-md-1">เวลารักษา</th>
-                    <th class="col-md-2">รหัสผู้ป่วย</th>
+                    <th class="col-md-1 text-center">คิวปัจจุบัน</th>
+                    <th class="col-md-1 text-center">เวลารักษา</th>
+                    <th class="col-md-2 text-center">รหัสผู้ป่วย</th>
                     <th class="col-md-2">ชื่อ - สกุล</th>
                     <th class="col-md-2">แผนกการรักษา</th>
                     <th class="col-md-2">แพทย์ผู้รักษา</th>
@@ -79,13 +79,13 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let item of listDatauser | filter:searchText">
-                    <th class="text-center">{{item.booking.bkQueue}}</th>
-                    <td>{{item.tmTime}}</td>
-                    <td>{{item.user.userHnId}}</td>
-                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                    <td>{{item.user.userDepartment}}</td>
-                    <td>{{item.userId}} --userFirstname userLastname</td>
-                    <td class="td-status text-center p-1">
+                    <th class="col-md-1 text-center">{{item.bkQueue}}</th>
+                    <td class="col-md-1 text-center">{{item.bkTime | date:"HH:mm"}}</td>
+                    <td class="col-md-2 text-center">{{item.user.userHnId}}</td>
+                    <td class="col-md-2">{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td class="col-md-2">{{item.user.userDepartment}}</td>
+                    <td class="col-md-2">{{item.userId}} --userFirstname userLastname</td>
+                    <td class="col-md-2 td-status text-center p-1">
                       <span class="badge" style="background-color: orange;">
                         <dt>รอรักษา</dt>
                       </span>
@@ -97,6 +97,9 @@
           </div>
         </div>
       </form>
+      <!-- <div class="d-flex justify-content-center pb-0 mb-0">
+        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+      </div> -->
     </div>
   </div><br>
 

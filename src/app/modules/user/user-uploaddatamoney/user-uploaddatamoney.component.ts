@@ -13,6 +13,7 @@ export class UserUploaddatamoneyComponent implements OnInit {
 
   listDatauser : any;
   item: any
+  userId: any
   
   searchText: any;
   
@@ -103,17 +104,17 @@ export class UserUploaddatamoneyComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.fetchData();
-    const userDepartment = sessionStorage.getItem('user_department');
+    const userId = sessionStorage.getItem('user_id');
+    this.fetchData(userId);
   }
 
   refresh() {
-    this.fetchData();
+    this.fetchData(this.userId);
     window.location.reload();
   }
 
-  fetchData() {
-    this.userService.getAllTreatment().subscribe(
+  fetchData(userId: any) {
+    this.userService.gettreatmentsByUserId(userId).subscribe(
       (res) => {
         console.log(res)
         this.listDatauser = res;
@@ -168,7 +169,7 @@ export class UserUploaddatamoneyComponent implements OnInit {
 
   pageChanged(event: any) {
     this.page = event;
-    this.fetchData();
+    this.fetchData(this.userId);
   }
 
 }

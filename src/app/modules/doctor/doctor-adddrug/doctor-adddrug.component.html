@@ -217,13 +217,13 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td class="text-end">{{drug.drugPrice * drug.drugCount | number}}</td>
+                                            <td class="text-end">{{ drug.drugPrice * drug.drugCount | currency:'฿' }}</td>
                                         </tr>
                                     </ng-container>
 
                                     <tr class="text-center">
                                         <th class="text-start" scope="row" colspan="5">รวมทั้งสิ้น</th>
-                                        <td class="text-end fw-bold">150</td>
+                                        <td class="text-end fw-bold">{{tmMoney}}</td>
                                     </tr>
                                 </tbody>
                             </table>
