@@ -21,22 +21,6 @@ export class AdminEditadminService {
     return this.http.get<any>(endpoint + '/users/' + userId)
   }
 
-  getSubdistrictAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts')
-  }
-
-  getDistrictsAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/districts')
-  }
-
-  getProvincesAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/provinces')
-  }
-
-  getSubdistrictByZipCode(zipCode: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
-  }
-
   // HttpClient API put() method => Update employee
   updateDatadoctor(updatedoctor: any): Observable<any> {
     return this.http.post<any>(endpoint + '/users/update/', JSON.stringify(updatedoctor), httpOptions)

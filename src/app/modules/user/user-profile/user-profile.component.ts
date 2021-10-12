@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AddressService } from '../../address.service';
 import { UserService } from '../user.service';
 
 @Component({
@@ -14,8 +15,14 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private addressService: AddressService
   ) { }
+
+  subdistricts: any;
+  districts: any;
+  provinces: any;
+  statusActive: any = 'A';
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
@@ -23,14 +30,9 @@ export class UserProfileComponent implements OnInit {
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
   doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา']
   genders: any = ['ชาย', 'หญิง']
-  // roles: any = [{roleId: '2', roleName: 'ผู้ป่วย'}, {roleId: '3', roleName: 'แพทย์/เจ้าหน้าที่'}]
-  statusActive: any = 'A';
-  subdistricts: any;
-  districts: any;
-  provinces: any;
+  
   submitted = false;
 
-  //tmId: any
   DataUserForm = this.fb.group({
     userId: [0],
     userUsername: ['', Validators.required],
@@ -46,34 +48,37 @@ export class UserProfileComponent implements OnInit {
     userPhone: [''],
     userEmail: ['', Validators.required],
     userDisease: [''],
-    userDepartment: [''],
+    userDepartment: [],
     userAddrass: [''],
     userAllergy: [''],
     userStatus: [this.statusActive],
     roleId: ['2'],
     zipCode: ['', Validators.required],
-    subdistrict: [{value: '', disabled: true},],
-    district: [{value: '', disabled: true},],
-    province: [{value: '', disabled: true},]
+    sdtId: [{ value: '', disabled: true },],
+    district: [{ value: '', disabled: true },],
+    province: [{ value: '', disabled: true },],
+    subdistrictInput: [''],
+    districtInput: [''],
+    provinceInput: ['']
   });
 
   ngOnInit(): void {
     //load dropdown all
     this.initDropdown();
     const userId = sessionStorage.getItem('user_id');
-    debugger
     this.getUserByUserId(userId);
   }
 
   initDropdown() {
-    this.userService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.userService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.userService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.addressService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
   // show edit
   getUserByUserId(userId: any) {
     this.userService.getUserByUserId(userId).subscribe((res) => {
+      this.addressService.getsubdistrictsByZipCode1(res.zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataUserForm.patchValue({
         userId: res.userId,
@@ -96,12 +101,12 @@ export class UserProfileComponent implements OnInit {
         userStatus: res.userStatus,
         roleId: res.roleId,
         zipCode: res.zipCode,
-        subdistrict: res.subdistrict,
-        district: res.district,
-        province: res.province,
+        subdistrictInput: res.subdistrict,
+        districtInput: res.district,
+        provinceInput: res.province,
       });
       //set default select dropdown
-      this.loadUserZipCode(res.zipCode);
+      this.loadUserZipCode(res.sdtId);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
@@ -109,16 +114,21 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-  loadUserZipCode(zipCode: any) {
-    console.log('zipCode' + zipCode)
-    this.userService.getSubdistrictByZipCode(zipCode).subscribe(
+  loadUserZipCode(sdtId: any) {
+    console.log('zipCode' + sdtId)
+    this.DataUserForm.controls['sdtId'].enable();
+    this.addressService.getsubdistrictsBySdtId(sdtId).subscribe(
       res => {
         if (res) {
           this.DataUserForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              sdtId: res.sdtId,
               district: res.district.disNameTh,
-              province: res.province.pvnNameTh
+              province: res.province.pvnNameTh,
+
+              subdistrictInput: res.sdtNameTh,
+              districtInput: res.district.disNameTh,
+              provinceInput: res.province.pvnNameTh
             }
           )
         }
@@ -134,6 +144,7 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+
 
   SubmitEditPass() {
     this.submitted = true;
@@ -264,13 +275,14 @@ export class UserProfileComponent implements OnInit {
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.userService.getSubdistrictByZipCode(zipCode).subscribe(
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
         console.log(res)
         if (res) {
           this.DataUserForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              // subdistrict: res.sdtNameTh,
               district: res.district.disNameTh,
               province: res.province.pvnNameTh
             }
@@ -289,7 +301,9 @@ export class UserProfileComponent implements OnInit {
     );
   }
 
-
+  refresh() {
+    window.location.reload();
+  }
   get userf() { return this.DataUserForm.controls; }
 
 }

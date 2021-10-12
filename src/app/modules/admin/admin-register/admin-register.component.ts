@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AddressService } from '../../address.service';
 import { AdminRegisterService } from './admin-register.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class AdminRegisterComponent implements OnInit {
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
-  graduates: any = ['บัณฑิต(ปริญญาตรี', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
+  graduates: any = ['บัณฑิต(ปริญญาตรี)', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
   doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา', 'นักวิชาการคอมพิวเตอร์ปฏิบัติการ']
   genders: any = ['ชาย', 'หญิง']
@@ -27,7 +28,8 @@ export class AdminRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public adminRegisterService: AdminRegisterService
+    public adminRegisterService: AdminRegisterService,
+    private addressService : AddressService
   ) { }
 
   submitted = false;
@@ -53,7 +55,8 @@ export class AdminRegisterComponent implements OnInit {
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['2'],
-    subdistrict: [{value: '', disabled: true},],
+    // subdistrict: [{value: '', disabled: true},],
+    sdtId: [{value: ''},],
     district: [{value: '', disabled: true},],
     province: [{value: '', disabled: true},]
   });
@@ -80,7 +83,8 @@ export class AdminRegisterComponent implements OnInit {
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['3'],
-    subdistrict: [{value: '', disabled: true},],
+    // subdistrict: [{value: '', disabled: true},],
+    sdtId: [{value: ''},],
     district: [{value: '', disabled: true},],
     province: [{value: '', disabled: true},]
   });
@@ -106,16 +110,20 @@ export class AdminRegisterComponent implements OnInit {
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['1'],
-    subdistrict: [{value: '', disabled: true},],
+    // subdistrict: [{value: '', disabled: true},],
+    sdtId: [{value: ''},],
     district: [{value: '', disabled: true},],
     province: [{value: '', disabled: true},]
   });
 
   ngOnInit(): void {
     //load dropdown all
-    this.adminRegisterService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.adminRegisterService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.adminRegisterService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.userRegisterForm.controls['sdtId'].disable();
+    // this.doctorRegisterForm.controls['sdtId'].disable();
+    // this.AdminRegisterForm.controls['sdtId'].disable();
+    // this.adminRegisterService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
 
   }
 
@@ -255,13 +263,17 @@ export class AdminRegisterComponent implements OnInit {
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.adminRegisterService.getSubdistrictByZipCode(zipCode).subscribe(
+    // this.userRegisterForm.controls['sdtId'].disable();
+
+    // เรียกตำบล
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
       console.log(res)
       if (res) {
         this.userRegisterForm.patchValue(
           {
-            subdistrict: res.sdtNameTh,
+            // subdistrict: res.sdtNameTh,
             district: res.district.disNameTh,
             province: res.province.pvnNameTh
           }
@@ -283,7 +295,11 @@ export class AdminRegisterComponent implements OnInit {
   changeDoctorZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.adminRegisterService.getSubdistrictByZipCode(zipCode).subscribe(
+    // this.doctorRegisterForm.controls['sdtId'].disable();
+
+    // เรียกตำบล
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
       console.log(res)
       if (res) {
@@ -308,6 +324,39 @@ export class AdminRegisterComponent implements OnInit {
     );
   }
 
+  changeAdminZipCode(event: any) {
+    const zipCode = event.target.value;
+    console.log('zipCode' + zipCode)
+    // this.doctorRegisterForm.controls['sdtId'].disable();
+
+    // เรียกตำบล
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
+      res => {
+      console.log(res)
+      if (res) {
+        this.AdminRegisterForm.patchValue(
+          {
+            subdistrict: res.sdtNameTh,
+            district: res.district.disNameTh,
+            province: res.province.pvnNameTh
+          }
+        )
+      }
+    },
+    error => {
+      this.doctorRegisterForm.patchValue(
+        {
+          subdistrict: '',
+          district: '',
+          province: ''
+        }
+      )
+    }
+    );
+  }
+
+  // check Password
   changeUserConfirmPassword(event: any) {
     debugger
     const pass = this.userRegisterForm.controls['userPassword'].value;
@@ -336,8 +385,23 @@ export class AdminRegisterComponent implements OnInit {
     }
   }
 
+  changeAdminConfirmPassword(event: any) {
+    debugger
+    const pass = this.AdminRegisterForm.controls['userPassword'].value;
+    const confirmPassword = event.target.value;
+    if (pass.localeCompare(confirmPassword) != 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'รหัสผ่านไม่ตรงกัน',
+        text: 'กรุณากรอกยืนยันรหัสผ่านให้ถูกต้อง!',
+      })
+      return;
+    }
+  }
+
   get userf() { return this.userRegisterForm.controls; }
   get doctorf() { return this.doctorRegisterForm.controls; }
+  get adminf() { return this.AdminRegisterForm.controls; }
 
   // savedatauser() {
   //   Swal.fire({

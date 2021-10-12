@@ -31,19 +31,19 @@
                                 <h6 class="m-0">ประวัติผู้ป่วย</h6>
                             </div>
                             <div class="col-md-4 col-sm-6 text-end p-0">
-                                <div class="dropdown no-arrow p-0">
-                                    <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown"
-                                        href="#">
+                                <div class="p-0">
+                                    <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="modal"
+                                        data-bs-target="#buttonEditModal">
                                         <i class="bi bi-pencil-square"
                                             style="font-size: 19px; color: rgb(238, 91, 6);"></i>
                                     </a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
+                                    <!-- <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
                                         <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#edittelModal">
                                             <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขเบอร์โทร</a>
                                         <a class="dropdown-item" data-bs-toggle="modal"
                                             data-bs-target="#editEmailModal">
                                             <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขอีเมล</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -86,30 +86,7 @@
                                 <input type="text" class="form-control" id="validationCustom02" value=""
                                     formControlName="userBirthday" readonly>
                             </div>
-                            <div class="col-md-1 col-sm-6">
-                                <label for="validationCustom02" class="form-label">เพศ</label>
-                                <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userGender" readonly>
-                            </div>
-                            <div class="col-md-1 col-sm-6">
-                                <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
-                                <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userBlood" readonly>
-                            </div>
                             <div class="col-md-2">
-                                <label for="validationCustom02" class="form-label">โรคประจำตัว</label>
-                                <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="userDisease" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="validationCustom02" class="form-label">แผนกที่รักษา</label>
-                                <input type="text" class="form-control" id="validationCustom02" value=""  formControlName="userDepartment" readonly>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="validationCustom02" class="form-label">แพทย์ผู้รักษา</label>
-                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="validationCustom02" class="form-label">ที่อยู่</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
                                     formControlName="userAddrass" readonly>
@@ -122,19 +99,48 @@
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">จังหวัด</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="province" readonly>
+                                    formControlName="provinceInput" readonly>
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">อำเภอ</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="district" readonly>
+                                    formControlName="districtInput" readonly>
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">ตำบล</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="subdistrict" readonly>
+                                    formControlName="subdistrictInput" readonly>
+                            </div>
+                            <div class="col-md-1 col-sm-6">
+                                <label for="validationCustom02" class="form-label">เพศ</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userGender" readonly>
+                            </div>
+                            <div class="col-md-1 col-sm-6">
+                                <label for="validationCustom02" class="form-label">กรุ๊ปเลือด</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userBlood" readonly>
                             </div>
                             <div class="col-md-3">
+                                <label for="validationCustom02" class="form-label">โรคประจำตัว</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userDisease" readonly>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="validationCustom02" class="form-label">แผนกที่รักษา</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userDepartment" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="validationCustom02" class="form-label">ประวัติการแพ้ยา</label>
+                                <input type="text" class="form-control" id="validationCustom02" value=""
+                                    formControlName="userAllergy" readonly>
+                            </div>
+                            <!-- <div class="col-md-3">
+                                <label for="validationCustom02" class="form-label">แพทย์ผู้รักษา</label>
+                                <input type="text" class="form-control" id="validationCustom02" value="" readonly>
+                            </div> -->
+                            <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">เบอร์โทรศัพท์</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
                                     formControlName="userPhone" readonly>
@@ -154,15 +160,49 @@
     <!-- end con-pro -->
 </div>
 
+<!-- Model Edit Button -->
+<div class="modal fade" id="buttonEditModal" tabindex="-1" aria-labelledby="buttonEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm text-dark">
+        <div class="modal-content"  style="background-image: url(https://img.lovepik.com/photo/40149/7042.jpg_wh860.jpg);">
+            <div class="modal-body">
+                <form [formGroup]="DataUserForm" (ngSubmit)="onSubmitTel()">
+                    <div class="card p-3">
+                        <div class="col-md-12 text-center">
+                            <h5 class="text-center font-monospace">แก้ไขข้อมูล</h5>
+                            <hr>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-center">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#edittelModal" data-bs-dismiss="modal">
+                                    <i class="bi bi-telephone-fill"
+                                        style="font-size: 11px; color: rgb(255, 255, 255);"></i>
+                                    &nbsp;เบอร์โทร
+                                </button>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#editEmailModal" data-bs-dismiss="modal">&nbsp;
+                                    <i class="bi bi-envelope-fill"
+                                        style="font-size: 13px; color: rgb(255, 255, 255);"></i>
+                                    &nbsp;อีเมล&nbsp;&nbsp;
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Model Edit Tel -->
 <div class="modal fade" id="edittelModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="edittelModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered text-dark">
-        <div class="modal-content">
-            <div class="modal-body bg-light">
-                <div class="row justify-content-end p-2 pt-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+        <div class="modal-content"
+            style="background-image: url(https://www.img.in.th/images/f50702c041e25f92cf27d684fbee70b5.jpg);">
+            <div class="modal-body">
                 <form [formGroup]="DataUserForm" (ngSubmit)="onSubmitTel()">
                     <div class="card p-3">
                         <div class="row justify-content-center">
@@ -175,7 +215,9 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-auto pt-3">
-                                <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>
+                                <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>&nbsp;
+                                <button type="button" class="fw-bolder btn btn-danger" data-bs-dismiss="modal"
+                                    aria-label="Close" (click)="refresh()">ยกเลิก</button>
                             </div>
                         </div>
                     </div>
@@ -189,13 +231,11 @@
 <div class="modal fade" id="editEmailModal" data-bs-backdrop="static" tabindex="-1"
     aria-labelledby="editEmailModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered text-dark">
-        <div class="modal-content">
-            <div class="modal-body bg-light">
-                <div class="row justify-content-end p-2 pt-0">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+        <div class="modal-content"
+            style="background-image: url(https://images.axa-contento-118412.eu/ktaxa/860d55ad-1b76-4c51-aeb2-73ebbd3fd44b_IMG_Yanhee_4.jpg?auto=compress,format);">
+            <div class="modal-body">
                 <form [formGroup]="DataUserForm" (ngSubmit)="onSubmitEmail()">
-                    <div class="card p-3">
+                    <div class="card p-3 border-0">
                         <div class="row justify-content-center">
                             <h5 class="text-center font-monospace pb-2">เปลี่ยนอีเมลใหม่</h5>
                             <br>
@@ -206,7 +246,9 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-auto pt-3">
-                                <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>
+                                <button type="submit" class="fw-bolder btn btn-success">ตั้งค่าใหม่</button>&nbsp;
+                                <button type="button" class="fw-bolder btn btn-danger" data-bs-dismiss="modal"
+                                    aria-label="Close" (click)="refresh()">ยกเลิก</button>
                             </div>
                         </div>
                     </div>

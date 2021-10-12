@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
     this.loginService.loginByUsernamePassword(this.loginForm.value).subscribe((res) => {      
       sessionStorage.setItem('user_role', this.getRole(res.roleId));
       sessionStorage.setItem('user_id', res.userId),{}
+      sessionStorage.setItem('user_tmId', res.tmId),
+      sessionStorage.setItem('user_bkId', res.bkId),
       sessionStorage.setItem('user_department', res.userDepartment),{}
-      sessionStorage.setItem('user_tmId', res.tmId)
+      sessionStorage.setItem('bk_department', res.bkDepartment),{}
       
       // this.router.navigate(['home']).then(() => {
       //   window.location.reload()

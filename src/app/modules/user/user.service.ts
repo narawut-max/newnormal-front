@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -21,6 +21,7 @@ export class UserService {
     return this.http.get<any>(endpoint + '/users/' + userId)
   }
 
+
   //Treatment
   getAllTreatment(): Observable<any> {
     return this.http.get<any>(endpoint + '/treatments/')
@@ -39,6 +40,12 @@ export class UserService {
   getBookingsByBkId(bkId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/bookings/' + bkId)
   }
+  getbookingsByUserId(userId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/bookings/by-user?userId=' + userId)
+  }
+  getbookingBydepartment(bkDepartment: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/bookings/by-Department?bkDepartment=' + bkDepartment)
+  }
 
   //billdrugs
   getAllBilldrugs(): Observable<any> {
@@ -48,18 +55,8 @@ export class UserService {
     return this.http.get<any>(endpoint + '/billdrugs/' + billId)
   }
 
-  //Address
-  getSubdistrictAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts')
-  }
-  getDistrictsAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/districts')
-  }
-  getProvincesAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/provinces')
-  }
-  getSubdistrictByZipCode(zipCode: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
+  getSubdistrictBySdtId(district: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/subdistricts/sdtId?sdtId=' + district)
   }
 
   //update
@@ -69,5 +66,42 @@ export class UserService {
   updateTreatments(updateuser: any): Observable<any> {
     return this.http.post<any>(endpoint + '/treatments/update/', JSON.stringify(updateuser), httpOptions)
   }
+  updateTreatmentStatus(updateuser: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/treatments/updates/', JSON.stringify(updateuser), httpOptions)
+  }
 
-}
+  updatebooking(updateTreat: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/bookings/update/', JSON.stringify(updateTreat), httpOptions)
+  }
+  updateBookingStatus(updateTreat: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/bookings/updates/', JSON.stringify(updateTreat), httpOptions)
+  }
+
+  updateBookingStatusByBkId(bkId: any, bkStatus: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/bookings/update-bk-status/' + bkId + '?bkStatus='+bkStatus, httpOptions)
+  }
+
+  // create
+  createBooking(saveBooking: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/bookings/save', JSON.stringify(saveBooking), httpOptions)
+  } 
+  
+  // ******** upload ************
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${endpoint}/uploads`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.http.request(req);
+  }
+
+  getFiles(): Observable<any> {
+    return this.http.get(`${endpoint}/files`);
+  }
+  
+}//end

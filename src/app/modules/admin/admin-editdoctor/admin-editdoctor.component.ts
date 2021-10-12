@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AddressService } from '../../address.service';
 import { AdminEditdoctorService } from './admin-editdoctor.service';
 
 @Component({
@@ -15,12 +16,13 @@ export class AdminEditdoctorComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private activatedroute: ActivatedRoute,
-    private adminEditdoctorService: AdminEditdoctorService
+    private adminEditdoctorService: AdminEditdoctorService,
+    private addressService: AddressService
   ) { }
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
-  graduates: any = ['บัณฑิต(ปริญญาตรี', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
+  graduates: any = ['บัณฑิต(ปริญญาตรี)', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
   doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา']
   genders: any = ['ชาย', 'หญิง']
@@ -53,37 +55,14 @@ export class AdminEditdoctorComponent implements OnInit {
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
     roleId: ['3'],
-    subdistrict: [{value: '', disabled: true},],
-    district: [{value: '', disabled: true},],
-    province: [{value: '', disabled: true},]
+    sdtId: [{ value: '', disabled: true },],
+    district: [{ value: '', disabled: true },],
+    province: [{ value: '', disabled: true },],
+
+    subdistrictInput: [''],
+    districtInput: [''],
+    provinceInput: ['']
   });
-  // new FormGroup({
-  //   userId: new FormControl(''),
-  //   userUsername: new FormControl(''),
-  //   userPassword: new FormControl(''),
-  //   userCardId: new FormControl(''),
-  //   userTitle: new FormControl(''),
-  //   userFirstname: new FormControl(''),
-  //   userLastname: new FormControl(''),
-  //   userGender: new FormControl(''),
-  //   userBirthday: new FormControl(''),
-  //   userBlood: new FormControl(''),
-  //   userDepartment: new FormControl(''),
-  //   userGraduate: new FormControl(''),
-  //   userProfessionId: new FormControl(''),
-  //   userPosition: new FormControl(''),
-  //   userPhone: new FormControl(''),
-  //   userEmail: new FormControl(''),
-  //   userStatus: new FormControl(''),
-  //   userAddrass: new FormControl(''),
-  //   zipCode: new FormControl(''),
-  //   roleId: new FormControl(''),
-  //   subdistrict: new FormControl(''),
-  //   district: new FormControl(''),
-  //   province: new FormControl(''),
-  // });
-
-
 
   ngOnInit() {
     //load dropdown all
@@ -93,13 +72,14 @@ export class AdminEditdoctorComponent implements OnInit {
   }
 
   initDropdown() {
-    this.adminEditdoctorService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.adminEditdoctorService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.adminEditdoctorService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.addressService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
   initUserDataforEditById(userId: any) {
     this.adminEditdoctorService.getUserById(userId).subscribe((res) => {
+      this.addressService.getsubdistrictsByZipCode1(res.zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.editDataDoctorForm.patchValue({
         userId: res.userId,
@@ -122,13 +102,13 @@ export class AdminEditdoctorComponent implements OnInit {
         userAddrass: res.userAddrass,
         zipCode: res.zipCode,
         roleId: res.roleId,
-        subdistrict: res.subdistrict,
-        district: res.district,
-        province: res.province,
+        subdistrictInput: res.subdistrict,
+        districtInput: res.district,
+        provinceInput: res.province,
       });
 
       //set default select dropdown
-      this.loadUserZipCode(res.zipCode);
+      this.loadUserZipCode(res.sdtId);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
@@ -136,36 +116,40 @@ export class AdminEditdoctorComponent implements OnInit {
     );
   }
 
-  loadUserZipCode(zipCode: any) {
-    console.log('zipCode' + zipCode)
-    this.adminEditdoctorService.getSubdistrictByZipCode(zipCode).subscribe(
+  loadUserZipCode(sdtId: any) {
+    console.log('zipCode' + sdtId)
+    this.editDataDoctorForm.controls['sdtId'].enable();
+    this.addressService.getsubdistrictsBySdtId(sdtId).subscribe(
       res => {
-      if (res) {
+        if (res) {
+          this.editDataDoctorForm.patchValue(
+            {
+              sdtId: res.sdtId,
+              district: res.district.disNameTh,
+              province: res.province.pvnNameTh,
+
+              subdistrictInput: res.sdtNameTh,
+              districtInput: res.district.disNameTh,
+              provinceInput: res.province.pvnNameTh
+            }
+          )
+        }
+      },
+      error => {
         this.editDataDoctorForm.patchValue(
           {
-            subdistrict: res.sdtNameTh,
-            district: res.district.disNameTh,
-            province: res.province.pvnNameTh
+            subdistrict: '',
+            district: '',
+            province: ''
           }
         )
       }
-    },
-    error => {
-      this.editDataDoctorForm.patchValue(
-        {
-          subdistrict: '',
-          district: '',
-          province: ''
-        }
-      )
-    }
     );
   }
-  
 
   onSubmit() {
     this.submitted = true;
-    console.log('data :',this.editDataDoctorForm.value)
+    console.log('data :', this.editDataDoctorForm.value)
     // stop here if form is invalid
     if (this.editDataDoctorForm.invalid) {
       Swal.fire({
@@ -175,23 +159,49 @@ export class AdminEditdoctorComponent implements OnInit {
       })
       return;
     } else {
-      this.adminEditdoctorService.updateDatadoctor(this.editDataDoctorForm.value).subscribe(res => {
-        console.log('Create User res : ', res)
-      });
+      Swal.fire({
+        title: 'ยืนยันการทำรายการ',
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ปิด'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adminEditdoctorService.updateDatadoctor(this.editDataDoctorForm.value).subscribe(res => {
+            console.log('Create User res : ', res)
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: '',
+            confirmButtonText: 'ปิดหน้าต่าง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['admin/manage']);
+            } else if (result.isDismissed) {
+              window.location.reload()
+
+            }
+          })
+        }
+      })
     }
-    this.router.navigate(['admin/manage']);
   }
 
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.adminEditdoctorService.getSubdistrictByZipCode(zipCode).subscribe(
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
         console.log(res)
         if (res) {
           this.editDataDoctorForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              // subdistrict: res.sdtNameTh,
               district: res.district.disNameTh,
               province: res.province.pvnNameTh
             }
@@ -209,5 +219,5 @@ export class AdminEditdoctorComponent implements OnInit {
       }
     );
   }
-  
+
 }//end

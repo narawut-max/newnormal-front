@@ -1,4 +1,4 @@
-<div class="container p-4" style="min-height: 600px; background-color: #F0F8FF;">
+<div class="container p-4" style="min-height: 591px; background-color: #F0F8FF;">
 
     <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -50,14 +50,15 @@
                             <th class="col-md-2">รหัสบัตรประชาชน</th>
                             <th class="col-md-2">ชื่อ - สกุล</th>
                             <th class="col-md-1">เพศ</th>
-                            <th class="col-md-2" (click)="sort('roleDescription')">ประเภทผู้ใช้งาน&nbsp;<i
-                                    class="bi bi-chevron-bar-contract"></i></th>
+                            <!-- (click)="sort('roleDescription')" -->
+                            <th class="col-md-2">ประเภทผู้ใช้งาน</th>
                             <th class="col-md-2">สถานะการใช้งาน</th>
                             <th class="col-md-2">ดำเนินการ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of listUser | filter:searchText | orderBy: key: reverse | paginate: {
+                        <!-- | orderBy: key: reverse  -->
+                        <tr *ngFor="let item of listUser | filter:searchText | paginate: {
                             itemsPerPage: tableSize,
                             currentPage: page,
                             totalItems: count

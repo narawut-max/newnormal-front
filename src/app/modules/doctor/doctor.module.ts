@@ -12,10 +12,11 @@ import { DoctorProfileComponent } from './doctor-profile/doctor-profile.componen
 import { DoctorManagedrugComponent } from './doctor-managedrug/doctor-managedrug.component';
 import { DoctorReportDatauserComponent } from './doctor-report-datauser/doctor-report-datauser.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2OrderModule } from 'ng2-order-pipe';
+// import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { HttpClientModule } from '@angular/common/http';
 import { ShowHidePasswordModule } from 'ngx-show-hide-password';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 
@@ -26,11 +27,12 @@ import { ShowHidePasswordModule } from 'ngx-show-hide-password';
     DoctorRoutingModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    Ng2OrderModule,
+    // Ng2OrderModule,
     Ng2SearchPipeModule,
     FormsModule,
     HttpClientModule,
     ShowHidePasswordModule,
+    QRCodeModule
   ]
 })
 export class DoctorModule { }

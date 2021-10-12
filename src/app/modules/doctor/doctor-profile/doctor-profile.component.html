@@ -27,19 +27,22 @@
                 <div class="card" style="background-color: #0d6dfd;">
                     <div class="card-header text-center p-1 border-0">
                         <div class="row profile" *ngFor="let item of listDataDoctor; let i = index">
-                            <img src="{{item.userProfession}}" alt="" width="290"
-                                height="250">
+                            <img src="{{item.userProfession}}" alt="" width="290" height="250">
                         </div>
                     </div>
                     <div class="card-body p-2">
                         <div class="row justify-content-center text-white">
-                            <div class="col-md-6 p-1 text-end">
+                            <div class="col-md-5 p-1 text-end">
                                 <label for="staticEmail" class="col-sm-auto col-form-label fw-bold">เลขที่ใบอนุญาต :
                                 </label>
                             </div>
-                            <div class="col-md-6 p-1">
+                            <div class="col-md-5" style="padding-left: 10px;padding-top: 6px;">
                                 <input type="text" readonly class="form-control-plaintext text-white fw-bold"
                                     id="staticEmail" value="" formControlName="userProfessionId">
+                            </div>
+                            <div class="col-md-2 pt-2">
+                                <i class="bi bi-pencil-square" style="font-size: 19px; color: rgb(255, 255, 255);"
+                                    data-bs-toggle="modal" data-bs-target="#editMdIdModal"></i>
                             </div>
                         </div>
                     </div>
@@ -125,9 +128,15 @@
                         <div class="col-md-4 col-sm-6 align-self-center">
                             <h6 style="margin: 0px;">ประวัติแพทย์</h6>
                         </div>
-                        <div class="col-md-4 col-sm-6 text-end p-0">
-                            <div class="dropdown no-arrow p-0">
-                                <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown" href="#">
+                        <div class="col-md-2 col-sm-6 text-end m-0 p-0">
+                            <h6 style="margin: 0px;">
+                                <!-- แก้ไข&nbsp; -->
+                                <i class="bi bi-pencil-square"
+                                    style="font-size: 19px; color: rgb(238, 91, 6); padding-right: 10px;"
+                                    data-bs-toggle="modal" data-bs-target="#editprofile"></i>
+                            </h6>
+                            <!-- <div class="dropdown no-arrow p-0">
+                                <a class="nav-link pb-0 pt-0" aria-expanded="false" data-bs-toggle="dropdown">
                                     <i class="bi bi-pencil-square" style="font-size: 19px; color: rgb(238, 91, 6);"></i>
                                 </a>
                                 <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
@@ -136,10 +145,10 @@
                                             class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>ใบอนุญาตประกอบวิชาชีพ</a>
                                     <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#editprofile">
                                         <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขข้อมูลส่วนตัว</a>
-                                    <!-- <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#newpasswordModal">
-                                        <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขรหัสผ่าน</a> -->
+                                    <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#newpasswordModal">
+                                        <i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>แก้ไขรหัสผ่าน</a> 
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -218,17 +227,17 @@
                         <div class="col-md-3">
                             <label for="validationCustom02" class="form-label">จังหวัด</label>
                             <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="province" readonly>
+                                formControlName="provinceInput" readonly>
                         </div>
                         <div class="col-md-3">
                             <label for="validationCustom02" class="form-label">อำเภอ</label>
                             <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="district" readonly>
+                                formControlName="districtInput" readonly>
                         </div>
                         <div class="col-md-3">
                             <label for="validationCustom02" class="form-label">ตำบล</label>
                             <input type="text" class="form-control" id="validationCustom02" value=""
-                                formControlName="subdistrict" readonly>
+                                formControlName="subdistrictInput" readonly>
                         </div>
                     </form>
                 </div>
@@ -352,15 +361,14 @@
                             </div>
                             <div class="col-md-3">
                                 <label for="validationCustom02" class="form-label">ตำบล</label>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                <select id="inputState" class="form-select" formControlName="sdtId">
                                     <option value="" disabled>--ตำบล--</option>
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                         subD.sdtNameTh }}</option>
                                 </select>
                             </div>
                             <div class="col-md-12 text-center pt-3">
-                                <button type="submit" class="btn btn-success"
-                                    (click)="refresh()">บันทึกข้อมูล</button>&nbsp;
+                                <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>&nbsp;
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
                                     (click)="refresh()">ยกเลิก</button>
                             </div>
@@ -442,8 +450,7 @@
                                 <div class="card p-2 col-md-11 text-center">
                                     <img [src]="url">
                                     <div class="text-start pt-2">
-                                        <input type="file" (change)="onUplodeFile($event)"
-                                            formControlName="userProfession">
+                                        <input type="file" (change)="onUplodeFile($event)">
                                     </div>
                                 </div>
                             </div>

@@ -14,20 +14,6 @@ export class AddtreatService {
 
   constructor(private http: HttpClient) { }
 
-  //get Address
-  getSubdistrictAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts')
-  }
-  getDistrictsAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/districts')
-  }
-  getProvincesAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/provinces')
-  }
-  getSubdistrictByZipCode(zipCode: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
-  }
-
   //get User
   getAllUsers(): Observable<any> {
     return this.http.get<any>(endpoint + '/users/')

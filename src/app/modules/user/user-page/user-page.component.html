@@ -36,24 +36,28 @@
 
   <!-- queue number -->
   <div>
-    <div class="card border-0 p-4 shadow" style="border-radius: 10px;">
+    <div class="card border-0 p-4 pb-3 shadow" style="border-radius: 10px;">
       <form action="">
-        <h5 class="font-monospace pb-0">ลำดับคิวปัจจุบัน</h5>
-        <hr class="mt-2 mb-3">
-        <div class="row pb-2">
+
+        <!-- refresh ทุก 20 วินาที -->
+        <!-- <meta http-equiv="refresh" content="20"> -->
+
+        <div class="row">
           <div class="col-md-8 pb-2 pt-2">
             <div class="data-date">
               <label>
-                <h6>วันที่ : &nbsp;</h6>
+                <h5 class="font-monospace pb-0">เวลาปัจจุบัน : &nbsp;</h5>
               </label>
-              <label class="col-md-2">
-                <input type="datetime" readonly class="form-control-plaintext" id="staticDate" value="06 / 05 / 2564">
-              </label>&nbsp;
-              <label>
-                <h6>เวลา : &nbsp;</h6>
+              <label class="col">
+                <h5>
+                  {{currentDate | date:'dd/MM/y'}}
+                </h5>
               </label>
-              <label class="col-md-1">
-                <input type="datetime" readonly class="form-control-plaintext" id="staticTime" value="15:15">
+              &nbsp;
+              <label class="col">
+                <h5>
+                  {{currentDate | date:'HH:mm'}}
+                </h5>
               </label>
             </div>
           </div>
@@ -73,33 +77,38 @@
                     <th class="col-md-2 text-center">รหัสผู้ป่วย</th>
                     <th class="col-md-2">ชื่อ - สกุล</th>
                     <th class="col-md-2">แผนกการรักษา</th>
-                    <th class="col-md-2">แพทย์ผู้รักษา</th>
+                    <th class="col-md-2">อาการเบื้องต้น</th>
                     <th class="col-md-2 text-center">สถานะการรักษา</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of listDatauser | filter:searchText">
+                  <tr *ngFor="let item of listDatauser | filter:searchText | paginate: {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  } ;let i = index">
                     <th class="col-md-1 text-center">{{item.bkQueue}}</th>
-                    <td class="col-md-1 text-center">{{item.bkTime | date:"HH:mm"}}</td>
+                    <td class="col-md-1 text-center">{{item.bkTime}}</td>
                     <td class="col-md-2 text-center">{{item.user.userHnId}}</td>
                     <td class="col-md-2">{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                    <td class="col-md-2">{{item.user.userDepartment}}</td>
-                    <td class="col-md-2">{{item.userId}} --userFirstname userLastname</td>
+                    <td class="col-md-2">{{item.bkDepartment}}</td>
+                    <td class="col-md-2">{{item.bkSymptom}}</td>
                     <td class="col-md-2 td-status text-center p-1">
                       <span class="badge" style="background-color: orange;">
-                        <dt>รอรักษา</dt>
+                        <dt>{{item.bkStatus}}</dt>
                       </span>
                     </td>
                   </tr>
                 </tbody>
               </table>
+              <div class="d-flex justify-content-center pt-3 pb-0 mb-0">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+              </div>
             </div>
           </div>
         </div>
       </form>
-      <!-- <div class="d-flex justify-content-center pb-0 mb-0">
-        <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-      </div> -->
+
     </div>
   </div><br>
 

@@ -154,9 +154,9 @@
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">ตำบล</div>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                <select id="inputState" class="form-select" formControlName="sdtId">
                                     <option value="" disabled>--ตำบล--</option>
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                         subD.sdtNameTh }}</option>
                                 </select>
                             </div>
@@ -361,9 +361,9 @@
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">ตำบล</div>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                <select id="inputState" class="form-select" formControlName="sdtId">
                                     <option value="" disabled>--ตำบล--</option>
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                         subD.sdtNameTh }}</option>
                                 </select>
                             </div>
@@ -546,7 +546,7 @@
                             <div class="input-group">
                                 <div class="input-group-text">รหัสไปรษณีย์</div>
                                 <input type="tel" class="form-control" id="autoSizingInputGroup"
-                                    (change)="changeDoctorZipCode($event)" placeholder="กรอกรหัสไปรษณีย์"
+                                    (change)="changeAdminZipCode($event)" placeholder="กรอกรหัสไปรษณีย์"
                                     formControlName="zipCode">
                             </div>
                         </div>
@@ -573,9 +573,9 @@
                         <div class="col-md-3">
                             <div class="input-group">
                                 <div class="input-group-text">ตำบล</div>
-                                <select id="inputState" class="form-select" formControlName="subdistrict">
+                                <select id="inputState" class="form-select" formControlName="sdtId">
                                     <option value="" disabled>--ตำบล--</option>
-                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                    <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                         subD.sdtNameTh }}</option>
                                 </select>
                             </div>

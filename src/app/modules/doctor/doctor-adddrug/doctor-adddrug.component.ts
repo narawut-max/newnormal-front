@@ -11,12 +11,16 @@ import { UUID } from 'angular2-uuid';
 })
 export class DoctorAdddrugComponent implements OnInit {
 
+  public myAngularxQrCode: any | string = null;
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private activatedroute: ActivatedRoute,
     private doctorAdddrugService: DoctorAdddrugService
-  ) { }
+  ) {
+
+  }
 
   public tmMoney: number = 0;
 
@@ -28,6 +32,7 @@ export class DoctorAdddrugComponent implements OnInit {
   cartDrugs = new Array();
   cartDrugsForUpdate = new Array();
   cartDrugsForSaveDetails = new Array();
+  cartDrugsForDetailsUpdate = new Array();
 
   listDatadrugs: any = []; //SearchDrud
   drugTotalPrice: number = 0;
@@ -76,6 +81,7 @@ export class DoctorAdddrugComponent implements OnInit {
     bkDate: ['', Validators.required],
     bkTime: ['', Validators.required],
     bkSymptom: ['', Validators.required],
+    bkDepartment: ['', Validators.required],
     zipCode: ['', Validators.required],
     subdistrict: [],
     district: [],
@@ -99,7 +105,7 @@ export class DoctorAdddrugComponent implements OnInit {
     this.initUserDataforEditById(this.tmId);
     this.listDatadrugs = this.fetchData();
     this.tmMoney = this.getTotalPrice();
-
+    // this.myAngularxQrCode = this.tmId;
   }
 
   fetchData() {
@@ -148,6 +154,7 @@ export class DoctorAdddrugComponent implements OnInit {
         bkDate: res.booking.bkDate,
         bkTime: res.booking.bkTime,
         bkSymptom: res.booking.bkSymptom,
+        bkDepartment: res.booking.bkDepartment,
         zipCode: res.user.zipCode,
         subdistrict: res.subdistrict,
         district: res.district,
@@ -204,18 +211,18 @@ export class DoctorAdddrugComponent implements OnInit {
                     data['billdrugDetailId'] = res.billdrugDetailId;
                     data['tmId'] = res.tmId,
                       data['billId'] = res.billId,
-                      this.cartDrugsForSaveDetails.push(data);
+                      this.cartDrugsForDetailsUpdate.push(data);
                   });
-                  console.log('Update success: ', this.cartDrugsForSaveDetails)
+                  console.log('Update success: ', this.cartDrugsForDetailsUpdate)
 
                   //for update Treatment
                   let dataForUpdateTreatment = new Array();
-                  if (this.cartDrugsForSaveDetails) {
+                  if (this.cartDrugsForDetailsUpdate) {
                     let group: any = {};
                     var summaryAmout = 0;
                     group['tmId'] = res.tmId;
                     group['billId'] = res.billId;
-                    this.cartDrugsForSaveDetails.forEach(data => {
+                    this.cartDrugsForDetailsUpdate.forEach(data => {
                       summaryAmout += data.drugTotalPrice;
                     });
                     group['tmMoney'] = summaryAmout;
@@ -225,21 +232,41 @@ export class DoctorAdddrugComponent implements OnInit {
 
                   this.doctorAdddrugService.updateTreatment(dataForUpdateTreatment).subscribe(response => {
                     console.log('update Treatment res : ', response)
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'บันทึกข้อมูลสำเร็จ',
+                      text: '',
+                      confirmButtonText: 'พิมพ์ใบสั่งยา',
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        debugger
+                        const bill_id = response[0].billId;
+                        if (bill_id) {
+                          this.generateReport(bill_id);
+                          this.router.navigate(['doctor/managedrug']);
+                        } else {
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'Generate Report Fail!',
+                            text: 'Something went wrong!',
+                          })
+                        }
+                        // this.doctorAdddrugService.generateBilldrugReport(bill_id).subscribe(data => {
+                        //   console.log('report===>', data)
+                        //   if (data.body) {
+                        //     let pdf = window.URL.createObjectURL(new Blob([data.body], { type: 'application/pdf' }))
+                        //     window.open(pdf);
+                        //     this.router.navigate(['doctor/managedrug']);
+                        //   }
+                        // })
+                        // this.router.navigate(['doctor/treat/printdatadrug']);
+                      }
+                    })
                   })
                 }
               })
             }
           });
-          Swal.fire({
-            icon: 'success',
-            title: 'บันทึกข้อมูลสำเร็จ',
-            text: '',
-            confirmButtonText: 'พิมพ์ใบสั่งยา',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.router.navigate(['doctor/treat/printdatadrug']);
-            }
-          })
         }
       })
     }
@@ -271,6 +298,7 @@ export class DoctorAdddrugComponent implements OnInit {
     this.tmMoney = this.getTotalPrice();
     console.log('this array ->', this.cartDrugs)
   }
+
 
   addDrugCount(drug: any) {
     let item = this.cartDrugs.findIndex(i => i.key == drug.key);

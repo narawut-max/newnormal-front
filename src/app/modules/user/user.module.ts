@@ -8,7 +8,6 @@ import { UserManagebookingComponent } from './user-managebooking/user-managebook
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserUploaddatamoneyComponent } from './user-uploaddatamoney/user-uploaddatamoney.component';
 import { DayService, MonthAgendaService, MonthService, RecurrenceEditorModule, ScheduleModule, WeekService, WorkWeekService } from '@syncfusion/ej2-angular-schedule';
-import { UserBookingCalenderComponent } from './user-booking-calender/user-booking-calender.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -21,7 +20,7 @@ FullCalendarModule.registerPlugins([
 ]);
 
 @NgModule({
-  declarations: [UserPageComponent, UserBookingComponent, UserManagebookingComponent, UserProfileComponent, UserUploaddatamoneyComponent, UserBookingCalenderComponent],
+  declarations: [UserPageComponent, UserBookingComponent, UserManagebookingComponent, UserProfileComponent, UserUploaddatamoneyComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

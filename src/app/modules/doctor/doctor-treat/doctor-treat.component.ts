@@ -19,7 +19,7 @@ export class DoctorTreatComponent implements OnInit {
   listUser: any;
   page = 1;
   count = 0;
-  tableSize = 10;
+  tableSize = 5;
   tableSizes = [3, 6, 9, 12];
 
   listDatausers = [{}];
@@ -31,16 +31,17 @@ export class DoctorTreatComponent implements OnInit {
   userLastname: string | any
 
   ngOnInit(): void {
-    this.fetchData();
+    const bkDepartment = sessionStorage.getItem('user_department');
+    this.fetchData(bkDepartment);
   }
 
-  refresh() {
-    this.fetchData();
-    window.location.reload();
-  }
+  // refresh() {
+  //   this.fetchData();
+  //   window.location.reload();
+  // }
 
-  fetchData() {
-    this.doctorService.getAllBookings().subscribe(
+  fetchData(bkDepartment: any) {
+    this.doctorService.getbookingBydepartment(bkDepartment).subscribe(
       (res) => {
         console.log(res)
         this.listUser = res;
@@ -61,4 +62,10 @@ export class DoctorTreatComponent implements OnInit {
     let resp = this.doctorService.searchTreatByCriteria(this.bkId, this.userHnId, this.userCardId, this.userFirstname, this.userLastname);
     resp.subscribe((data)=> this.listUser = data);
   }
+
+  pageChanged(event: any) {
+    this.page = event;
+    // this.fetchData();
+  }
+
 }

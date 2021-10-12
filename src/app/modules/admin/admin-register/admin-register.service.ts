@@ -13,23 +13,6 @@ export class AdminRegisterService {
 
   constructor(private http: HttpClient) { }
 
-
-  getSubdistrictAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts')
-  }
-
-  getDistrictsAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/districts')
-  }
-
-  getProvincesAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/provinces')
-  }
-
-  getSubdistrictByZipCode(zipCode: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
-  }
-
   // HttpClient API post() method => Create employee
   createUser(registerData: any): Observable<any> {
     return this.http.post<any>(endpoint + '/users/save', JSON.stringify(registerData), httpOptions)

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AddressService } from '../../address.service';
 import { AddtreatService } from './addtreat.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class DoctorAddtreatComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private activatedroute: ActivatedRoute,
-    private addtreatService: AddtreatService
+    private addtreatService: AddtreatService,
+    private addressService: AddressService
   ) { }
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
@@ -42,6 +44,8 @@ export class DoctorAddtreatComponent implements OnInit {
     bkDate: ['', Validators.required],
     bkTime: ['', Validators.required],
     bkSymptom: ['', Validators.required],
+    bkDepartment: ['', Validators.required],
+    bkStatus: [''],
 
     tmId: [0],
     tmProcess: [''],
@@ -70,9 +74,13 @@ export class DoctorAddtreatComponent implements OnInit {
     userStatus: [this.statusActive],
     roleId: ['2'],
     zipCode: ['', Validators.required],
-    subdistrict: [],
-    district: [],
-    province: [],
+    sdtId: [{ value: '', disabled: true },],
+    district: [{ value: '', disabled: true },],
+    province: [{ value: '', disabled: true },],
+
+    subdistrictInput: [''],
+    districtInput: [''],
+    provinceInput: [''],
 
     user: {},
     treatment: {},
@@ -84,14 +92,13 @@ export class DoctorAddtreatComponent implements OnInit {
     this.initDropdown();
     this.bkId = this.activatedroute.snapshot.paramMap.get("bkId");
     this.initUserDataforEditById(this.bkId);
-    const userId = sessionStorage.getItem('user_tmId');
-    // this.tmId = sessionStorage.getItem('user_tmId');
+    const userId = sessionStorage.getItem('user_id');
   }
 
   initDropdown() {
-    this.addtreatService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.addtreatService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.addtreatService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.addressService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
   initUserDataforEditById(bkId: any) {
@@ -103,6 +110,7 @@ export class DoctorAddtreatComponent implements OnInit {
         bkDate: res.bkDate,
         bkTime: res.bkTime,
         bkSymptom: res.bkSymptom,
+        bkDepartment: res.bkDepartment,
 
         tmId: res.tmId,
         tmProcess: res.tmProcess,
@@ -126,13 +134,13 @@ export class DoctorAddtreatComponent implements OnInit {
         userStatus: res.user.userStatus,
         roleId: res.user.roleId,
         zipCode: res.user.zipCode,
-        subdistrict: res.subdistrict,
-        district: res.district,
-        province: res.province,
+        subdistrictInput: res.subdistrict,
+        districtInput: res.district,
+        provinceInput: res.province,
 
       });
       //set default select dropdown
-      this.loadUserZipCode(res.user.zipCode);
+      this.loadUserZipCode(res.user.sdtId);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
@@ -140,16 +148,21 @@ export class DoctorAddtreatComponent implements OnInit {
     );
   }
 
-  loadUserZipCode(zipCode: any) {
-    console.log('zipCode' + zipCode)
-    this.addtreatService.getSubdistrictByZipCode(zipCode).subscribe(
+  loadUserZipCode(sdtId: any) {
+    console.log('zipCode' + sdtId)
+    this.DataUserForm.controls['sdtId'].enable();
+    this.addressService.getsubdistrictsBySdtId(sdtId).subscribe(
       res => {
         if (res) {
           this.DataUserForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              sdtId: res.sdtId,
               district: res.district.disNameTh,
-              province: res.province.pvnNameTh
+              province: res.province.pvnNameTh,
+
+              subdistrictInput: res.sdtNameTh,
+              districtInput: res.district.disNameTh,
+              provinceInput: res.province.pvnNameTh
             }
           )
         }
@@ -169,13 +182,14 @@ export class DoctorAddtreatComponent implements OnInit {
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.addtreatService.getSubdistrictByZipCode(zipCode).subscribe(
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
         console.log(res)
         if (res) {
           this.DataUserForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              // subdistrict: res.sdtNameTh,
               district: res.district.disNameTh,
               province: res.province.pvnNameTh
             }
@@ -204,6 +218,11 @@ export class DoctorAddtreatComponent implements OnInit {
         text: '',
       })
     } else {
+      this.DataUserForm.patchValue(
+        {
+          bkStatus: 'S'
+        }
+      )
       this.addtreatService.updatebooking(this.DataUserForm.value).subscribe(res => {
         console.log('update booking res : ', res)
         if (res) {
@@ -245,7 +264,7 @@ export class DoctorAddtreatComponent implements OnInit {
     }
   }
 
-  
+
   get userf() { return this.DataUserForm.controls; }
 
 }//end

@@ -7,7 +7,7 @@
         <h3 class="text-dark">แก้ไขข้อมูลผู้ป่วย</h3>
         <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
-                <button type="button" class="btn btn-sm btn-outline-info" routerLink="../manage">
+                <button type="button" class="btn btn-sm btn-outline-info" routerLink="admin/manage">
                     << ย้อนกลับ</button>
             </div>
         </div>
@@ -136,9 +136,9 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <div class="input-group-text">ตำบล</div>
-                        <select id="inputState" class="form-select" formControlName="subdistrict">
+                        <select id="inputState" class="form-select" formControlName="sdtId">
                             <option value="" disabled>--ตำบล--</option>
-                            <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                            <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                 subD.sdtNameTh }}</option>
                         </select>
                     </div>
@@ -170,7 +170,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="input-group">
                         <div class="input-group-text">แพทย์ผู้รักษา</div>
                         <select id="inputState" class="form-select">
@@ -178,7 +178,7 @@
                             <option>พญ.ฟาริดา วราฤทธิ์เมธากุล</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-5">
                     <div class="input-group">
                         <div class="input-group-text">ประวัติการแพ้ยา</div>

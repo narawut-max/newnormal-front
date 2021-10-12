@@ -20,8 +20,8 @@
                         <form action="">
                             <div class="form-group">
                                 <label class="">
-                                    <input type="search" name="searchText" class="form-control form-control-sm" aria-controls="Searchdata"
-                                        placeholder="Search" [(ngModel)]="searchText" />
+                                    <input type="search" name="searchText" class="form-control form-control-sm"
+                                        aria-controls="Searchdata" placeholder="Search" [(ngModel)]="searchText" />
                                 </label>
                             </div>
                         </form>
@@ -32,14 +32,13 @@
                         <table class="table table-hover   text-center">
                             <thead>
                                 <tr>
-                                    <th>ลำดับ</th>
-                                    <th scope="col-md-10">เลขที่ใบสั่งยา</th>
-                                    <th class="col-md-3" scope="col">ชื่อ - สกุล</th>
-                                    <th scope="col-md-1">ยอดชำระ</th>
-                                    <th scope="col-md-2">สลิปค่ารักษา</th>
-                                    <!-- <th class="col-md-2" scope="col">วันและเวลาที่เข้ารักษา</th> -->
-                                    <th scope="col">ดูรายละเอียด</th>
-                                    <th scope="col">สถานะการชำระ</th>
+                                    <th class="col-md-1">ลำดับ</th>
+                                    <th class="col-md-2">เลขที่ใบสั่งยา</th>
+                                    <th class="col-md-2" scope="col">ชื่อ - สกุล</th>
+                                    <th class="col-md-1">ยอดชำระ</th>
+                                    <th class="col-md-1">สลิปค่ารักษา</th>
+                                    <th class="col-md-2">ดูรายละเอียด</th>
+                                    <th class="col-md-2">อัพเดตสถานะการชำระ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,15 +47,16 @@
                                     currentPage: page,
                                     totalItems: count
                                   }; let i = index">
-                                    <th scope="row">{{i+1}}</th>
-                                    <th>{{item.billId}}</th>
-                                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                                    <td>{{item.tmMoney}}</td>
-                                    <td class="text-decoration-underline text-primary" (click)="selectslipmoney()">
-                                        {{item.tmSlip}}
+                                    <th class="col-md-1" scope="row">{{i+1}}</th>
+                                    <th class="col-md-2">{{item.billId}}</th>
+                                    <td class="col-md-2">{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                                    <td class="col-md-1">{{item.tmMoney}}</td>
+                                    <td class="col-md-1 text-decoration-underline text-primary" data-bs-toggle="modal"
+                                        data-bs-target="#SlipModal" (click)="selectData(item)">
+                                        ดูสลิป
                                     </td>
                                     <!-- <td>{{item.tmDate}} {{item.tmTime}}</td> -->
-                                    <td>
+                                    <td class="col-md-2">
                                         <button type="button" class="btn btn-sm text-white" data-bs-toggle="modal"
                                             data-bs-target="#SelectModal" style="background-color: rgb(0, 137, 191);"
                                             (click)="selectData(item)">
@@ -65,14 +65,58 @@
                                             ดูรายละเอียด
                                         </button>
                                     </td>
-                                    <td>
+                                    <td *ngIf="item.tmStatus ==='W'" class="col-md-2">
                                         <button type="button" class="btn btn-sm text-white"
-                                            style="background-color: rgb(0, 191, 0);">
+                                            style="background-color: rgb(0, 191, 0);" (click)="gotoSuccess(item)"
+                                            value="">
                                             <i class="bi bi-check2-circle"
                                                 style="font-size: 15px; color: rgb(255, 255, 255);"></i>
                                             ชำระแล้ว
                                         </button>&nbsp;
-                                        <button type="button" class="btn btn-sm btn-danger text-white">
+                                        <button type="button" class="btn btn-sm btn-danger text-white"
+                                            (click)="gotoNewFile(item)">
+                                            <i class="bi bi-x-circle"
+                                                style="font-size: 15px; color: rgb(255, 255, 255);"></i>
+                                            ยังไม่ชำระ
+                                        </button>
+                                    </td>
+                                    <td *ngIf="item.tmStatus ==='WC'" class="col-md-2">
+                                        <button type="button" class="btn btn-sm text-white"
+                                            style="background-color: rgb(0, 191, 0);" (click)="gotoSuccess(item)"
+                                            value="">
+                                            <i class="bi bi-check2-circle"
+                                                style="font-size: 15px; color: rgb(255, 255, 255);"></i>
+                                            ชำระแล้ว
+                                        </button>&nbsp;
+                                        <button type="button" class="btn btn-sm btn-danger text-white"
+                                            (click)="gotoNewFile(item)">
+                                            <i class="bi bi-x-circle"
+                                                style="font-size: 15px; color: rgb(255, 255, 255);"></i>
+                                            ยังไม่ชำระ
+                                        </button>
+                                    </td>
+                                    <td *ngIf="item.tmStatus ==='S'" class="col-md-2">
+                                        <span class="t-success badge p-2">
+                                            <dt class="border border-success border-start-0 border-end-0 p-1 font-monospace"
+                                                style="font-size: 15px;">ยืนยันการชำระเงินแล้ว</dt>
+                                        </span>
+                                    </td>
+                                    <td *ngIf="item.tmStatus ==='C'" class="col-md-2">
+                                        <span class="t-danger badge p-2">
+                                            <dt class="border border-danger border-start-0 border-end-0 p-1 font-monospace"
+                                                style="font-size: 15px;">ยกเลิกใบสั่งจ่ายยา</dt>
+                                        </span>
+                                    </td>
+                                    <td *ngIf="item.tmStatus ==='N'" class="col-md-2">
+                                        <button type="button" class="btn btn-sm text-white"
+                                            style="background-color: rgb(0, 191, 0);" (click)="gotoSuccess(item)"
+                                            value="">
+                                            <i class="bi bi-check2-circle"
+                                                style="font-size: 15px; color: rgb(255, 255, 255);"></i>
+                                            ชำระแล้ว
+                                        </button>&nbsp;
+                                        <button type="button" class="btn btn-sm btn-danger text-white"
+                                            (click)="gotoNewFile(item)">
                                             <i class="bi bi-x-circle"
                                                 style="font-size: 15px; color: rgb(255, 255, 255);"></i>
                                             ยังไม่ชำระ
@@ -161,13 +205,16 @@
                             <div class="row">
                                 <label for="inputPassword"
                                     class="col-sm-4 col-form-label fw-bolder">สลิปค่ารักษา</label>
-                                <div class="col-sm-8 text-start px-0">
-                                    <button type="button" class="btn btn-link " (click)="selectslipmoney()">
+                                <div class="col-sm-7 text-start px-0">
+                                    <!-- <button type="button" class="btn btn-link " data-bs-toggle="modal"
+                                        data-bs-target="#SlipModal" data-bs-dismiss="modal">
                                         <input type="text" class="form-control-plaintext" id="inputPassword"
                                             formControlName="tmSlip" readonly>
-                                    </button>
+                                    </button> -->
+                                    <img width="300px" src="{{imagePathSelected}}" alt="">
                                 </div>
                             </div>
+                            <!-- <qrcode [qrdata]="myQrCode" [width]="200" [errorCorrectionLevel]="'M'"></qrcode> -->
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -181,3 +228,35 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Slip -->
+<div class="modal fade text-dark" id="SlipModal" tabindex="-1" data-bs-backdrop="static"
+    aria-labelledby="SlipModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body bg-light">
+                <form [formGroup]="listData">
+                    <div class="card p-3 shadow-sm" style="border-radius: 5px;">
+                        <h5 class="text-center font-monospace p-0 m-0">หลักฐานการชำระเงินค่ารักษา</h5>
+                    </div>
+                    <br class="m-1">
+                    <div class="card p-3 shadow-sm" style="border-radius: 5px;">
+                        <div class="row justify-content-center p-2">
+                            <div class="row profile">
+                                <img src="{{imagePathSelected}}" alt="" width="290"
+                                    height="370">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 pt-3">
+                            <button type="button" class="fw-bolder btn btn-warning" data-bs-dismiss="modal"
+                                >ปิด</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <img src="{{item.tmSlip}}"> -->

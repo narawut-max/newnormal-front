@@ -13,6 +13,7 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { AdminEditadminComponent } from './admin-editadmin/admin-editadmin.component';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 
@@ -31,9 +32,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AdminRoutingModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    Ng2OrderModule,
+    // Ng2OrderModule,
     Ng2SearchPipeModule,
-    FormsModule
+    FormsModule,
+    QRCodeModule
   ]
 })
 export class AdminModule { }

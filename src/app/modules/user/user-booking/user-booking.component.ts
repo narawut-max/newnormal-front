@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CalendarOptions } from '@fullcalendar/angular';
 import { View } from '@syncfusion/ej2-angular-schedule';
+import Swal from 'sweetalert2';
 import { UserService } from '../user.service';
 import { BookingService } from './booking.service';
 
+declare let $: any;
 
 @Component({
   selector: 'app-user-booking',
@@ -20,7 +23,17 @@ export class UserBookingComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) { }
+
   submitted = false;
+
+  // title = 'angularadmintemplates';
+  calendarOptions !: CalendarOptions;
+
+  userId: any
+  item: any
+  addEventForm: any;
+  user_id_param: any
+  departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
 
   // tmId: any
   DataUserForm = this.fb.group({
@@ -46,6 +59,7 @@ export class UserBookingComponent implements OnInit {
     userPhone: [''],
     userEmail: ['', Validators.required],
     userDisease: [''],
+    userDepartment: [''],
     userAddrass: [''],
     userAllergy: [''],
     roleId: ['2'],
@@ -59,13 +73,32 @@ export class UserBookingComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    const UserId = sessionStorage.getItem('user_id');
-    debugger
-    this.initUserDataById(UserId);
+    const userId = sessionStorage.getItem('user_id');
+    this.initUserDataById(userId);
+    this.userId = this.user_id_param
+
+    this.calendarOptions = {
+      initialView: 'dayGridMonth',
+      dateClick: this.handleDateClick.bind(this),
+      events: []
+    };
+
+    //Add User form validations
+    this.addEventForm = this.fb.group({
+      bkId: [0],
+      bkQueue: [0],
+      userId: userId,
+      bkDate: [''],
+      bkTime: ['', [Validators.required]],
+      bkSymptom: [''],
+      bkDepartment: [''],
+      bkStatus: [''],
+      user: {}
+    });
   }
 
-  initUserDataById(UserId: any) {
-    this.userService.getUserByUserId(UserId).subscribe((res) => {
+  initUserDataById(userId: any) {
+    this.userService.getUserByUserId(userId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataUserForm.patchValue({
         userId: res.userId,
@@ -82,6 +115,7 @@ export class UserBookingComponent implements OnInit {
         userPhone: res.userPhone,
         userEmail: res.userEmail,
         userDisease: res.userDisease,
+        userDepartment: res.userDepartment,
         userAddrass: res.userAddrass,
         userAllergy: res.userAllergy,
         roleId: res.roleId,
@@ -93,5 +127,96 @@ export class UserBookingComponent implements OnInit {
     );
   }
 
+  onSubmit() {
+    this.submitted = true;
+    console.log('data :', this.addEventForm.value)
+    // stop here if form is invalid
+    if (this.addEventForm.invalid) {
+      Swal.fire({
+        icon: 'error',
+        title: 'กรุณากรอกข้อมูลให้ถูกต้อง',
+        text: 'Something went wrong!',
+      })
+      return;
+    } else {
+      Swal.fire({
+        title: 'ยืนยันการทำรายการ',
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ยกเลิก'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.userService.createBooking(this.addEventForm.value).subscribe(res => {
+            console.log('Create Booking res : ', res)
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: '',
+            confirmButtonText: 'ปิดหน้าต่าง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.reload();
+              this.router.navigate(['user/managedata-booking']);
+            } else if (result.isDismissed) {
+              window.location.reload()
+
+            }
+          })
+        }
+      })
+    }
+  }
+
+  //Show Modal with Forn on dayClick Event
+  handleDateClick(arg: any) {
+    this.addEventForm.patchValue({
+      bkDate: arg.dateStr
+    });
+
+    $("#myModal").modal("show");
+    $(".modal-title, .eventstarttitle").text("");
+    $(".modal-title").text("จองคิวเข้ารักษาวันที่ : " + arg.dateStr);
+    $(".eventstarttitle").text(arg.dateStr);
+
+  }
+
+  //Hide Modal PopUp and clear the form validations
+  hideForm() {
+    this.addEventForm.patchValue({ title: "" });
+    this.addEventForm.get('title').clearValidators();
+    this.addEventForm.get('title').updateValueAndValidity();
+  }
+
+  changeUserDepartment(event: any) {
+    const bkDepartment = event.target.value;
+    console.log('bkDepartment' + bkDepartment)
+    this.userService.getbookingBydepartment(bkDepartment).subscribe(
+      res => {
+        console.log(res)
+        if (res) {
+          this.addEventForm.patchValue(
+            {
+              departments: res.bkDepartment
+            }
+          )
+        }
+      },
+      error => {
+        this.addEventForm.patchValue(
+          {
+            departments: ''
+          }
+        )
+      }
+    );
+  }
+
+  //Add user form actions
+  get f() { return this.addEventForm.controls; }
   get userf() { return this.DataUserForm.controls; }
 }

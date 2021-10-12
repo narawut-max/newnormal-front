@@ -134,9 +134,9 @@
                 <div class="col-md-3">
                     <div class="input-group">
                         <div class="input-group-text">ตำบล</div>
-                        <select id="inputState" class="form-select" formControlName="subdistrict">
+                        <select id="inputState" class="form-select" formControlName="sdtId">
                             <option value="" disabled>--ตำบล--</option>
-                            <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                            <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                 subD.sdtNameTh }}</option>
                         </select>
                     </div>

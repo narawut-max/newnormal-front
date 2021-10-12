@@ -97,9 +97,9 @@ export class DoctorAdddrugService {
     return this.http.post<any>(endpoint + '/billdrugs-detail/save', JSON.stringify(drugDetails), httpOptions)
   }
 
-  //repory
+  //report
   generateBilldrugReport(billId: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/report/generateBilldrugReport?billId=309', {
+    return this.http.get<any>(endpoint + '/report/generateBilldrugReport?billId='+billId, {
       headers: new HttpHeaders({
       'Content-Type': 'application/json'
       }),
@@ -107,4 +107,5 @@ export class DoctorAdddrugService {
       responseType: 'blob' as 'json'
  });
   } 
+  
 }//end

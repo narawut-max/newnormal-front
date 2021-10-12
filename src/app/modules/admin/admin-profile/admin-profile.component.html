@@ -3,7 +3,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
-            <li class="breadcrumb-item active" aria-current="page">ประวัติแพทย์</li>
+            <li class="breadcrumb-item active" aria-current="page">ประวัติผู้ดูแลระบบ</li>
         </ol>
     </nav>
     
@@ -106,17 +106,17 @@
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">จังหวัด</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="province" readonly>
+                                    formControlName="provinceInput" readonly>
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">อำเภอ</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="district" readonly>
+                                    formControlName="districtInput" readonly>
                             </div>
                             <div class="col-md-2">
                                 <label for="validationCustom02" class="form-label">ตำบล</label>
                                 <input type="text" class="form-control" id="validationCustom02" value=""
-                                    formControlName="subdistrict" readonly>
+                                    formControlName="subdistrictInput" readonly>
                             </div>
                         </form>
                     </div>
@@ -233,9 +233,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="validationCustom02" class="form-label">ตำบล</label>
-                                    <select id="inputState" class="form-select" formControlName="subdistrict">
+                                    <select id="inputState" class="form-select" formControlName="sdtId">
                                         <option value="" disabled>--ตำบล--</option>
-                                        <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtNameTh">{{
+                                        <option *ngFor="let subD of subdistricts" [ngValue]="subD.sdtId">{{
                                             subD.sdtNameTh }}</option>
                                     </select>
                                 </div>

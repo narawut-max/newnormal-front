@@ -1,11 +1,59 @@
 <div class="container con-queue text-dark" style="padding-top: 2rem; min-height: 591px;">
 
+    <div class="col-md-12 pb-4">
+        <div class="card p-3 border border-5  shadow-sm" style="border-radius: 10px;">
+            <div class="row">
+                <div class="col-md-12 text-dark text-center">
+                    <!-- carousel content -->
+                    <div id="carouselExampleDark" class="carousel carousel-dark slide top-2 carousel-size"
+                        data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="4000">
+                                <img src="assets/images/p1.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="assets/images/p2.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="assets/images/p3.jpg" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="4000">
+                                <img src="assets/images/p4.jpg" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <!-- <canvas class="my-4 w-100" id="myChart" height="50"></canvas> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
         <h3>ข้อมูลการจองคิวประจำวัน</h3>
     </div>
 
     <!-- card-search -->
-    <div class="card bg-light shadow-sm">
+    <!-- <div class="card bg-light shadow-sm">
         <div class="card-body align-items-center" style="padding-left: 40px;">
             <form class="row " autocomplete="off">
                 <div class="col-md-2 align-self-end" style="padding-right: 35px;">
@@ -34,25 +82,31 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> -->
+
+    <!-- refresh ทุก 20 วินาที -->
+    <!-- <meta http-equiv="refresh" content="20"> -->
 
     <!-- table -->
-    <div class="pt-4">
+    <div class="pt-3">
         <div class="pb-0">
-            <div class="row">
+            <div class="row pb-1">
                 <div class="col" style="padding-left: 20px;">
                     <div class="data-date">
                         <label>
                             <h5>
-                                <dt> คิวการรักษา : &nbsp;</dt>
+                                <dt> เวลาปัจจุบัน : &nbsp;</dt>
                             </h5>
                         </label>
                         <label class="col">
                             <h5>
-                                <dt>
-                                    <input type="datetime" readonly class="form-control-plaintext" id="staticDate"
-                                        value="06 / 05 / 2564">
-                                </dt>
+                                {{currentDate | date:'dd/MM/y'}}
+                            </h5>
+                        </label>
+                        &nbsp;
+                        <label class="col">
+                            <h5>
+                                {{currentDate | date:'HH:mm'}}
                             </h5>
                         </label>
                     </div>
@@ -72,12 +126,17 @@
                                     <th class="col-md-2">ชื่อ-สกุล</th>
                                     <th class="col-md-2">รายละเอียดการจอง</th>
                                     <th class="col-md-2">สถานะ</th>
+                                    <th class="col-md-2">อัพเดตสถานะ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of listDatauser; let i = index">
+                                <tr *ngFor="let item of listDatauser | paginate: {
+                                    itemsPerPage: tableSize,
+                                    currentPage: page,
+                                    totalItems: count
+                                  }">
                                     <th scope="row">{{item.bkQueue}}</th>
-                                    <td>{{item.bkTime | date:"HH:mm"}}</td>
+                                    <td>{{item.bkTime}}</td>
                                     <td>{{item.bkId}}</td>
                                     <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                                     <td>
@@ -89,15 +148,25 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm text-white fw-bold"
-                                            data-bs-toggle="modal" data-bs-target="#status"
+                                        <span
+                                            class="badge {{getStatusColorClass(item.bkStatus)}}">{{getStatusDesc(item.bkStatus)}}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <button *ngIf="isShowUpdateStatus(item.bkStatus)" type="button"
+                                            class="btn btn-sm text-white fw-bold" data-bs-toggle="modal"
+                                            data-bs-target="#status"
                                             style="background-color: rgb(13, 109, 219);border-radius: 30px;">
-                                            <h6 class="p-0" style="margin: 0rem;">สถานะคิว</h6>
+                                            <h6 class="p-0" style="margin: 0rem;"
+                                                (click)="gotoUpdateStatusBooking(item)">สถานะคิว</h6>
                                         </button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center pb-0 mb-0">
+                            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,7 +177,7 @@
 
 
 <!-- Modal Status -->
-<div class="modal fade" id="status" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+<div class="modal fade" id="status" data-bs-keyboard="false" tabindex="-1"
     aria-labelledby="statusLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"
@@ -117,19 +186,22 @@
                 <div class="card p-3 border-0" style="border-radius: 8px;">
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-success font-monospace" for="btnradio1">รักษาแล้ว</label>
+                        <label class="btn btn-outline-success font-monospace" for="btnradio1" data-bs-dismiss="modal"
+                            (click)="updateStatusBooking('S')">รักษาแล้ว</label>
 
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                        <label class="btn btn-outline-warning font-monospace" for="btnradio2">ข้ามคิว</label>
+                        <label class="btn btn-outline-warning font-monospace" for="btnradio2" data-bs-dismiss="modal"
+                            (click)="updateStatusBooking('N')">ข้ามคิว</label>
 
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                        <label class="btn btn-outline-danger font-monospace" for="btnradio3">ไม่มาตามนัด</label>
+                        <label class="btn btn-outline-danger font-monospace" for="btnradio3" data-bs-dismiss="modal"
+                            (click)="updateStatusBooking('C')">ไม่มาตามนัด</label>
                     </div>
                 </div>
-                <div class="col-md-12 pt-3 text-center">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">ตกลง</button>&nbsp;
+                <!-- <div class="col-md-12 pt-3 text-center">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="fetchData()">ตกลง</button>&nbsp;
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -158,8 +230,8 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">รหัสผู้ป่วย
                                         HN</label>
-                                    <input type="text" id="form8Example3" class="form-control" formControlName="userHnId"
-                                        readonly>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userHnId" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-4">
@@ -215,16 +287,23 @@
                             </div>&emsp;
                             <div class="col-md-6">
                                 <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">แผนกที่รักษา</label>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="bkDepartment" readonly>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <div class="form-outline">
                                     <label class="form-label" for="form8Example3">แพทย์ผู้รักษา</label>
                                     <input type="text" id="form8Example3" class="form-control" readonly>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-md-4 pt-3">
-                            <button type="button" class="fw-bolder btn btn-primary" data-bs-dismiss="modal"
-                                (click)="gotoaddtreat(item)">เพิ่มข้อมูลการรักษา</button>&nbsp;
+                            <button *ngIf="isShow" type="button" class="fw-bolder btn btn-primary"
+                                (click)="gotoaddtreat(item)" data-bs-dismiss="modal">เพิ่มข้อมูลการรักษา</button>&nbsp;
                             <button type="button" class="fw-bolder btn btn-danger" data-bs-dismiss="modal">ปิด</button>
                         </div>
                     </div>

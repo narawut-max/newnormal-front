@@ -20,7 +20,7 @@ export class AdminManageComponent implements OnInit {
   
   page = 1;
   count = 0;
-  tableSize = 10;
+  tableSize = 5;
   tableSizes = [3, 6, 9, 12];
 
   listDatas = [{}];
@@ -57,6 +57,7 @@ export class AdminManageComponent implements OnInit {
   }
 
   deleteUser(item: any) {
+    console.log('data :', this.listUser.value)
     Swal.fire({
       title: 'ต้องการลบข้อมูล?',
       text: "ลบข้อมูลของ : " + item.userFirstname,
@@ -64,7 +65,8 @@ export class AdminManageComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'ลบข้อมูล'
+      confirmButtonText: 'ลบข้อมูล',
+      cancelButtonText: 'ยกเลิก'
     }).then((result) => {
       if (result.isConfirmed) {
         this.adminService.deleteUserByUserId(item.userId).subscribe(
@@ -83,11 +85,11 @@ export class AdminManageComponent implements OnInit {
   }
 
   // โค้ดจัดเรียง
-  key: string = 'roleDescription';
-  reverse: boolean = false;
-  sort(key: string) {
-    this.key = key;
-    this.reverse = !this.reverse;
-  }
+  // key: string = 'roleDescription';
+  // reverse: boolean = false;
+  // sort(key: string) {
+  //   this.key = key;
+  //   this.reverse = !this.reverse;
+  // }
 
 }//end

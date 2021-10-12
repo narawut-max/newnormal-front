@@ -56,9 +56,10 @@
                         &nbsp;&nbsp;&nbsp;
                         <div class="col-md-auto text-end">
                             <div class="input-group-sm">
-                                <button type="submit" class="btn btn-outline-primary col-md-12"  (click)="getSearchTreatByCriteria()"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                        class="bi bi-search" viewBox="0 0 16 16">
+                                <button type="submit" class="btn btn-outline-primary col-md-12"
+                                    (click)="getSearchTreatByCriteria()"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="18" height="18" fill="currentColor" class="bi bi-search"
+                                        viewBox="0 0 16 16">
                                         <path
                                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                     </svg>
@@ -79,33 +80,78 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th class="col-md-1">เลขใบสั่งยา</th>
-                    <th class="col-md-3">วันและเวลาที่เข้ารักษา</th>
-                    <th class="col-md-3">ชื่อ - สกุล</th>
+                    <th class="col-md-1">เลขที่สั่งยา</th>
+                    <th class="col-md-2">วันและเวลาที่สั่งจ่ายยา</th>
+                    <th class="col-md-2">ชื่อ - สกุล</th>
                     <th class="col-md-2">โรคประจำตัว</th>
-                    <th class="col-md-2 text-center">Button</th>
+                    <th class="col-md-1 text-center">รายละเอียด</th>
+                    <th class="col-md-1 text-center">การชำระ</th>
                     <th class="col-md-1 text-center">สถานะ</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of listDataBill">
-                    <td scope="row">{{item.billId}}</td>
-                    <td>{{item.tmTime | date:"dd/MM/yy HH:mm"}}</td>
-                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                    <td>{{item.user.userDisease}}</td>
-                    <td class="text-center">
-                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#drugModal" (click)="selectDataBill(item)">
+                <tr *ngFor="let item of listDatauser">
+                    <td class="col-md-1" scope="row">{{item.billId}}</td>
+                    <td class="col-md-2">{{item.billdrug.billDate | date : "dd.MM.y"}}
+                        &nbsp;&nbsp;{{item.billdrug.billTime | date :
+                        "HH:mm:ss"}}</td>
+                    <td class="col-md-2">{{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td class="col-md-2"  data-bs-toggle="modal" data-bs-target="#drugModal">{{item.user.userDisease}}</td>
+                    <td class=" col-md-1 text-center">
+                        <button type="button" class="btn btn-sm btn-primary" (click)="generateReport(item.billId)">
                             <i class="bi bi-eye-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
-                            รายละเอียด
+                            ใบจ่ายยา
                         </button>
                     </td>
-                    <td class="text-center">
+                    <!-- Status การชำระ -->
+                    <td *ngIf="item.tmStatus ==='W'" class="col-md-1 text-center">
+                        <span class="b-danger badge p-2">
+                            <dt style="font-size: 15px;">ยังไม่ชำระ</dt>
+                        </span>
+                    </td>
+                    <td *ngIf="item.tmStatus ==='S'" class="col-md-1 text-center">
+                        <span class="b-sueeess badge p-2">
+                            <dt style="font-size: 15px;">ชำระแล้ว</dt>
+                        </span>
+                    </td>
+                    <td *ngIf="item.tmStatus ==='WC'" class="col-md-1 text-center">
+                        <span class="text-warning badge p-2">
+                            <dt style="font-size: 15px;">รอตรวจสอบ</dt>
+                        </span>
+                    </td>
+                    <td *ngIf="item.tmStatus ==='C'" class="col-md-1 text-center">
+                        <span class="b-danger badge p-2">
+                            <dt style="font-size: 15px;">ยกเลิกแล้ว</dt>
+                        </span>
+                    </td>
+                    <td *ngIf="item.tmStatus ==='N'" class="col-md-1 text-center">
+                        <span class="b-danger badge p-2">
+                            <dt style="font-size: 15px;">แนบไฟล์ใหม่!</dt>
+                        </span>
+                    </td>
+
+                    <!-- Status การจ่ายยา -->
+                    <td *ngIf="item.billdrug.billStatus ==='S'" class="col-md-1 text-center">
+                        <span class="b-sueeess badge p-2">
+                            <dt style="font-size: 15px;">จ่ายยาแล้ว</dt>
+                        </span>
+                    </td>
+                    <td *ngIf="item.billdrug.billStatus ==='C'" class="col-md-1 text-center">
+                        <span class="b-danger badge p-2">
+                            <dt class="p-1 border border-danger font-monospace" style="font-size: 15px;">ยกเลิกบิล!</dt>
+                        </span>
+                    </td>
+                    <td *ngIf="item.billdrug.billStatus ==='O'" class="col-md-1 text-center">
+                        <button type="button" class="btn btn-sm btn-warning" (click)="gotoCancalBill(item)">
+                            <dt style="font-size: 13px;">ยกเลิกสั่ง</dt>
+                        </button>
+                    </td>
+                    <!-- <td class="text-center">
                         <button type="button" class="btn btn-sm btn-danger" (click)="gotoCancalBill()">
                             <i class="bi bi-x-circle" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                             ยกเลิก
                         </button>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
@@ -131,7 +177,7 @@
                             <dt>รายการสั่งยา</dt>
                         </h4>
                         <div>
-                            <!-- <form action="">
+                            <form [formGroup]="listDatausers">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
@@ -195,12 +241,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form> -->
+                            </form>
                             <h6 class="fw-bold">
                                 <dt>รายการยาที่สั่งจ่าย</dt>
                             </h6>
                             <div class="table-responsive border border-dark" style="height: 200px; padding: 0px;">
-                                <table class="table table-bordered">
+                                 <!-- <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode> -->
+                                <!-- <table class="table table-bordered">
                                     <thead class="text-center table-primary">
                                         <tr>
                                             <th scope="col-auto">No.</th>
@@ -223,7 +270,7 @@
                                             <td class="text-end fw-bold">150</td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table> -->
                             </div>
                         </div>
                     </div>

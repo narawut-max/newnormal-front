@@ -41,7 +41,7 @@
                                             <th class="col-md-2">วันและเวลาที่เข้ารักษา</th>
                                             <th class="col-md-2">รหัสการจอง</th>
                                             <th class="col-md-2">โรคประจำตัว</th>
-                                            <th class="col-md-2">แพทย์ผู้รักษา</th>
+                                            <th class="col-md-2">แผนกที่รักษารักษา</th>
                                             <th class="col-md-2">รายละเอียด</th>
                                             <th class="col-md-2">สถานะ</th>
                                         </tr>
@@ -52,23 +52,33 @@
                                             currentPage: page,
                                             totalItems: count
                                           } ;let i = index">
-                                            <th>{{i+1}}</th>
-                                            <td>{{item.tmDate}}</td>
-                                            <td>{{item.bkId}}</td>
-                                            <td>{{item.user.userDisease}}</td>
-                                            <td></td>
+                                            <th class="col-md-1">{{i+1}}</th>
+                                            <td class="col-md-2">{{item.bkDate}} {{item.bkTime}}</td>
+                                            <td class="col-md-2">{{item.bkId}}</td>
+                                            <td class="col-md-2">{{item.user.userDisease}}</td>
+                                            <td class="col-md-2">{{item.bkDepartment}}</td>
                                             <!-- <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td> -->
-                                            <td>
+                                            <td class="col-md-2">
                                                 <button type="button" class="btn btn-sm btn-primary"
                                                     data-bs-toggle="modal" data-bs-target="#databookingModal"
                                                     (click)="selectDataBooking(item)">
                                                     <i class="bi bi-clipboard-plus"></i>&nbsp;ข้อมูลการจองคิว
                                                 </button>
                                             </td>
-                                            <td>
-                                                <button type="button" class="btn btn-sm btn-danger"
-                                                    (click)="cancelbooking()">
-                                                    ยกเลิกจอง
+                                            <td *ngIf="item.bkStatus ==='S'" class="col-md-2">
+                                                <span class="t-sueeess badge p-2">
+                                                    <dt style="font-size: 15px;">รักษาแล้ว</dt>
+                                                </span>
+                                            </td>
+                                            <td *ngIf="item.bkStatus ==='C'" class="col-md-2">
+                                                <span class="t-danger badge p-2">
+                                                    <dt style="font-size: 15px;">ยกเลิกแล้ว</dt>
+                                                </span>
+                                            </td>
+                                            <td *ngIf="item.bkStatus ==='W'" class="col-md-2">
+                                                <button type="button" class="btn btn-sm btn-warning"
+                                                    (click)="cancelbooking(item)">
+                                                    <dt style="font-size: 13px;">ยกเลิกจอง</dt>
                                                 </button>
                                             </td>
                                         </tr>
@@ -116,8 +126,10 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">วันและเวลาที่เข้ารักษา</label>
                                     <div class="input-group">
-                                        <input type="text" id="form8Example3" class="form-control" value=""
-                                            formControlName="tmDate" readonly>
+                                        <input type="text" id="form8Example3" class="form-control border-end-0"
+                                            formControlName="bkDate" readonly>
+                                        <input type="text" id="form8Example3" class="form-control border-start-0"
+                                            formControlName="bkTime" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -132,11 +144,18 @@
                                     </div>
                                 </div>
                             </div>&emsp;
-                            <div class="col-md-6">
+                            <div class="col-md-3 pb-3">
                                 <div class="form-outline">
-                                    <label class="form-label" for="form8Example3">อาการ (ถ้ามี)</label>
+                                    <label class="form-label" for="form8Example3">เพศ</label>
                                     <input type="text" id="form8Example3" class="form-control"
-                                        formControlName="bkSymptom" readonly>
+                                        formControlName="userGender" readonly>
+                                </div>
+                            </div>&emsp;
+                            <div class="col-md-3 pb-3">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">กรุ๊ปเลือด</label>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="userBlood" readonly>
                                 </div>
                             </div>&emsp;
                             <div class="col-md-6 pb-3">
@@ -157,13 +176,20 @@
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">แผนกที่เข้ารับการรักษา</label>
                                     <input type="text" id="form8Example3" class="form-control"
-                                        formControlName="userDepartment" readonly>
+                                        formControlName="bkDepartment" readonly>
                                 </div>
                             </div>&emsp;
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-outline">
                                     <label class="form-label" for="form8Example3">แพทย์ผู้รักษา</label>
                                     <input type="text" id="form8Example3" class="form-control" readonly>
+                                </div>
+                            </div> -->
+                            <div class="col-md-6">
+                                <div class="form-outline">
+                                    <label class="form-label" for="form8Example3">อาการ (ถ้ามี)</label>
+                                    <input type="text" id="form8Example3" class="form-control"
+                                        formControlName="bkSymptom" readonly>
                                 </div>
                             </div>
                         </div>

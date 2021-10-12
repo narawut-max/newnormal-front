@@ -37,19 +37,6 @@ export class AdminService {
     return this.http.get(endpoint + '/treatments/'.concat(tmId), httpOptions);
   }
 
-  //Address\
-  getSubdistrictAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts', httpOptions)
-  }
-  getDistrictsAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/districts', httpOptions)
-  }
-  getProvincesAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/provinces', httpOptions)
-  }
-  getSubdistrictByZipCode(zipCode: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
-  }
 
   // Update
   updateDataAdmin(updateadmin: any): Observable<any> {

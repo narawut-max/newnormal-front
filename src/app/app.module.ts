@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PaginationService } from 'ngx-pagination';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     
     
   ],
-  providers: [DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],
+  providers: [PaginationService,DayService,WeekService,WorkWeekService,MonthService,MonthAgendaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

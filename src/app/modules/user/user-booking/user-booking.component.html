@@ -57,6 +57,16 @@
                                     <input type="text" class="form-control" id="validationCustom01" value="userEmail"
                                         formControlName="userEmail" readonly>
                                 </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01" class="form-label">โรคประจำตัว</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""
+                                        formControlName="userDisease" readonly>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="validationCustom01" class="form-label">แผนกที่เข้ารักษา</label>
+                                    <input type="text" class="form-control" id="validationCustom01" value=""
+                                        formControlName="userDepartment" readonly>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -66,16 +76,16 @@
                     <div class="container text-dark">
                         <div class="card p-4 border-0" style="border-radius: 10px;">
                             <form class="row g-3 gx-4" [formGroup]="DataUserForm">
-                                <div class="col-md-3">
+                                <!-- <div class="col-md-3">
                                     <label for="validationCustom01" class="form-label">โรคประจำตัว</label>
                                     <input type="text" class="form-control" id="validationCustom01" value=""
                                         formControlName="userDisease" readonly>
-                                </div>
+                                </div> -->
                                 <!-- <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
                                     <input type="text" class="form-control" id="validationCustom01" value="" readonly>
                                 </div> -->
-                                <div class="col-md-5">
+                                <!-- <div class="col-md-5">
                                     <label for="validationCustom01" class="form-label">แพทย์ผู้รักษา</label>
                                     <div class="input-group mb-3">
                                         <button class="btn btn-outline-danger" type="button" id="button-addon2"
@@ -88,18 +98,24 @@
                                             <option value="3">พญ.เอ็มวัน</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
+                                </div> -->
+                                <!-- <div class="col-md-4">
                                     <label for="validationCustom01" class="form-label">อาการ (หากไม่มีให้ใส่ - )</label>
                                     <input type="email" class="form-control" id="FormControlInput1"
                                         placeholder="กรอกอาการเบื้องต้น">
-                                </div>
+                                </div> -->
                                 <div class="col-md-12 pt-2">
                                     <h6 class="text-center">
                                         <dt>เลือกวันที่เข้ารักษา</dt>
                                     </h6>
                                     <div class="col-md-12">
-                                        <app-user-booking-calender></app-user-booking-calender>
+                                        <div class="card p-4">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <full-calendar [options]="calendarOptions"></full-calendar>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
@@ -126,8 +142,7 @@
                     <div class="card p-3 text-dark" style="border-radius: 0rem;">
                         <div class="row">
                             <div class="col-md-4 text-center" style="padding-right: 1rem;">
-                                <img src="assets/images/person.png"
-                                    class="img-thumbnail" alt="..." width="80px">
+                                <img src="assets/images/person.png" class="img-thumbnail" alt="..." width="80px">
                             </div>
                             <div class="col-md-8">
                                 <div class="row">
@@ -147,8 +162,7 @@
                     <div class="card p-3 text-dark border-top-0" style="border-radius: 0rem;">
                         <div class="row">
                             <div class="col-md-4 text-center" style="padding-right: 1rem;">
-                                <img src="assets/images/person.png"
-                                    class="img-thumbnail" alt="..." width="80px">
+                                <img src="assets/images/person.png" class="img-thumbnail" alt="..." width="80px">
                             </div>
                             <div class="col-md-8">
                                 <div class="row">
@@ -168,8 +182,7 @@
                     <div class="card p-3 text-dark border-top-0" style="border-radius: 0rem;">
                         <div class="row">
                             <div class="col-md-4 text-center" style="padding-right: 1rem;">
-                                <img src="assets/images/person.png"
-                                    class="img-thumbnail" alt="..." width="80px">
+                                <img src="assets/images/person.png" class="img-thumbnail" alt="..." width="80px">
                             </div>
                             <div class="col-md-8">
                                 <div class="row">
@@ -190,8 +203,7 @@
                     <div class="card p-3 text-dark" style="border-radius: 0rem;">
                         <div class="row">
                             <div class="col-md-4 text-center" style="padding-right: 1rem;">
-                                <img src="assets/images/person.png"
-                                    class="img-thumbnail" alt="..." width="80px">
+                                <img src="assets/images/person.png" class="img-thumbnail" alt="..." width="80px">
                             </div>
                             <div class="col-md-8">
                                 <div class="row">
@@ -211,6 +223,95 @@
                             </div>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal PopUp with Add Event Form-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content text-dark">
+
+            <div class="modal-header">
+                <h4 class="modal-title align-center"></h4>
+                <button type="button" class="btn-close" (click)="hideForm()" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <form [formGroup]="addEventForm" class="card p-3 bg-light border-0" (ngSubmit)="onSubmit()">
+                    <!-- <div class="card p-3"> -->
+                    <div class="row pb-2">
+
+                        <!-- name -->
+                        <div class="col-md-12 pb-2">
+                            <!-- <div class="form-group">
+                                <label class="pb-1">ชื่อ - สกุล</label>
+                                <div class="input-group">
+                                    <input type="text" id="form8Example3" class="form-control border-end-0"
+                                        placeholder="กรอกชื่อ" 
+                                        [ngClass]="{ 'is-invalid': submitted && f.userFirstname.errors }" readonly>
+                                    <input type="text" id="form8Example3" class="form-control border-start-0"
+                                        placeholder="กรอกสกุล" 
+                                        [ngClass]="{ 'is-invalid': submitted && f.userLastname.errors }" readonly>
+                                    <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                        <div *ngIf="f.title.errors.required">กรุณากรอกข้อมูล</div>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <label for="validationCustom01" class="form-label">แผนกที่เข้ารักษา</label>
+                            <div class="input-group mb-3">
+                                <!-- <button class="btn btn-outline-danger" type="button" id="button-addon2"
+                                    data-bs-toggle="modal" data-bs-target="#DateDoctorModel">ดูวันออกตรวจ</button> -->
+                                <select id="inputState" class="form-select" formControlName="bkDepartment"
+                                    (change)="changeUserDepartment($event)">
+                                    <option value="" disabled>เลือกแผนกการรักษา</option>
+                                    <option *ngFor="let department of departments" [ngValue]="department">{{ department
+                                        }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- date time booking -->
+                        <div class="col-md-12 pb-2">
+                            <div class="row">
+                                <div class="col-md-6 pb-2">
+                                    <div class="form-group">
+                                        <label class="pb-1">วันที่ต้องการจอง</label>
+                                        <div class="form-control eventstarttitle">
+                                            <input type="date" id="form8Example3" class="form-control eventstarttitle"
+                                                placeholder="" formControlName="bkDate">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pb-2">
+                                    <div class="form-group">
+                                        <label class="pb-1">เวลาที่ต้องการจอง</label>
+                                        <input type="time" id="form8Example3" name="appt-time" class="form-control" placeholder=""
+                                            formControlName="bkTime" min="09:00" max="12:00" required>
+                                            <span class="validity"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- bkSymptom - อาการ -->
+                        <div class="col-md-12 pb-2">
+                            <div class="form-group has-validation">
+                                <label class="pb-1">อาการเบื้องต้น (ถ้าไม่มีใส่ - )</label>
+                                <input type="text" id="form8Example3" class="form-control" placeholder="กรอกอาการ"
+                                    formControlName="bkSymptom" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary">บันทึก</button>
+                        </div>
+                    </div>
+                    <!-- </div> -->
                 </form>
             </div>
         </div>

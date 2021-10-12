@@ -21,4 +21,8 @@ export class ManagemoneyService {
     return this.http.get<any>(endpoint + '/treatments/' + tmId)
   }
 
+  updateTreatmentStatus(updateuser: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/treatments/updates/', JSON.stringify(updateuser), httpOptions)
+  }
+
 }

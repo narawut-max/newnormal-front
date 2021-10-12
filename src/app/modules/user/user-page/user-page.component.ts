@@ -10,9 +10,16 @@ import { UserService } from '../user.service';
 })
 export class UserPageComponent implements OnInit {
 
+  currentDate = new Date();
+  
   searchText: any;
   listDatauser: any;
   item: any
+
+  page = 1;
+  count = 0;
+  tableSize = 5;
+  tableSizes = [3, 6, 9, 12];
 
   constructor(
     private fb: FormBuilder,
@@ -45,6 +52,11 @@ export class UserPageComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    this.fetchData();
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
     this.fetchData();
   }
 

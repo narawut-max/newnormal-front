@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AddressService } from '../../address.service';
 import { AdminEditadminService } from './admin-editadmin.service';
 
 @Component({
@@ -15,12 +16,13 @@ export class AdminEditadminComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private activatedroute: ActivatedRoute,
-    private adminEditadminService: AdminEditadminService
+    private adminEditadminService: AdminEditadminService,
+    private addressService: AddressService
   ) { }
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
-  graduates: any = ['บัณฑิต(ปริญญาตรี', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
+  graduates: any = ['บัณฑิต(ปริญญาตรี)', 'มหาบัณฑิต(ปริญญาโท)', 'ดุษฎีบัณฑิต(ปริญญาเอก)']
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
   doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา', 'นักวิชาการคอมพิวเตอร์ปฏิบัติการ']
   genders: any = ['ชาย', 'หญิง']
@@ -52,10 +54,14 @@ export class AdminEditadminComponent implements OnInit {
     userStatus: [this.statusActive],
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
-    roleId: ['3'],
-    subdistrict: [{ value: '', disabled: true },],
+    roleId: ['1'],
+    sdtId: [{ value: '', disabled: true },],
     district: [{ value: '', disabled: true },],
-    province: [{ value: '', disabled: true },]
+    province: [{ value: '', disabled: true },],
+
+    subdistrictInput: [''],
+    districtInput: [''],
+    provinceInput: ['']
   });
 
   ngOnInit() {
@@ -66,13 +72,14 @@ export class AdminEditadminComponent implements OnInit {
   }
 
   initDropdown() {
-    this.adminEditadminService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.adminEditadminService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.adminEditadminService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.addressService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
   initUserDataforEditById(userId: any) {
     this.adminEditadminService.getUserById(userId).subscribe((res) => {
+      this.addressService.getsubdistrictsByZipCode1(res.zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.editDataAdminForm.patchValue({
         userId: res.userId,
@@ -95,13 +102,13 @@ export class AdminEditadminComponent implements OnInit {
         userAddrass: res.userAddrass,
         zipCode: res.zipCode,
         roleId: res.roleId,
-        subdistrict: res.subdistrict,
-        district: res.district,
-        province: res.province,
+        subdistrictInput: res.subdistrict,
+        districtInput: res.district,
+        provinceInput: res.province,
       });
 
       //set default select dropdown
-      this.loadUserZipCode(res.zipCode);
+      this.loadUserZipCode(res.sdtId);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
@@ -109,16 +116,21 @@ export class AdminEditadminComponent implements OnInit {
     );
   }
 
-  loadUserZipCode(zipCode: any) {
-    console.log('zipCode' + zipCode)
-    this.adminEditadminService.getSubdistrictByZipCode(zipCode).subscribe(
+  loadUserZipCode(sdtId: any) {
+    console.log('zipCode' + sdtId)
+    this.editDataAdminForm.controls['sdtId'].enable();
+    this.addressService.getsubdistrictsBySdtId(sdtId).subscribe(
       res => {
         if (res) {
           this.editDataAdminForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              sdtId: res.sdtId,
               district: res.district.disNameTh,
-              province: res.province.pvnNameTh
+              province: res.province.pvnNameTh,
+
+              subdistrictInput: res.sdtNameTh,
+              districtInput: res.district.disNameTh,
+              provinceInput: res.province.pvnNameTh
             }
           )
         }
@@ -148,23 +160,49 @@ export class AdminEditadminComponent implements OnInit {
       })
       return;
     } else {
-      this.adminEditadminService.updateDatadoctor(this.editDataAdminForm.value).subscribe(res => {
-        console.log('Create User res : ', res)
-      });
+      Swal.fire({
+        title: 'ยืนยันการทำรายการ',
+        text: "ต้องการบันทึกข้อมูลหรือไม่ ?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'ยืนยัน',
+        cancelButtonText: 'ปิด'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.adminEditadminService.updateDatadoctor(this.editDataAdminForm.value).subscribe(res => {
+            console.log('Create User res : ', res)
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: '',
+            confirmButtonText: 'ปิดหน้าต่าง',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['admin/manage']);
+            } else if (result.isDismissed) {
+              window.location.reload()
+
+            }
+          })
+        }
+      })
     }
-    this.router.navigate(['admin/manage']);
   }
 
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.adminEditadminService.getSubdistrictByZipCode(zipCode).subscribe(
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
         console.log(res)
         if (res) {
           this.editDataAdminForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              // subdistrict: res.sdtNameTh,
               district: res.district.disNameTh,
               province: res.province.pvnNameTh
             }

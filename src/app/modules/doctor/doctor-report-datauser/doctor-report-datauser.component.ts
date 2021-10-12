@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AddressService } from '../../address.service';
 import { DoctorService } from '../doctor.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class DoctorReportDatauserComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private activatedroute: ActivatedRoute,
-    private doctorService: DoctorService
+    private doctorService: DoctorService,
+    private addressService : AddressService
   ) { }
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
@@ -36,51 +38,8 @@ export class DoctorReportDatauserComponent implements OnInit {
   tmId: any
   userId: any
   bkId: any
-  // ReportUserForm = this.fb.group({
-  //   tmId: ['', Validators.required],
-  //   tmDate: ['', Validators.required],
-  //   tmTime: ['', Validators.required],
-  //   tmMoney: ['', Validators.required],
-  //   tmSlip: ['', Validators.required],
-  //   tmStatus: ['', Validators.required],
-  //   billId: [0],
-  //   bkId: [0],
-  //   userId: [0],
-  //   userUsername: ['', Validators.required],
-  //   userPassword: ['', Validators.required],
-  //   userCardId: ['', Validators.required],
-  //   userHnId: [''],
-  //   userTitle: ['', Validators.required],
-  //   userFirstname: ['', Validators.required],
-  //   userLastname: ['', Validators.required],
-  //   userGender: ['', Validators.required],
-  //   userBirthday: ['', Validators.required],
-  //   userBlood: [''],
-  //   userPhone: [''],
-  //   userEmail: ['', Validators.required],
-  //   userDisease: [''],
-  //   userAddrass: [''],
-  //   userAllergy: [''],
-  //   userStatus: [this.statusActive],
-  //   roleId: ['2'],
-  //   bkQueue: ['', Validators.required],
-  //   bkDate: ['', Validators.required],
-  //   bkTime: ['', Validators.required],
-  //   bkSymptom: ['', Validators.required],
-  //   bkProcess: [''],
-  //   zipCode: ['', Validators.required],
-  //   subdistrict: [],
-  //   district: [],
-  //   province: [],
-  //   billDate: [''],
-  //   billTime: [''],
-  //   billNext: [''],
-  //   drugId: [''],
-  //   user: {},
-  //   booking: { },
-  //   billdrug: {}
-  // });
-  
+  user_id: any
+
   ReportUserForm = this.fb.group({
     userId: [0],
     userUsername: ['', Validators.required],
@@ -101,9 +60,13 @@ export class DoctorReportDatauserComponent implements OnInit {
     userStatus: [this.statusActive],
     roleId: ['2'],
     zipCode: ['', Validators.required],
-    subdistrict: [],
-    district: [],
-    province: [],
+    sdtId: [{ value: '', disabled: true },],
+    district: [{ value: '', disabled: true },],
+    province: [{ value: '', disabled: true },],
+
+    subdistrictInput: [''],
+    districtInput: [''],
+    provinceInput: [''],
   });
 
   ngOnInit() {
@@ -111,14 +74,13 @@ export class DoctorReportDatauserComponent implements OnInit {
     this.initDropdown();
     this.userId = this.activatedroute.snapshot.paramMap.get("userId");
     this.initUserDataById(this.userId);
-    // this.initUserDataById(this.tmId);
     this.fetchData(this.userId);
   }
 
   initDropdown() {
-    this.doctorService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.doctorService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.doctorService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.addressService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
   fetchData(userId: any) {
@@ -133,57 +95,10 @@ export class DoctorReportDatauserComponent implements OnInit {
     );
   }
 
-  // initUserDataById(tmId: any) {
-  //   this.doctorService.getTreatmentByTmId(tmId).subscribe((res) => {
-  //     console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
-  //     this.ReportUserForm.patchValue({
-  //       tmId: res.tmId,
-  //       tmDate: res.tmDate,
-  //       tmTime: res.tmTime,
-  //       tmMoney: res.tmMoney,
-  //       tmSlip: res.tmSlip,
-  //       tmStatus: res.tmStatus,
-  //       bkId: res.bkId,
-  //       userId: res.userId,
-  //       userCardId: res.user.userCardId,
-  //       userHnId: res.user.userHnId,
-  //       userUsername: res.user.userUsername,
-  //       userPassword: res.user.userPassword,
-  //       userTitle: res.user.userTitle,
-  //       userFirstname: res.user.userFirstname,
-  //       userLastname: res.user.userLastname,
-  //       userGender: res.user.userGender,
-  //       userBirthday: res.user.userBirthday,
-  //       userBlood: res.user.userBlood,
-  //       userPhone: res.user.userPhone,
-  //       userEmail: res.user.userEmail,
-  //       userDisease: res.user.userDisease,
-  //       userAddrass: res.user.userAddrass,
-  //       userAllergy: res.user.userAllergy,
-  //       userStatus: res.user.userStatus,
-  //       roleId: res.user.roleId,
-  //       bkQueue: res.booking.bkQueue,
-  //       bkDate: res.booking.bkDate,
-  //       bkTime: res.booking.bkTime,
-  //       bkSymptom: res.booking.bkSymptom,
-  //       bkProcess: res.booking.bkProcess,
-  //       zipCode: res.user.zipCode,
-  //       subdistrict: res.subdistrict,
-  //       district: res.district,
-  //       province: res.province,
-  //     });
-  //     //set default select dropdown
-  //     this.loadUserZipCode(res.user.zipCode);
-  //   },
-  //     (error) => {
-  //       console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
-  //     }
-  //   );
-  // }
-
   initUserDataById(userId: any) {
     this.doctorService.getUserByUserId(userId).subscribe((res) => {
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
+      debugger
       this.ReportUserForm.patchValue({
         userId: res.userId,
         userCardId: res.userCardId,
@@ -204,12 +119,12 @@ export class DoctorReportDatauserComponent implements OnInit {
         userStatus: res.userStatus,
         roleId: res.roleId,
         zipCode: res.zipCode,
-        subdistrict: res.subdistrict,
-        district: res.district,
-        province: res.province,
+        subdistrictInput: res.subdistrict,
+        districtInput: res.district,
+        provinceInput: res.province,
       });
       //set default select dropdown
-      this.loadUserZipCode(res.zipCode);
+      this.loadUserZipCode(res.sdtId);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
@@ -217,16 +132,21 @@ export class DoctorReportDatauserComponent implements OnInit {
     );
   }
 
-  loadUserZipCode(zipCode: any) {
-    console.log('zipCode' + zipCode)
-    this.doctorService.getSubdistrictByZipCode(zipCode).subscribe(
+  loadUserZipCode(sdtId: any) {
+    console.log('zipCode' + sdtId)
+    this.ReportUserForm.controls['sdtId'].enable();
+    this.addressService.getsubdistrictsBySdtId(sdtId).subscribe(
       res => {
         if (res) {
           this.ReportUserForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              sdtId: res.sdtId,
               district: res.district.disNameTh,
-              province: res.province.pvnNameTh
+              province: res.province.pvnNameTh,
+
+              subdistrictInput: res.sdtNameTh,
+              districtInput: res.district.disNameTh,
+              provinceInput: res.province.pvnNameTh
             }
           )
         }
@@ -246,13 +166,14 @@ export class DoctorReportDatauserComponent implements OnInit {
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.doctorService.getSubdistrictByZipCode(zipCode).subscribe(
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
         console.log(res)
         if (res) {
           this.ReportUserForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              // subdistrict: res.sdtNameTh,
               district: res.district.disNameTh,
               province: res.province.pvnNameTh
             }
@@ -269,6 +190,16 @@ export class DoctorReportDatauserComponent implements OnInit {
         )
       }
     );
+  }
+
+  generateReport(userId: any) {
+    this.doctorService.generateTreatmentReport(userId).subscribe(data => {
+      console.log('report===>', data)
+      if (data.body) {
+        let pdf = window.URL.createObjectURL(new Blob([data.body], { type: 'application/pdf' }))
+        window.open(pdf);
+      }
+    })
   }
 
   get userf() { return this.ReportUserForm.controls; }

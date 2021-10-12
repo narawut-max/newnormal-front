@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { DoctorService } from '../doctor.service';
 import { ManagredrugService } from './managredrug.service';
 
 @Component({
@@ -12,21 +11,31 @@ import { ManagredrugService } from './managredrug.service';
 })
 export class DoctorManagedrugComponent implements OnInit {
 
-  listDataBill : any;
-  listDataDrug : any;
+  submitted = false;
+  page = 1;
+  count = 0;
+  tableSize = 5;
+  tableSizes = [3, 6, 9, 12];
+
+  listDatauser: any;
+  listDataDrug: any;
   statusActive: any = 'A';
   tmId: any
   item: any
+  bill_id_param: any
 
-  billId: string | any
-  bkId: string | any
-  userHnId: string | any
-  userFirstname: string | any
-  userLastname: string | any
+  billId: any
+  bkId: any
+  userHnId: any
+  userFirstname: any
+  userLastname: any
+
+  public myAngularxQrCode: any | string = null;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private activatedroute: ActivatedRoute,
     private managredrugService: ManagredrugService
   ) { }
 
@@ -60,6 +69,7 @@ export class DoctorManagedrugComponent implements OnInit {
     billDate: [''],
     billTime: [''],
     billNext: [''],
+    billStatus: [''],
     drugId: [''],
     bkQueue: [''],
     bkDate: [''],
@@ -83,7 +93,19 @@ export class DoctorManagedrugComponent implements OnInit {
     this.managredrugService.getAllTreatment().subscribe(
       (res) => {
         console.log(res)
-        this.listDataBill = res;
+        this.listDatauser = res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  fetchDrug() {
+    this.managredrugService.getAllTreatment().subscribe(
+      (res) => {
+        console.log(res)
+        this.listDatauser = res;
       },
       (error) => {
         console.log(error);
@@ -106,9 +128,36 @@ export class DoctorManagedrugComponent implements OnInit {
     this.listDatausers.controls['bkDate'].patchValue(item.booking.bkDate);
     this.listDatausers.controls['bkTime'].patchValue(item.booking.bkTime);
     this.listDatausers.controls['bkSymptom'].patchValue(item.booking.bkSymptom);
+    this.listDatausers.controls['billStatus'].patchValue(item.billdrug.billStatus);
   }
 
-  gotoCancalBill() {
+  // gotoCancalBill(item: any) {
+  //   Swal.fire({
+  //     title: 'ยกเลิกรายการยา?',
+  //     text: "ต้องการยกเลิกรายการสั่งยาหรือไม่",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#198754',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'ยืนยันการยกเลิก',
+  //     cancelButtonText: 'ปิด'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'ยกเลิกรายการสำเร็จ',
+  //         confirmButtonText: 'ปิดหน้าต่าง'
+  //       }
+  //       ).then((result) => {
+  //         if (result.isConfirmed) {
+  //           window.location.reload()
+  //         }
+  //       })
+  //     }
+  //   })
+  // }
+
+  gotoCancalBill(item: any) {
     Swal.fire({
       title: 'ยกเลิกรายการยา?',
       text: "ต้องการยกเลิกรายการสั่งยาหรือไม่",
@@ -120,6 +169,17 @@ export class DoctorManagedrugComponent implements OnInit {
       cancelButtonText: 'ปิด'
     }).then((result) => {
       if (result.isConfirmed) {
+        this.listDatausers.patchValue(
+          {
+            billId: item.billId,
+            tmId: item.tmId,
+            billStatus: 'C'
+          }
+        )
+        this.managredrugService.updateBilldrugStatus(this.listDatausers.value).subscribe(
+          (res) => {
+            console.log('create BillDrug res : ', res)
+          })
         Swal.fire({
           icon: 'success',
           title: 'ยกเลิกรายการสำเร็จ',
@@ -130,14 +190,68 @@ export class DoctorManagedrugComponent implements OnInit {
             window.location.reload()
           }
         })
+        setTimeout(function () { window.location.reload(); }, 2 * 1000);
       }
     })
   }
 
+  // gotoCancalBill(item: any) {
+  //   debugger
+  //   this.submitted = true;
+  //   Swal.fire({
+  //     title: 'ยกเลิกการจ่ายยาหรือไม่ ?',
+  //     text: "หมายเลขใบจ่ายยาที่ : " + item.billId,
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#198754',
+  //     cancelButtonColor: '#d33',
+  //     confirmButtonText: 'ยืนยัน',
+  //     cancelButtonText: 'ยกเลิก'
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       this.bill_id_param = item.billId;
+  //       this.listDatausers.patchValue(
+  //         {
+  //           billId: item.billId,
+  //           tmId: item.tmId,
+  //           billStatus: 'C'
+  //         }
+  //       )
+  //       console.log('data :', this.listDatausers.value)
+  //       this.managredrugService.updateBilldrugStatus(this.listDatausers.value).subscribe(
+  //         (res) => {
+  //           console.log('create BillDrug res : ', res)
+  //           Swal.fire({
+  //             icon: 'success',
+  //             title: 'ยกเลิกรายการสำเร็จ',
+  //           })
+  //           setTimeout(function () { window.location.reload(); }, 2 * 1000);
+  //         }
+  //       );
+  //     }
+  //   })
+  // }
+
   getSearchTreatByCriteria() {
     debugger
     let resp = this.managredrugService.searchTreatByCriteria(this.billId, this.bkId, this.userHnId, this.userFirstname, this.userLastname);
-    resp.subscribe((data)=> this.listDataBill = data);
+    resp.subscribe((data) => this.listDatauser = data);
+  }
+
+  pageChanged(event: any) {
+    this.page = event;
+    // this.fetchData(bkDepartment);
+  }
+
+
+  generateReport(billId: any) {
+    this.managredrugService.generateBilldrugReport(billId).subscribe(data => {
+      console.log('report===>', data)
+      if (data.body) {
+        let pdf = window.URL.createObjectURL(new Blob([data.body], { type: 'application/pdf' }))
+        window.open(pdf);
+      }
+    })
   }
 
   get userf() { return this.listDatausers.controls; }

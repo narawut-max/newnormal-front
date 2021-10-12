@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AddressService } from '../../address.service';
 import { AdminService } from '../admin.service';
 
 @Component({
@@ -14,8 +15,15 @@ export class AdminProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private addressService: AddressService
   ) { }
+
+  subdistricts: any;
+  districts: any;
+  provinces: any;
+  statusActive: any = 'A';
+  userId: any
 
   prefixNames: any = ['นาย', 'นาง', 'น.ส.'];
   bloods: any = ['A', 'B', 'AB', 'O']
@@ -23,14 +31,9 @@ export class AdminProfileComponent implements OnInit {
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
   doctorPositions: any = ['แพทย์ผู้เชี่ยวชาญด้านรังสีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านวิสัญญีวิทยา', 'แพทย์ผู้เชี่ยวชาญด้านจักษุวิทยา', 'นักวิชาการคอมพิวเตอร์ปฏิบัติการ']
   genders: any = ['ชาย', 'หญิง']
-  // roles: any = [{roleId: '2', roleName: 'ผู้ป่วย'}, {roleId: '3', roleName: 'แพทย์/เจ้าหน้าที่'}]
-  statusActive: any = 'A';
-  subdistricts: any;
-  districts: any;
-  provinces: any;
+
   submitted = false;
 
-  userId: any
   DataAdminForm = this.fb.group({
     userId: [0],
     userUsername: ['', Validators.required],
@@ -44,34 +47,40 @@ export class AdminProfileComponent implements OnInit {
     userBirthday: ['', Validators.required],
     userBlood: ['', Validators.required],
     userGraduate: [''],
-    userProfessionId: [''],
+    // userProfessionId: [''],
     userPosition: [''],
     userPhone: [''],
     userEmail: ['', Validators.required],
     userStatus: [this.statusActive],
     userAddrass: ['', Validators.required],
     zipCode: ['', Validators.required],
-    roleId: ['3'],
-    subdistrict: [{ value: '', disabled: true },],
+    roleId: ['1'],
+    sdtId: [{ value: '', disabled: true },],
     district: [{ value: '', disabled: true },],
-    province: [{ value: '', disabled: true },]
+    province: [{ value: '', disabled: true },],
+
+    subdistrictInput: [''],
+    districtInput: [''],
+    provinceInput: ['']
   });
 
   ngOnInit(): void {
+    //load dropdown all
     this.initDropdown();
     const userId = sessionStorage.getItem('user_id');
-    debugger
     this.initUserDataforEditById(userId);
   }
 
   initDropdown() {
-    this.adminService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
-    this.adminService.getDistrictsAll().subscribe(res => { this.districts = res; });
-    this.adminService.getProvincesAll().subscribe(res => { this.provinces = res; })
+    // this.addressService.getSubdistrictAll().subscribe(res => { this.subdistricts = res; });
+    this.addressService.getDistrictsAll().subscribe(res => { this.districts = res; });
+    this.addressService.getProvincesAll().subscribe(res => { this.provinces = res; })
   }
 
   initUserDataforEditById(userId: any) {
+    debugger
     this.adminService.getUserByUserId(userId).subscribe((res) => {
+      this.addressService.getsubdistrictsByZipCode1(res.zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
       console.log('!!!!!!!!!!!!res data!!!!!!!!!!!!', res)
       this.DataAdminForm.patchValue({
         userId: res.userId,
@@ -86,7 +95,7 @@ export class AdminProfileComponent implements OnInit {
         userBirthday: res.userBirthday,
         userBlood: res.userBlood,
         userGraduate: res.userGraduate,
-        userProfessionId: res.userProfessionId,
+        // userProfessionId: res.userProfessionId,
         userPosition: res.userPosition,
         userPhone: res.userPhone,
         userEmail: res.userEmail,
@@ -94,13 +103,13 @@ export class AdminProfileComponent implements OnInit {
         userAddrass: res.userAddrass,
         zipCode: res.zipCode,
         roleId: res.roleId,
-        subdistrict: res.subdistrict,
-        district: res.district,
-        province: res.province,
+        subdistrictInput: res.subdistrict,
+        districtInput: res.district,
+        provinceInput: res.province,
       });
 
       //set default select dropdown
-      this.loadUserZipCode(res.zipCode);
+      this.loadUserZipCode(res.sdtId);
     },
       (error) => {
         console.log('!!!!!!!!!!!!!!error!!!!!!!!!!', error);
@@ -108,16 +117,21 @@ export class AdminProfileComponent implements OnInit {
     );
   }
 
-  loadUserZipCode(zipCode: any) {
-    console.log('zipCode' + zipCode)
-    this.adminService.getSubdistrictByZipCode(zipCode).subscribe(
+  loadUserZipCode(sdtId: any) {
+    console.log('zipCode' + sdtId)
+    this.DataAdminForm.controls['sdtId'].enable();
+    this.addressService.getsubdistrictsBySdtId(sdtId).subscribe(
       res => {
         if (res) {
           this.DataAdminForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              sdtId: res.sdtId,
               district: res.district.disNameTh,
-              province: res.province.pvnNameTh
+              province: res.province.pvnNameTh,
+
+              subdistrictInput: res.sdtNameTh,
+              districtInput: res.district.disNameTh,
+              provinceInput: res.province.pvnNameTh
             }
           )
         }
@@ -179,13 +193,14 @@ export class AdminProfileComponent implements OnInit {
   changeUserZipCode(event: any) {
     const zipCode = event.target.value;
     console.log('zipCode' + zipCode)
-    this.adminService.getSubdistrictByZipCode(zipCode).subscribe(
+    this.addressService.getsubdistrictsByZipCode1(zipCode).subscribe(res => { this.subdistricts = res; console.log('data :', res) });
+    this.addressService.getsubdistrictsByZipCode(zipCode).subscribe(
       res => {
         console.log(res)
         if (res) {
           this.DataAdminForm.patchValue(
             {
-              subdistrict: res.sdtNameTh,
+              // subdistrict: res.sdtNameTh,
               district: res.district.disNameTh,
               province: res.province.pvnNameTh
             }
@@ -203,7 +218,7 @@ export class AdminProfileComponent implements OnInit {
       }
     );
   }
-  
+
   refresh() {
     window.location.reload();
   }

@@ -155,12 +155,21 @@
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="username">
+                                        <strong>แผนกที่รักษา</strong>
+                                    </label>
+                                    <input class="form-control" type="text" id="tmId" placeholder="" name="tmId" formControlName="bkDepartment" 
+                                        readonly>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">
                                         <strong>แพทย์ผู้รักษา</strong>
                                     </label>
                                     <input class="form-control" type="text" id="tmId" placeholder="" name="tmId"
                                         readonly>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label" for="username">
@@ -233,9 +242,9 @@
                         <button type="submit" class="btn btn-outline-success">
                             บันทึกข้อมูล
                         </button>
-                        <button type="button" class="btn btn-outline-success" (click)="generateReport(1)">
+                        <!-- <button type="button" class="btn btn-outline-success" (click)="generateReport(1)">
                             TEST REPORT
-                        </button>
+                        </button> -->
                     </div>
                 </form>
             </div>

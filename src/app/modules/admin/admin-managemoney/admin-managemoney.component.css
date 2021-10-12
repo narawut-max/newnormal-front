@@ -1,0 +1,15 @@
+.t-danger {
+    color: rgb(255, 0, 0);
+}
+
+.t-success {
+    color: rgb(60, 187, 43);
+}
+
+.t-warning {
+    color: rgb(235, 175, 11);
+}
+
+.t-primary {
+    color: rgb(235, 175, 11);
+}

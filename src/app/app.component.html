@@ -5,12 +5,14 @@
   <div class="nav-content col">
     <div>
       <!-- navbar -->
-      <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
+      <!-- <div class="card-body btn-danger sticky-top" style="position: sticky; bottom: 0;"></div> -->
+      <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar sticky-top"
+        style="position: sticky; bottom: 0;">
         <div>
           <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0 p-0" href="home">
             <div class="sidebar-brand-text mx-3">
               <div class="col-md-1 text-start p-0">
-                <img src="assets/images/hospitallogo.jpg" alt="" width="140">
+                <img src="assets/images/logo-2.png" alt="" width="130" style="padding-left: 10px;">
               </div>
             </div>
           </a>
@@ -37,10 +39,11 @@
     </div>
     <footer style="background: #e8e4e4;">
       <div class="font-monospace text-center my-auto copyright"
-        style="padding: 0;padding-top: 13px;height: 49.8px;background: #bba9a9;width: 100%;"><span
-          style="font-size: 14px;padding-top: 4px;">Development of a New Normal System for Inpatients in Hospitals ©
-          Brand 2021
-        </span></div>
+        style="padding: 0;padding-top: 13px;height: 49.8px;background: #214d90;;width: 100%;">
+        <span class="" style="font-family:  serif; font-size: 14px;padding-top: 4px;">Development of a New Normal System
+          for Inpatients in Hospitals © 2021
+        </span>
+      </div>
     </footer>
   </div>
 </div>
@@ -49,7 +52,7 @@
 <div class="row">
   <ng-template ngxPermissionsOnly="ADMIN">
     <!-- sidebar -->
-    <div class="sidebar-nav col-md-6">
+    <div class="sidebar-nav col-md-2">
       <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
         <div class="container-fluid d-flex flex-column p-0">
           <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="admin/home">
@@ -88,7 +91,7 @@
         <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
           <div class="container-fluid" style="padding-left: 10px;padding-right: 10px;">
             <div class="col-md-1 text-start p-0">
-              <img src="assets/images/hospitallogo.jpg" alt="" width="90">
+              <img src="assets/images/logo-2.png" alt="" width="120" style="padding-left: 10px;">
             </div>
             <ul *ngIf="isLogin" class="navbar-nav flex-nowrap ms-auto">
               <li class="nav-item dropdown no-arrow mx-1">
@@ -121,7 +124,7 @@
 
   <ng-template ngxPermissionsOnly="USER">
     <!-- sidebar -->
-    <div class="sidebar-nav col-md-6">
+    <div class="sidebar-nav col-md-2">
       <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
         <div class="container-fluid d-flex flex-column p-0">
           <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="user/home">
@@ -162,8 +165,10 @@
 
         <!-- navbar -->
         <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
-          <div class="container-fluid">
-
+          <div class="container-fluid" style="padding-left: 10px;padding-right: 10px;">
+            <div class="col-md-1 text-start p-0">
+              <img src="assets/images/logo-2.png" alt="" width="120" style="padding-left: 10px;">
+            </div>
             <ul *ngIf="isLogin" class="navbar-nav flex-nowrap ms-auto">
               <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"
@@ -193,7 +198,7 @@
 
   <ng-template ngxPermissionsOnly="DOCTOR">
     <!-- sidebar -->
-    <div class="sidebar-nav col-md-6">
+    <div class="sidebar-nav col-md-2">
       <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
         <div class="container-fluid d-flex flex-column p-0">
           <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="doctor/home">
@@ -226,16 +231,16 @@
 
             <br>
             <!-- เมนูชั่วคราว -->
-            <li>
+            <!-- <li>
               <i class="bi bi-x-octagon" style="font-size: 1rem; color: #fff;"></i>&nbsp;
               <a href="doctor/treat/add-drug"
                 style="text-decoration:none; color: #fff;">เพิ่มข้อมูลสั่งยา(ปุ่มชั่วคราว)</a>
-            </li>
-            <li>
+            </li> -->
+            <!-- <li>
               <i class="bi bi-x-octagon" style="font-size: 1rem; color: #fff;"></i>&nbsp;
               <a href="doctor/treat/printdatadrug"
                 style="text-decoration:none; color: #fff;">พิมพ์ใบสั่งยา(ปุ่มชั่วคราว)</a>
-            </li>
+            </li> -->
           </ul>
         </div>
       </nav>
@@ -247,8 +252,10 @@
 
         <!-- navbar -->
         <nav class="nav-con navbar navbar-light navbar-expand bg-white shadow topbar static-top">
-          <div class="container-fluid">
-
+          <div class="container-fluid" style="padding-left: 10px;padding-right: 10px;">
+            <div class="col-md-1 text-start p-0">
+              <img src="assets/images/logo-2.png" alt="" width="120" style="padding-left: 10px;">
+            </div>
             <ul *ngIf="isLogin" class="navbar-nav flex-nowrap ms-auto">
               <li class="nav-item dropdown no-arrow mx-1">
                 <a class="nav-link" href="home" data-bs-toggle="modal" data-bs-target="#exampleModal"

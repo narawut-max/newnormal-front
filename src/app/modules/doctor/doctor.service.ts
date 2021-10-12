@@ -21,13 +21,16 @@ export class DoctorService {
   getUserByUserId(userId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/users/' + userId)
   }
+  gettreatBydepartment(userDepartment: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/users/by-Department?userDepartment=' + userDepartment)
+  }
   getUserByUser(userId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/users/by-userId?userId=' + userId)
   }
   getUserByRoleId(roleId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/users/by-user?roleId=' + roleId)
   }
-  getSearchUserByCriteria(userId: any, userHnId: any,userCardId: any, userFirstname: any, userLastname: any) {
+  getSearchUserByCriteria(userId: any, userHnId: any, userCardId: any, userFirstname: any, userLastname: any) {
     let params = new HttpParams();
     if (userId) {
       params = params.append('userId', userId);
@@ -50,7 +53,7 @@ export class DoctorService {
     }
     console.log('searchTreatByCriteria param :: ' + params);
 
-    return this.http.get<any>(endpoint + '/users/search-by-criteria', {params: params})
+    return this.http.get<any>(endpoint + '/users/search-by-criteria', { params: params })
   }
 
 
@@ -64,7 +67,7 @@ export class DoctorService {
   gettreatmentsByUserId(userId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/treatments/by-user?userId=' + userId)
   }
-  searchTreatByCriteria(bkId: any, userHnId: any,userCardId: any, userFirstname: any, userLastname: any) {
+  searchTreatByCriteria(bkId: any, userHnId: any, userCardId: any, userFirstname: any, userLastname: any) {
     let params = new HttpParams();
     if (bkId) {
       params = params.append('bkId', bkId);
@@ -87,7 +90,7 @@ export class DoctorService {
     }
     console.log('searchTreatByCriteria param :: ' + params);
 
-    return this.http.get<any>(endpoint + '/treatments/search-by-criteria', {params: params})
+    return this.http.get<any>(endpoint + '/treatments/search-by-criteria', { params: params })
   }
 
   //Booking
@@ -96,6 +99,9 @@ export class DoctorService {
   }
   getBookingsByBkId(bkId: any): Observable<any> {
     return this.http.get<any>(endpoint + '/bookings/' + bkId)
+  }
+  getbookingBydepartment(bkDepartment: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/bookings/by-Department?bkDepartment=' + bkDepartment)
   }
 
   //billdrugs
@@ -106,23 +112,20 @@ export class DoctorService {
     return this.http.get<any>(endpoint + '/billdrugs/' + billId)
   }
 
-  //Address
-  getSubdistrictAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts')
-  }
-  getDistrictsAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/districts')
-  }
-  getProvincesAll(): Observable<any> {
-    return this.http.get<any>(endpoint + '/provinces')
-  }
-  getSubdistrictByZipCode(zipCode: any): Observable<any> {
-    return this.http.get<any>(endpoint + '/subdistricts/by-zip-code?zipCode=' + zipCode)
-  }
-
-  // HttpClient API put() method => Update employee
+  //update
   updateDatadoctor(updatedoctor: any): Observable<any> {
     return this.http.post<any>(endpoint + '/users/update/', JSON.stringify(updatedoctor), httpOptions)
+  }
+
+  //report
+  generateTreatmentReport(userId: any): Observable<any> {
+    return this.http.get<any>(endpoint + '/report/generateTreatmentReport?userId=' + userId, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      observe: 'response' as 'body',
+      responseType: 'blob' as 'json'
+    });
   }
 
 }//end
