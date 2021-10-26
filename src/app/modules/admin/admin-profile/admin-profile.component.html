@@ -1,13 +1,6 @@
-<div class="m-0 p-0" style="min-height: 591px;">
-    <!-- Breadcrumb -->
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="doctor/home">หน้าแรก</a></li>
-            <li class="breadcrumb-item active" aria-current="page">ประวัติผู้ดูแลระบบ</li>
-        </ol>
-    </nav>
-    
-    <div class="container text-dark">
+<div class="container p-4" style="min-height: 591px; background-color: #F0F8FF;">
+
+    <div class="text-dark pt-3 pb-2 mb-3">
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom text-dark">
             <h3>ประวัติผู้ดูแลระบบ</h3>
@@ -18,9 +11,9 @@
                 </div> -->
             </div>
         </div>
-    
+
         <div class="row justify-content-center">
-    
+
             <!-- profile -->
             <div class="col-md-12">
                 <div class="card shadow-sm" style="border-radius: 10px;">
@@ -125,7 +118,7 @@
         </div>
         <br>
     </div>
-    
+
     <!-- Modal edit data -->
     <div class="modal fade" id="editprofile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="editprofileLabel" aria-hidden="true">
@@ -201,7 +194,8 @@
                                     <label for="validationCustom02" class="form-label">ตำแหน่ง</label>
                                     <select id="inputState" class="form-select" formControlName="userPosition">
                                         <option value="" disabled>เลือกตำแหน่ง</option>
-                                        <option *ngFor="let doctorPosition of doctorPositions" [ngValue]="doctorPosition">{{
+                                        <option *ngFor="let doctorPosition of doctorPositions"
+                                            [ngValue]="doctorPosition">{{
                                             doctorPosition }}</option>
                                     </select>
                                 </div>
@@ -219,7 +213,8 @@
                                     <label for="validationCustom02" class="form-label">จังหวัด</label>
                                     <select id="inputState" class="form-select" formControlName="province">
                                         <option value="" disabled>--จังหวัด--</option>
-                                        <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh }}
+                                        <option *ngFor="let pro of provinces" [ngValue]="pro.pvnNameTh">{{ pro.pvnNameTh
+                                            }}
                                         </option>
                                     </select>
                                 </div>
@@ -227,7 +222,8 @@
                                     <label for="validationCustom02" class="form-label">อำเภอ</label>
                                     <select id="inputState" class="form-select" formControlName="district">
                                         <option value="" disabled>--อำเภอ--</option>
-                                        <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh }}
+                                        <option *ngFor="let dis of districts" [ngValue]="dis.disNameTh">{{ dis.disNameTh
+                                            }}
                                         </option>
                                     </select>
                                 </div>

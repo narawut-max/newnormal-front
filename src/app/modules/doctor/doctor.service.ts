@@ -103,6 +103,27 @@ export class DoctorService {
   getbookingBydepartment(bkDepartment: any): Observable<any> {
     return this.http.get<any>(endpoint + '/bookings/by-Department?bkDepartment=' + bkDepartment)
   }
+  searchBookingByCriteria(bkId: any, userHnId: any, userFirstname: any, userLastname: any) {
+    let params = new HttpParams();
+    if (bkId) {
+      params = params.append('bkId', bkId);
+    }
+
+    if (userHnId) {
+      params = params.append('userHnId', userHnId);
+    }
+
+    if (userFirstname) {
+      params = params.append('userFirstname', userFirstname);
+    }
+
+    if (userLastname) {
+      params = params.append('userLastname', userLastname);
+    }
+    console.log('searchTreatByCriteria param :: ' + params);
+
+    return this.http.get<any>(endpoint + '/bookings/search-by-criteria', { params: params })
+  }
 
   //billdrugs
   getAllBilldrugs(): Observable<any> {

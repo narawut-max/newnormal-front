@@ -24,6 +24,7 @@ export class DoctorTreatComponent implements OnInit {
 
   listDatausers = [{}];
 
+  userId: string | any
   bkId: string | any
   userHnId: string | any
   userCardId: string | any
@@ -57,9 +58,9 @@ export class DoctorTreatComponent implements OnInit {
     this.router.navigate(['doctor/treat/add-treat/', item.bkId]);
   }
 
-  getSearchTreatByCriteria() {
+  searchBookingByCriteria() {
     debugger
-    let resp = this.doctorService.searchTreatByCriteria(this.bkId, this.userHnId, this.userCardId, this.userFirstname, this.userLastname);
+    let resp = this.doctorService.searchBookingByCriteria(this.bkId, this.userHnId,  this.userFirstname, this.userLastname);
     resp.subscribe((data)=> this.listUser = data);
   }
 

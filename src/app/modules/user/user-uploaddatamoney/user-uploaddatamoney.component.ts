@@ -61,6 +61,13 @@ export class UserUploaddatamoneyComponent implements OnInit {
     this.fileInfos = this.userService.getFiles();
   }
 
+  isShowUpdateStatus(tmStatus: any) {
+    return tmStatus != 'C' && tmStatus != 'S';
+  }
+  isShowUpdateStatus2(tmStatus: any) {
+    return tmStatus == 'C' && tmStatus == 'S';
+  }
+
   refresh() {
     this.fetchData(this.userId);
     window.location.reload();
@@ -86,15 +93,6 @@ export class UserUploaddatamoneyComponent implements OnInit {
     this.DataUserForm.controls['billId'].patchValue(item.billId);
     // this.listDatausers.controls['userDisease'].patchValue(item.user.userDisease);
   }
-
-  // selectslipmoney() {
-  //   Swal.fire({
-  //     imageUrl: 'https://obs.line-scdn.net/0hd_rioZEKO3BPEBPqvuFEJ3VGOB98fChzKyZqcxN-ZUQ2dylxISZzHmxFYElqKXwuISJwHm0SIEEwIiwlcX5z/w644',
-  //     imageWidth: 400,
-  //     imageHeight: 500,
-  //     imageAlt: 'Custom image',
-  //   })
-  // }
 
   onUplodeFile(e: any) {
     if (e.target.files) {

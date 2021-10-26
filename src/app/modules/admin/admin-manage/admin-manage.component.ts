@@ -20,7 +20,7 @@ export class AdminManageComponent implements OnInit {
   
   page = 1;
   count = 0;
-  tableSize = 5;
+  tableSize = 10;
   tableSizes = [3, 6, 9, 12];
 
   listDatas = [{}];

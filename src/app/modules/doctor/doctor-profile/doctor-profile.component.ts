@@ -18,13 +18,14 @@ export class DoctorProfileComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private doctorService: DoctorService,
-    private addressService : AddressService
+    private addressService: AddressService
   ) { }
 
   subdistricts: any;
   districts: any;
   provinces: any;
   userId: any
+  item: any
 
   listDataDoctor: any;
   uplodeFile: any | File = null;
@@ -55,7 +56,7 @@ export class DoctorProfileComponent implements OnInit {
     userDepartment: [''],
     userGraduate: [''],
     userProfessionId: [''],
-    userProfession: [],
+    userProfession: [''],
     userPosition: [''],
     userPhone: [''],
     userEmail: ['', Validators.required],
@@ -70,7 +71,7 @@ export class DoctorProfileComponent implements OnInit {
     districtInput: [''],
     provinceInput: ['']
   });
-  
+
 
   ngOnInit(): void {
     //load dropdown all
@@ -300,13 +301,15 @@ export class DoctorProfileComponent implements OnInit {
   }
 
   onUplodeFile(e: any) {
-    if(e.target.files) {
+    if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       console.log(reader);
-      reader.onload=(event: any)=>{
+      reader.onload = (event: any) => {
         this.url = event.target.result;
       }
     }
   }
 }//end
+
+// assets/images/mdcard.jpg

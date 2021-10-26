@@ -19,6 +19,7 @@ export class DoctorPageComponent implements OnInit {
   tableSize = 5;
   tableSizes = [3, 6, 9, 12];
 
+  searchText: any;
   listDatauser : any;
   item: any
   bkId: any

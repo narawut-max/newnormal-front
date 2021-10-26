@@ -98,7 +98,7 @@
                     <td class="col-md-2">{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                     <td class="col-md-2"  data-bs-toggle="modal" data-bs-target="#drugModal">{{item.user.userDisease}}</td>
                     <td class=" col-md-1 text-center">
-                        <button type="button" class="btn btn-sm btn-primary" (click)="generateReport(item.billId)">
+                        <button type="button" class="btn btn-sm btn-success" (click)="generateReport(item.billId)">
                             <i class="bi bi-eye-fill" style="font-size: 1rem; color: rgb(255, 255, 255);"></i>
                             ใบจ่ายยา
                         </button>
@@ -142,7 +142,7 @@
                         </span>
                     </td>
                     <td *ngIf="item.billdrug.billStatus ==='O'" class="col-md-1 text-center">
-                        <button type="button" class="btn btn-sm btn-warning" (click)="gotoCancalBill(item)">
+                        <button type="button" class="btn btn-sm btn-danger" (click)="gotoCancalBill(item)">
                             <dt style="font-size: 13px;">ยกเลิกสั่ง</dt>
                         </button>
                     </td>

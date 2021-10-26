@@ -289,9 +289,21 @@
                                 <div class="col-md-6 pb-2">
                                     <div class="form-group">
                                         <label class="pb-1">เวลาที่ต้องการจอง</label>
-                                        <input type="time" id="form8Example3" name="appt-time" class="form-control" placeholder=""
-                                            formControlName="bkTime" min="09:00" max="12:00" required>
-                                            <span class="validity"></span>
+                                        <!-- <input type="time" id="form8Example3" name="appt-time" class="form-control" placeholder=""
+                                            formControlName="bkTime"  required> -->
+                                        <div class="input-group mb-3">
+                                            <select id="inputState" class="form-select" formControlName="bkTime">
+                                                <option value="" disabled>เลือกเวลาเข้ารักษา</option>
+                                                <option *ngFor="let bkTime of bk_Time" [ngValue]="bkTime">{{
+                                                    bkTime
+                                                    }}</option>
+                                                <!-- <option value="" disabled></option> -->
+                                                <option value="" disabled>-- พักเที่ยง --</option>
+                                                <option *ngFor="let bkTime2 of bk_Time2" [ngValue]="bkTime2">{{
+                                                    bkTime2
+                                                    }}</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

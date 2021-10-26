@@ -6,18 +6,10 @@
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
         aria-current="true" aria-label="Slide 1"></button>
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="4000">
-        <img src="assets/images/p1.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="4000">
         <img src="assets/images/p2.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item" data-bs-interval="4000">
-        <img src="assets/images/p3.jpg" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item" data-bs-interval="4000">
         <img src="assets/images/p4.jpg" class="d-block w-100" alt="...">
@@ -82,28 +74,27 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of listDatauser | filter:searchText | paginate: {
-                    itemsPerPage: tableSize,
-                    currentPage: page,
-                    totalItems: count
-                  } ;let i = index">
-                    <th class="col-md-1 text-center">{{item.bkQueue}}</th>
-                    <td class="col-md-1 text-center">{{item.bkTime}}</td>
-                    <td class="col-md-2 text-center">{{item.user.userHnId}}</td>
-                    <td class="col-md-2">{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                    <td class="col-md-2">{{item.bkDepartment}}</td>
-                    <td class="col-md-2">{{item.bkSymptom}}</td>
-                    <td class="col-md-2 td-status text-center p-1">
-                      <span class="badge" style="background-color: orange;">
-                        <dt>{{item.bkStatus}}</dt>
+                  <tr *ngFor="let item of listDatauser | filter:searchText; let i = index">
+                    <th *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-1 text-center">{{item.bkQueue}}</th>
+                    <td *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-1 text-center">{{item.bkTime}}</td>
+                    <td *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-2 text-center">{{item.user.userHnId}}
+                    </td>
+                    <td *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-2">
+                      {{item.user.userFirstname}} {{item.user.userLastname}}</td>
+                    <td *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-2">
+                      {{item.bkDepartment}}</td>
+                    <td *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-2">
+                      {{item.bkSymptom}}</td>
+                    <td *ngIf="isShowUpdateStatus(item.bkStatus)" class="col-md-2 td-status text-center p-1">
+                      <span class="badge {{getStatusColorClass(item.bkStatus)}}">{{getStatusDesc(item.bkStatus)}}
                       </span>
                     </td>
                   </tr>
                 </tbody>
               </table>
-              <div class="d-flex justify-content-center pt-3 pb-0 mb-0">
+              <!-- <div class="d-flex justify-content-center pt-3 pb-0 mb-0">
                 <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

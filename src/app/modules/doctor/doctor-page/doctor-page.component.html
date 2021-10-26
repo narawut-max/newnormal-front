@@ -12,20 +12,10 @@
                                 class="active" aria-current="true" aria-label="Slide 1"></button>
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
                                 aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                                aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
-                                aria-label="Slide 4"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="4000">
-                                <img src="assets/images/p1.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="4000">
                                 <img src="assets/images/p2.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="4000">
-                                <img src="assets/images/p3.jpg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item" data-bs-interval="4000">
                                 <img src="assets/images/p4.jpg" class="d-block w-100" alt="...">
@@ -49,7 +39,29 @@
     </div>
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center mb-3 border-bottom">
-        <h3>ข้อมูลการจองคิวประจำวัน</h3>
+        <div class="col-md-3">
+            <h3>ข้อมูลการจองคิวประจำวัน</h3>
+        </div>
+        <div class="col-md-4 text-end" style="padding-left: 20px;">
+            <div class="data-date">
+                <label>
+                    <h5>
+                        <dt> เวลาปัจจุบัน : &nbsp;</dt>
+                    </h5>
+                </label>
+                <label class="col">
+                    <h5>
+                        {{currentDate | date:'dd/MM/y'}}
+                    </h5>
+                </label>
+                &nbsp;
+                <label class="col">
+                    <h5>
+                        {{currentDate | date:'HH:mm'}}
+                    </h5>
+                </label>
+            </div>
+        </div>
     </div>
 
     <!-- card-search -->
@@ -88,36 +100,22 @@
     <!-- <meta http-equiv="refresh" content="20"> -->
 
     <!-- table -->
-    <div class="pt-3">
+    <div class="pt-2">
         <div class="pb-0">
             <div class="row pb-1">
-                <div class="col" style="padding-left: 20px;">
-                    <div class="data-date">
-                        <label>
-                            <h5>
-                                <dt> เวลาปัจจุบัน : &nbsp;</dt>
-                            </h5>
-                        </label>
-                        <label class="col">
-                            <h5>
-                                {{currentDate | date:'dd/MM/y'}}
-                            </h5>
-                        </label>
-                        &nbsp;
-                        <label class="col">
-                            <h5>
-                                {{currentDate | date:'HH:mm'}}
-                            </h5>
-                        </label>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="card shadow">
             <div class="topbar static-top">
                 <div class="card-bodytext-dark">
+                    <div class="col-md-12 pt-2 text-end">
+                        <label class="">
+                            <input type="search" class="form-control form-control-sm" aria-controls="Searchdata"
+                                placeholder="ค้นหา" name="searchText" [(ngModel)]="searchText" />
+                        </label>
+                    </div>
                     <div class="dataTable table-responsive">
-                        <table class="table table-hover text-center">
+                        <table class="table table-hover text-center p-0">
                             <thead>
                                 <tr>
                                     <th class="col-md-1">หมายเลขคิว</th>
@@ -125,21 +123,23 @@
                                     <th class="col-md-2">รหัสการจอง</th>
                                     <th class="col-md-2">ชื่อ-สกุล</th>
                                     <th class="col-md-2">รายละเอียดการจอง</th>
-                                    <th class="col-md-2">สถานะ</th>
+                                    <th class="col-md-1">สถานะ</th>
                                     <th class="col-md-2">อัพเดตสถานะ</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let item of listDatauser | paginate: {
-                                    itemsPerPage: tableSize,
-                                    currentPage: page,
-                                    totalItems: count
-                                  }">
-                                    <th scope="row">{{item.bkQueue}}</th>
-                                    <td>{{item.bkTime}}</td>
-                                    <td>{{item.bkId}}</td>
-                                    <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
-                                    <td>
+                                <tr *ngFor="let item of listDatauser | filter:searchText;">
+                                    <th *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-1" scope="row">{{item.bkQueue}}</th>
+                                    <td *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-1">{{item.bkTime}}</td>
+                                    <td *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-2">{{item.bkId}}</td>
+                                    <td *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-2">{{item.user.userFirstname}}
+                                        {{item.user.userLastname}}</td>
+                                    <td *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-2">
                                         <button type="button" class="btn btn-sm text-white fw-bold"
                                             data-bs-toggle="modal" data-bs-target="#SelectModal"
                                             style="background-color: rgb(0, 105, 191);">
@@ -147,16 +147,17 @@
                                                 ดูรายละเอียด</h6>
                                         </button>
                                     </td>
-                                    <td>
+                                    <td *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-1">
                                         <span
                                             class="badge {{getStatusColorClass(item.bkStatus)}}">{{getStatusDesc(item.bkStatus)}}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td *ngIf="isShowUpdateStatus(item.bkStatus)"
+                                        class="col-md-2">
                                         <button *ngIf="isShowUpdateStatus(item.bkStatus)" type="button"
-                                            class="btn btn-sm text-white fw-bold" data-bs-toggle="modal"
-                                            data-bs-target="#status"
-                                            style="background-color: rgb(13, 109, 219);border-radius: 30px;">
+                                            class="btn btn-sm text-white fw-bold bg-danger" data-bs-toggle="modal"
+                                            data-bs-target="#status" style="border-radius: 30px;">
                                             <h6 class="p-0" style="margin: 0rem;"
                                                 (click)="gotoUpdateStatusBooking(item)">สถานะคิว</h6>
                                         </button>
@@ -164,9 +165,9 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center pb-0 mb-0">
+                        <!-- <div class="d-flex justify-content-center pb-0 mb-0">
                             <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -177,17 +178,17 @@
 
 
 <!-- Modal Status -->
-<div class="modal fade" id="status" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="statusLabel" aria-hidden="true">
+<div class="modal fade" id="status" data-bs-keyboard="false" tabindex="-1" aria-labelledby="statusLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content"
             style="background-image: url(https://s3vmwebqa.s3.ap-southeast-1.amazonaws.com/public/other/vimut-og-image.jpg);">
             <div class="modal-body">
                 <div class="card p-3 border-0" style="border-radius: 8px;">
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <!-- <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                         <label class="btn btn-outline-success font-monospace" for="btnradio1" data-bs-dismiss="modal"
-                            (click)="updateStatusBooking('S')">รักษาแล้ว</label>
+                            (click)="updateStatusBooking('S')">รักษาแล้ว</label> -->
 
                         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
                         <label class="btn btn-outline-warning font-monospace" for="btnradio2" data-bs-dismiss="modal"

@@ -173,12 +173,24 @@ export class DoctorManagedrugComponent implements OnInit {
           {
             billId: item.billId,
             tmId: item.tmId,
-            billStatus: 'C'
+            billStatus: 'C',
+            tmStatus: 'C'
           }
         )
         this.managredrugService.updateBilldrugStatus(this.listDatausers.value).subscribe(
           (res) => {
             console.log('create BillDrug res : ', res)
+          })
+        this.listDatausers.patchValue(
+          {
+            tmId: item.tmId,
+            tmStatus: 'C'
+          }
+        )
+        debugger
+        this.managredrugService.updateTreatmentStatus(this.listDatausers.value).subscribe(
+          (res) => {
+            console.log('create Treatment res : ', res)
           })
         Swal.fire({
           icon: 'success',
@@ -194,43 +206,6 @@ export class DoctorManagedrugComponent implements OnInit {
       }
     })
   }
-
-  // gotoCancalBill(item: any) {
-  //   debugger
-  //   this.submitted = true;
-  //   Swal.fire({
-  //     title: 'ยกเลิกการจ่ายยาหรือไม่ ?',
-  //     text: "หมายเลขใบจ่ายยาที่ : " + item.billId,
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#198754',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'ยืนยัน',
-  //     cancelButtonText: 'ยกเลิก'
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       this.bill_id_param = item.billId;
-  //       this.listDatausers.patchValue(
-  //         {
-  //           billId: item.billId,
-  //           tmId: item.tmId,
-  //           billStatus: 'C'
-  //         }
-  //       )
-  //       console.log('data :', this.listDatausers.value)
-  //       this.managredrugService.updateBilldrugStatus(this.listDatausers.value).subscribe(
-  //         (res) => {
-  //           console.log('create BillDrug res : ', res)
-  //           Swal.fire({
-  //             icon: 'success',
-  //             title: 'ยกเลิกรายการสำเร็จ',
-  //           })
-  //           setTimeout(function () { window.location.reload(); }, 2 * 1000);
-  //         }
-  //       );
-  //     }
-  //   })
-  // }
 
   getSearchTreatByCriteria() {
     debugger

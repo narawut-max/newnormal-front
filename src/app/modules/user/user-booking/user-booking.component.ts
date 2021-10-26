@@ -1,3 +1,4 @@
+import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,7 +23,8 @@ export class UserBookingComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private userService: UserService
-  ) { }
+  ) {
+  }
 
   submitted = false;
 
@@ -34,6 +36,8 @@ export class UserBookingComponent implements OnInit {
   addEventForm: any;
   user_id_param: any
   departments: any = ['หู,คอ,จมูก', 'ศัลยกรรมกระดูก']
+  bk_Time: any = ['08:30', '08:45', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',]
+  bk_Time2: any = ['13:00', '13:30', '14:00', '14:30', '15:00', '15:30']
 
   // tmId: any
   DataUserForm = this.fb.group({

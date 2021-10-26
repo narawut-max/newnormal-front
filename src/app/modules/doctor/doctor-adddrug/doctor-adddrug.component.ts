@@ -251,15 +251,6 @@ export class DoctorAdddrugComponent implements OnInit {
                             text: 'Something went wrong!',
                           })
                         }
-                        // this.doctorAdddrugService.generateBilldrugReport(bill_id).subscribe(data => {
-                        //   console.log('report===>', data)
-                        //   if (data.body) {
-                        //     let pdf = window.URL.createObjectURL(new Blob([data.body], { type: 'application/pdf' }))
-                        //     window.open(pdf);
-                        //     this.router.navigate(['doctor/managedrug']);
-                        //   }
-                        // })
-                        // this.router.navigate(['doctor/treat/printdatadrug']);
                       }
                     })
                   })

@@ -32,6 +32,7 @@ import { QRCodeModule } from 'angularx-qrcode';
     FormsModule,
     HttpClientModule,
     ShowHidePasswordModule,
+    Ng2SearchPipeModule,
     QRCodeModule
   ]
 })

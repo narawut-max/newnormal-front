@@ -70,13 +70,18 @@
                                                     <dt style="font-size: 15px;">รักษาแล้ว</dt>
                                                 </span>
                                             </td>
+                                            <td *ngIf="item.bkStatus ==='N'" class="col-md-2">
+                                                <span class="text-warning badge p-2">
+                                                    <dt style="font-size: 15px;">รอรักษา</dt>
+                                                </span>
+                                            </td>
                                             <td *ngIf="item.bkStatus ==='C'" class="col-md-2">
                                                 <span class="t-danger badge p-2">
                                                     <dt style="font-size: 15px;">ยกเลิกแล้ว</dt>
                                                 </span>
                                             </td>
                                             <td *ngIf="item.bkStatus ==='W'" class="col-md-2">
-                                                <button type="button" class="btn btn-sm btn-warning"
+                                                <button type="button" class="btn btn-sm btn-danger"
                                                     (click)="cancelbooking(item)">
                                                     <dt style="font-size: 13px;">ยกเลิกจอง</dt>
                                                 </button>
@@ -102,11 +107,11 @@
         <div class="modal-content text-dark">
             <div class="modal-header">
                 <h5 class="modal-title fw-bold font-monospace" id="SelectModalLabel">รายละเอียดการจองคิวเข้ารักษา </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="refresh()"></button>
             </div>
             <div class="modal-body bg-light">
                 <form [formGroup]="listDatausers">
-                    <div class="card p-3 pb-0">
+                    <div class="card p-3 pb-1 pb-0">
                         <div class="row mb-4">
                             <div class="col-md-4 pb-3">
                                 <div class="form-outline">
@@ -193,6 +198,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12 text-center pt-3">
+                        <h5>
+                            <p class="text-danger">* โปรดแสดงหลักฐานการจองให้เจ้าหน้าที่เมื่อถึงเวลานัด *</p>
+                        </h5>
                     </div>
                 </form>
             </div>

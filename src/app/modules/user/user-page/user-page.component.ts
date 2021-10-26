@@ -18,7 +18,7 @@ export class UserPageComponent implements OnInit {
 
   page = 1;
   count = 0;
-  tableSize = 5;
+  tableSize = 10;
   tableSizes = [3, 6, 9, 12];
 
   constructor(
@@ -26,11 +26,6 @@ export class UserPageComponent implements OnInit {
     private router: Router,
     private userService: UserService
   ) { }
-
-  // page = 1;
-  // count = 0;
-  // tableSize = 10;
-  // tableSizes = [3, 6, 9, 12];
   
   listDatausers = this.fb.group({
     tmId: [''],
@@ -53,6 +48,54 @@ export class UserPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
+  }
+
+  isShowUpdateStatus(bkStatus: any) {
+    return bkStatus != 'C' && bkStatus != 'S';
+  }
+
+  getStatusDesc(bkStatus: any) {
+    var statusDesc = '-';
+
+    if (bkStatus == 'C') {
+      statusDesc = 'ยกเลิกจอง'
+    }
+
+    if (bkStatus == 'S') {
+      statusDesc = 'รักษาแล้ว'
+    }
+
+    if (bkStatus == 'N') {
+      statusDesc = 'รอรักษา'
+    }
+
+    if (bkStatus == 'W') {
+      statusDesc = 'รอรักษา'
+    }
+
+    return statusDesc;
+  }
+
+  getStatusColorClass(bkStatus: any) {
+    var statusColorClass = 'bg-primary ';
+
+    if (bkStatus == 'C') {
+      statusColorClass = 'bg-danger'
+    }
+
+    if (bkStatus == 'S') {
+      statusColorClass = 'bg-success'
+    }
+
+    if (bkStatus == 'N') {
+      statusColorClass = 'bg-warning'
+    }
+
+    if (bkStatus == 'W') {
+      statusColorClass = 'bg-warning'
+    }
+
+    return statusColorClass;
   }
 
   pageChanged(event: any) {

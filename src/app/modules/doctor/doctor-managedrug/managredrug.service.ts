@@ -59,6 +59,9 @@ export class ManagredrugService {
   updateBilldrugStatus(updateTreat: any): Observable<any> {
     return this.http.post<any>(endpoint + '/billdrugs/update/', JSON.stringify(updateTreat), httpOptions)
   }
+  updateTreatmentStatus(updateuser: any): Observable<any> {
+    return this.http.post<any>(endpoint + '/treatments/updates/', JSON.stringify(updateuser), httpOptions)
+  }
   
   //report
   generateBilldrugReport(billId: any): Observable<any> {
@@ -70,5 +73,6 @@ export class ManagredrugService {
       responseType: 'blob' as 'json'
     });
   }
+  
 
 }//end

@@ -54,11 +54,14 @@
                                         <td>{{item.user.userFirstname}} {{item.user.userLastname}}</td>
                                         <td>{{item.bkId}}</td>
                                         <td>{{item.billdrug.billTime | date : "dd.MM.y HH:mm:ss"}}</td>
-                                        <td class="text-decoration-underline text-primary">
+                                        <td *ngIf="item.tmStatus != 'S' && item.tmStatus != 'C'" class="text-decoration-underline text-primary">
                                             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                                 data-bs-target="#uploadModal" (click)="selectDataBillId(item)">
                                                 แนบไฟล์
                                             </button>
+                                        </td>
+                                        <td *ngIf="item.tmStatus === 'S' || item.tmStatus === 'C'"
+                                            class="text-decoration-underline text-primary">
                                         </td>
                                         <td *ngIf="item.tmStatus ==='W'" class="col-md-2">
                                             <span class="t-danger badge p-2">
